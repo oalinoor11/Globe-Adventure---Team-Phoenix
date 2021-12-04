@@ -1,9 +1,6 @@
-import 'package:dengugo/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class FirstQuestion extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class FirstQuestion extends StatelessWidget {
 
               const SizedBox(height: 100.0),
               const Image(
-                image: AssetImage("assets/bodypain.png"),
+                image: AssetImage("assets/logo.png"),
                 width: 200,
                 height: 200,
                 alignment: Alignment.center,
@@ -80,7 +77,7 @@ class FirstQuestion extends StatelessWidget {
                       onPressed: ()
                       {
                         print("clicked Yes");
-                        Get.toNamed(AppRoutes.SECONDQUESTION);
+                       // Get.toNamed(AppRoutes.SECONDQUESTION);
                       },
                     ),
                   ],

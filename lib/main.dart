@@ -1,4 +1,3 @@
-import 'package:dengugo/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Address Book',
+      title: 'Borno Bangla',
       theme: ThemeData(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)),
       initialRoute: AppRoutes.INITAL,
       getPages: AppRoutes.routes,

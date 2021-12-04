@@ -1,9 +1,6 @@
-import 'package:dengugo/Core/AppRoutes.dart';
+import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'Questions/firstquestion.dart';
-import 'Questions/firstquestion.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -44,6 +41,6 @@ class _SplashScreenState extends State<SplashScreen> {
       width = Get.width - 40;
     });
     await Future.delayed(Duration(milliseconds: 2000));
-    Get.offAndToNamed(AppRoutes.MAINSCREEN);
+    Get.offAndToNamed(AppRoutes.HOMESCREEN);
   }
 }
