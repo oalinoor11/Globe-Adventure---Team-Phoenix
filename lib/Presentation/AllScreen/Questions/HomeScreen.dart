@@ -156,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 5.0),
                                   Text(
-                                    "CareerCoach",
+                                    "Career Coach",
                                     style: TextStyle(
                                       fontSize: 18.0,
                                     ),
