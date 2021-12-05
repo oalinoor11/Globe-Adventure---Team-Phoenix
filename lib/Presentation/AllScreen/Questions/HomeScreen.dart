@@ -1,4 +1,7 @@
+import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -66,6 +69,7 @@ class HomeScreen extends StatelessWidget {
                             onPressed: ()
                             {
                               print("clicked university");
+                              Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                             },
                           ),
 
@@ -99,6 +103,7 @@ class HomeScreen extends StatelessWidget {
                             onPressed: ()
                             {
                               print("clicked courses");
+                              Get.toNamed(AppRoutes.COURSESSCREEN);
                             },
                           ),
                         ],
@@ -137,6 +142,7 @@ class HomeScreen extends StatelessWidget {
                             onPressed: ()
                             {
                               print("clicked preparation");
+                              Get.toNamed(AppRoutes.PREPARATIONSCREEN);
                             },
                           ),
 
@@ -170,15 +176,42 @@ class HomeScreen extends StatelessWidget {
                             onPressed: ()
                             {
                               print("clicked careercoach");
+                              Get.toNamed(AppRoutes.CAREERCOACHSCREEN);
                             },
                           ),
                         ],
+                      ),
+
+                      const SizedBox(height: 15.0),
+                      RaisedButton(
+                        color: Colors.red,
+                        textColor: Colors.white,
+                        child: Container(
+                          height: 45.0,
+                          width: 250,
+                          child: Center(
+                            child: Text(
+                              "Apply for Scholarship",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(24.0),
+                        ),
+                        onPressed: ()
+                        {
+                          print("clicked applyscholarship");
+                          Get.toNamed(AppRoutes.APPLYSCHOLARSHIPSCREEN);
+                        },
                       ),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 30.0),
+                const SizedBox(height: 20.0),
 
                 const Image(
                   image: AssetImage("assets/coppedlogo.png"),
