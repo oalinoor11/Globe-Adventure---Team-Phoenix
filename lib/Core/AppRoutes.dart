@@ -1,6 +1,8 @@
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/FoodScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/MainScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Questions/HomeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SplashScreen.dart';
@@ -11,17 +13,25 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 class AppRoutes {
   static const String INITAL = "/";
+  static const String MAINSCREEN = "/mainscreen";
   static const String HOMESCREEN = "/firstscreen";
   static const String UNIVERSITYSCREEN = "/universityscreen";
   static const String COURSESSCREEN = "/coursesscreen";
   static const String PREPARATIONSCREEN = "/preparationscreen";
   static const String CAREERCOACHSCREEN = "/careercoachscreen";
   static const String APPLYSCHOLARSHIPSCREEN = "/applyscholarshipscreen";
+  static const String FOODSCREEN = "/foodscreen";
 
   static List<GetPage> routes = [
     GetPage(
         name: INITAL,
         page: () => SplashScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: MAINSCREEN,
+        page: () => MainScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 
@@ -58,6 +68,12 @@ class AppRoutes {
     GetPage(
         name: APPLYSCHOLARSHIPSCREEN,
         page: () => ApplyScholarshipScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: FOODSCREEN,
+        page: () => FoodScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

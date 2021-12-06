@@ -41,6 +41,6 @@ class _SplashScreenState extends State<SplashScreen> {
       width = Get.width - 40;
     });
     await Future.delayed(Duration(milliseconds: 2000));
-    Get.offAndToNamed(AppRoutes.HOMESCREEN);
+    Get.offAndToNamed(AppRoutes.MAINSCREEN);
   }
 }

@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 180,
+              height: 160,
               width: double.infinity,
               child:
                 Image.asset("assets/banner1.png", fit: BoxFit.cover),
@@ -50,7 +50,6 @@ class HomeScreen extends StatelessWidget {
               //   ],
               // ),
             ),
-
 
           ],
         ),
