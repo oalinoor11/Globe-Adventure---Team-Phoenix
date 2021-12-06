@@ -36,8 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.3.4
   youtube_player_flutter: ^8.0.0
-  carousel_pro: ^1.0.0
-  carousel_slider: ^4.0.0
+  #carousel_pro: ^1.0.0
 
 
 dev_dependencies:
