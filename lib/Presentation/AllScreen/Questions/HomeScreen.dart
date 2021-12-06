@@ -1,5 +1,8 @@
+import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
-//import 'package:carousel_pro/carousel_pro.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+// import 'package:carousel_pro/carousel_pro.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -10,10 +13,9 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Borno Bangla",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title:
+        // Image.asset("assets/logo.png", height: 130),
+        Text("Borno Bangla", style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       body:
       SingleChildScrollView(
@@ -68,16 +70,16 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                      color: Colors.white,
+                      textColor: Colors.black,
                       child: Container(
                         height: 150.0,
                         width: 90.0,
                         child: Center(
                           child: Text(
-                            "A",
+                            "Study Abroad",
                             style: TextStyle(
-                              fontSize: 18.0,
+                              fontSize: 14.0,
                             ),
                           ),
                         ),
@@ -87,7 +89,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       onPressed: ()
                       {
-                        print("clicked");
+                        print("clicked studyabroad");
+                        Get.toNamed(AppRoutes.STUDYABROADSCREEN);
 
                       },
                     ),
@@ -100,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                         width: 90.0,
                         child: Center(
                           child: Text(
-                            "B",
+                            "Tutor",
                             style: TextStyle(
                               fontSize: 18.0,
                             ),
@@ -112,7 +115,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       onPressed: ()
                       {
-                        print("clicked");
+                        print("clicked tutor");
+                        Get.toNamed(AppRoutes.TUTORSCREEN);
 
                       },
                     ),
@@ -125,7 +129,52 @@ class HomeScreen extends StatelessWidget {
                         width: 90.0,
                         child: Center(
                           child: Text(
-                            "C",
+                            "Career Coach",
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked careercoach");
+                        Get.toNamed(AppRoutes.CAREERCOACHSCREEN);
+
+                      },
+                    ),
+                  ]
+              ),
+            ),
+
+            SizedBox(height: 2),
+
+            Container(
+              height: 130,
+              width: double.infinity,
+              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [new BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 15.0,
+                  ),]
+              ),
+              child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      color: Colors.lightBlueAccent[700],
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 120.0,
+                        width:350.0,
+                        child: Center(
+                          child: Text(
+                            "University",
                             style: TextStyle(
                               fontSize: 18.0,
                             ),
@@ -137,8 +186,77 @@ class HomeScreen extends StatelessWidget {
                       ),
                       onPressed: ()
                       {
-                        print("clicked");
+                        print("clicked university");
+                        Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                      },
+                    ),
+                  ]
+              ),
+            ),
 
+            SizedBox(height: 2),
+
+            Container(
+              height: 160,
+              width: double.infinity,
+              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [new BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 15.0,
+                  ),]
+              ),
+              child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      color: Colors.lightBlueAccent[700],
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 150.0,
+                        width: 155.0,
+                        child: Center(
+                          child: Text(
+                            "School",
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked school");
+                        Get.toNamed(AppRoutes.SCHOOLSCREEN);
+                      },
+                    ),
+                    SizedBox(width: 8),
+                    RaisedButton(
+                      color: Colors.lightBlueAccent[700],
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 150.0,
+                        width: 155.0,
+                        child: Center(
+                          child: Text(
+                            "College",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked college");
+                        Get.toNamed(AppRoutes.COLLEGESCREEN);
                       },
                     ),
                   ]

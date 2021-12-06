@@ -1,10 +1,13 @@
+import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
 import 'package:flutter/material.dart';
 import 'FoodScreen.dart';
+import 'JobScreen.dart';
 import 'Questions/HomeScreen.dart';
+import 'SignInScreen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -40,36 +43,31 @@ class _MainScreenState extends State<MainScreen> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.apartment),
-            label: "University",
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: "Courses",
+            label: "Scholarship",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.summarize),
-            label: "Preparation",
+            icon: Icon(Icons.work),
+            label: "Job",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.psychology),
-            label: "Coach",
+            icon: Icon(Icons.lunch_dining),
+            label: "Food",
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.lunch_dining),
-          //   label: "Food",
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+          ),
         ],
       ),
       body: PageView(
         controller: pageController,
         children: [
           HomeScreen(),
-          UniversityScreen(),
-          CoursesScreen(),
-          PreparationScreen(),
-          CareerCoachScreen(),
-          //FoodScreen(),
+          ApplyScholarshipScreen(),
+          JobScreen(),
+          FoodScreen(),
+          SignInScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
       ),
