@@ -263,6 +263,50 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
+            SizedBox(height: 2),
+
+            Container(
+              height: 130,
+              width: double.infinity,
+              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [new BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 15.0,
+                  ),]
+              ),
+              child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      color: Colors.lightBlueAccent[700],
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 120.0,
+                        width:350.0,
+                        child: Center(
+                          child: Text(
+                            "Preparation",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked preparation");
+                        Get.toNamed(AppRoutes.PREPARATIONSCREEN);
+                      },
+                    ),
+                  ]
+              ),
+            ),
+
           ],
         ),
       ),
