@@ -1,5 +1,7 @@
+import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/CoachingApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CollegeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/FoodScreen.dart';
@@ -12,6 +14,7 @@ import 'package:BornoBangla/Presentation/AllScreen/SignInScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SplashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroadScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/TutorScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/UccScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -33,6 +36,9 @@ class AppRoutes {
   static const String TUTORSCREEN = "/tutorscreen";
   static const String SCHOOLSCREEN = "/schoolscreen";
   static const String COLLEGESCREEN = "/collegescreen";
+  static const String ADMISSIONCOACHINGSCREEN = "/admissioncoachingscreen";
+  static const String UCCSCREEN = "/uccscreen";
+  static const String COACHINGAPPLYSCREEN = "/coachingapplyscreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -122,6 +128,24 @@ class AppRoutes {
     GetPage(
         name: COLLEGESCREEN,
         page: () => CollegeScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADMISSIONCOACHINGSCREEN,
+        page: () => AdmissionCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: UCCSCREEN,
+        page: () => UccScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: COACHINGAPPLYSCREEN,
+        page: () => CoachingApplyScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

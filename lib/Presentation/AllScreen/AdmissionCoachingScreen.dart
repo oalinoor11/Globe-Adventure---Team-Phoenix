@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class PreparationScreen extends StatelessWidget {
+class AdmissionCoachingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class PreparationScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Preparation",
+          "Admission Coaching",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -22,18 +22,17 @@ class PreparationScreen extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [Container(),
               const SizedBox(height: 200.0),
-
               RaisedButton(
                 color: Colors.lightBlueAccent[700],
                 textColor: Colors.white,
                 child: Container(
-                  height: 120.0,
-                  width:350.0,
+                  height: 150.0,
+                  width: 155.0,
                   child: Center(
                     child: Text(
-                      "Admission Coaching",
+                      "UCC",
                       style: TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 14.0,
                       ),
                     ),
                   ),
@@ -43,10 +42,11 @@ class PreparationScreen extends StatelessWidget {
                 ),
                 onPressed: ()
                 {
-                  print("clicked preparation");
-                  Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
+                  print("clicked ucc");
+                  Get.toNamed(AppRoutes.UCCSCREEN);
                 },
               ),
+
             ],
           ),
         ),
