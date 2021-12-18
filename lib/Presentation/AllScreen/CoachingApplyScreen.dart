@@ -12,7 +12,7 @@ class CoachingApplyScreen extends StatelessWidget {
 
   List programList = ["A Unit", "B Unit", "C Unit", "D Unit", "A+D Unit", "B+D Unit", "C+D Unit"];
   List timeList = ["Morning", "Day", "Evening"];
-  List coachingList = ["UCC", "Udvash", "Unmesh"];
+  List coachingList = ["UCC"];
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   ScreenshotController screenshotController = ScreenshotController();
 
