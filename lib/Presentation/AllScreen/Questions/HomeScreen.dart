@@ -66,34 +66,25 @@ class HomeScreen extends StatelessWidget {
                     blurRadius: 15.0,
                   ),]
               ),
-              child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
-                      child: Container(
-                        height: 120.0,
-                        width:350.0,
-                        child: Center(
-                          child: Text(
-                            "Preparation",
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
+              child: RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Container(
+                  decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                        image: new AssetImage("assets/preparation.png"),
+                        fit: BoxFit.fill,
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: ()
-                      {
-                        print("clicked preparation");
-                        Get.toNamed(AppRoutes.PREPARATIONSCREEN);
-                      },
-                    ),
-                  ]
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
+                onPressed: ()
+                {
+                  print("clicked preparation");
+                  Get.toNamed(AppRoutes.PREPARATIONSCREEN);
+                },
               ),
             ),
 
@@ -119,12 +110,10 @@ class HomeScreen extends StatelessWidget {
                       child: Container(
                         height: 150.0,
                         width: 90.0,
-                        child: Center(
-                          child: Text(
-                            "Study Abroad",
-                            style: TextStyle(
-                              fontSize: 14.0,
-                            ),
+                        decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                            image: new AssetImage("assets/preparation.png"),
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
@@ -276,34 +265,25 @@ class HomeScreen extends StatelessWidget {
                     blurRadius: 15.0,
                   ),]
               ),
-              child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
-                      child: Container(
-                        height: 120.0,
-                        width:350.0,
-                        child: Center(
-                          child: Text(
-                            "University",
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: ()
-                      {
-                        print("clicked university");
-                        Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
-                      },
+              child: RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Container(
+                  decoration: new BoxDecoration(
+                    image: new DecorationImage(
+                      image: new AssetImage("assets/preparation.png"),
+                      fit: BoxFit.fill,
                     ),
-                  ]
+                  ),
+                ),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
+                onPressed: ()
+                {
+                  print("clicked university");
+                  Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                },
               ),
             ),
 

@@ -301,7 +301,7 @@ class CoachingApplyScreen extends StatelessWidget {
                           colorText: Colors.white,
                         );
 
-                        Get.offAndToNamed(AppRoutes.HOMESCREEN);
+                        Get.offAllNamed(AppRoutes.MAINSCREEN);
                   },
                   child: Center(
                     child: Text(
