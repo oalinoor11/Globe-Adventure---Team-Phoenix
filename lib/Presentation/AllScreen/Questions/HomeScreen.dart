@@ -52,27 +52,37 @@ class HomeScreen extends StatelessWidget {
               //   ],
               // ),
             ),
-            Padding(
-              padding: new EdgeInsets.symmetric(vertical: 7, horizontal: 7),
-              child: Container(
-                height: 130,
-                width: double.infinity,
-                decoration: new BoxDecoration(
-                  boxShadow: [
-                    new BoxShadow(
-                      color: Colors.grey.withOpacity(0.25),
-                      blurRadius: 5.0,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(15),
+            SizedBox(height: 6),
+            Container(
+              height: 160,
+              width: double.infinity,
+              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              decoration: new BoxDecoration(color: Colors.white),
+              child: InkWell(
+                child: Container(
+                  width: double.infinity,
+                  decoration: new BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                    boxShadow: [
+                      new BoxShadow(
+                        color: Colors.grey.withOpacity(0.25),
+                        blurRadius: 5.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
 
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image(image: AssetImage("assets/preparation.png"),fit: BoxFit.cover,),
+                  ),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image(image: AssetImage("assets/preparation.png"),fit: BoxFit.cover,),
-                ),
+                onTap: (){
+                  Get.toNamed(AppRoutes.PREPARATIONSCREEN);
+                },
               ),
             ),
+            SizedBox(height: 5),
             Container(
               height: 160,
               width: double.infinity,
@@ -81,72 +91,77 @@ class HomeScreen extends StatelessWidget {
               child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RaisedButton(
-                      color: Colors.blue,
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 90.0,
+                        width: 122.0,
                         decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                            image: new AssetImage("assets/preparation.png"),
-                            fit: BoxFit.fill,
-                          ),
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/studyabroad.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked studyabroad");
+                      onTap: (){
                         Get.toNamed(AppRoutes.STUDYABROADSCREEN);
                       },
                     ),
                     SizedBox(width: 8),
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 90.0,
-                        child: Center(
-                          child: Text(
-                            "Scholarship",
-                            style: TextStyle(
-                              fontSize: 14.0,
+                        width: 122.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/scholarship.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked tutor");
-                        Get.toNamed(AppRoutes.SCHOOLSCREEN);
+                      onTap: (){
+                        Get.toNamed(AppRoutes.APPLYSCHOLARSHIPSCREEN);
                       },
                     ),
                     SizedBox(width: 8),
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 90.0,
-                        child: Center(
-                          child: Text(
-                            "Career Coach",
-                            style: TextStyle(
-                              fontSize: 14.0,
+                        width: 122.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/careercoach.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked careercoach");
+                      onTap: (){
                         Get.toNamed(AppRoutes.CAREERCOACHSCREEN);
                       },
                     ),
@@ -161,173 +176,173 @@ class HomeScreen extends StatelessWidget {
               child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 155.0,
-                        child: Center(
-                          child: Text(
-                            "School",
-                            style: TextStyle(
-                              fontSize: 14.0,
+                        width: 187.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/school.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked school");
+                      onTap: (){
                         Get.toNamed(AppRoutes.SCHOOLSCREEN);
                       },
                     ),
                     SizedBox(width: 8),
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 155.0,
-                        child: Center(
-                          child: Text(
-                            "College",
-                            style: TextStyle(
-                              fontSize: 18.0,
+                        width: 187.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/college.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked college");
+                      onTap: (){
                         Get.toNamed(AppRoutes.COLLEGESCREEN);
                       },
                     ),
                   ]),
             ),
-            SizedBox(height: 2),
-            Container(
-              height: 130,
-              width: double.infinity,
-              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-              decoration: new BoxDecoration(color: Colors.white, boxShadow: [
-                new BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 15.0,
-                ),
-              ]),
-              child: RaisedButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Container(
-                  decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                      image: new AssetImage("assets/preparation.png"),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(10.0),
-                ),
-                onPressed: () {
-                  print("clicked university");
-                  Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
-                },
-              ),
-            ),
-            SizedBox(height: 2),
+            SizedBox(height: 5),
             Container(
               height: 160,
               width: double.infinity,
               padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-              decoration: new BoxDecoration(color: Colors.white, boxShadow: [
-                new BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 15.0,
+              decoration: new BoxDecoration(color: Colors.white),
+              child: InkWell(
+                child: Container(
+                  width: double.infinity,
+                  decoration: new BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    boxShadow: [
+                      new BoxShadow(
+                        color: Colors.grey.withOpacity(0.25),
+                        blurRadius: 5.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image(image: AssetImage("assets/university.png"),fit: BoxFit.cover,),
+                  ),
                 ),
-              ]),
+                onTap: (){
+                  Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                },
+              ),
+            ),
+            SizedBox(height: 5),
+            Container(
+              height: 160,
+              width: double.infinity,
+              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              decoration: new BoxDecoration(color: Colors.white),
               child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RaisedButton(
-                      color: Colors.blue,
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 90.0,
-                        child: Center(
-                          child: Text(
-                            "Tutor",
-                            style: TextStyle(
-                              fontSize: 14.0,
+                        width: 122.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/tutor.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked tutor");
+                      onTap: (){
                         Get.toNamed(AppRoutes.TUTORSCREEN);
                       },
                     ),
                     SizedBox(width: 8),
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 90.0,
-                        child: Center(
-                          child: Text(
-                            "Job",
-                            style: TextStyle(
-                              fontSize: 18.0,
+                        width: 122.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/job.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked job");
+                      onTap: (){
                         Get.toNamed(AppRoutes.JOBSCREEN);
                       },
                     ),
                     SizedBox(width: 8),
-                    RaisedButton(
-                      color: Colors.lightBlueAccent[700],
-                      textColor: Colors.white,
+                    InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 90.0,
-                        child: Center(
-                          child: Text(
-                            "Food",
-                            style: TextStyle(
-                              fontSize: 14.0,
+                        width: 122.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
                             ),
-                          ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/food.png"),fit: BoxFit.cover,),
                         ),
                       ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
-                      ),
-                      onPressed: () {
-                        print("clicked food");
+                      onTap: (){
                         Get.toNamed(AppRoutes.FOODSCREEN);
                       },
                     ),
                   ]),
             ),
+            SizedBox(height: 5),
           ],
         ),
       ),
