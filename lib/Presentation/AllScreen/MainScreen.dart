@@ -42,18 +42,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: "Home",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: "Scholarship",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            label: "Job",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lunch_dining),
-            label: "Food",
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Profile",
@@ -64,9 +53,6 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          ApplyScholarshipScreen(),
-          JobScreen(),
-          FoodScreen(),
           SignInScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),

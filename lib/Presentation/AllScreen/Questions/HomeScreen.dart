@@ -147,9 +147,9 @@ class HomeScreen extends StatelessWidget {
                         width: 90.0,
                         child: Center(
                           child: Text(
-                            "Tutor",
+                            "Scholarship",
                             style: TextStyle(
-                              fontSize: 18.0,
+                              fontSize: 14.0,
                             ),
                           ),
                         ),
@@ -160,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                       onPressed: ()
                       {
                         print("clicked tutor");
-                        Get.toNamed(AppRoutes.TUTORSCREEN);
+                        Get.toNamed(AppRoutes.SCHOOLSCREEN);
 
                       },
                     ),
@@ -301,6 +301,102 @@ class HomeScreen extends StatelessWidget {
                       {
                         print("clicked university");
                         Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                      },
+                    ),
+                  ]
+              ),
+            ),
+
+            SizedBox(height: 2),
+
+            Container(
+              height: 160,
+              width: double.infinity,
+              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [new BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 15.0,
+                  ),]
+              ),
+              child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 150.0,
+                        width: 90.0,
+                        child: Center(
+                          child: Text(
+                            "Tutor",
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked tutor");
+                        Get.toNamed(AppRoutes.TUTORSCREEN);
+
+                      },
+                    ),
+                    SizedBox(width: 8),
+                    RaisedButton(
+                      color: Colors.lightBlueAccent[700],
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 150.0,
+                        width: 90.0,
+                        child: Center(
+                          child: Text(
+                            "Job",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked job");
+                        Get.toNamed(AppRoutes.JOBSCREEN);
+
+                      },
+                    ),
+                    SizedBox(width: 8),
+                    RaisedButton(
+                      color: Colors.lightBlueAccent[700],
+                      textColor: Colors.white,
+                      child: Container(
+                        height: 150.0,
+                        width: 90.0,
+                        child: Center(
+                          child: Text(
+                            "Food",
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      onPressed: ()
+                      {
+                        print("clicked food");
+                        Get.toNamed(AppRoutes.FOODSCREEN);
                       },
                     ),
                   ]

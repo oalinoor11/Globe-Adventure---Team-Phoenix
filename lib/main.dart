@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Borno Bangla',
-      theme: ThemeData(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)),
+      theme: ThemeData(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
       initialRoute: AppRoutes.INITAL,
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
