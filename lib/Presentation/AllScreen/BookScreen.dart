@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FoodScreen extends StatelessWidget {
+class BookScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class FoodScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Food",
+          "Book",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

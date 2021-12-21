@@ -333,11 +333,11 @@ class HomeScreen extends StatelessWidget {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/food.png"),fit: BoxFit.cover,),
+                          child: Image(image: AssetImage("assets/BOOK.png"),fit: BoxFit.cover,),
                         ),
                       ),
                       onTap: (){
-                        Get.toNamed(AppRoutes.FOODSCREEN);
+                        Get.toNamed(AppRoutes.BOOKSCREEN);
                       },
                     ),
                   ]),

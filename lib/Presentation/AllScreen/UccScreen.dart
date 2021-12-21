@@ -19,8 +19,10 @@ class UccScreen extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 10),
+
               SizedBox(
-                height: 180,
+                height: 130,
                 width: double.infinity,
                 child:
                 Image.asset("assets/uccbanner.png", fit: BoxFit.cover),
@@ -54,97 +56,120 @@ class UccScreen extends StatelessWidget {
               SizedBox(height: 20),
 
               Container(
-                height: 230,
+                height: 328,
                 width: double.infinity,
                 padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-                decoration: new BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [new BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 15.0,
-                    ),]
-                ),
-                child: SingleChildScrollView(scrollDirection: Axis.horizontal,
-                  child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RaisedButton(
-                          color: Colors.lightBlueAccent[700],
-                          textColor: Colors.white,
-                          child: Container(
-                            height: 220.0,
-                            width: 250.0,
-                            child: Center(
-                              child: Text(
-                                "Course1",
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                ),
+                decoration: new BoxDecoration(color: Colors.white),
+                child: Column(
+                  children: [
+                    new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: Container(
+                              height: 150.0,
+                              width: 187.0,
+                              decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.25),
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(15),
+
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image(image: AssetImage("assets/ucc_aunit.png"),fit: BoxFit.cover,),
                               ),
                             ),
+                            onTap: (){
+                              Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                            },
                           ),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                          ),
-                          onPressed: ()
-                          {
-                            print("clicked school");
-                            Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
-                          },
-                        ),
-                        SizedBox(width: 8),
-                        RaisedButton(
-                          color: Colors.lightBlueAccent[700],
-                          textColor: Colors.white,
-                          child: Container(
-                            height: 220.0,
-                            width: 250.0,
-                            child: Center(
-                              child: Text(
-                                "Course2",
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                ),
+                          SizedBox(width: 8),
+                          InkWell(
+                            child: Container(
+                              height: 150.0,
+                              width: 187.0,
+                              decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.25),
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(15),
+
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image(image: AssetImage("assets/ucc_bunit.png"),fit: BoxFit.cover,),
                               ),
                             ),
+                            onTap: (){
+                              Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                            },
                           ),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                          ),
-                          onPressed: ()
-                          {
-                            print("clicked school");
-                            Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
-                          },
-                        ),
-                        SizedBox(width: 8),
-                        RaisedButton(
-                          color: Colors.lightBlueAccent[700],
-                          textColor: Colors.white,
-                          child: Container(
-                            height: 220.0,
-                            width: 250.0,
-                            child: Center(
-                              child: Text(
-                                "Course3",
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                ),
+                        ]),
+                    SizedBox(height: 8),
+                    new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: Container(
+                              height: 150.0,
+                              width: 187.0,
+                              decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.25),
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(15),
+
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image(image: AssetImage("assets/ucc_cunit.png"),fit: BoxFit.cover,),
                               ),
                             ),
+                            onTap: (){
+                              Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                            },
                           ),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
+                          SizedBox(width: 8),
+                          InkWell(
+                            child: Container(
+                              height: 150.0,
+                              width: 187.0,
+                              decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.25),
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(15),
+
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image(image: AssetImage("assets/ucc_dunit.png"),fit: BoxFit.cover,),
+                              ),
+                            ),
+                            onTap: (){
+                              Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                            },
                           ),
-                          onPressed: ()
-                          {
-                            print("clicked school");
-                            Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
-                          },
-                        ),
-                        SizedBox(width: 8),
-                      ]
-                  ),
+                        ]),
+                  ],
                 ),
               ),
             ],

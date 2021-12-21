@@ -12,7 +12,8 @@ class CoachingApplyScreen extends StatelessWidget {
 
   List programList = ["A Unit", "B Unit", "C Unit", "D Unit", "A+D Unit", "B+D Unit", "C+D Unit"];
   List timeList = ["Morning", "Day", "Evening"];
-  List coachingList = ["UCC"];
+  List coachingList = ["UCC", "Retina"];
+  List branchList = ["Dhaka", "Rajshahi", "Sylhet"];
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   ScreenshotController screenshotController = ScreenshotController();
 
@@ -205,6 +206,25 @@ class CoachingApplyScreen extends StatelessWidget {
                     ),
                     onChanged: (v) {
                     },
+                    hint: Text("Select Branch", style: TextStyle(color: Colors.black)),
+                    items: branchList
+                        .map((e) => DropdownMenuItem(
+                        child: Text(e, textAlign: TextAlign.start,), alignment: Alignment.topLeft,
+                        value: e
+                    ))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                    },
                     hint: Text("Program Area", style: TextStyle(color: Colors.black)),
                     items: programList
                         .map((e) => DropdownMenuItem(
@@ -282,8 +302,21 @@ class CoachingApplyScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-              SizedBox(height: 20),
+              Row(mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(width: 10,),
+                  TextButton(
+                    onPressed: (){
+                      _signaturePadKey.currentState!.clear();
+                    },
+                    child: const Text(
+                      "clear",
+                      style: TextStyle(color: Colors.blueGrey),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
               Container(height: 50,
                 child: RaisedButton(
                   elevation: 0,
@@ -293,19 +326,11 @@ class CoachingApplyScreen extends StatelessWidget {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () {
-                        Get.snackbar(
-                          "Thank You",
-                          "Application Submitted",
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.green,
-                          colorText: Colors.white,
-                        );
-
-                        Get.offAllNamed(AppRoutes.MAINSCREEN);
+                        Get.toNamed(AppRoutes.BKASHSCREEN);
                   },
                   child: Center(
                     child: Text(
-                      "Submit",
+                      "Next",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),

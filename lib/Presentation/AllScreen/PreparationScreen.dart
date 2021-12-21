@@ -19,14 +19,16 @@ class PreparationScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center,
+          SizedBox(height: 15),
+          Row(
             children: [
+              SizedBox(width: 15),
               InkWell(
                   child: Container(
-                    height: 250.0,
-                    width: 250.0,
+                    height: 180.0,
+                    width: 180.0,
                     decoration: new BoxDecoration(
                       border: Border.all(color: Colors.grey),
                       boxShadow: [

@@ -1,14 +1,16 @@
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/BkashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoachingApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CollegeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/FoodScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/BookScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/JobScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MainScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Questions/HomeScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/RetinaScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SchoolScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SignInScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SplashScreen.dart';
@@ -29,7 +31,7 @@ class AppRoutes {
   static const String PREPARATIONSCREEN = "/preparationscreen";
   static const String CAREERCOACHSCREEN = "/careercoachscreen";
   static const String APPLYSCHOLARSHIPSCREEN = "/applyscholarshipscreen";
-  static const String FOODSCREEN = "/foodscreen";
+  static const String BOOKSCREEN = "/bookscreen";
   static const String JOBSCREEN = "/jobscreen";
   static const String SIGNINSCREEN = "/signinscreen";
   static const String STUDYABROADSCREEN = "/sstudyabroadscreen";
@@ -39,6 +41,8 @@ class AppRoutes {
   static const String ADMISSIONCOACHINGSCREEN = "/admissioncoachingscreen";
   static const String UCCSCREEN = "/uccscreen";
   static const String COACHINGAPPLYSCREEN = "/coachingapplyscreen";
+  static const String BKASHSCREEN = "/bkashscreen";
+  static const String RETINASCREEN = "/retinascreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -90,8 +94,8 @@ class AppRoutes {
         transition: Transition.zoom),
 
     GetPage(
-        name: FOODSCREEN,
-        page: () => FoodScreen(),
+        name: BOOKSCREEN,
+        page: () => BookScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 
@@ -146,6 +150,18 @@ class AppRoutes {
     GetPage(
         name: COACHINGAPPLYSCREEN,
         page: () => CoachingApplyScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: BKASHSCREEN,
+        page: () => BkashScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: RETINASCREEN,
+        page: () => RetinaScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

@@ -19,35 +19,64 @@ class AdmissionCoachingScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                child: Container(
-                  height: 250.0,
-                  width: 250.0,
-                  decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.grey.withOpacity(0.25),
-                        blurRadius: 5.0,
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(15),
+          SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(11.0, 0.0, 11.0, 0.0),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  child: Container(
+                    height: 180.0,
+                    width: 180.0,
+                    decoration: new BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.grey.withOpacity(0.25),
+                          blurRadius: 5.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
 
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image(image: AssetImage("assets/ucclogo.png"),fit: BoxFit.cover,),
+                    ),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image(image: AssetImage("assets/ucclogo.png"),fit: BoxFit.cover,),
-                  ),
+                  onTap: (){
+                    Get.toNamed(AppRoutes.UCCSCREEN);
+                  },
                 ),
-                onTap: (){
-                  Get.toNamed(AppRoutes.UCCSCREEN);
-                },
-              ),
-            ],
+                SizedBox(width: 10),
+                InkWell(
+                  child: Container(
+                    height: 180.0,
+                    width: 180.0,
+                    decoration: new BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.grey.withOpacity(0.25),
+                          blurRadius: 5.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image(image: AssetImage("assets/retinalogo.png"),fit: BoxFit.cover,),
+                    ),
+                  ),
+                  onTap: (){
+                    Get.toNamed(AppRoutes.RETINASCREEN);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
