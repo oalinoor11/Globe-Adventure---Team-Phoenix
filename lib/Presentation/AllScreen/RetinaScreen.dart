@@ -23,31 +23,6 @@ class RetinaScreen extends StatelessWidget {
               width: double.infinity,
               child:
               Image.asset("assets/retinabanner.png", fit: BoxFit.cover),
-              // Carousel(
-              //   autoplayDuration: Duration(seconds: 1),
-              //   animationDuration: Duration(milliseconds: 500),
-              //   dotBgColor: Colors.transparent,
-              //   dotSize: 4.0,
-              //   dotSpacing: 15.0,
-              //   images: [
-              //     Image.asset(
-              //       "assets/uccbanner.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //     Image.asset(
-              //       "assets/uccbanner.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //     Image.asset(
-              //       "assets/uccbanner.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //     Image.asset(
-              //       "assets/uccbanner.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ],
-              // ),
             ),
 
             SizedBox(height: 10),

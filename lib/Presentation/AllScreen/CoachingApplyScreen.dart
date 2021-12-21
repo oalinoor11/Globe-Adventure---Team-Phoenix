@@ -10,7 +10,7 @@ import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
 class CoachingApplyScreen extends StatelessWidget {
 
-  List programList = ["A Unit", "B Unit", "C Unit", "D Unit", "A+D Unit", "B+D Unit", "C+D Unit"];
+  List programList = ["A Unit", "B Unit", "C Unit", "D Unit", "A+D Unit", "B+D Unit", "C+D Unit", "Medical", "Dental"];
   List timeList = ["Morning", "Day", "Evening"];
   List coachingList = ["UCC", "Retina"];
   List branchList = ["Dhaka", "Rajshahi", "Sylhet"];
