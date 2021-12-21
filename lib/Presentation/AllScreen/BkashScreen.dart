@@ -24,7 +24,7 @@ class BkashScreen extends StatelessWidget {
             children: [Container(),
               const SizedBox(height: 20.0),
               Container(
-                height: 480.0,
+                height: 500.0,
                 width: 350.0,
                 decoration: new BoxDecoration(
                   color: Colors.pink,
@@ -43,7 +43,7 @@ class BkashScreen extends StatelessWidget {
                         )),
                     SizedBox(height: 30.0),
                     Container(
-                      height: 142.0,
+                      height: 165.0,
                       width: 300.0,
                       decoration: new BoxDecoration(
                         color: Colors.pink,
@@ -59,15 +59,19 @@ class BkashScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(height: 15.0),
-                          Text("1. Go to bKash App", style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text("1. Go to bKash App", style: TextStyle(color: Colors.white, fontSize: 14)),
                           SizedBox(height: 3.0),
-                          Text("2. Select 'Payment' option", style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text("2. Select 'Payment' option", style: TextStyle(color: Colors.white, fontSize: 14)),
                           SizedBox(height: 3.0),
-                          Text("3. Enter number: 01711957879", style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text("3. Enter number: 01511312412", style: TextStyle(color: Colors.white, fontSize: 14)),
                           SizedBox(height: 3.0),
-                          Text("4. Enter course fees amount", style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text("4. Enter course fees amount", style: TextStyle(color: Colors.white, fontSize: 14)),
                           SizedBox(height: 3.0),
-                          Text("5. Enter pin to confirm payment", style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text("5. Enter Reference: 'Your Name'", style: TextStyle(color: Colors.white, fontSize: 14)),
+                          SizedBox(height: 3.0),
+                          Text("6. Enter counter No: 1", style: TextStyle(color: Colors.white, fontSize: 14)),
+                          SizedBox(height: 3.0),
+                          Text("7. Enter pin to confirm payment", style: TextStyle(color: Colors.white, fontSize: 14)),
                           SizedBox(height: 20.0),
                         ],
                       ),
