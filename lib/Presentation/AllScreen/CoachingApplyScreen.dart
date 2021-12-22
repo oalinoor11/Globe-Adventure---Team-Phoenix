@@ -2,8 +2,6 @@ import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
@@ -12,8 +10,8 @@ class CoachingApplyScreen extends StatelessWidget {
 
   List programList = ["A Unit", "B Unit", "C Unit", "D Unit", "A+D Unit", "B+D Unit", "C+D Unit", "Medical", "Dental"];
   List timeList = ["Morning", "Day", "Evening"];
-  List coachingList = ["UCC", "Retina"];
-  List branchList = ["Dhaka", "Rajshahi", "Sylhet"];
+  List coachingList = ["UCC", "Retina", "ICON", "ICON Plus", "Paragon", "Scholars", "Bondi Pathsala", "Borno Pathsala", "Udvash", "Medico", "Focus", "Voice", "Sopsontak", "Legend", "Legend Plus", "Jabi Aid", "Cornia", "UniAid", "UAC", "Mabs", "Mars", "E-Hoque", "BCS Confidence by Taslima Gias", "BCS Confidence by Razu Sir", "Uttaran", "English A2Z", "Mentor's", "Saifur's", "Siraj Academy"];
+  List branchList = ["Adabar", "Badda", "Bangsal", "Bimanbandar(Dhaka)", "Cantonment", "Chowkbazar", "Darus Salam", "Demra", "Dhanmondi", "Gendaria", "Gulshan" , "azaribagh", "Jatrabari", "Kadamtali", "Kafrul", "Kalabagan", "Kamrangirchar", "Khilgaon", "Khilkhet", "Kotwali(Dhaka)", "Lalbagh", "Mirpur", "Mohammadpur", "Motijheel", "New Market", "Pallabi", "Paltan", "Panthapath", "Ramna", "Rampura", "Sabujbagh", "Shah Ali", "Shahbag", "Sher-e-Bangla Nagar", "Shyampur", "Sutrapur", "Tejgaon Industrial Area", "Tejgaon", "Turag" ,"Uttar Khan", "Vatara", "Wari", "Chittagong", "Rangpur", "Rajshahi", "Dhaka", "Jashore", "Sylhet", "Dinajpur" , "Mymensingh", "Comilla", "Barisal", "Faridpur", "Noakhali", "Bogra", "Pabna", "Khulna", "Kushtia", "Tangail", "Patuakhali", "Dhaka", "Faridpur", "Mymensingh", "Tangail", "Chittagong", "Comilla", "Noakhali", "Sylhet", "Cox's Bazar", "Bogura", "Dinajpur", "Rajshahi", "Rangpur", "Pabna", "Bakerganj", "Jashore", "Khulna", "Kushtia", "Patuakhali", "Jamalpur", "Joypurhat", "Brahmanbaria", "Sirajganj", "Sherpur", "Netrokona", "Kishoreganj", "Lakshmipur", "Feni", "Sunamganj", "Habiganj", "Maulvibazar", "Thakurgaon","Panchagarh", "Cox's Bazar"];
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   ScreenshotController screenshotController = ScreenshotController();
 
@@ -257,7 +255,7 @@ class CoachingApplyScreen extends StatelessWidget {
                 onTap: () async {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
-                      .pickImage(source: ImageSource.camera);
+                      .pickImage(source: ImageSource.gallery);
                 },
                 child: Container(
                     height: 65,

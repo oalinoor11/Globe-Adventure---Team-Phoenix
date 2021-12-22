@@ -90,13 +90,18 @@ class BkashScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child:
-                        TextField(
-                          textAlign: TextAlign.center,
-                          cursorColor: Colors.pink,
-                          decoration:
-                          InputDecoration(
-                            hintText: 'e.g 8XHE39433J',
-                          ),
+                        Column(
+                          children: [
+                            SizedBox(height: 9.0),
+                            TextField(
+                              textAlign: TextAlign.center,
+                              cursorColor: Colors.pink,
+                              decoration:
+                              InputDecoration.collapsed(
+                                hintText: 'e.g 8XHE39433J',
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
