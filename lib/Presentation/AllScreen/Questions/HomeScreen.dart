@@ -2,18 +2,18 @@ import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-// import 'package:carousel_pro/carousel_pro.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.grey.withOpacity(0.2),
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
         title:
-            // Image.asset("assets/logo.png", height: 130),
             Text(
           "Borno Bangla",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -22,36 +22,29 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 180,
-              width: double.infinity,
-              child: Image.asset("assets/banner1.png", fit: BoxFit.cover),
-              // Carousel(
-              //   autoplayDuration: Duration(seconds: 1),
-              //   animationDuration: Duration(milliseconds: 500),
-              //   dotBgColor: Colors.transparent,
-              //   dotSize: 4.0,
-              //   dotSpacing: 15.0,
-              //   images: [
-              //     Image.asset(
-              //       "assets/banner1.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //     Image.asset(
-              //       "assets/banner1.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //     Image.asset(
-              //       "assets/banner1.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //     Image.asset(
-              //       "assets/banner1.png",
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ],
-              // ),
-            ),
+            CarouselSlider(
+                options: CarouselOptions(
+                  height: 180.0,
+                  viewportFraction: 1.0,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                ),
+                items: [1].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                          width: double.infinity,
+                          child: Image.asset(
+                            "assets/banner1.png",
+                            fit: BoxFit.cover,
+                          ),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
             SizedBox(height: 6),
             Container(
               height: 160,

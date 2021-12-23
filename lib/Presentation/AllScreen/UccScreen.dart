@@ -1,4 +1,6 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -21,11 +23,28 @@ class UccScreen extends StatelessWidget {
             children: [
               SizedBox(height: 10),
 
-              SizedBox(
-                height: 130,
-                width: double.infinity,
-                child:
-                Image.asset("assets/uccbanner.png", fit: BoxFit.cover),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 180.0,
+                  viewportFraction: 1.0,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                ),
+                items: [1].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: double.infinity,
+                        child: Image.asset(
+                          "assets/uccbanner.png",
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
               ),
 
               SizedBox(height: 20),
