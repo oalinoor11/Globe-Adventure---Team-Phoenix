@@ -1,23 +1,38 @@
+import 'package:BornoBangla/Presentation/AllScreen/AcademicCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/BcsbyrsScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/BcsbytgScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/BkashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoachingApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CollegeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/BookScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/EhokScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Englisha2zScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/IeltsCoachingScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/IssbCoachingScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/JobCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/JobScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/MabsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MainScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/MarsScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/MentorsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Questions/HomeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/RetinaScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/SIrajacademyScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/SaifursScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SchoolScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SignInScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SplashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroadScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/TutorScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UccScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/UdvashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/UttoronScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
@@ -39,10 +54,25 @@ class AppRoutes {
   static const String SCHOOLSCREEN = "/schoolscreen";
   static const String COLLEGESCREEN = "/collegescreen";
   static const String ADMISSIONCOACHINGSCREEN = "/admissioncoachingscreen";
+  static const String ACADEMICCOACHINGSCREEN = "/academiccoachingscreen";
+  static const String IELTSCOACHINGSCREEN = "/ieltscoachingscreen";
+  static const String JOBCOACHINGSCREEN = "/jobcoachingscreen";
+  static const String ISSBCOACHINGSCREEN = "/issbcoachingscreen";
   static const String UCCSCREEN = "/uccscreen";
+  static const String UDVASHSCREEN = "/udvashscreen";
+  static const String EHOKSCREEN = "/ehokscreen";
+  static const String MABSSCREEN = "/mabsscreen";
+  static const String MARSSCREEN = "/marsscreen";
   static const String COACHINGAPPLYSCREEN = "/coachingapplyscreen";
   static const String BKASHSCREEN = "/bkashscreen";
   static const String RETINASCREEN = "/retinascreen";
+  static const String ENGLISHA2ZSCREEN = "/englisha2zscreen";
+  static const String SAIFURSSCREEN = "/saifursscreen";
+  static const String MENTORSSCREEN = "/mentorsscreen";
+  static const String BCSBYTGSCREEN = "/bcsbytgscreen";
+  static const String BCSBYRSSCREEN = "/bcsbyrsscreen";
+  static const String UTTORONSCREEN = "/uttoronscreen";
+  static const String SIRAJACADEMYSCREEN = "/sirajacademyscreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -142,8 +172,98 @@ class AppRoutes {
         transition: Transition.zoom),
 
     GetPage(
+        name: SIRAJACADEMYSCREEN,
+        page: () => SirajacademyScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: IELTSCOACHINGSCREEN,
+        page: () => IeltsCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: JOBCOACHINGSCREEN,
+        page: () => JobCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ISSBCOACHINGSCREEN,
+        page: () => IssbCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ACADEMICCOACHINGSCREEN,
+        page: () => AcademicCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
         name: UCCSCREEN,
         page: () => UccScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: BCSBYTGSCREEN,
+        page: () => BcsbytgScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: BCSBYRSSCREEN,
+        page: () => BcsbyrsScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: UTTORONSCREEN,
+        page: () => UttoronScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: MABSSCREEN,
+        page: () => MabsScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: MARSSCREEN,
+        page: () => MarsScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: EHOKSCREEN,
+        page: () => EhokScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: UDVASHSCREEN,
+        page: () => UdvashScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ENGLISHA2ZSCREEN,
+        page: () => Englisha2zScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: SAIFURSSCREEN,
+        page: () => SaifursScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: MENTORSSCREEN,
+        page: () => MentorsScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

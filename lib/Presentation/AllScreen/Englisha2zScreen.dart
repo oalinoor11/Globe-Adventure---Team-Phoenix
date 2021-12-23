@@ -1,10 +1,11 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class RetinaScreen extends StatelessWidget {
+class Englisha2zScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +14,18 @@ class RetinaScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Retina",
+          "EnglishA2Z",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 10),
+
             CarouselSlider(
               options: CarouselOptions(
-                height: 170.0,
+                height: 120.0,
                 viewportFraction: 1.0,
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 3),
@@ -35,7 +38,7 @@ class RetinaScreen extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/retinabanner.png",
+                        "assets/samplebanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -44,7 +47,7 @@ class RetinaScreen extends StatelessWidget {
               }).toList(),
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: 20),
 
             Container(
               height: 328,
@@ -73,7 +76,7 @@ class RetinaScreen extends StatelessWidget {
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                              child: Image(image: AssetImage("assets/retina_medical.png"),fit: BoxFit.cover,),
+                              child: Image(image: AssetImage("assets/samplecourse.png"),fit: BoxFit.cover,),
                             ),
                           ),
                           onTap: (){
@@ -98,7 +101,7 @@ class RetinaScreen extends StatelessWidget {
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                              child: Image(image: AssetImage("assets/retina_dental.png"),fit: BoxFit.cover,),
+                              child: Image(image: AssetImage("assets/samplecourse.png"),fit: BoxFit.cover,),
                             ),
                           ),
                           onTap: (){
@@ -107,6 +110,59 @@ class RetinaScreen extends StatelessWidget {
                         ),
                       ]),
                   SizedBox(height: 8),
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          child: Container(
+                            height: 150.0,
+                            width: 187.0,
+                            decoration: new BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              boxShadow: [
+                                new BoxShadow(
+                                  color: Colors.grey.withOpacity(0.25),
+                                  blurRadius: 5.0,
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(15),
+
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image(image: AssetImage("assets/samplecourse.png"),fit: BoxFit.cover,),
+                            ),
+                          ),
+                          onTap: (){
+                            Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                          },
+                        ),
+                        SizedBox(width: 8),
+                        InkWell(
+                          child: Container(
+                            height: 150.0,
+                            width: 187.0,
+                            decoration: new BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              boxShadow: [
+                                new BoxShadow(
+                                  color: Colors.grey.withOpacity(0.25),
+                                  blurRadius: 5.0,
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(15),
+
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image(image: AssetImage("assets/samplecourse.png"),fit: BoxFit.cover,),
+                            ),
+                          ),
+                          onTap: (){
+                            Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                          },
+                        ),
+                      ]),
                 ],
               ),
             ),

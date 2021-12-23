@@ -25,7 +25,7 @@ class UccScreen extends StatelessWidget {
 
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 180.0,
+                  height: 120.0,
                   viewportFraction: 1.0,
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 3),
