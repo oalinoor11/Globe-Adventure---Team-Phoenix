@@ -39,7 +39,6 @@ class IssbCoachingScreen extends StatelessWidget {
                         ),
                       ],
                       borderRadius: BorderRadius.circular(15),
-
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),

@@ -23,7 +23,8 @@ class AdmissionCoachingScreen extends StatelessWidget {
           SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.fromLTRB(11.0, 0.0, 11.0, 0.0),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            child:
+            Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
                   child: Container(
