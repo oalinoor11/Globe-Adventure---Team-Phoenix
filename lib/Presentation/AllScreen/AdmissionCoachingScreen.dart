@@ -2,6 +2,7 @@ import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AdmissionCoachingScreen extends StatelessWidget {
@@ -19,6 +20,11 @@ class AdmissionCoachingScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Get.toNamed(AppRoutes.ADDCOACHINGSCREEN);
+            }),
       body: Column(
         children: [
           SizedBox(height: 15),
@@ -59,7 +65,7 @@ class AdmissionCoachingScreen extends StatelessWidget {
                                     bottomLeft: Radius.circular(15),
                                     bottomRight: Radius.circular(15),
                                   ),
-                                  color: Colors.white.withOpacity(0.75),
+                                  color: Colors.white.withOpacity(0.93),
                                 ),
                                 child: Center(
                                     child: Padding(
@@ -70,7 +76,7 @@ class AdmissionCoachingScreen extends StatelessWidget {
                                         .textTheme
                                         .bodyText1!
                                         .copyWith(
-                                          color: Colors.red,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
                                         ),
