@@ -135,7 +135,7 @@ class PreparationScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
-                Row(mainAxisAlignment: MainAxisAlignment.start,
+                Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
                       child: Container(

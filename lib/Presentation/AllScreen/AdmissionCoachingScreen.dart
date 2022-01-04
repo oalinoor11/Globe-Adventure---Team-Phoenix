@@ -44,7 +44,7 @@ class AdmissionCoachingScreen extends StatelessWidget {
                     child: Container(
                       decoration: new BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.green, width: 2),
+                        border: Border.all(color: Colors.green, width: 1.5),
                         image: DecorationImage(
                             image: AssetImage("assets/marslogo.png")),
                         // boxShadow: [
@@ -62,14 +62,14 @@ class AdmissionCoachingScreen extends StatelessWidget {
                             child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(13),
+                                    bottomLeft: Radius.circular(13),ggljgjgjgldgjdugodutr.x,vm.xc,jgldxutdrgmd;flkgofigv
                                     bottomRight: Radius.circular(13),
                                   ),
                                   color: Colors.green.withOpacity(0.93),
                                 ),
                                 child: Center(
                                     child: Padding(
-                                  padding: const EdgeInsets.all(6.0),
+                                  padding: const EdgeInsets.all(7.0),
                                      child: Text(
                                     "MARS",
                                     style: Theme.of(context)
