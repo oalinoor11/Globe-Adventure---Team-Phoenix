@@ -85,7 +85,7 @@ class AddCoachingScreen extends StatelessWidget {
                     backgroundColor: Colors.green,
                     colorText: Colors.white,
                   );
-                  Get.offAllNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
+                  Navigator.of(context).pop(true);
                 },
               ),
             ],

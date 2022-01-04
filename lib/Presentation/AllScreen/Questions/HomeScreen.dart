@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
           children: [
             CarouselSlider(
                 options: CarouselOptions(
-                  height: 180.0,
                   viewportFraction: 1.0,
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 3),

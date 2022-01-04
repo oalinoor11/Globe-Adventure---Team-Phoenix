@@ -9,7 +9,7 @@ class AdmissionCoachingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white.withOpacity(0.92),
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
@@ -37,22 +37,22 @@ class AdmissionCoachingScreen extends StatelessWidget {
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                   childAspectRatio: 1 / 1,
-                  crossAxisCount: 2,
+                  crossAxisCount: context.width > 1080 ? 4 : 2,
                 ),
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
                       decoration: new BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: Colors.green, width: 2),
                         image: DecorationImage(
-                            image: AssetImage("assets/ucclogo.png")),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.grey.withOpacity(0.25),
-                            blurRadius: 5.0,
-                          ),
-                        ],
+                            image: AssetImage("assets/marslogo.png")),
+                        // boxShadow: [
+                        //   new BoxShadow(
+                        //     color: Colors.black.withOpacity(1),
+                        //     blurRadius: 5.0,
+                        //   ),
+                        // ],
                       ),
                       child: Stack(children: [
                         Positioned(
@@ -62,21 +62,21 @@ class AdmissionCoachingScreen extends StatelessWidget {
                             child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(15),
-                                    bottomRight: Radius.circular(15),
+                                    bottomLeft: Radius.circular(13),
+                                    bottomRight: Radius.circular(13),
                                   ),
-                                  color: Colors.white.withOpacity(0.93),
+                                  color: Colors.green.withOpacity(0.93),
                                 ),
                                 child: Center(
                                     child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.all(6.0),
                                      child: Text(
-                                    "UCC",
+                                    "MARS",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText1!
                                         .copyWith(
-                                          color: Colors.black,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
                                         ),
