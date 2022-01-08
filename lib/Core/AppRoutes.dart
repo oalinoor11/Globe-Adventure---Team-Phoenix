@@ -18,7 +18,6 @@ import 'package:BornoBangla/Presentation/AllScreen/JobCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/JobScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MabsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MainScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/MarsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MentorsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Questions/HomeScreen.dart';
@@ -31,7 +30,6 @@ import 'package:BornoBangla/Presentation/AllScreen/SplashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroadScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/TutorScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UccScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/UdvashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UttoronScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -240,20 +238,8 @@ class AppRoutes {
         transition: Transition.zoom),
 
     GetPage(
-        name: MARSSCREEN,
-        page: () => MarsScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.zoom),
-
-    GetPage(
         name: EHOKSCREEN,
         page: () => EhokScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.zoom),
-
-    GetPage(
-        name: UDVASHSCREEN,
-        page: () => UdvashScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

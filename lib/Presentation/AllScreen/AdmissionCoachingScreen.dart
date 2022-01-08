@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Presentation/AllScreen/FirebaseCollections.dart';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -101,6 +104,38 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                               onTap: () {
                                 Get.toNamed(AppRoutes.UCCSCREEN);
                               },
+                              // onLongPress: () async {
+                              //
+                              //   var ADMISSIONCOACHING = FirebaseFirestore.instance.collection('image');
+                              //   await ADMISSIONCOACHING.doc().delete();
+                              //
+                              //   var result = CoolAlert.show(
+                              //     backgroundColor: Colors.green,
+                              //     confirmBtnColor: Colors.red,
+                              //     confirmBtnText: ("Delete"),
+                              //     width: 10,
+                              //     context: context,
+                              //     type: CoolAlertType.confirm,
+                              //     onCancelBtnTap: () =>
+                              //         Get.back(result: false),
+                              //     onConfirmBtnTap: () =>
+                              //         Get.back(result: true),
+                              //   );
+                              //   if (result) {
+                              //     var response =
+                              //         await MaterialRepository()
+                              //         .deleteMaterial(e);
+                              //     if (response) {
+                              //       await CoolAlert.show(
+                              //           context: context,
+                              //           type: CoolAlertType.success);
+                              //     } else {
+                              //       await CoolAlert.show(
+                              //           context: context,
+                              //           type: CoolAlertType.error);
+                              //     }
+                              //   }
+                              // },
                             );
                           });
                   } else {

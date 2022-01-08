@@ -110,7 +110,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 ),
                 onTap: () async {
                   if (image != null) {
-                    var imageUrl = await (await FirebaseCollections.COACHINGIMAGES.putFile(image!)).ref.getDownloadURL();
+                    var imageUrl = await FirebaseCollections.uploadCoachingLogo(image!, controller.text+('.')+image!.path.split('/').last.split('.').last);
                     await FirebaseCollections.ADMISSIONCOACHING.doc().set({'image': imageUrl, 'title':controller.text});
                     Get.snackbar(
                       "Done",
@@ -123,7 +123,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                   } else {
                     Get.snackbar(
                       "Failed!",
-                      "Select an Image",
+                      "Add valid Name and Logo",
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.red,
                       colorText: Colors.white,
