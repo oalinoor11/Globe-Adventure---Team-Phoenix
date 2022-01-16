@@ -23,6 +23,13 @@ class AdmissionCoachingScreen2 extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
+
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Get.toNamed(AppRoutes.ADDCOURSESCREEN);
+          }),
+
       body: SingleChildScrollView(
         child: Column(
           children: [

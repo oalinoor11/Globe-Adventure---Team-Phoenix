@@ -1,5 +1,6 @@
 import 'package:BornoBangla/Presentation/AllScreen/AcademicCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddCoachingScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AddCourseScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
@@ -33,6 +34,7 @@ import 'package:BornoBangla/Presentation/AllScreen/TutorScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UccScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UttoronScreen.dart';
+import 'package:BornoBangla/Presentation/SignUpScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
@@ -49,6 +51,7 @@ class AppRoutes {
   static const String BOOKSCREEN = "/bookscreen";
   static const String JOBSCREEN = "/jobscreen";
   static const String SIGNINSCREEN = "/signinscreen";
+  static const String SIGNUPSCREEN = "/signupscreen";
   static const String STUDYABROADSCREEN = "/sstudyabroadscreen";
   static const String TUTORSCREEN = "/tutorscreen";
   static const String SCHOOLSCREEN = "/schoolscreen";
@@ -56,6 +59,7 @@ class AppRoutes {
   static const String ADMISSIONCOACHINGSCREEN = "/admissioncoachingscreen";
   static const String ADMISSIONCOACHINGSCREEN2 = "/admissioncoachingscreen2";
   static const String ADDCOACHINGSCREEN = "/addcoachingscreen";
+  static const String ADDCOURSESCREEN = "/addcoursescreen";
   static const String ACADEMICCOACHINGSCREEN = "/academiccoachingscreen";
   static const String IELTSCOACHINGSCREEN = "/ieltscoachingscreen";
   static const String JOBCOACHINGSCREEN = "/jobcoachingscreen";
@@ -144,6 +148,12 @@ class AppRoutes {
         transition: Transition.zoom),
 
     GetPage(
+        name: SIGNUPSCREEN,
+        page: () => SignUpScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
         name: STUDYABROADSCREEN,
         page: () => StudyAbroadScreen(),
         transitionDuration: Duration(milliseconds: 100),
@@ -182,6 +192,12 @@ class AppRoutes {
     GetPage(
         name: ADDCOACHINGSCREEN,
         page: () => AddCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADDCOURSESCREEN,
+        page: () => AddCourseScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 
