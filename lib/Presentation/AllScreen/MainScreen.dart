@@ -2,6 +2,7 @@ import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
 import 'package:flutter/material.dart';
 import 'BookScreen.dart';
@@ -53,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          SignInScreen(),
+          ProfileScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
       ),

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Borno Bangla',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
-      initialRoute: AppRoutes.MAINSCREEN,
+      initialRoute: AppRoutes.SIGNINSCREEN,
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );

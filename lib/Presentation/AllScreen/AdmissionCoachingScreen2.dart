@@ -30,117 +30,155 @@ class AdmissionCoachingScreen2 extends StatelessWidget {
             Get.toNamed(AppRoutes.ADDCOURSESCREEN);
           }),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 10),
+      body: Column(
+        children: [
+          SizedBox(height: 10),
 
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 120.0,
-                viewportFraction: 1.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-              ),
-              items: [1].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: double.infinity,
-                      child: Image.asset(
-                        "assets/uccbanner.png",
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 120.0,
+              viewportFraction: 1.0,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
             ),
+            items: [1].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    width: double.infinity,
+                    child: Image.asset(
+                      "assets/uccbanner.png",
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          ),
 
-            SizedBox(height: 20),
+          SizedBox(height: 20),
 
-            // Expanded(
-            //   child: StreamBuilder<QuerySnapshot>(
-            //       stream: FirebaseCollections.ADMISSIONCOACHING.snapshots(),
-            //       builder: (context, snapshot) {
-            //         if (snapshot.hasData) {
-            //           var coachingList = snapshot.data!.docs;
-            //           return GridView.builder(
-            //               padding: EdgeInsets.symmetric(horizontal: 8.0),
-            //               itemCount: coachingList.length,
-            //               gridDelegate:
-            //               SliverGridDelegateWithFixedCrossAxisCount(
-            //                 crossAxisSpacing: 8,
-            //                 mainAxisSpacing: 8,
-            //                 childAspectRatio: 1 / 1,
-            //                 crossAxisCount: context.width > 1080 ? 4 : 2,
-            //               ),
-            //               itemBuilder: (context, index) {
-            //                 var coaching = coachingList[index].data() as Map<String, dynamic>;
-            //                 return InkWell(
-            //                   child: Container(
-            //                     decoration: new BoxDecoration(
-            //                       borderRadius: BorderRadius.circular(15),
-            //                       border: Border.all(
-            //                           color: Colors.green, width: 1.5),
-            //                       image: DecorationImage(
-            //                           image:
-            //                           // NetworkImage(coaching['image'])
-            //                           NetworkImage(coaching['image'])
-            //                       ),
-            //                       // boxShadow: [
-            //                       //   new BoxShadow(
-            //                       //     color: Colors.black.withOpacity(1),
-            //                       //     blurRadius: 5.0,
-            //                       //   ),
-            //                       // ],
-            //                     ),
-            //                     child: Stack(children: [
-            //                       Positioned(
-            //                           left: 0,
-            //                           right: 0,
-            //                           bottom: 0,
-            //                           child: Container(
-            //                               decoration: BoxDecoration(
-            //                                 borderRadius: BorderRadius.only(
-            //                                   bottomLeft: Radius.circular(13),
-            //                                   bottomRight: Radius.circular(13),
-            //                                 ),
-            //                                 color:
-            //                                 Colors.green.withOpacity(0.93),
-            //                               ),
-            //                               child: Center(
-            //                                   child: Padding(
-            //                                     padding: const EdgeInsets.all(7.0),
-            //                                     child: Text(
-            //                                       coaching['title'],
-            //                                       style: Theme.of(context)
-            //                                           .textTheme
-            //                                           .bodyText1!
-            //                                           .copyWith(
-            //                                         color: Colors.white,
-            //                                         fontWeight: FontWeight.bold,
-            //                                         fontSize: 20,
-            //                                       ),
-            //                                     ),
-            //                                   )))),
-            //                     ]),
-            //                   ),
-            //                   onTap: () {
-            //                     Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
-            //                   },
-            //                 );
-            //               });
-            //         } else {
-            //           return const Center(child: CircularProgressIndicator());
-            //         }
-            //       }),
-            // ),
-            SizedBox(height: 15),
-          ],
-        ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(11.0, 0.0, 11.0, 0.0),
+            child:
+            Column(
+              children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      child: Container(
+                        height: 180.0,
+                        width: 180.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/ucc_aunit.png"),fit: BoxFit.cover,),
+                        ),
+                      ),
+                      onTap: (){
+                        Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                      },
+                    ),
+                    SizedBox(width: 10),
+                    InkWell(
+                      child: Container(
+                        height: 180.0,
+                        width: 180.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/ucc_bunit.png"),fit: BoxFit.cover,),
+                        ),
+                      ),
+                      onTap: (){
+                        Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      child: Container(
+                        height: 180.0,
+                        width: 180.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/ucc_cunit.png"),fit: BoxFit.cover,),
+                        ),
+                      ),
+                      onTap: (){
+                        Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                      },
+                    ),
+                    SizedBox(width: 10),
+                    InkWell(
+                      child: Container(
+                        height: 180.0,
+                        width: 180.0,
+                        decoration: new BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey.withOpacity(0.25),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(image: AssetImage("assets/ucc_dunit.png"),fit: BoxFit.cover,),
+                        ),
+                      ),
+                      onTap: (){
+                        Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 15),
+        ],
       ),
     );
   }

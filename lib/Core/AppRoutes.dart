@@ -22,6 +22,7 @@ import 'package:BornoBangla/Presentation/AllScreen/MabsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MainScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MentorsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Questions/HomeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/RetinaScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SIrajacademyScreen.dart';
@@ -79,11 +80,17 @@ class AppRoutes {
   static const String BCSBYRSSCREEN = "/bcsbyrsscreen";
   static const String UTTORONSCREEN = "/uttoronscreen";
   static const String SIRAJACADEMYSCREEN = "/sirajacademyscreen";
+  static const String PROFILESCREEN = "/profilescreen";
 
   static List<GetPage> routes = [
     GetPage(
         name: INITAL,
         page: () => SplashScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+    GetPage(
+        name: PROFILESCREEN,
+        page: () => ProfileScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 
