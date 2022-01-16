@@ -1,6 +1,7 @@
 import 'package:BornoBangla/Presentation/AllScreen/AcademicCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/BcsbyrsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/BcsbytgScreen.dart';
@@ -53,6 +54,7 @@ class AppRoutes {
   static const String SCHOOLSCREEN = "/schoolscreen";
   static const String COLLEGESCREEN = "/collegescreen";
   static const String ADMISSIONCOACHINGSCREEN = "/admissioncoachingscreen";
+  static const String ADMISSIONCOACHINGSCREEN2 = "/admissioncoachingscreen2";
   static const String ADDCOACHINGSCREEN = "/addcoachingscreen";
   static const String ACADEMICCOACHINGSCREEN = "/academiccoachingscreen";
   static const String IELTSCOACHINGSCREEN = "/ieltscoachingscreen";
@@ -168,6 +170,12 @@ class AppRoutes {
     GetPage(
         name: ADMISSIONCOACHINGSCREEN,
         page: () => AdmissionCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADMISSIONCOACHINGSCREEN2,
+        page: () => AdmissionCoachingScreen2(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

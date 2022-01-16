@@ -102,7 +102,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                                 ]),
                               ),
                               onTap: () {
-                                Get.toNamed(AppRoutes.UCCSCREEN);
+                                Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN2);
                               },
                               onLongPress: () {
 
