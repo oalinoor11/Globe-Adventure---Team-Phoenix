@@ -4,6 +4,7 @@ import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'BookScreen.dart';
 import 'JobScreen.dart';
@@ -54,7 +55,7 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          ProfileScreen(),
+          FirebaseAuth.instance.currentUser == null ? SignInScreen() : ProfileScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
       ),

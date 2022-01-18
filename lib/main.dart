@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Borno Bangla',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
-      initialRoute: FirebaseAuth.instance.currentUser == null ? AppRoutes.SIGNINSCREEN : AppRoutes.MAINSCREEN,
+      initialRoute: AppRoutes.MAINSCREEN,
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );
