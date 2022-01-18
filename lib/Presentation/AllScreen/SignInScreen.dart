@@ -164,6 +164,7 @@ class SignInScreen extends StatelessWidget
         password: passwordTextEditingController.text
     ).catchError((errMsg) {
       print(errMsg.toString());
+      Get.back();
       Get.snackbar(
         "Login Failed!",
         "Invalid Login information",
@@ -172,7 +173,7 @@ class SignInScreen extends StatelessWidget
         colorText: Colors.white,
       );
     })).user;
-    Get.back();
+
 
     if (firebaseuser != null) {
       print("User is not null");
@@ -181,6 +182,13 @@ class SignInScreen extends StatelessWidget
       } on Exception catch (e) {
         print(e.toString());
       }
+      Get.snackbar(
+        "Login Success!",
+        "You are logged in",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
       Get.offAllNamed(AppRoutes.MAINSCREEN);
     } else{
       print("User is null");
