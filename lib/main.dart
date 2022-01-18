@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Borno Bangla',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
-      initialRoute: AppRoutes.SIGNINSCREEN,
+      initialRoute: FirebaseAuth.instance.currentUser == null ? AppRoutes.SIGNINSCREEN : AppRoutes.MAINSCREEN,
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );
