@@ -93,7 +93,7 @@ class SignInScreen extends StatelessWidget
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(24.0),
                       ),
-                      onPressed: ()
+                      onPressed: () async
                       {
                         if(!emailTextEditingController.text.contains("@"))
                         {
@@ -119,7 +119,7 @@ class SignInScreen extends StatelessWidget
 
                         else
                         {
-                          loginAndAuthenticateUser(context);
+                          await loginAndAuthenticateUser(context);
                         }
                         print("clicked Login button");
                       },
@@ -148,13 +148,12 @@ class SignInScreen extends StatelessWidget
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  void loginAndAuthenticateUser(BuildContext context) async
+  Future<void> loginAndAuthenticateUser(BuildContext context) async
   {
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (BuildContext context)
-        {
+        builder: (BuildContext context) {
           return ProgressDialog(message: "Authenticating, Please wait...");
         }
     );
@@ -163,8 +162,8 @@ class SignInScreen extends StatelessWidget
         .signInWithEmailAndPassword(
         email: emailTextEditingController.text,
         password: passwordTextEditingController.text
-    ).catchError((errMsg){
-      Navigator.pop(context);
+    ).catchError((errMsg) {
+      print(errMsg.toString());
       Get.snackbar(
         "Login Failed!",
         "Invalid Login information",
@@ -173,47 +172,18 @@ class SignInScreen extends StatelessWidget
         colorText: Colors.white,
       );
     })).user;
+    Get.back();
 
-    if(firebaseuser != null)
-    {
-      userRef.child(firebaseuser.uid).once().then((DataSnapshot snap)
-      {
-        if(snap.value != null)
-        {
-          Get.offAllNamed(AppRoutes.MAINSCREEN);
-          Get.snackbar(
-            "Login Success!",
-            "You are Logged in successfully",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-          );
-        }
-        else
-        {
-          Navigator.pop(context);
-          _firebaseAuth.signOut();
-          Get.snackbar(
-            "Login Failed!",
-            "You don't have an account",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-          );
-        }
-      });
-
-    }
-    else
-    {
-      Navigator.pop(context);
-      Get.snackbar(
-          "Error!",
-          "an error occurred",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-      );
+    if (firebaseuser != null) {
+      print("User is not null");
+      try {
+        // var snap =  await userRef.child(firebaseuser.uid).once();
+      } on Exception catch (e) {
+        print(e.toString());
+      }
+      Get.offAllNamed(AppRoutes.MAINSCREEN);
+    } else{
+      print("User is null");
     }
   }
 
