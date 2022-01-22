@@ -245,7 +245,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 onTap: (){
-                  Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                  Get.toNamed(AppRoutes.STUDYABROADSCREEN);
                 },
               ),
             ),

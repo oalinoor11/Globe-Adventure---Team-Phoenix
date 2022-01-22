@@ -14,7 +14,7 @@ class UniversityScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "University",
+          "Selected Country",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

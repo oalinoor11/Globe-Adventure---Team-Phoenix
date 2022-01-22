@@ -86,7 +86,7 @@ class StudyAbroadScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                          Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                         },
 
                         onLongPress: (){
@@ -124,7 +124,7 @@ class StudyAbroadScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                          Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                         },
 
                         onLongPress: (){
@@ -162,7 +162,7 @@ class StudyAbroadScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                          Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                         },
 
                         onLongPress: (){
@@ -204,7 +204,7 @@ class StudyAbroadScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                          Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                         },
 
                         onLongPress: (){
@@ -242,7 +242,7 @@ class StudyAbroadScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                          Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                         },
 
                         onLongPress: (){
@@ -280,7 +280,7 @@ class StudyAbroadScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                          Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
                         },
 
                         onLongPress: (){
