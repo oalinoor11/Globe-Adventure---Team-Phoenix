@@ -58,7 +58,6 @@ class StudyAbroadScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         child: Container(
-                          height: 110.0,
                           width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
@@ -81,7 +80,8 @@ class StudyAbroadScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Canada", style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text("Canada", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -96,7 +96,6 @@ class StudyAbroadScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          height: 110.0,
                           width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
@@ -119,7 +118,8 @@ class StudyAbroadScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Australia", style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text("Australia", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -134,7 +134,6 @@ class StudyAbroadScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          height: 110.0,
                           width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
@@ -157,7 +156,8 @@ class StudyAbroadScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Finland", style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text("Finland", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -176,7 +176,6 @@ class StudyAbroadScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         child: Container(
-                          height: 110.0,
                           width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
@@ -199,7 +198,8 @@ class StudyAbroadScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Germany", style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text("Germany", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -214,7 +214,6 @@ class StudyAbroadScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          height: 110.0,
                           width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
@@ -237,7 +236,8 @@ class StudyAbroadScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("India", style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text("India", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -252,7 +252,6 @@ class StudyAbroadScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          height: 110.0,
                           width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
@@ -275,7 +274,8 @@ class StudyAbroadScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Norway", style: TextStyle(fontWeight: FontWeight.bold)),
+                              Text("Norway", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),

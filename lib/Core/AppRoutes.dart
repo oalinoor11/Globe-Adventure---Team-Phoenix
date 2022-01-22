@@ -3,6 +3,8 @@ import 'package:BornoBangla/Presentation/AllScreen/AddCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddCountry.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddCourseScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddScholarshipScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AddUniversityCourseScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AddUniversityScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
@@ -16,7 +18,9 @@ import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/BookScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/EditCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/EditCountryScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/EditCourseScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/EditScholarshipScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/EditUniversityScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/EhokScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Englisha2zScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/IeltsCoachingScreen.dart';
@@ -57,9 +61,13 @@ class AppRoutes {
   static const String CAREERCOACHSCREEN = "/careercoachscreen";
   static const String APPLYSCHOLARSHIPSCREEN = "/applyscholarshipscreen";
   static const String EDITSCHOLARSHIPSCREEN = "/editscholarshipscreen";
+  static const String EDITCOURSESCREEN = "/editcoursescreen";
   static const String EDITCOUNTRYSCREEN = "/editcountryscreen";
   static const String ADDCOUNTRYSCREEN = "/addcountryscreen";
   static const String EDITCOACHINGSCREEN = "/editcoachingscreen";
+  static const String EDITUNIVERSITYSCREEN = "/edituniversityscreen";
+  static const String ADDUNIVERSITYSCREEN = "/adduniversityscreen";
+  static const String ADDUNIVERSITYCOURSESCREEN = "/adduniversitycoursescreen";
   static const String ADDSCHOLARSHIPSCREEN = "/addscholarshipscreen";
   static const String BOOKSCREEN = "/bookscreen";
   static const String JOBSCREEN = "/jobscreen";
@@ -159,6 +167,30 @@ class AppRoutes {
     GetPage(
         name: EDITCOACHINGSCREEN,
         page: () => EditCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: EDITUNIVERSITYSCREEN,
+        page: () => EditUniversityScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: EDITCOURSESCREEN,
+        page: () => EditCourseScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADDUNIVERSITYSCREEN,
+        page: () => AddUniversityScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADDUNIVERSITYCOURSESCREEN,
+        page: () => AddUniversityCourseScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 
