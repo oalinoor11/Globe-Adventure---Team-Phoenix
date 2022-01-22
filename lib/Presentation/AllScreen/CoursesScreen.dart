@@ -194,7 +194,7 @@ class CoursesScreen extends StatelessWidget {
                                   Text("Course: ", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                                   Expanded(
                                     child: Text(
-                                        "Civil Engineering",
+                                        "Electrical Engineering",
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(fontSize: 18.0,)
@@ -210,7 +210,7 @@ class CoursesScreen extends StatelessWidget {
                                   Text("Duration: ", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                                   Expanded(
                                     child: Text(
-                                        "3 Years",
+                                        "4 Years",
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(fontSize: 18.0,)
@@ -226,7 +226,7 @@ class CoursesScreen extends StatelessWidget {
                                   Text("Admission Fees: ", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                                   Expanded(
                                     child: Text(
-                                        "200 USD",
+                                        "250 USD",
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(fontSize: 18.0,)
@@ -242,7 +242,7 @@ class CoursesScreen extends StatelessWidget {
                                   Text("Tuition Fees: ", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                                   Expanded(
                                     child: Text(
-                                        "2000 USD",
+                                        "3000 USD",
                                         softWrap: true,
                                         maxLines: 3,
                                         style: TextStyle(fontSize: 18.0,)
