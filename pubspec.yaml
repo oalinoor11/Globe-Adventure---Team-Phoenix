@@ -47,6 +47,7 @@ dependencies:
   firebase_storage: ^10.2.4
   firebase_auth: ^2.0.0
   shared_preferences: ^2.0.12
+  url_launcher: ^6.0.12
   cool_alert:
 
 
@@ -75,6 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/CountryFlag/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

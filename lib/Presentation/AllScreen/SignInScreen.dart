@@ -190,6 +190,7 @@ class SignInScreen extends StatelessWidget
         colorText: Colors.white,
       );
       Get.offAllNamed(AppRoutes.MAINSCREEN);
+
     } else{
       print("User is null");
     }

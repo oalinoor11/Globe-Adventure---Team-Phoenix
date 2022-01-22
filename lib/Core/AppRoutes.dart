@@ -1,6 +1,8 @@
 import 'package:BornoBangla/Presentation/AllScreen/AcademicCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddCoachingScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AddCountry.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AddCourseScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AddScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/AdmissionCoachingScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
@@ -12,6 +14,9 @@ import 'package:BornoBangla/Presentation/AllScreen/CoachingApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CollegeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/BookScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/EditCoachingScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/EditCountryScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/EditScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/EhokScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Englisha2zScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/IeltsCoachingScreen.dart';
@@ -27,10 +32,12 @@ import 'package:BornoBangla/Presentation/AllScreen/Questions/HomeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/RetinaScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SIrajacademyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SaifursScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/ScholarshipApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SchoolScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SignInScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/SplashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroadScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/StudyAbroadScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/TutorScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UccScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
@@ -49,11 +56,17 @@ class AppRoutes {
   static const String PREPARATIONSCREEN = "/preparationscreen";
   static const String CAREERCOACHSCREEN = "/careercoachscreen";
   static const String APPLYSCHOLARSHIPSCREEN = "/applyscholarshipscreen";
+  static const String EDITSCHOLARSHIPSCREEN = "/editscholarshipscreen";
+  static const String EDITCOUNTRYSCREEN = "/editcountryscreen";
+  static const String ADDCOUNTRYSCREEN = "/addcountryscreen";
+  static const String EDITCOACHINGSCREEN = "/editcoachingscreen";
+  static const String ADDSCHOLARSHIPSCREEN = "/addscholarshipscreen";
   static const String BOOKSCREEN = "/bookscreen";
   static const String JOBSCREEN = "/jobscreen";
   static const String SIGNINSCREEN = "/signinscreen";
   static const String SIGNUPSCREEN = "/signupscreen";
   static const String STUDYABROADSCREEN = "/sstudyabroadscreen";
+  static const String STUDYABROADSCREEN2 = "/sstudyabroadscreen2";
   static const String TUTORSCREEN = "/tutorscreen";
   static const String SCHOOLSCREEN = "/schoolscreen";
   static const String COLLEGESCREEN = "/collegescreen";
@@ -71,6 +84,7 @@ class AppRoutes {
   static const String MABSSCREEN = "/mabsscreen";
   static const String MARSSCREEN = "/marsscreen";
   static const String COACHINGAPPLYSCREEN = "/coachingapplyscreen";
+  static const String SCHOLARSHIPAPPLYSCREEN = "/scholarshipapplyscreen";
   static const String BKASHSCREEN = "/bkashscreen";
   static const String RETINASCREEN = "/retinascreen";
   static const String ENGLISHA2ZSCREEN = "/englisha2zscreen";
@@ -137,6 +151,36 @@ class AppRoutes {
         transition: Transition.zoom),
 
     GetPage(
+        name: EDITSCHOLARSHIPSCREEN,
+        page: () => EditScholarshipScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: EDITCOACHINGSCREEN,
+        page: () => EditCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADDCOUNTRYSCREEN,
+        page: () => AddCountryScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: EDITCOUNTRYSCREEN,
+        page: () => EditCountryScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: ADDSCHOLARSHIPSCREEN,
+        page: () => AddScholarshipScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
         name: BOOKSCREEN,
         page: () => BookScreen(),
         transitionDuration: Duration(milliseconds: 100),
@@ -163,6 +207,12 @@ class AppRoutes {
     GetPage(
         name: STUDYABROADSCREEN,
         page: () => StudyAbroadScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: STUDYABROADSCREEN2,
+        page: () => StudyAbroadScreen2(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 
@@ -295,6 +345,12 @@ class AppRoutes {
     GetPage(
         name: COACHINGAPPLYSCREEN,
         page: () => CoachingApplyScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.zoom),
+
+    GetPage(
+        name: SCHOLARSHIPAPPLYSCREEN,
+        page: () => ScholarshipApplyScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.zoom),
 

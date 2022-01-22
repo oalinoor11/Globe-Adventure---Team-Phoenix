@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: Image(image: AssetImage("assets/preparation.png"),fit: BoxFit.cover,),
+                    child: Image(image: AssetImage("assets/preparation.png"), fit: BoxFit.cover,),
                   ),
                 ),
                 onTap: (){

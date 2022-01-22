@@ -105,33 +105,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                                 Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN2);
                               },
                               onLongPress: () {
-
-                                var result = CoolAlert.show(
-                                  backgroundColor: Colors.green,
-                                  confirmBtnColor: Colors.red,
-                                  confirmBtnText: ("Delete"),
-                                  width: 10,
-                                  context: context,
-                                  type: CoolAlertType.confirm,
-                                  onCancelBtnTap: () =>
-                                      Get.back(result: false),
-                                  onConfirmBtnTap: () =>
-                                      Get.back(result: true),
-                                );
-                                // if (result) {
-                                //   var response =
-                                //       await MaterialRepository()
-                                //       .deleteMaterial(e);
-                                //   if (response) {
-                                //     await CoolAlert.show(
-                                //         context: context,
-                                //         type: CoolAlertType.success);
-                                //   } else {
-                                //     await CoolAlert.show(
-                                //         context: context,
-                                //         type: CoolAlertType.error);
-                                //   }
-                                // }
+                                Get.toNamed(AppRoutes.EDITCOACHINGSCREEN);
                               },
                             );
                           });

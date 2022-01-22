@@ -1,4 +1,9 @@
+import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StudyAbroadScreen extends StatelessWidget {
 
@@ -13,21 +18,281 @@ class StudyAbroadScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Container(),
-              const SizedBox(height: 200.0),
-
-              Text(
-                "Coming Soon....",
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Get.toNamed(AppRoutes.ADDCOUNTRYSCREEN);
+          }),
+      body: SingleChildScrollView(
+        child:
+        Column(
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                viewportFraction: 1.0,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
               ),
-            ],
-          ),
+              items: [1].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: double.infinity,
+                      child: Image.asset(
+                        "assets/scholarshipbanner.png",fit: BoxFit.cover,
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(11.0, 0.0, 11.0, 0.0),
+              child:
+              Column(
+                children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          height: 110.0,
+                          width: 115.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image(image: AssetImage("assets/CountryFlag/canadaflag.png"),fit: BoxFit.cover,),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text("Canada", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                        },
+
+                        onLongPress: (){
+                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      InkWell(
+                        child: Container(
+                          height: 110.0,
+                          width: 115.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image(image: AssetImage("assets/CountryFlag/australiaflag.png"),fit: BoxFit.cover,),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text("Australia", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                        },
+
+                        onLongPress: (){
+                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      InkWell(
+                        child: Container(
+                          height: 110.0,
+                          width: 115.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image(image: AssetImage("assets/CountryFlag/finlandflag.png"),fit: BoxFit.cover,),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text("Finland", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                        },
+
+                        onLongPress: (){
+                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          height: 110.0,
+                          width: 115.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image(image: AssetImage("assets/CountryFlag/germanyflag.png"),fit: BoxFit.cover,),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text("Germany", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                        },
+
+                        onLongPress: (){
+                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      InkWell(
+                        child: Container(
+                          height: 110.0,
+                          width: 115.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image(image: AssetImage("assets/CountryFlag/indiaflag.png"),fit: BoxFit.cover,),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text("India", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                        },
+
+                        onLongPress: (){
+                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      InkWell(
+                        child: Container(
+                          height: 110.0,
+                          width: 115.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image(image: AssetImage("assets/CountryFlag/norwayflag.png"),fit: BoxFit.cover,),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text("Norway", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN2);
+                        },
+
+                        onLongPress: (){
+                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
