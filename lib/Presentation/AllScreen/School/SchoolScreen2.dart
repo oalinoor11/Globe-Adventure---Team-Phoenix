@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class CollegeScreen2 extends StatelessWidget {
+class SchoolScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class CollegeScreen2 extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Selected Country",
+          "Study in Selected Country",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Get.toNamed(AppRoutes.ADDCOLLEGESCREEN);
+            Get.toNamed(AppRoutes.ADDSCHOOLSCREEN);
           }),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,11 +74,11 @@ class CollegeScreen2 extends StatelessWidget {
                                 height: 120,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/imperialcollege.png"),fit: BoxFit.cover,),
+                                  child: Image(image: AssetImage("assets/delhipublicschool.png"),fit: BoxFit.cover,),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Imperial College", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
+                              Text("Delhi Public School", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
                               SizedBox(height: 5),
                             ],
                           ),
@@ -88,7 +88,7 @@ class CollegeScreen2 extends StatelessWidget {
                         },
 
                         onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN);
+                          Get.toNamed(AppRoutes.EDITSCHOOLSCREEN);
                         },
                       ),
                       SizedBox(width: 10),
@@ -112,11 +112,11 @@ class CollegeScreen2 extends StatelessWidget {
                                 height: 120,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/haldialawcollege.png"),fit: BoxFit.cover,),
+                                  child: Image(image: AssetImage("assets/bombayscotishschool.png"),fit: BoxFit.cover,),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Haldia Law College", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
+                              Text("Bombay Scottish School", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
                               SizedBox(height: 5),
                             ],
                           ),
@@ -126,7 +126,7 @@ class CollegeScreen2 extends StatelessWidget {
                         },
 
                         onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN);
+                          Get.toNamed(AppRoutes.EDITSCHOOLSCREEN);
                         },
                       ),
                     ],

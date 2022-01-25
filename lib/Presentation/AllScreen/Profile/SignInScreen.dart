@@ -1,23 +1,22 @@
 import 'package:BornoBangla/AllWidgets/progressDialog.dart';
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
-import '../main.dart';
-import 'AllScreen/MainScreen.dart';
-import 'AllScreen/SignInScreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import '../../../main.dart';
+import '../mainscreen.dart';
 
 
-class SignUpScreen extends StatelessWidget
+class SignInScreen extends StatelessWidget
 {
-  static const String idScreen = "register";
+  static const String idScreen = "login";
 
-  TextEditingController nameTextEditingController = TextEditingController();
-  TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,49 +42,11 @@ class SignUpScreen extends StatelessWidget
 
                     SizedBox(height: 5.0,),
                     TextField(
-                      controller: nameTextEditingController,
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(labelText: "Name",
-                        labelStyle: TextStyle(
-                          fontSize: 14.0),
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 10.0,
-                        ),
-                      ),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-
-
-                    SizedBox(height: 5.0,),
-                    TextField(
-                      controller: phoneTextEditingController,
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(labelText: "Phone",
-                        labelStyle: TextStyle(
-                          fontSize: 14.0,
-                          fontFamily: "bolt-semibold",),
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 10.0,
-                        ),
-                      ),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-
-
-                    SizedBox(height: 5.0,),
-                    TextField(
                       controller: emailTextEditingController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(labelText: "Email",
                         labelStyle: TextStyle(
-                          fontSize: 14.0,
-                          fontFamily: "bolt-semibold",),
+                          fontSize: 14.0),
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 10.0,
@@ -102,8 +63,7 @@ class SignUpScreen extends StatelessWidget
                       obscureText: true,
                       decoration: InputDecoration(labelText: "Password",
                         labelStyle: TextStyle(
-                          fontSize: 14.0,
-                          fontFamily: "bolt-semibold",),
+                          fontSize: 14.0),
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 10.0,
@@ -122,40 +82,20 @@ class SignUpScreen extends StatelessWidget
                         height: 50.0,
                         child: Center(
                           child: Text(
-                            "Create Account",
+                            "Login",
                             style: TextStyle(
-                              fontSize: 18.0),
+                              fontSize: 18.0,
+                              fontFamily: "bolt-semibold",
+                            ),
                           ),
                         ),
                       ),
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(24.0),
                       ),
-                      onPressed: ()
+                      onPressed: () async
                       {
-                        if(nameTextEditingController.text.length < 3)
-                        {
-                          Get.snackbar(
-                            "Error!",
-                            "Enter your name",
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        }
-
-                        else if(phoneTextEditingController.text.isEmpty)
-                        {
-                          Get.snackbar(
-                            "Phone Number Required!",
-                            "Enter your phone number",
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        }
-
-                        else if(!emailTextEditingController.text.contains("@"))
+                        if(!emailTextEditingController.text.contains("@"))
                         {
                           Get.snackbar(
                             "Invalid Email!",
@@ -166,11 +106,11 @@ class SignUpScreen extends StatelessWidget
                           );
                         }
 
-                        else if(passwordTextEditingController.text.length <6)
+                        else if(passwordTextEditingController.text.isEmpty)
                         {
                           Get.snackbar(
-                            "Error!",
-                            "Password must be atleast 6 character",
+                            "Password Required!",
+                            "Enter your account password",
                             snackPosition: SnackPosition.BOTTOM,
                             backgroundColor: Colors.red,
                             colorText: Colors.white,
@@ -179,9 +119,9 @@ class SignUpScreen extends StatelessWidget
 
                         else
                         {
-                          registerNewUser(context);
+                          await loginAndAuthenticateUser(context);
                         }
-
+                        print("clicked Login button");
                       },
                     ),
                   ],
@@ -190,11 +130,11 @@ class SignUpScreen extends StatelessWidget
 
               TextButton(
                 onPressed: (){
-                  Get.offAllNamed(AppRoutes.SIGNINSCREEN);
-                  print("clicked to go login");
+                  Get.offAllNamed(AppRoutes.SIGNUPSCREEN);
+                  print("clicked to go signup");
                 },
                 child: Text(
-                    "Already have an Account? Login Here.",
+                    "Do not have an Account? Register Here.",
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
@@ -208,64 +148,52 @@ class SignUpScreen extends StatelessWidget
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  void registerNewUser(BuildContext context) async
+  Future<void> loginAndAuthenticateUser(BuildContext context) async
   {
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (BuildContext context)
-        {
-          return ProgressDialog(message: "Creating your account");
+        builder: (BuildContext context) {
+          return ProgressDialog(message: "Authenticating, Please wait...");
         }
     );
 
     final User? firebaseuser = (await _firebaseAuth
-        .createUserWithEmailAndPassword(
+        .signInWithEmailAndPassword(
         email: emailTextEditingController.text,
         password: passwordTextEditingController.text
-    ).catchError((errMsg){
-      Navigator.pop(context);
-      Navigator.pop(context);
+    ).catchError((errMsg) {
+      print(errMsg.toString());
+      Get.back();
       Get.snackbar(
-        "Failed!",
-        "You already have an account",
+        "Login Failed!",
+        "Invalid Login information",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
     })).user;
 
-    if(firebaseuser != null) //user created
-        {
-      //save user into database
 
-      Map userDataMap =
-      {
-        "name": nameTextEditingController.text.trim(),
-        "phone": phoneTextEditingController.text.trim(),
-        "email": emailTextEditingController.text.trim(),
-      };
-
-      userRef.child(firebaseuser.uid).set(userDataMap);
+    if (firebaseuser != null) {
+      print("User is not null");
+      try {
+        // var snap =  await userRef.child(firebaseuser.uid).once();
+      } on Exception catch (e) {
+        print(e.toString());
+      }
       Get.snackbar(
-        "Congratulations!",
-        "Your account has been Created successfully",
+        "Login Success!",
+        "You are logged in",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.offAllNamed(AppRoutes.SIGNINSCREEN);
-    }
-    else
-    {
-      Navigator.pop(context);
-      Get.snackbar(
-        "Failed!",
-        "Enter your account password",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      Get.offAllNamed(AppRoutes.MAINSCREEN);
+
+    } else{
+      print("User is null");
     }
   }
+
 }

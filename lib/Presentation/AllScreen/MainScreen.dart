@@ -1,15 +1,8 @@
-import 'package:BornoBangla/Presentation/AllScreen/ApplyScholarshipScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/CareerCoachScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/CoursesScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/PreparationScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/ProfileScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/UniversityScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'BookScreen.dart';
-import 'JobScreen.dart';
-import 'Questions/HomeScreen.dart';
-import 'SignInScreen.dart';
+import 'Home/HomeScreen.dart';
+import 'Profile/SignInScreen.dart';
 
 class MainScreen extends StatefulWidget {
   @override

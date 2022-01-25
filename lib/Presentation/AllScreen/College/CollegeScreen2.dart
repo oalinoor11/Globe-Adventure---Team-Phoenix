@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class UniversityScreen extends StatelessWidget {
+class CollegeScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class UniversityScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Selected Country",
+          "Study in Selected Country",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Get.toNamed(AppRoutes.ADDUNIVERSITYSCREEN);
+            Get.toNamed(AppRoutes.ADDCOLLEGESCREEN);
           }),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,21 +74,21 @@ class UniversityScreen extends StatelessWidget {
                                 height: 120,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/UniversityImage/brainwareuniversity.png"),fit: BoxFit.cover,),
+                                  child: Image(image: AssetImage("assets/imperialcollege.png"),fit: BoxFit.cover,),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Brainware University", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
+                              Text("Imperial College", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
                               SizedBox(height: 5),
                             ],
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.COURSESSCREEN);
+                          //Get.toNamed(AppRoutes.COURSESSCREEN);
                         },
 
                         onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITUNIVERSITYSCREEN);
+                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN);
                         },
                       ),
                       SizedBox(width: 10),
@@ -112,21 +112,21 @@ class UniversityScreen extends StatelessWidget {
                                 height: 120,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/UniversityImage/hituniversity.png"),fit: BoxFit.cover,),
+                                  child: Image(image: AssetImage("assets/haldialawcollege.png"),fit: BoxFit.cover,),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("HIT India", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
+                              Text("Haldia Law College", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
                               SizedBox(height: 5),
                             ],
                           ),
                         ),
                         onTap: (){
-                          Get.toNamed(AppRoutes.COURSESSCREEN);
+                          //Get.toNamed(AppRoutes.COURSESSCREEN);
                         },
 
                         onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN);
                         },
                       ),
                     ],

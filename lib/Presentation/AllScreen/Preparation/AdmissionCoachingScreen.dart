@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:BornoBangla/Presentation/AllScreen/FirebaseCollections.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Firebase/FirebaseCollections.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

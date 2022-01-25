@@ -8,7 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 
-import 'FirebaseCollections.dart';
+import '../Firebase/FirebaseCollections.dart';
 
 class AdmissionCoachingScreen2 extends StatelessWidget {
 

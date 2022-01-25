@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:BornoBangla/AllWidgets/progressDialog.dart';
 import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:BornoBangla/Presentation/AllScreen/FirebaseCollections.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Firebase/FirebaseCollections.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +10,15 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AddCoachingScreen extends StatefulWidget {
+class AddCourseScreen extends StatefulWidget {
   @override
-  State<AddCoachingScreen> createState() => _AddCoachingScreenState();
+  State<AddCourseScreen> createState() => _AddCourseScreenState();
 }
 
-class _AddCoachingScreenState extends State<AddCoachingScreen> {
-  TextEditingController controller = TextEditingController();
+class _AddCourseScreenState extends State<AddCourseScreen> {
+  TextEditingController nameTextEditingController = TextEditingController();
+  TextEditingController regularFeeTextEditingController = TextEditingController();
+  TextEditingController discountFeeTextEditingController = TextEditingController();
   File? image;
 
   @override
@@ -28,7 +29,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Add New Coaching",
+          "Add New Course",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -40,12 +41,12 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
               TextField(
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
-                controller: controller,
+                controller: nameTextEditingController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Coaching Name",
+                  labelText: "Course Name",
                   labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
@@ -77,20 +78,52 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                   ),
                   child: image == null
                       ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("Coaching Logo",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.add_a_photo,
-                              size: 20,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )
+                    children: [
+                      SizedBox(width: 10),
+                      Text("Course Image",
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16)),
+                      SizedBox(width: 10),
+                      Icon(
+                        Icons.add_a_photo,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ],
+                  )
                       : Image.file(image!),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                controller: regularFeeTextEditingController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Course Fee (regular)",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                controller: discountFeeTextEditingController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Course Fee (after discount)",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
                 ),
               ),
               SizedBox(height: 20),
@@ -111,11 +144,11 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 ),
                 onTap: () async {
                   if (image != null) {
-                    var imageUrl = await FirebaseCollections.uploadCoachingLogo(image!, controller.text+('.')+image!.path.split('/').last.split('.').last);
-                    await FirebaseCollections.ADMISSIONCOACHING.doc().set({'image': imageUrl, 'title':controller.text});
+                    var imageUrl = await FirebaseCollections.uploadCoachingLogo(image!, nameTextEditingController.text+('.')+image!.path.split('/').last.split('.').last);
+                    await FirebaseCollections.ADMISSIONCOACHING.doc().set({'image': imageUrl, 'title':nameTextEditingController.text});
                     Get.snackbar(
                       "Done",
-                      "Coaching Added",
+                      "Course Added",
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.green,
                       colorText: Colors.white,
@@ -124,7 +157,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                   } else {
                     Get.snackbar(
                       "Failed!",
-                      "Add valid Name and Logo",
+                      "Fill up all field",
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.red,
                       colorText: Colors.white,
