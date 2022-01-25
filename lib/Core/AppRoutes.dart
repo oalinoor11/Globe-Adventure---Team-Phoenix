@@ -1,3 +1,6 @@
+import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/AddCareerCoachScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/CareerCoachScreen2.dart';
+import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/EditCareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AcademicCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AddCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/College/AddCollegeScreen.dart';
@@ -63,10 +66,13 @@ class AppRoutes {
   static const String COURSESSCREEN = "/coursesscreen";
   static const String PREPARATIONSCREEN = "/preparationscreen";
   static const String CAREERCOACHSCREEN = "/careercoachscreen";
+  static const String CAREERCOACHSCREEN2 = "/careercoachscreen2";
   static const String APPLYSCHOLARSHIPSCREEN = "/applyscholarshipscreen";
   static const String EDITSCHOLARSHIPSCREEN = "/editscholarshipscreen";
   static const String EDITCOURSESCREEN = "/editcoursescreen";
   static const String EDITCOUNTRYSCREEN = "/editcountryscreen";
+  static const String EDITCAREERCOACHSCREEN = "/editcareercoachscreen";
+  static const String ADDCAREERCOACHSCREEN = "/addcareercoachscreen";
   static const String ADDCOUNTRYSCREEN = "/addcountryscreen";
   static const String ADDCOLLEGESCREEN = "/addcollegescreen";
   static const String EDITCOACHINGSCREEN = "/editcoachingscreen";
@@ -157,6 +163,12 @@ class AppRoutes {
         transition: Transition.cupertino),
 
     GetPage(
+        name: CAREERCOACHSCREEN2,
+        page: () => CareerCoachScreen2(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
         name: APPLYSCHOLARSHIPSCREEN,
         page: () => ApplyScholarshipScreen(),
         transitionDuration: Duration(milliseconds: 100),
@@ -177,6 +189,18 @@ class AppRoutes {
     GetPage(
         name: EDITSCHOOLSCREEN,
         page: () => EditSchoolScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
+        name: EDITCAREERCOACHSCREEN,
+        page: () => EditCareerCoachScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
+        name: ADDCAREERCOACHSCREEN,
+        page: () => AddCareerCoachScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
 
