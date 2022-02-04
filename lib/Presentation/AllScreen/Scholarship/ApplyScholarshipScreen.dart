@@ -160,29 +160,29 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                         children: [
                           InkWell(
                             child: Container(
-                                decoration: BoxDecoration(color: Colors.green,
+                              decoration: BoxDecoration(color: Colors.green,
                                 borderRadius: BorderRadiusDirectional.only(bottomStart: Radius.circular(10)),),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Text(
-                                      "Application Link",
-                                      softWrap: true,
-                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)
-                                  ),
-                                ),),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                    "Application Link",
+                                    softWrap: true,
+                                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)
+                                ),
+                              ),),
                             onTap: () async {
                               await launch("https://www.iccr.gov.in/a2a/iccr-scholarship",
                                 forceSafariVC: true,
                                 forceWebView: true,
                                 enableJavaScript: true,
-                                );
+                              );
                             },
                           ),
                           SizedBox(width: 10,),
                           InkWell(
                             child: Container(
                               decoration: BoxDecoration(color: Colors.green,
-                                  borderRadius: BorderRadiusDirectional.only(bottomEnd: Radius.circular(10)),),
+                                borderRadius: BorderRadiusDirectional.only(bottomEnd: Radius.circular(10)),),
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Text(

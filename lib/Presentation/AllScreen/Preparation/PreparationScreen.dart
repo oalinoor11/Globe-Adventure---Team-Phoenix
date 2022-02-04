@@ -32,7 +32,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 180.0,
+                        width: 175.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -57,7 +57,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 180.0,
+                        width: 175.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -86,7 +86,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 180.0,
+                        width: 175.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -111,7 +111,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 180.0,
+                        width: 175.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -140,7 +140,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 180.0,
+                        width: 175.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [

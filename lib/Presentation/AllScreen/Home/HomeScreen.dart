@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 122.0,
+                        width: 118.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 122.0,
+                        width: 118.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -136,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 122.0,
+                        width: 118.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -171,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 187.0,
+                        width: 180.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -196,7 +196,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 187.0,
+                        width: 180.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -261,7 +261,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 122.0,
+                        width: 118.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -286,7 +286,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 122.0,
+                        width: 118.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -311,7 +311,7 @@ class HomeScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 150.0,
-                        width: 122.0,
+                        width: 118.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [

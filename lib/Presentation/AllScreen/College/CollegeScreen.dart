@@ -57,7 +57,6 @@ class CollegeScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         child: Container(
-                          width: 115.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -69,6 +68,7 @@ class CollegeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
 
                           ),
+                          width: 110.0,
                           child: Column(
                             children: [
                               Container(
@@ -95,7 +95,7 @@ class CollegeScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          width: 115.0,
+                          width: 110.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -133,7 +133,7 @@ class CollegeScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          width: 115.0,
+                          width: 110.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -175,7 +175,7 @@ class CollegeScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         child: Container(
-                          width: 115.0,
+                          width: 110.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -213,7 +213,7 @@ class CollegeScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          width: 115.0,
+                          width: 110.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -251,7 +251,7 @@ class CollegeScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          width: 115.0,
+                          width: 110.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
