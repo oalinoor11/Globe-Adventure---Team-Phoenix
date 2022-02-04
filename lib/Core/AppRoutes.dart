@@ -1,4 +1,5 @@
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/AddCareerCoachScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/BookAppointmentScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/CareerCoachScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/EditCareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AcademicCoachingScreen.dart';
@@ -62,6 +63,7 @@ class AppRoutes {
   static const String INITAL = "/";
   static const String MAINSCREEN = "/mainscreen";
   static const String HOMESCREEN = "/firstscreen";
+  static const String BOOKAPPOINTMENTSCREEN = "/bookappointmentscreen";
   static const String UNIVERSITYSCREEN = "/universityscreen";
   static const String COURSESSCREEN = "/coursesscreen";
   static const String PREPARATIONSCREEN = "/preparationscreen";
@@ -159,6 +161,12 @@ class AppRoutes {
     GetPage(
         name: CAREERCOACHSCREEN,
         page: () => CareerCoachScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
+        name: BOOKAPPOINTMENTSCREEN,
+        page: () => BookAppointmentScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
 
