@@ -14,7 +14,7 @@ class BcsbytgScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "BCS Confidence",
+          "BCS Confidence ",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
