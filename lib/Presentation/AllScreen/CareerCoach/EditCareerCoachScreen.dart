@@ -60,6 +60,38 @@ class EditCareerCoachScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide:
+                      BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Coach Description",
+                  labelStyle: TextStyle(
+                      fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide:
+                      BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Coach Intro url",
+                  labelStyle: TextStyle(
+                      fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () async {
                   print("camera button clicked");

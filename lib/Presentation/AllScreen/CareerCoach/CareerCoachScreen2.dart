@@ -92,7 +92,7 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
               SizedBox(height: 6),
               Container(
                 height: 50,
-                width: 200,
+                width: 220,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -105,9 +105,9 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                   },
                   child: Center(
                     child: Text(
-                      "Book Appointment",
+                      "Request for Appointment",
                       style: TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       ),
                     ),
                   ),
