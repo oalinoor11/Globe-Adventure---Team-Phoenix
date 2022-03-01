@@ -94,7 +94,7 @@ class EditCareerCoachScreen extends StatelessWidget {
               SizedBox(height: 20),
               InkWell(
                 onTap: () async {
-                  print("camera button clicked");
+                  print("camera button click");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
                 },
