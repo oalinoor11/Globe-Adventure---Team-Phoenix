@@ -79,7 +79,7 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                       padding: const EdgeInsets.all(15.0),
                       child: Center(
                         child: Text(
-                          "Everybody knows him Mr. Solaiman Shukhon as a Mutivissional Speaker in Bangladesh. If you are seeing the Youtube Video a day you must be watching his Motivational talk about every topic. He always tries to motivate the people in the video. As a result, He is gaining big achievements in his life as a Motivational speaker. In the content, we are providing to you the most important and valid information about Mr. Solaiman Shukhon. Solaiman Shukhon is a simple gay from his childhood memories. Readers can also learn about his lifestyle, Biography, family, wife, educational background, career, profession, monthly salary from his career, approx net worth of 2022.",
+                          "Everybody knows him Mr. Solaiman Shukhon as a Mutivissional Speaker in Bangladesh. If you are seeing the Youtube Video a day you must be watching his Motivational talk about every topic. He always tries to motivate the people in the video. As a result, He is gaining big achievements in his life as a Motivational speaker. In the content, we are providing to you the most important and valid information about Mr. Solaiman Shukhon. Solaiman Shukhon is a simple guy from his childhood memories. Readers can also learn about his lifestyle, Biography, family, wife, educational background, career, profession, monthly salary from his career, approx net worth of 2022.",
                           style: TextStyle(
                             fontSize: 16.0,
                           ),
