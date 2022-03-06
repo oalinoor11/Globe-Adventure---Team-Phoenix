@@ -159,7 +159,9 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
                       await SchoolModel(
-                              name: _nameController.text, image: downloadUrl)
+                              name: _nameController.text,
+                              image: downloadUrl,
+                              country: SchoolController.to.selectedCountry())
                           .save();
                       Get.snackbar(
                         "Success",

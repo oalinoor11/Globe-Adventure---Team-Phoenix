@@ -4,27 +4,31 @@ class SchoolModel {
   String? id;
   late String name;
   late String image;
+  late String country;
   SchoolModel({
     this.id,
     required this.name,
     required this.image,
+    required this.country,
   });
 
   factory SchoolModel.fromJson(Map<String, dynamic> json) => SchoolModel(
         id: json["id"],
         name: json["name"],
         image: json["image"],
+        country: json["country"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "image": image,
+        "country": country,
       };
 
   @override
   String toString() {
-    return 'SchoolModel{id: $id, name: $name, image: $image}';
+    return 'SchoolModel{id: $id, name: $name, image: $image, country: $country}';
   }
 
   save() {

@@ -103,7 +103,8 @@ class SchoolScreen extends StatelessWidget {
                             Get.toNamed(AppRoutes.SCHOOLSCREEN2);
                           },
                           onLongPress: () {
-                            Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                            Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
+                                arguments: country);
                           },
                         );
                       },
