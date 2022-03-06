@@ -1,4 +1,6 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/university_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/university.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +8,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class UniversityScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Study in Selected Country",
@@ -24,8 +26,10 @@ class UniversityScreen extends StatelessWidget {
             Get.toNamed(AppRoutes.ADDUNIVERSITYSCREEN);
           }),
       body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Container(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(),
             CarouselSlider(
               options: CarouselOptions(
                 viewportFraction: 1.0,
@@ -40,7 +44,8 @@ class UniversityScreen extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",fit: BoxFit.cover,
+                        "assets/scholarshipbanner.png",
+                        fit: BoxFit.cover,
                       ),
                     );
                   },
@@ -48,91 +53,70 @@ class UniversityScreen extends StatelessWidget {
               }).toList(),
             ),
             const SizedBox(height: 8.0),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
+            StreamBuilder<List<UniversityModel>>(
+              stream: UniversityModel.getUniversities(
+                  UniversityController.to.selectedCountry()),
+              builder:
+                  ((context, AsyncSnapshot<List<UniversityModel>> snapshot) {
+                return snapshot.hasData
+                    ? GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                        itemCount: snapshot.data!.length,
+                        shrinkWrap: true,
+                        primary: false,
+                        itemBuilder: (_, index) {
+                          UniversityModel universityModel =
+                              snapshot.data![index];
+                          return InkWell(
+                            child: Container(
+                              width: 175.0,
+                              decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.15),
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(15),
                               ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 120,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/UniversityImage/brainwareuniversity.png"),fit: BoxFit.cover,),
-                                ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 120,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image(
+                                        image:
+                                            NetworkImage(universityModel.image),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(universityModel.name,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  SizedBox(height: 5),
+                                ],
                               ),
-                              SizedBox(height: 5),
-                              Text("Brainware University", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          Get.toNamed(AppRoutes.COURSESSCREEN);
+                            ),
+                            onTap: () {
+                              Get.toNamed(AppRoutes.COURSESSCREEN);
+                            },
+                            onLongPress: () {
+                              Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                            },
+                          );
                         },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITUNIVERSITYSCREEN);
-                        },
-                      ),
-                      SizedBox(width: 10),
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 120,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/UniversityImage/hituniversity.png"),fit: BoxFit.cover,),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text("HIT India", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          Get.toNamed(AppRoutes.COURSESSCREEN);
-                        },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                      )
+                    : snapshot.hasError
+                        ? Text(snapshot.error.toString())
+                        : Center(child: CircularProgressIndicator());
+              }),
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:BornoBangla/Data/Models/university_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -8,4 +9,7 @@ class FirebaseCollections {
       FirebaseFirestore.instance.collection("SCHOOLLIST");
   static CollectionReference COLLEGECOLLECTION =
       FirebaseFirestore.instance.collection("COLLEGELIST");
+
+  static CollectionReference UNIVERSITYCOLLECTION =
+      FirebaseFirestore.instance.collection("UNIVERSITYLIST");
 }
