@@ -190,9 +190,21 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                 ],
                               ),
                             ),
-                            onLongPress: () {
-                              Get.toNamed(AppRoutes.EDITCOURSESCREEN,
-                                  arguments: universityModel);
+                            onLongPress: () async {
+                              var result = await Get.toNamed(
+                                  AppRoutes.EDITCOURSESCREEN,
+                                  arguments: courseModel);
+                              if (result == true) {
+                                universityModel.courseList.removeAt(index);
+                                setState(() {
+                                  universityModel.update();
+                                });
+                              } else {
+                                universityModel.courseList[index] = result;
+                                setState(() {
+                                  universityModel.update();
+                                });
+                              }
                             },
                           ),
                           SizedBox(
