@@ -61,11 +61,12 @@ class UniversityScreen extends StatelessWidget {
                   ((context, AsyncSnapshot<List<UniversityModel>> snapshot) {
                 return snapshot.hasData
                     ? GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 18.0),
+                        padding: EdgeInsets.symmetric(horizontal: 18.0),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
-                          crossAxisCount: context.width > 1080 ? 4 : 2,),
+                          crossAxisCount: context.width > 1080 ? 4 : 2,
+                        ),
                         itemCount: snapshot.data!.length,
                         shrinkWrap: true,
                         primary: false,

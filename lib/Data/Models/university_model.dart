@@ -47,8 +47,7 @@ class UniversityModel {
   static Stream<List<UniversityModel>> getUniversities(String country) {
     try {
       return FirebaseCollections.UNIVERSITYCOLLECTION
-          .where('country',
-              isEqualTo: UniversityController.to.selectedCountry())
+          .where('country', isEqualTo: country)
           .snapshots()
           .map((snapshot) {
         return snapshot.docs.map((doc) {

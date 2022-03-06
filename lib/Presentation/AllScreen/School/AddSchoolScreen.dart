@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/school_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
 import 'package:cool_alert/cool_alert.dart';
@@ -157,11 +158,9 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
-                      FirebaseCollections.SCHOOLCOLLECTION.add({
-                        "name": _nameController.text,
-                        "image": downloadUrl,
-                        "country": SchoolController.to.selectedCountry(),
-                      });
+                      await SchoolModel(
+                              name: _nameController.text, image: downloadUrl)
+                          .save();
                       Get.snackbar(
                         "Success",
                         "School added successfully",
