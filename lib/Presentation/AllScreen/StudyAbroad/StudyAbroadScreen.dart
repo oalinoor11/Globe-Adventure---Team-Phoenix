@@ -4,6 +4,7 @@ import 'package:BornoBangla/Presentation/Controllers/university.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -51,11 +52,12 @@ class StudyAbroadScreen extends StatelessWidget {
                 );
               }).toList(),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 18),
             StreamBuilder(
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasData) {
                     return GridView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 18.0),
                       primary: false,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
@@ -64,7 +66,6 @@ class StudyAbroadScreen extends StatelessWidget {
                                 as Map<String, dynamic>;
                         return InkWell(
                           child: Container(
-                            width: 110.0,
                             decoration: new BoxDecoration(
                               border: Border.all(color: Colors.grey),
                               boxShadow: [
@@ -108,7 +109,9 @@ class StudyAbroadScreen extends StatelessWidget {
                         );
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        crossAxisCount: context.width > 1080 ? 4 : 3,),
                       // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
                       itemCount: snapshot.data?.docs.length ?? 0,
                     );

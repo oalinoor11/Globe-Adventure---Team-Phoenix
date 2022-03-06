@@ -4,6 +4,7 @@ import 'package:BornoBangla/Presentation/Controllers/university.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
@@ -52,7 +53,7 @@ class UniversityScreen extends StatelessWidget {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 18.0),
             StreamBuilder<List<UniversityModel>>(
               stream: UniversityModel.getUniversities(
                   UniversityController.to.selectedCountry()),
@@ -60,8 +61,11 @@ class UniversityScreen extends StatelessWidget {
                   ((context, AsyncSnapshot<List<UniversityModel>> snapshot) {
                 return snapshot.hasData
                     ? GridView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 18.0),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          crossAxisCount: context.width > 1080 ? 4 : 2,),
                         itemCount: snapshot.data!.length,
                         shrinkWrap: true,
                         primary: false,
@@ -84,7 +88,7 @@ class UniversityScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                    height: 120,
+                                    height: 140,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
                                       child: Image(
@@ -94,7 +98,7 @@ class UniversityScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5),
+                                  SizedBox(height: 8),
                                   Text(universityModel.name,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
