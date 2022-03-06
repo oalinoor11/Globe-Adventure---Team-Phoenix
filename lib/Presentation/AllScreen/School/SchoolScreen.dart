@@ -101,7 +101,7 @@ class SchoolScreen extends StatelessWidget {
                           onTap: () {
                             SchoolController.to
                                 .selectedCountry(country['countryName']);
-                            Get.toNamed(AppRoutes.COLLEGESCREEN2);
+                            Get.toNamed(AppRoutes.SCHOOLSCREEN2);
                           },
                           onLongPress: () {
                             Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
