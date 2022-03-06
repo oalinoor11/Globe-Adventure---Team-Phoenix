@@ -53,12 +53,12 @@ class SchoolScreen extends StatelessWidget {
                 );
               }).toList(),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 18),
             StreamBuilder(
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasData) {
                     return GridView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 18.0),
                       primary: false,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
