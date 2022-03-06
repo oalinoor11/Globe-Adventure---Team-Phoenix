@@ -8,7 +8,6 @@ import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
 class AddCollegeScreen extends StatelessWidget {
-
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   ScreenshotController screenshotController = ScreenshotController();
 
@@ -16,7 +15,8 @@ class AddCollegeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Add New College",
@@ -29,15 +29,14 @@ class AddCollegeScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "College Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -65,8 +64,7 @@ class AddCollegeScreen extends StatelessWidget {
                     children: [
                       SizedBox(width: 10),
                       Text("College Image",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
+                          style: TextStyle(color: Colors.black, fontSize: 16)),
                       SizedBox(width: 10),
                       Icon(
                         Icons.add_a_photo,
@@ -78,7 +76,8 @@ class AddCollegeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
