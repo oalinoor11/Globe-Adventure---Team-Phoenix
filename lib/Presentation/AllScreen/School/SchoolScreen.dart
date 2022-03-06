@@ -4,6 +4,7 @@ import 'package:BornoBangla/Presentation/Controllers/school_controller_controlle
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
@@ -57,6 +58,7 @@ class SchoolScreen extends StatelessWidget {
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasData) {
                     return GridView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
                       primary: false,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
@@ -65,7 +67,6 @@ class SchoolScreen extends StatelessWidget {
                                 as Map<String, dynamic>;
                         return InkWell(
                           child: Container(
-                            width: 110.0,
                             decoration: new BoxDecoration(
                               border: Border.all(color: Colors.grey),
                               boxShadow: [
@@ -108,8 +109,12 @@ class SchoolScreen extends StatelessWidget {
                           },
                         );
                       },
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
+                      gridDelegate:
+                      SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        crossAxisCount: context.width > 1080 ? 4 : 3,
+                      ),
                       // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
                       itemCount: snapshot.data?.docs.length ?? 0,
                     );
