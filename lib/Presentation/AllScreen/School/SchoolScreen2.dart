@@ -1,17 +1,20 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/firebase_collections.dart';
+import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class SchoolScreen2 extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Study in Selected Country",
@@ -24,8 +27,10 @@ class SchoolScreen2 extends StatelessWidget {
             Get.toNamed(AppRoutes.ADDSCHOOLSCREEN);
           }),
       body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Container(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(),
             CarouselSlider(
               options: CarouselOptions(
                 viewportFraction: 1.0,
@@ -40,7 +45,8 @@ class SchoolScreen2 extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",fit: BoxFit.cover,
+                        "assets/scholarshipbanner.png",
+                        fit: BoxFit.cover,
                       ),
                     );
                   },
@@ -48,13 +54,16 @@ class SchoolScreen2 extends StatelessWidget {
               }).toList(),
             ),
             const SizedBox(height: 8.0),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
+            StreamBuilder(
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasData) {
+                  return GridView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      Map<String, dynamic> school = snapshot.data!.docs[index]
+                          .data() as Map<String, dynamic>;
+                      return InkWell(
                         child: Container(
                           width: 175.0,
                           decoration: new BoxDecoration(
@@ -66,7 +75,6 @@ class SchoolScreen2 extends StatelessWidget {
                               ),
                             ],
                             borderRadius: BorderRadius.circular(15),
-
                           ),
                           child: Column(
                             children: [
@@ -74,69 +82,52 @@ class SchoolScreen2 extends StatelessWidget {
                                 height: 120,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/delhipublicschool.png"),fit: BoxFit.cover,),
+                                  child: Image(
+                                    image: NetworkImage(school['image']),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text("Delhi Public School", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
+                              Text(school['name'],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  )),
                               SizedBox(height: 5),
                             ],
                           ),
                         ),
-                        onTap: (){
+                        onTap: () {
                           //Get.toNamed(AppRoutes.COURSESSCREEN);
                         },
-
-                        onLongPress: (){
+                        onLongPress: () {
                           Get.toNamed(AppRoutes.EDITSCHOOLSCREEN);
                         },
-                      ),
-                      SizedBox(width: 10),
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 120,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/bombayscotishschool.png"),fit: BoxFit.cover,),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text("Bombay Scottish School", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, )),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          //Get.toNamed(AppRoutes.COURSESSCREEN);
-                        },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITSCHOOLSCREEN);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                      );
+                    },
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
+                    itemCount: snapshot.data?.docs.length ?? 0,
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+              stream: getSchoolsByCountry(),
             ),
           ],
         ),
       ),
     );
+  }
+
+  getSchoolsByCountry() {
+    return FirebaseCollections.SCHOOLCOLLECTION
+        .where('country', isEqualTo: SchoolController.to.selectedCountry())
+        .snapshots();
   }
 }

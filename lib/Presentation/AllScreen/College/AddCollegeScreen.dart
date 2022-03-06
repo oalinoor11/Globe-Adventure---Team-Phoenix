@@ -175,7 +175,6 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                       );
                       Get.back();
                     }
-
                     Navigator.pop(context);
                   },
                   child: Center(
