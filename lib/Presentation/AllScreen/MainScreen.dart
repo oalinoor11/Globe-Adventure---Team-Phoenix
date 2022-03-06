@@ -1,6 +1,9 @@
 import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
+import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
+import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'Home/HomeScreen.dart';
 import 'Profile/SignInScreen.dart';
 
@@ -15,6 +18,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    Get.lazyPut(() => SchoolController());
+    Get.lazyPut(() => CollegeController());
     super.initState();
   }
 
@@ -22,7 +27,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(selectedItemColor: Colors.green,
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.green,
         onTap: (index) {
           pageController.jumpToPage(index);
           setState(() {
@@ -37,7 +43,6 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: "Home",
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Profile",
@@ -48,12 +53,12 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          FirebaseAuth.instance.currentUser == null ? SignInScreen() : ProfileScreen(),
+          FirebaseAuth.instance.currentUser == null
+              ? SignInScreen()
+              : ProfileScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
       ),
     );
   }
-
-
 }

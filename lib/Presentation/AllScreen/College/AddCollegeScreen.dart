@@ -1,22 +1,37 @@
+import 'dart:io';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/firebase_collections.dart';
+import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
-class AddCollegeScreen extends StatelessWidget {
+class AddCollegeScreen extends StatefulWidget {
+  @override
+  State<AddCollegeScreen> createState() => _AddCollegeScreenState();
+}
 
+class _AddCollegeScreenState extends State<AddCollegeScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
   ScreenshotController screenshotController = ScreenshotController();
+  TextEditingController _nameController = TextEditingController();
+
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Add New College",
@@ -29,15 +44,15 @@ class AddCollegeScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _nameController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "College Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -49,6 +64,12 @@ class AddCollegeScreen extends StatelessWidget {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      _image = File(pickedFile.path);
+                    });
+                    print("image selected");
+                  }
                 },
                 child: Container(
                   height: 65,
@@ -61,24 +82,27 @@ class AddCollegeScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Text("College Image",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add_a_photo,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
+                  child: _image == null
+                      ? Row(
+                          children: [
+                            SizedBox(width: 10),
+                            Text("College Image",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16)),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.add_a_photo,
+                              size: 20,
+                              color: Colors.black,
+                            ),
+                          ],
+                        )
+                      : Image.file(_image!),
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -86,7 +110,71 @@ class AddCollegeScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    if (_image == null && _nameController.text.isNotEmpty) {
+                      print("image is null");
+                      Get.snackbar(
+                        "Error",
+                        "Please select a college image",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        borderRadius: 8,
+                        snackStyle: SnackStyle.FLOATING,
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        animationDuration: Duration(milliseconds: 500),
+                      );
+                    } else if (_image == null && _nameController.text.isEmpty) {
+                      print("image is null");
+                      Get.snackbar(
+                        "Error",
+                        "Please select a college image",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        borderRadius: 8,
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        animationDuration: Duration(milliseconds: 500),
+                      );
+                    } else if (_image != null && _nameController.text.isEmpty) {
+                      print("image is not null");
+                      Get.snackbar(
+                        "Error",
+                        "Please enter a college name",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        borderRadius: 8,
+                        snackStyle: SnackStyle.FLOATING,
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        animationDuration: Duration(milliseconds: 500),
+                      );
+                    } else if (_image != null &&
+                        _nameController.text.isNotEmpty) {
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("college")
+                          .child(_nameController.text)
+                          .putFile(_image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      FirebaseCollections.COLLEGECOLLECTION.add({
+                        "name": _nameController.text,
+                        "image": downloadUrl,
+                        "country": CollegeController.to.selectedCountry(),
+                      });
+                      Get.snackbar(
+                        "Success",
+                        "College added successfully",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.green,
+                        borderRadius: 8,
+                        snackStyle: SnackStyle.FLOATING,
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        animationDuration: Duration(milliseconds: 500),
+                      );
+                      Get.back();
+                    }
                     Navigator.pop(context);
                   },
                   child: Center(
