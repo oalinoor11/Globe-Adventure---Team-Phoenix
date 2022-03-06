@@ -27,9 +27,12 @@ class _CoursesScreenState extends State<CoursesScreen> {
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDUNIVERSITYCOURSESCREEN,
+          onPressed: () async {
+            await Get.toNamed(AppRoutes.ADDUNIVERSITYCOURSESCREEN,
                 arguments: universityModel);
+            setState(() {
+              universityModel;
+            });
           }),
       body: SingleChildScrollView(
         child: Column(

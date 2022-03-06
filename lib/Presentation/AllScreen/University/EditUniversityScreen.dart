@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/university_model.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -7,16 +11,33 @@ import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
-class EditUniversityScreen extends StatelessWidget {
+class EditUniversityScreen extends StatefulWidget {
+  @override
+  State<EditUniversityScreen> createState() => _EditUniversityScreenState();
+}
 
+class _EditUniversityScreenState extends State<EditUniversityScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
   ScreenshotController screenshotController = ScreenshotController();
+  UniversityModel universityModel = Get.arguments;
+
+  TextEditingController _nameController = TextEditingController();
+
+  File? _image;
+
+  @override
+  void initState() {
+    _nameController.text = universityModel.name;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Edit University",
@@ -29,15 +50,15 @@ class EditUniversityScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _nameController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "University Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -49,36 +70,39 @@ class EditUniversityScreen extends StatelessWidget {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      _image = File(pickedFile.path);
+                    });
+                  }
                 },
-                child: Container(
-                  height: 65,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 1,
-                    ),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Text("University Image",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add_a_photo,
-                        size: 20,
-                        color: Colors.black,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    height: 150,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
                       ),
-                    ],
+                      color: Colors.white,
+                    ),
+                    child: _image == null
+                        ? Image.network(
+                            universityModel.image,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.file(
+                            _image!,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -86,8 +110,22 @@ class EditUniversityScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    if (_nameController.text.isEmpty) {
+                    } else {
+                      universityModel.name = _nameController.text;
+                      if (_image != null) {
+                        var upload = await FirebaseStorage.instance
+                            .ref()
+                            .child("country_flags")
+                            .child(_nameController.text)
+                            .putFile(_image!);
+                        var downloadUrl = await upload.ref.getDownloadURL();
+                        universityModel.image = downloadUrl;
+                      }
+                      await universityModel.update();
+                      Get.back();
+                    }
                   },
                   child: Center(
                     child: Text(
@@ -100,7 +138,8 @@ class EditUniversityScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.red,
@@ -108,33 +147,21 @@ class EditUniversityScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    var result = CoolAlert.show(
+                  onPressed: () async {
+                    var result = await CoolAlert.show(
                       backgroundColor: Colors.green,
                       confirmBtnColor: Colors.red,
                       confirmBtnText: ("Delete"),
                       width: 10,
                       context: context,
                       type: CoolAlertType.confirm,
-                      onCancelBtnTap: () =>
-                          Get.back(result: false),
-                      onConfirmBtnTap: () =>
-                          Get.back(result: true),
+                      onCancelBtnTap: () => Get.back(result: false),
+                      onConfirmBtnTap: () => Get.back(result: true),
                     );
-                    // if (result) {
-                    //   var response =
-                    //       await MaterialRepository()
-                    //       .deleteMaterial(e);
-                    //   if (response) {
-                    //     await CoolAlert.show(
-                    //         context: context,
-                    //         type: CoolAlertType.success);
-                    //   } else {
-                    //     await CoolAlert.show(
-                    //         context: context,
-                    //         type: CoolAlertType.error);
-                    //   }
-                    // }
+                    if (result) {
+                      await universityModel.delete();
+                      Get.back();
+                    }
                   },
                   child: Center(
                     child: Text(

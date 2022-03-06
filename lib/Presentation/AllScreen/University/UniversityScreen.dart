@@ -109,7 +109,8 @@ class UniversityScreen extends StatelessWidget {
                                   arguments: universityModel);
                             },
                             onLongPress: () {
-                              Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                              Get.toNamed(AppRoutes.EDITUNIVERSITYSCREEN,
+                                  arguments: universityModel);
                             },
                           );
                         },
