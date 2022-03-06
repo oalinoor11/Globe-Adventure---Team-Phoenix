@@ -1,22 +1,38 @@
+import 'dart:io';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/university_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/university.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
-class AddUniversityScreen extends StatelessWidget {
+class AddUniversityScreen extends StatefulWidget {
+  @override
+  State<AddUniversityScreen> createState() => _AddUniversityScreenState();
+}
 
+class _AddUniversityScreenState extends State<AddUniversityScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
   ScreenshotController screenshotController = ScreenshotController();
+
+  TextEditingController _nameController = TextEditingController();
+
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Add New University",
@@ -29,15 +45,15 @@ class AddUniversityScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _nameController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "University Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -49,6 +65,11 @@ class AddUniversityScreen extends StatelessWidget {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      _image = File(pickedFile.path);
+                    });
+                  }
                 },
                 child: Container(
                   height: 65,
@@ -61,24 +82,27 @@ class AddUniversityScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Text("University Image",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add_a_photo,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
+                  child: _image == null
+                      ? Row(
+                          children: [
+                            SizedBox(width: 10),
+                            Text("University Image",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16)),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.add_a_photo,
+                              size: 20,
+                              color: Colors.black,
+                            ),
+                          ],
+                        )
+                      : Image.file(_image!),
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -86,8 +110,35 @@ class AddUniversityScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    if (_nameController.text.isEmpty || _image == null) {
+                      Get.snackbar("Failed", "Please fill all the fields",
+                          snackPosition: SnackPosition.BOTTOM);
+                    } else {
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("country_flags")
+                          .child(_nameController.text)
+                          .putFile(_image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      await UniversityModel(
+                        country: UniversityController.to.selectedCountry(),
+                        name: _nameController.text,
+                        image: downloadUrl,
+                        courseList: [],
+                      ).save();
+                      Get.snackbar(
+                        "Success",
+                        "Country added successfully",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.green,
+                        borderRadius: 8,
+                        snackStyle: SnackStyle.FLOATING,
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        animationDuration: Duration(milliseconds: 500),
+                      );
+                    }
                   },
                   child: Center(
                     child: Text(
