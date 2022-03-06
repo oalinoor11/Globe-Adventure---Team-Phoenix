@@ -31,7 +31,7 @@ class SchoolModel {
     FirebaseCollections.SCHOOLCOLLECTION.doc(id).set(toJson());
   }
 
-  static Stream<List<SchoolModel>> getUniversities(String country) {
+  static Stream<List<SchoolModel>> getSchools(String country) {
     try {
       return FirebaseCollections.SCHOOLCOLLECTION
           .where('country', isEqualTo: country)

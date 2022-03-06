@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/college_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
 import 'package:cool_alert/cool_alert.dart';
@@ -25,6 +26,11 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,11 +163,13 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
-                      FirebaseCollections.COLLEGECOLLECTION.add({
-                        "name": _nameController.text,
-                        "image": downloadUrl,
-                        "country": CollegeController.to.selectedCountry(),
-                      });
+
+                      await CollegeModel(
+                        name: _nameController.text,
+                        image: downloadUrl,
+                        country: CollegeController.to.selectedCountry(),
+                      ).save();
+
                       Get.snackbar(
                         "Success",
                         "College added successfully",

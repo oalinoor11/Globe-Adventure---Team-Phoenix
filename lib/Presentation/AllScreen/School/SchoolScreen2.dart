@@ -1,4 +1,5 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/school_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
 import 'package:carousel_slider/carousel_options.dart';
@@ -56,15 +57,14 @@ class SchoolScreen2 extends StatelessWidget {
             ),
             const SizedBox(height: 18.0),
             StreamBuilder(
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              builder: (context, AsyncSnapshot<List<SchoolModel>> snapshot) {
                 if (snapshot.hasData) {
                   return GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 18.0),
                     primary: false,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      Map<String, dynamic> school = snapshot.data!.docs[index]
-                          .data() as Map<String, dynamic>;
+                      SchoolModel school = snapshot.data![index];
                       return InkWell(
                         child: Container(
                           width: 175.0,
@@ -85,13 +85,13 @@ class SchoolScreen2 extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: Image(
-                                    image: NetworkImage(school['image']),
+                                    image: NetworkImage(school.image),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text(school['name'],
+                              Text(school.name,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -111,9 +111,10 @@ class SchoolScreen2 extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
-                      crossAxisCount: context.width > 1080 ? 4 : 2,),
+                      crossAxisCount: context.width > 1080 ? 4 : 2,
+                    ),
                     // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
-                    itemCount: snapshot.data?.docs.length ?? 0,
+                    itemCount: snapshot.data?.length ?? 0,
                   );
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
@@ -121,17 +122,12 @@ class SchoolScreen2 extends StatelessWidget {
                   return CircularProgressIndicator();
                 }
               },
-              stream: getSchoolsByCountry(),
+              stream:
+                  SchoolModel.getSchools(SchoolController.to.selectedCountry()),
             ),
           ],
         ),
       ),
     );
-  }
-
-  getSchoolsByCountry() {
-    return FirebaseCollections.SCHOOLCOLLECTION
-        .where('country', isEqualTo: SchoolController.to.selectedCountry())
-        .snapshots();
   }
 }

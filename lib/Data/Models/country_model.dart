@@ -2,41 +2,38 @@ import 'package:BornoBangla/Data/firebase_collections.dart';
 
 class CountryModel {
   String? id;
-  late String name;
-  late String image;
+  late String countryName;
+  late String countryFlag;
   CountryModel({
     this.id,
-    required this.name,
-    required this.image,
+    required this.countryName,
+    required this.countryFlag,
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
         id: json["id"],
-        name: json["name"],
-        image: json["image"],
+        countryName: json["countryName"],
+        countryFlag: json["countryFlag"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
-        "image": image,
+        "countryName": countryName,
+        "countryFlag": countryFlag,
       };
 
   @override
   String toString() {
-    return 'CountryModel{id: $id, name: $name, image: $image}';
+    return 'CountryModel{id: $id, countryName: $countryName, countryFlag: $countryFlag}';
   }
 
   save() {
     FirebaseCollections.COUNTRYCOLLECTION.doc(id).set(toJson());
   }
 
-  static Stream<List<CountryModel>> getUniversities(String country) {
+  static Stream<List<CountryModel>> getCountries() {
     try {
-      return FirebaseCollections.UNIVERSITYCOLLECTION
-          .where('country', isEqualTo: country)
-          .snapshots()
-          .map((snapshot) {
+      return FirebaseCollections.COUNTRYCOLLECTION.snapshots().map((snapshot) {
         return snapshot.docs.map((doc) {
           return CountryModel.fromJson(doc.data() as Map<String, dynamic>)
             ..id = doc.id;

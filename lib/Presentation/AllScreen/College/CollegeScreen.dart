@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/college_model.dart';
+import 'package:BornoBangla/Data/Models/country_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -55,16 +57,14 @@ class CollegeScreen extends StatelessWidget {
             ),
             SizedBox(height: 18),
             StreamBuilder(
-                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                builder: (context, AsyncSnapshot<List<CountryModel>> snapshot) {
                   if (snapshot.hasData) {
                     return GridView.builder(
                       padding: EdgeInsets.symmetric(horizontal: 18.0),
                       primary: false,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        Map<String, dynamic> country =
-                            snapshot.data!.docs[index].data()
-                                as Map<String, dynamic>;
+                        CountryModel country = snapshot.data![index];
                         return InkWell(
                           child: Container(
                             decoration: new BoxDecoration(
@@ -84,14 +84,13 @@ class CollegeScreen extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
                                     child: Image(
-                                      image:
-                                          NetworkImage(country['countryFlag']),
+                                      image: NetworkImage(country.countryFlag),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 SizedBox(height: 5),
-                                Text(country['countryName'],
+                                Text(country.countryName,
                                     textAlign: TextAlign.center,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
@@ -101,26 +100,28 @@ class CollegeScreen extends StatelessWidget {
                           ),
                           onTap: () {
                             CollegeController.to
-                                .selectedCountry(country['countryName']);
+                                .selectedCountry(country.countryName);
                             Get.toNamed(AppRoutes.COLLEGESCREEN2);
                           },
                           onLongPress: () {
-                            Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
+                            Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
+                                arguments: country);
                           },
                         );
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        crossAxisCount: context.width > 1080 ? 4 : 3,),
+                        crossAxisCount: context.width > 1080 ? 4 : 3,
+                      ),
                       // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
-                      itemCount: snapshot.data?.docs.length ?? 0,
+                      itemCount: snapshot.data?.length ?? 0,
                     );
                   } else {
                     return CircularProgressIndicator();
                   }
                 },
-                stream: FirebaseCollections.COUNTRYCOLLECTION.snapshots()),
+                stream: CountryModel.getCountries()),
           ],
         ),
       ),

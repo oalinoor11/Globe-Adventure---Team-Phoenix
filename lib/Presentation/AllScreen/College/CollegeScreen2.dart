@@ -1,4 +1,5 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/college_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
@@ -57,15 +58,14 @@ class CollegeScreen2 extends StatelessWidget {
             ),
             const SizedBox(height: 18.0),
             StreamBuilder(
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              builder: (context, AsyncSnapshot<List<CollegeModel>> snapshot) {
                 if (snapshot.hasData) {
                   return GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 18.0),
                     primary: false,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      Map<String, dynamic> college = snapshot.data!.docs[index]
-                          .data() as Map<String, dynamic>;
+                      CollegeModel college = snapshot.data![index];
                       return InkWell(
                         child: Container(
                           decoration: new BoxDecoration(
@@ -85,13 +85,13 @@ class CollegeScreen2 extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: Image(
-                                    image: NetworkImage(college['image']),
+                                    image: NetworkImage(college.image),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text(college['name'],
+                              Text(college.name,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -104,16 +104,18 @@ class CollegeScreen2 extends StatelessWidget {
                           //Get.toNamed(AppRoutes.COURSESSCREEN);
                         },
                         onLongPress: () {
-                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN);
+                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN,
+                              arguments: college);
                         },
                       );
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
-                      crossAxisCount: context.width > 1080 ? 4 : 2,),
+                      crossAxisCount: context.width > 1080 ? 4 : 2,
+                    ),
                     // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
-                    itemCount: snapshot.data?.docs.length ?? 0,
+                    itemCount: snapshot.data?.length ?? 0,
                   );
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
@@ -121,17 +123,12 @@ class CollegeScreen2 extends StatelessWidget {
                   return CircularProgressIndicator();
                 }
               },
-              stream: getCollegesByCountry(),
+              stream: CollegeModel.getColleges(
+                  CollegeController.to.selectedCountry()),
             ),
           ],
         ),
       ),
     );
-  }
-
-  getCollegesByCountry() {
-    return FirebaseCollections.COLLEGECOLLECTION
-        .where('country', isEqualTo: CollegeController.to.selectedCountry())
-        .snapshots();
   }
 }
