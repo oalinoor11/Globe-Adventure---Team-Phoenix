@@ -18,7 +18,6 @@ class UniversityModel {
       required this.courseList});
 
   factory UniversityModel.fromJson(Map<String, dynamic> json) {
-    print(json);
     return UniversityModel(
       id: json['id'],
       name: json['name'],
@@ -53,7 +52,8 @@ class UniversityModel {
           .snapshots()
           .map((snapshot) {
         return snapshot.docs.map((doc) {
-          return UniversityModel.fromJson(doc.data() as Map<String, dynamic>);
+          return UniversityModel.fromJson(doc.data() as Map<String, dynamic>)
+            ..id = doc.id;
         }).toList();
       });
     } on Exception catch (e) {

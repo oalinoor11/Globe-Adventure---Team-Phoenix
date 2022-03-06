@@ -105,7 +105,8 @@ class UniversityScreen extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              Get.toNamed(AppRoutes.COURSESSCREEN);
+                              Get.toNamed(AppRoutes.COURSESSCREEN,
+                                  arguments: universityModel);
                             },
                             onLongPress: () {
                               Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN);
