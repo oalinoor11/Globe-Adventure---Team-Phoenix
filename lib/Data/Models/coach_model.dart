@@ -50,9 +50,35 @@ class CoachModel {
         list.add(CoachModel.fromMap(doc.data() as Map<String, dynamic>)
           ..id = doc.id);
       });
-      return list;
+      return {...list}.toList();
     });
   }
+
+  @override
+  String toString() {
+    return 'CoachModel{id: $id, name: $name, image: $image, description: $description, title: $title, videoId: $videoId}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CoachModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          image == other.image &&
+          description == other.description &&
+          title == other.title &&
+          videoId == other.videoId;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      image.hashCode ^
+      description.hashCode ^
+      title.hashCode ^
+      videoId.hashCode;
 
   Update() {
     FirebaseCollections.COACHCOLLECTION.doc(id).update(toMap());
