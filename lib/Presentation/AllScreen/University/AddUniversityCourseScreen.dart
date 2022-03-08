@@ -128,7 +128,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _admissionFeesController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -144,7 +144,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _tuitionFeesController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
