@@ -25,8 +25,9 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDCAREERCOACHSCREEN);
+          onPressed: () async {
+            await Get.toNamed(AppRoutes.ADDCAREERCOACHSCREEN);
+            setState(() {});
           }),
       body: SingleChildScrollView(
         child: Column(
