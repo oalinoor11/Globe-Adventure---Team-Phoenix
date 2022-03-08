@@ -1,3 +1,4 @@
+import 'package:BornoBangla/Data/Models/coach_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -6,34 +7,45 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../Core/AppRoutes.dart';
 
 class CareerCoachScreen2 extends StatefulWidget {
-
   @override
   State<CareerCoachScreen2> createState() => _CareerCoachScreen2State();
 }
 
 class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
-  YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: 'JSRr4oKMuQ8', // id youtube video
-      flags: YoutubePlayerFlags(
-        autoPlay: false,
-        mute: false,
-      ));
+  late YoutubePlayerController _controller;
+
+  CoachModel coach = Get.arguments;
+
+  @override
+  void initState() {
+    _controller = YoutubePlayerController(
+        initialVideoId: coach.videoId,
+        flags: YoutubePlayerFlags(
+          autoPlay: false,
+          mute: false,
+        ));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Selected Coach",
+          coach.name,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Container(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(),
               SizedBox(height: 6),
               Container(
                 width: double.infinity,
@@ -44,7 +56,6 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                   decoration: new BoxDecoration(
                     border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(15),
-
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
@@ -71,7 +82,6 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                       ),
                     ],
                     borderRadius: BorderRadius.circular(15),
-
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
@@ -79,7 +89,7 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                       padding: const EdgeInsets.all(15.0),
                       child: Center(
                         child: Text(
-                          "Everybody knows him Mr. Solaiman Shukhon as a Mutivissional Speaker in Bangladesh. If you are seeing the Youtube Video a day you must be watching his Motivational talk about every topic. He always tries to motivate the people in the video. As a result, He is gaining big achievements in his life as a Motivational speaker. In the content, we are providing to you the most important and valid information about Mr. Solaiman Shukhon. Solaiman Shukhon is a simple guy from his childhood memories. Readers can also learn about his lifestyle, Biography, family, wife, educational background, career, profession, monthly salary from his career, approx net worth of 2022.",
+                          coach.description,
                           style: TextStyle(
                             fontSize: 16.0,
                           ),

@@ -1,0 +1,64 @@
+import 'package:BornoBangla/Data/firebase_collections.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class CoachModel {
+  String? id;
+  late String name;
+  late String image;
+  late String description;
+  late String title;
+  late String videoId;
+  CoachModel({
+    this.id,
+    required this.name,
+    required this.image,
+    required this.description,
+    required this.title,
+    required this.videoId,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'image': image,
+      'description': description,
+      'title': title,
+      'videoId': videoId,
+    };
+  }
+
+  factory CoachModel.fromMap(Map<String, dynamic> map) {
+    return CoachModel(
+      id: map['id'],
+      name: map['name'],
+      image: map['image'],
+      description: map['description'],
+      title: map['title'],
+      videoId: map['videoId'],
+    );
+  }
+
+  save() {
+    FirebaseCollections.COACHCOLLECTION.doc(id).set(toMap());
+  }
+
+  static Stream<List<CoachModel>> getAll() {
+    final List<CoachModel> list = [];
+    return FirebaseCollections.COACHCOLLECTION.snapshots().map((snapshot) {
+      snapshot.docs.forEach((doc) {
+        list.add(CoachModel.fromMap(doc.data() as Map<String, dynamic>)
+          ..id = doc.id);
+      });
+      return list;
+    });
+  }
+
+  Update() {
+    FirebaseCollections.COACHCOLLECTION.doc(id).update(toMap());
+  }
+
+  delete() {
+    FirebaseCollections.COACHCOLLECTION.doc(id).delete();
+  }
+}

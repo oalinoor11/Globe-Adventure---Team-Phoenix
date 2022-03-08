@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Core/AppRoutes.dart';
 
-void main()async {
+void main() async {
   // WidgetsBinding.instance?.ensureVisualUpdate();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(MyApp());
 }
 
-DatabaseReference userRef = FirebaseDatabase.instance.reference().child("users");
+DatabaseReference userRef =
+    FirebaseDatabase.instance.reference().child("users");
 
 class MyApp extends StatelessWidget {
   @override

@@ -1,16 +1,22 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/coach_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class CareerCoachScreen extends StatelessWidget {
+class CareerCoachScreen extends StatefulWidget {
+  @override
+  State<CareerCoachScreen> createState() => _CareerCoachScreenState();
+}
 
+class _CareerCoachScreenState extends State<CareerCoachScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Career Coach",
@@ -23,8 +29,7 @@ class CareerCoachScreen extends StatelessWidget {
             Get.toNamed(AppRoutes.ADDCAREERCOACHSCREEN);
           }),
       body: SingleChildScrollView(
-        child:
-        Column(
+        child: Column(
           children: [
             CarouselSlider(
               options: CarouselOptions(
@@ -40,7 +45,8 @@ class CareerCoachScreen extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",fit: BoxFit.cover,
+                        "assets/scholarshipbanner.png",
+                        fit: BoxFit.cover,
                       ),
                     );
                   },
@@ -50,178 +56,74 @@ class CareerCoachScreen extends StatelessWidget {
             SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.fromLTRB(11.0, 0.0, 11.0, 0.0),
-              child:
-              Column(
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 175,
-                                child: ClipRRect(
+              child: StreamBuilder<List<CoachModel>>(
+                stream: CoachModel.getAll(),
+                builder: (context, snapshot) {
+                  return snapshot.hasData
+                      ? GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 0.75,
+                                  crossAxisSpacing: 10),
+                          shrinkWrap: true,
+                          primary: false,
+                          itemBuilder: (context, index) {
+                            CoachModel coach = snapshot.data![index];
+                            return InkWell(
+                              child: Container(
+                                width: 175.0,
+                                decoration: new BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  boxShadow: [
+                                    new BoxShadow(
+                                      color: Colors.grey.withOpacity(0.15),
+                                      blurRadius: 5.0,
+                                    ),
+                                  ],
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/enayetchowdhury.png"),fit: BoxFit.cover,),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 175,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image(
+                                          image: NetworkImage(coach.image),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(coach.name,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(height: 5),
+                                    Text(coach.title,
+                                        textAlign: TextAlign.center),
+                                    SizedBox(height: 5),
+                                  ],
                                 ),
                               ),
-                              SizedBox(height: 5),
-                              Text("Enayet Chowdhury", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(height: 5),
-                              Text("Lecturer, BUET", textAlign: TextAlign.center),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          Get.toNamed(AppRoutes.CAREERCOACHSCREEN2);
-                        },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCAREERCOACHSCREEN);
-                        },
-                      ),
-                      SizedBox(width: 10),
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 175,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/khalidfarhan.png"),fit: BoxFit.cover,),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text("Khalid Farhan", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(height: 5),
-                              Text("Digital Marketer", textAlign: TextAlign.center),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          Get.toNamed(AppRoutes.CAREERCOACHSCREEN2);
-                        },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCAREERCOACHSCREEN);
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 175,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/sadmansadik.png"),fit: BoxFit.cover,),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text("Sadman Sadik", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(height: 5),
-                              Text("Educator", textAlign: TextAlign.center),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          Get.toNamed(AppRoutes.CAREERCOACHSCREEN2);
-                        },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCAREERCOACHSCREEN);
-                        },
-                      ),
-                      SizedBox(width: 10),
-                      InkWell(
-                        child: Container(
-                          width: 175.0,
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 175,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image(image: AssetImage("assets/simanta.png"),fit: BoxFit.cover,),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text("Mashahed Hassan", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(height: 5),
-                              Text("Soft-skills Trainer", textAlign: TextAlign.center),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: (){
-                          Get.toNamed(AppRoutes.CAREERCOACHSCREEN2);
-                        },
-
-                        onLongPress: (){
-                          Get.toNamed(AppRoutes.EDITCAREERCOACHSCREEN);
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                ],
+                              onTap: () async {
+                                await Get.toNamed(AppRoutes.CAREERCOACHSCREEN2,
+                                    arguments: coach);
+                                setState(() {});
+                              },
+                              onLongPress: () async {
+                                await Get.toNamed(
+                                    AppRoutes.EDITCAREERCOACHSCREEN,
+                                    arguments: coach);
+                                setState(() {});
+                              },
+                            );
+                          },
+                          itemCount: snapshot.data!.length,
+                        )
+                      : CircularProgressIndicator();
+                },
               ),
             ),
           ],

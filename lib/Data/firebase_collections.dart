@@ -12,4 +12,6 @@ class FirebaseCollections {
 
   static CollectionReference UNIVERSITYCOLLECTION =
       FirebaseFirestore.instance.collection("UNIVERSITYLIST");
+  static CollectionReference COACHCOLLECTION =
+      FirebaseFirestore.instance.collection("COACHLIST");
 }

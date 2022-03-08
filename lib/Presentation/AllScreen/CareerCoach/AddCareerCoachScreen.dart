@@ -1,22 +1,34 @@
-import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:cool_alert/cool_alert.dart';
+import 'dart:io';
+
+import 'package:BornoBangla/Data/Models/coach_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
-class AddCareerCoachScreen extends StatelessWidget {
+class AddCareerCoachScreen extends StatefulWidget {
+  @override
+  State<AddCareerCoachScreen> createState() => _AddCareerCoachScreenState();
+}
 
+class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
   ScreenshotController screenshotController = ScreenshotController();
+  File? image;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _coachVideoIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Add New Coach",
@@ -29,15 +41,15 @@ class AddCareerCoachScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _nameController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "Coach Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -45,15 +57,15 @@ class AddCareerCoachScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _titleController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "Coach Title",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -61,15 +73,15 @@ class AddCareerCoachScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _descriptionController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "Coach Description",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -77,15 +89,15 @@ class AddCareerCoachScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _coachVideoIdController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Coach Intro url",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Coach Video id",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -97,6 +109,11 @@ class AddCareerCoachScreen extends StatelessWidget {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      image = File(pickedFile.path);
+                    });
+                  }
                 },
                 child: Container(
                   height: 65,
@@ -109,24 +126,27 @@ class AddCareerCoachScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Text("Coach Photo",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add_a_photo,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
+                  child: image == null
+                      ? Row(
+                          children: [
+                            SizedBox(width: 10),
+                            Text("Coach Photo",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16)),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.add_a_photo,
+                              size: 20,
+                              color: Colors.black,
+                            ),
+                          ],
+                        )
+                      : Image.file(image!),
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -134,8 +154,21 @@ class AddCareerCoachScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    var upload = await FirebaseStorage.instance
+                        .ref()
+                        .child("coach")
+                        .child(_nameController.text)
+                        .putFile(image!);
+                    var downloadUrl = await upload.ref.getDownloadURL();
+                    CoachModel(
+                            name: _nameController.text,
+                            image: downloadUrl,
+                            description: _descriptionController.text,
+                            title: _titleController.text,
+                            videoId: _coachVideoIdController.text)
+                        .save();
+                    Get.back();
                   },
                   child: Center(
                     child: Text(
