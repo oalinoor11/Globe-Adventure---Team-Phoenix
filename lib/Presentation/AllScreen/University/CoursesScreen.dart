@@ -70,7 +70,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
               itemBuilder: (context, index) {
                 CourseModel courseModel = universityModel.courseList[index];
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 18, right: 18, top: 8),
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -83,7 +83,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
                               spreadRadius: 0,
                               offset: Offset(0, 2))
                         ]),
-                    width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -323,6 +322,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
               separatorBuilder: (context, index) {
                 return Divider();
               },
+            ),
+            SizedBox(
+              height: 20,
             ),
           ],
         ),
