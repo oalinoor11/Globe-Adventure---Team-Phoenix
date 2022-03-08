@@ -96,7 +96,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Icon(
-                                        Icons.school,
+                                        Icons.auto_stories,
                                         color: Colors.red,
                                       ),
                                       SizedBox(
@@ -132,6 +132,78 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                               fontWeight: FontWeight.bold)),
                                       Expanded(
                                         child: Text(courseModel.duration,
+                                            softWrap: true,
+                                            maxLines: 3,
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.poll, color: Colors.green),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("Level: ",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold)),
+                                      Expanded(
+                                        child: Text(courseModel.level,
+                                            softWrap: true,
+                                            maxLines: 3,
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.history_edu, color: Colors.red),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("Requirements: ",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold)),
+                                      Expanded(
+                                        child: Text(courseModel.requirements,
+                                            softWrap: true,
+                                            maxLines: 3,
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.school, color: Colors.blue),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("Scholarship: ",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold)),
+                                      Expanded(
+                                        child: Text(courseModel.scholarship,
                                             softWrap: true,
                                             maxLines: 3,
                                             style: TextStyle(

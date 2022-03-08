@@ -21,6 +21,9 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _durationController = TextEditingController();
+  TextEditingController _levelController = TextEditingController();
+  TextEditingController _requirementsController = TextEditingController();
+  TextEditingController _scholarshipController = TextEditingController();
   TextEditingController _admissionFeesController = TextEditingController();
   TextEditingController _tuitionFeesController = TextEditingController();
 
@@ -76,6 +79,54 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: _levelController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Level",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: _requirementsController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Requirements",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: _scholarshipController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Scholarship",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
                 controller: _admissionFeesController,
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
@@ -121,6 +172,9 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                       admissionFees: int.parse(_admissionFeesController.text),
                       tuitionFees: int.parse(_tuitionFeesController.text),
                       name: _nameController.text,
+                      level: _levelController.text,
+                      requirements: _requirementsController.text,
+                      scholarship: _scholarshipController.text,
                       duration: _durationController.text,
                     );
                     _universityModel.courseList.add(courseModel);
@@ -129,7 +183,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),
