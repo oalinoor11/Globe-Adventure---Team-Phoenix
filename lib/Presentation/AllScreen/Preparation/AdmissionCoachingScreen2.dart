@@ -2,7 +2,9 @@ import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/coaching_course_model.dart';
 import 'package:BornoBangla/Data/Models/coaching_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
@@ -35,92 +37,103 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
               coachingModel;
             });
           }),
-      body: Column(
-        children: [
-          SizedBox(height: 10),
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 120.0,
-              viewportFraction: 1.0,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-            ),
-            items: coachingModel.bannerImages.map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    width: double.infinity,
-                    child: Image.network(
-                      i,
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-              );
-            }).toList(),
-          ),
-          SizedBox(height: 20),
-          GridView.builder(
-            shrinkWrap: true,
-            primary: false,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              CoachingCourseModel courseModel = coachingModel.courses[index];
-              return InkWell(
-                child: Container(
-                  decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.grey.withOpacity(0.15),
-                        blurRadius: 5.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                viewportFraction: 1.0,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+              ),
+              items: coachingModel.bannerImages.map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: double.infinity,
+                      child: Image.network(
+                        i,
+                        fit: BoxFit.cover,
                       ),
-                    ],
-                    borderRadius: BorderRadius.circular(15),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 18),
+            GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 18.0),
+              shrinkWrap: true,
+              primary: false,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: context.width > 1080 ? 4 : 2,
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 80,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(
-                            image: NetworkImage(courseModel.image),
-                            fit: BoxFit.cover,
+              itemBuilder: (context, index) {
+                CoachingCourseModel courseModel = coachingModel.courses[index];
+                return InkWell(
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      border: Border.all(color: Colors.green, width: 1.5),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 110,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(13), topRight: Radius.circular(13)),
+                            child: Image(
+                              image: NetworkImage(courseModel.image),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(courseModel.name,
-                          textAlign: TextAlign.center,
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 5),
-                      Text(courseModel.regularCourseFee.toString(),
-                          textAlign: TextAlign.center,
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 5),
-                      Text(courseModel.discountedCourseFee.toString(),
-                          textAlign: TextAlign.center,
-                          style:
-                          TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 5),
-                    ],
+                        SizedBox(height: 2),
+                        Text(courseModel.name,
+                                textAlign: TextAlign.center,
+                                style:
+                                TextStyle(fontWeight: FontWeight.bold)),
+                        SizedBox(height: 5),
+                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Regular Fee: ',
+                                textAlign: TextAlign.center,),
+                            Text(courseModel.regularCourseFee.toString(),
+                                textAlign: TextAlign.center, style: TextStyle(color: Colors.black),),
+                          ],
+                        ),
+                        SizedBox(height: 2),
+                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Discount Fee: ',
+                                textAlign: TextAlign.center,),
+                            Text(courseModel.discountedCourseFee.toString(),
+                                textAlign: TextAlign.center,),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                onTap: () {
-                  Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
-                },
-              );
-            },
-            itemCount: coachingModel.courses.length,
-          ),
-          SizedBox(height: 15),
-        ],
+                  onTap: () {
+                    Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+                  },
+                );
+              },
+              itemCount: coachingModel.courses.length,
+            ),
+            SizedBox(height: 15),
+          ],
+        ),
       ),
     );
   }

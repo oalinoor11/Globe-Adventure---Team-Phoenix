@@ -4,6 +4,7 @@ import 'package:BornoBangla/Data/Models/coaching_model.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
@@ -94,6 +95,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
               ),
               SizedBox(height: 20),
               GridView.builder(
+                //padding: EdgeInsets.symmetric(horizontal: 18.0),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () async {
@@ -121,11 +123,10 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                           : Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(width: 10),
                                 Text("Banner Image",
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 16)),
-                                SizedBox(width: 10),
+                                        color: Colors.black, fontSize: 14)),
+                                SizedBox(height: 5),
                                 Icon(
                                   Icons.add_a_photo,
                                   size: 20,
@@ -140,7 +141,9 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  crossAxisCount: context.width > 1080 ? 4 : 3,),
               ),
               SizedBox(height: 20),
               InkWell(
