@@ -48,6 +48,7 @@ dependencies:
   shared_preferences: ^2.0.12
   url_launcher: ^6.0.12
   cool_alert:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

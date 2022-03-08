@@ -2,11 +2,8 @@ import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/coaching_course_model.dart';
 import 'package:BornoBangla/Data/Models/coaching_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class AdmissionCoachingScreen2 extends StatefulWidget {
   @override
@@ -67,12 +64,11 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
               padding: EdgeInsets.symmetric(horizontal: 18.0),
               shrinkWrap: true,
               primary: false,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    crossAxisCount: context.width > 1080 ? 4 : 2,
-                  ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: context.width > 1080 ? 4 : 2,
+              ),
               itemBuilder: (context, index) {
                 CoachingCourseModel courseModel = coachingModel.courses[index];
                 return InkWell(
@@ -91,7 +87,9 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                         Container(
                           height: 110,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(13), topRight: Radius.circular(13)),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(13),
+                                topRight: Radius.circular(13)),
                             child: Image(
                               image: NetworkImage(courseModel.image),
                               fit: BoxFit.cover,
@@ -100,25 +98,35 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                         ),
                         SizedBox(height: 2),
                         Text(courseModel.name,
-                                textAlign: TextAlign.center,
-                                style:
-                                TextStyle(fontWeight: FontWeight.bold)),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         SizedBox(height: 5),
-                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Regular Fee: ',
-                                textAlign: TextAlign.center,),
-                            Text(courseModel.regularCourseFee.toString(),
-                                textAlign: TextAlign.center, style: TextStyle(color: Colors.black),),
+                            Text(
+                              'Regular Fee: ',
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              courseModel.regularCourseFee.toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.black),
+                            ),
                           ],
                         ),
                         SizedBox(height: 2),
-                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Discount Fee: ',
-                                textAlign: TextAlign.center,),
-                            Text(courseModel.discountedCourseFee.toString(),
-                                textAlign: TextAlign.center,),
+                            Text(
+                              'Discount Fee: ',
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              courseModel.discountedCourseFee.toString(),
+                              textAlign: TextAlign.center,
+                            ),
                           ],
                         ),
                       ],

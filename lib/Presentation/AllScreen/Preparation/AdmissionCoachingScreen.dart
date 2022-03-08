@@ -28,7 +28,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
         title:
             // Image.asset("assets/logo.png", height: 130),
             Text(
-          "Admission Coaching",
+          "${CoachingController.to.selectedType().capitalizeFirst} Coaching",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

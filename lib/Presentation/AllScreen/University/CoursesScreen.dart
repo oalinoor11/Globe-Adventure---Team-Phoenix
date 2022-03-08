@@ -1,6 +1,7 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/course_model.dart';
 import 'package:BornoBangla/Data/Models/university_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -223,6 +224,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                 borderRadius: new BorderRadius.circular(12.0),
                               ),
                               onPressed: () {
+                                ScholarshipController.to.course(courseModel);
                                 Get.toNamed(AppRoutes.SCHOLARSHIPAPPLYSCREEN);
                               },
                               child: Center(

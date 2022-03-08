@@ -1,10 +1,15 @@
 import 'dart:io';
 
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/appply_scholarship_form_model.dart';
+import 'package:BornoBangla/Data/Models/scholarship_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
@@ -30,6 +35,8 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
   TextEditingController _hscResultController = TextEditingController();
   TextEditingController _referralCodeController = TextEditingController();
   File? _studentsPhoto;
+  File? _signaturePhoto;
+  bool loader = false;
 
   @override
   Widget build(BuildContext context) {
@@ -215,6 +222,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     print("camera button clicked");
                     var pickedFile = await ImagePicker()
                         .pickImage(source: ImageSource.gallery);
+                    if (pickedFile != null) {
+                      setState(() {
+                        _studentsPhoto = File(pickedFile.path);
+                      });
+                    }
                   },
                   child: Container(
                     height: 65,
@@ -227,20 +239,22 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 10),
-                        Text("Student's Photo",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 16)),
-                        SizedBox(width: 10),
-                        Icon(
-                          Icons.add_a_photo,
-                          size: 20,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
+                    child: _studentsPhoto == null
+                        ? Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Text("Student's Photo",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16)),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.add_a_photo,
+                                size: 20,
+                                color: Colors.black,
+                              ),
+                            ],
+                          )
+                        : Image.file(_studentsPhoto!),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -287,25 +301,82 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                 SizedBox(height: 10),
                 Container(
                   height: 50,
-                  child: RaisedButton(
-                    elevation: 0,
-                    color: Colors.green,
-                    textColor: Colors.white,
-                    shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(8.0),
-                    ),
-                    onPressed: () {
-                      Get.toNamed(AppRoutes.BKASHSCREEN);
-                    },
-                    child: Center(
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                          fontSize: 22.0,
+                  child: loader
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : RaisedButton(
+                          elevation: 0,
+                          color: Colors.green,
+                          textColor: Colors.white,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(8.0),
+                          ),
+                          onPressed: () async {
+                            setState(() {
+                              loader = true;
+                            });
+                            var upload = await FirebaseStorage.instance
+                                .ref()
+                                .child("student_images")
+                                .child(_nameController.text)
+                                .putFile(_studentsPhoto!);
+                            var studentImageUrl =
+                                await upload.ref.getDownloadURL();
+                            var tempData = await screenshotController.capture(
+                                pixelRatio: 10);
+                            var signatureImageUrl;
+                            if (tempData != null) {
+                              final directory =
+                                  await getApplicationDocumentsDirectory();
+                              _signaturePhoto =
+                                  await File('${directory.path}/image.png')
+                                      .create();
+                              await _signaturePhoto!.writeAsBytes(tempData);
+
+                              upload = await FirebaseStorage.instance
+                                  .ref()
+                                  .child("student_images")
+                                  .child(_nameController.text)
+                                  .putFile(_studentsPhoto!);
+                              signatureImageUrl =
+                                  await upload.ref.getDownloadURL();
+                            }
+
+                            AppplyScholarshipFormModel
+                                appplyScholarshipFormModel =
+                                AppplyScholarshipFormModel(
+                              name: _nameController.text,
+                              email: _emailAddressController.text,
+                              studentsPhone: _studentsPhoneController.text,
+                              parentsPhone: _parentsPhoneController.text,
+                              fathersName: _fatherNameController.text,
+                              mothersName: _motherNameController.text,
+                              addressName: _presentAddressController.text,
+                              sscResult: _sscResultController.text,
+                              hscResult: _hscResultController.text,
+                              referralCode: _referralCodeController.text,
+                              image: studentImageUrl,
+                              signature: signatureImageUrl,
+                              course: ScholarshipController.to.course()!,
+                              university:
+                                  ScholarshipController.to.university()!,
+                            );
+                            await appplyScholarshipFormModel.save();
+                            setState(() {
+                              loader = false;
+                            });
+                            Get.toNamed(AppRoutes.BKASHSCREEN);
+                          },
+                          child: Center(
+                            child: Text(
+                              "Next",
+                              style: TextStyle(
+                                fontSize: 22.0,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
