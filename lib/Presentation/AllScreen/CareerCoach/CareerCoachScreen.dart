@@ -66,6 +66,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   childAspectRatio: 0.75,
+                                  mainAxisSpacing: 10,
                                   crossAxisSpacing: 10),
                           shrinkWrap: true,
                           primary: false,

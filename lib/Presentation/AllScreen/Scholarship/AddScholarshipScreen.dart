@@ -1,22 +1,25 @@
-import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:cool_alert/cool_alert.dart';
+import 'package:BornoBangla/Data/Models/scholarship_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
-class AddScholarshipScreen extends StatelessWidget {
+class AddScholarshipScreen extends StatefulWidget {
+  @override
+  State<AddScholarshipScreen> createState() => _AddScholarshipScreenState();
+}
 
-  GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
   ScreenshotController screenshotController = ScreenshotController();
+  TextEditingController _scholarshipNameController = TextEditingController();
+  TextEditingController _videoIdController = TextEditingController();
+  TextEditingController _applicationLinkController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Add New Scholarship",
@@ -29,15 +32,15 @@ class AddScholarshipScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _scholarshipNameController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "Scholarship Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -45,15 +48,15 @@ class AddScholarshipScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _videoIdController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "YouTube Video ID",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -61,22 +64,23 @@ class AddScholarshipScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: _applicationLinkController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "Application Link",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -84,8 +88,13 @@ class AddScholarshipScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    await ScholarshipModel(
+                            name: _scholarshipNameController.text,
+                            applicationLink: _applicationLinkController.text,
+                            videoId: _videoIdController.text)
+                        .save();
+                    Get.back();
                   },
                   child: Center(
                     child: Text(
