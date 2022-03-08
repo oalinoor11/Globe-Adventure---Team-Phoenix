@@ -9,7 +9,15 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class UniversityScreen extends StatelessWidget {
+import '../../../Data/Models/country_model.dart';
+
+
+class UniversityScreen extends StatefulWidget {
+  @override
+  State<UniversityScreen> createState() => _UniversityScreenState();
+}
+
+class _UniversityScreenState extends State<UniversityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +26,7 @@ class UniversityScreen extends StatelessWidget {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Study in Selected Country",
+          "Selected Country",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
