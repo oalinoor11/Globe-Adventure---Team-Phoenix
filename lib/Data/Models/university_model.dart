@@ -60,6 +60,21 @@ class UniversityModel {
     }
   }
 
+  static Stream<List<UniversityModel>> getAllUniversities() {
+    try {
+      return FirebaseCollections.UNIVERSITYCOLLECTION
+          .snapshots()
+          .map((snapshot) {
+        return snapshot.docs.map((doc) {
+          return UniversityModel.fromJson(doc.data() as Map<String, dynamic>)
+            ..id = doc.id;
+        }).toList();
+      });
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
+
   save() {
     FirebaseCollections.UNIVERSITYCOLLECTION.doc(id).set(toJson());
   }
