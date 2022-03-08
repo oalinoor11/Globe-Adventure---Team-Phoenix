@@ -28,6 +28,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
   TextEditingController _tuitionFeesController = TextEditingController();
 
   UniversityModel _universityModel = Get.arguments;
+  bool loader = false;
 
   @override
   Widget build(BuildContext context) {
@@ -168,6 +169,9 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () {
+                    setState(() {
+                      loader = true;
+                    });
                     CourseModel courseModel = CourseModel(
                       admissionFees: int.parse(_admissionFeesController.text),
                       tuitionFees: int.parse(_tuitionFeesController.text),
@@ -179,6 +183,9 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                     );
                     _universityModel.courseList.add(courseModel);
                     _universityModel.update();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.back();
                   },
                   child: Center(

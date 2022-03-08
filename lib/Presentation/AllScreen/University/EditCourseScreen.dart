@@ -37,6 +37,9 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   @override
   void initState() {
     _nameController = TextEditingController(text: _courseModel.name);
+    _levelController = TextEditingController(text: _courseModel.level);
+    _requirementsController = TextEditingController(text: _courseModel.requirements);
+    _scholarshipController = TextEditingController(text: _courseModel.scholarship);
     _durationController = TextEditingController(text: _courseModel.duration);
     _admissionFeesController =
         TextEditingController(text: _courseModel.admissionFees.toString());
@@ -189,6 +192,9 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                     _courseModel.tuitionFees =
                         int.parse(_tuitionFeesController.text);
                     _courseModel.name = _nameController.text;
+                    _courseModel.level = _levelController.text;
+                    _courseModel.requirements = _requirementsController.text;
+                    _courseModel.scholarship = _scholarshipController.text;
                     _courseModel.duration = _durationController.text;
                     Get.back(result: _courseModel);
                   },
