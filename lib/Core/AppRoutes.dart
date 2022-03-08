@@ -58,7 +58,6 @@ import 'package:BornoBangla/Presentation/AllScreen/Profile/SignUpScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
-
 class AppRoutes {
   static const String INITAL = "/";
   static const String MAINSCREEN = "/mainscreen";
@@ -99,10 +98,10 @@ class AppRoutes {
   static const String ADMISSIONCOACHINGSCREEN2 = "/admissioncoachingscreen2";
   static const String ADDCOACHINGSCREEN = "/addcoachingscreen";
   static const String ADDCOURSESCREEN = "/addcoursescreen";
-  static const String ACADEMICCOACHINGSCREEN = "/academiccoachingscreen";
-  static const String IELTSCOACHINGSCREEN = "/ieltscoachingscreen";
-  static const String JOBCOACHINGSCREEN = "/jobcoachingscreen";
-  static const String ISSBCOACHINGSCREEN = "/issbcoachingscreen";
+  // static const String ACADEMICCOACHINGSCREEN = "/academiccoachingscreen";
+  // static const String IELTSCOACHINGSCREEN = "/ieltscoachingscreen";
+  // static const String JOBCOACHINGSCREEN = "/jobcoachingscreen";
+  // static const String ISSBCOACHINGSCREEN = "/issbcoachingscreen";
   static const String UCCSCREEN = "/uccscreen";
   static const String UDVASHSCREEN = "/udvashscreen";
   static const String EHOKSCREEN = "/ehokscreen";
@@ -127,342 +126,285 @@ class AppRoutes {
         page: () => ProfileScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: MAINSCREEN,
         page: () => MainScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: HOMESCREEN,
         page: () => HomeScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: UNIVERSITYSCREEN,
         page: () => UniversityScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: COURSESSCREEN,
         page: () => CoursesScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: PREPARATIONSCREEN,
         page: () => PreparationScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: CAREERCOACHSCREEN,
         page: () => CareerCoachScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: BOOKAPPOINTMENTSCREEN,
         page: () => BookAppointmentScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: CAREERCOACHSCREEN2,
         page: () => CareerCoachScreen2(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: APPLYSCHOLARSHIPSCREEN,
         page: () => ApplyScholarshipScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITSCHOLARSHIPSCREEN,
         page: () => EditScholarshipScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITCOACHINGSCREEN,
         page: () => EditCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITSCHOOLSCREEN,
         page: () => EditSchoolScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITCAREERCOACHSCREEN,
         page: () => EditCareerCoachScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDCAREERCOACHSCREEN,
         page: () => AddCareerCoachScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITUNIVERSITYSCREEN,
         page: () => EditUniversityScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITCOURSESCREEN,
         page: () => EditCourseScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITCOLLEGESCREEN,
         page: () => EditCollegeScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDUNIVERSITYSCREEN,
         page: () => AddUniversityScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDSCHOOLSCREEN,
         page: () => AddSchoolScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDCOLLEGESCREEN,
         page: () => AddCollegeScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDUNIVERSITYCOURSESCREEN,
         page: () => AddUniversityCourseScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDCOUNTRYSCREEN,
         page: () => AddCountryScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITCOUNTRYSCREEN,
         page: () => EditCountryScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDSCHOLARSHIPSCREEN,
         page: () => AddScholarshipScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: BOOKSCREEN,
         page: () => BookScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: JOBSCREEN,
         page: () => JobScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SIGNINSCREEN,
         page: () => SignInScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SIGNUPSCREEN,
         page: () => SignUpScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: STUDYABROADSCREEN,
         page: () => StudyAbroadScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: TUTORSCREEN,
         page: () => TutorScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SCHOOLSCREEN,
         page: () => SchoolScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SCHOOLSCREEN2,
         page: () => SchoolScreen2(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: COLLEGESCREEN2,
         page: () => CollegeScreen2(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: COLLEGESCREEN,
         page: () => CollegeScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADMISSIONCOACHINGSCREEN,
         page: () => AdmissionCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADMISSIONCOACHINGSCREEN2,
         page: () => AdmissionCoachingScreen2(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDCOACHINGSCREEN,
         page: () => AddCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ADDCOURSESCREEN,
         page: () => AddCourseScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SIRAJACADEMYSCREEN,
         page: () => SirajacademyScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: IELTSCOACHINGSCREEN,
         page: () => IeltsCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: JOBCOACHINGSCREEN,
         page: () => JobCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ISSBCOACHINGSCREEN,
         page: () => IssbCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ACADEMICCOACHINGSCREEN,
         page: () => AcademicCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: UCCSCREEN,
         page: () => UccScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: BCSBYTGSCREEN,
         page: () => BcsbytgScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: BCSBYRSSCREEN,
         page: () => BcsbyrsScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: UTTORONSCREEN,
         page: () => UttoronScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: MABSSCREEN,
         page: () => MabsScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EHOKSCREEN,
         page: () => EhokScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: ENGLISHA2ZSCREEN,
         page: () => Englisha2zScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SAIFURSSCREEN,
         page: () => SaifursScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: MENTORSSCREEN,
         page: () => MentorsScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: COACHINGAPPLYSCREEN,
         page: () => CoachingApplyScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: SCHOLARSHIPAPPLYSCREEN,
         page: () => ScholarshipApplyScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: BKASHSCREEN,
         page: () => BkashScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: RETINASCREEN,
         page: () => RetinaScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
   ];
 }

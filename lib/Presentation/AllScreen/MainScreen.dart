@@ -1,4 +1,5 @@
 import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
+import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/university.dart';
@@ -22,6 +23,7 @@ class _MainScreenState extends State<MainScreen> {
     Get.lazyPut(() => SchoolController());
     Get.lazyPut(() => CollegeController());
     Get.lazyPut(() => UniversityController());
+    Get.lazyPut(() => CoachingController());
     super.initState();
   }
 

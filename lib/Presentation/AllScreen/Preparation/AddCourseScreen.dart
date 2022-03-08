@@ -1,8 +1,7 @@
 import 'dart:io';
-
-import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Firebase/FirebaseCollections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:BornoBangla/Data/Models/coaching_course_model.dart';
+import 'package:BornoBangla/Data/Models/coaching_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -17,9 +16,12 @@ class AddCourseScreen extends StatefulWidget {
 
 class _AddCourseScreenState extends State<AddCourseScreen> {
   TextEditingController nameTextEditingController = TextEditingController();
-  TextEditingController regularFeeTextEditingController = TextEditingController();
-  TextEditingController discountFeeTextEditingController = TextEditingController();
+  TextEditingController regularFeeTextEditingController =
+      TextEditingController();
+  TextEditingController discountFeeTextEditingController =
+      TextEditingController();
   File? image;
+  CoachingModel coachingModel = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -78,19 +80,19 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                   ),
                   child: image == null
                       ? Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Text("Course Image",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add_a_photo,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                    ],
-                  )
+                          children: [
+                            SizedBox(width: 10),
+                            Text("Course Image",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16)),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.add_a_photo,
+                              size: 20,
+                              color: Colors.black,
+                            ),
+                          ],
+                        )
                       : Image.file(image!),
                 ),
               ),
@@ -144,8 +146,23 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                 ),
                 onTap: () async {
                   if (image != null) {
-                    var imageUrl = await FirebaseCollections.uploadCoachingLogo(image!, nameTextEditingController.text+('.')+image!.path.split('/').last.split('.').last);
-                    await FirebaseCollections.ADMISSIONCOACHING.doc().set({'image': imageUrl, 'title':nameTextEditingController.text});
+                    var upload = await FirebaseStorage.instance
+                        .ref()
+                        .child("course")
+                        .child(nameTextEditingController.text)
+                        .putFile(image!);
+                    var downloadUrl = await upload.ref.getDownloadURL();
+                    CoachingCourseModel coachingCourseModel =
+                        CoachingCourseModel(
+                      name: nameTextEditingController.text,
+                      image: downloadUrl,
+                      regularCourseFee:
+                          int.parse(regularFeeTextEditingController.text),
+                      discountedCourseFee:
+                          int.parse(discountFeeTextEditingController.text),
+                    );
+                    coachingModel.courses.add(coachingCourseModel);
+                    await coachingModel.update();
                     Get.snackbar(
                       "Done",
                       "Course Added",

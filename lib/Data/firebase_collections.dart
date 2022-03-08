@@ -16,4 +16,6 @@ class FirebaseCollections {
       FirebaseFirestore.instance.collection("COACHLIST");
   static CollectionReference SCHOLARSHIPCOLLECTION =
       FirebaseFirestore.instance.collection("SCHOLARSHIPLIST");
+  static CollectionReference COACHINGCOLLECTION =
+      FirebaseFirestore.instance.collection("COACHINGLIST");
 }

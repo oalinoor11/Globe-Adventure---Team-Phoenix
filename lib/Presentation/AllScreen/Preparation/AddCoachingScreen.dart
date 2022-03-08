@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:BornoBangla/AllWidgets/progressDialog.dart';
-import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Firebase/FirebaseCollections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:BornoBangla/Data/Models/coaching_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -17,8 +15,9 @@ class AddCoachingScreen extends StatefulWidget {
 }
 
 class _AddCoachingScreenState extends State<AddCoachingScreen> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   File? image;
+  List<File> bannerImages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
               TextField(
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
-                controller: controller,
+                controller: nameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -94,6 +93,56 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              GridView.builder(
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () async {
+                      var pickedFile = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        setState(() {
+                          bannerImages.add(File(pickedFile.path));
+                        });
+                      }
+                    },
+                    child: Container(
+                      height: 65,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: bannerImages.length > index
+                          ? Image.file(bannerImages[index])
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(width: 10),
+                                Text("Banner Image",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 16)),
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.add_a_photo,
+                                  size: 20,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                    ),
+                  );
+                },
+                itemCount: bannerImages.length + 1,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 child: Container(
                   height: 40.0,
@@ -111,8 +160,30 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 ),
                 onTap: () async {
                   if (image != null) {
-                    var imageUrl = await FirebaseCollections.uploadCoachingLogo(image!, controller.text+('.')+image!.path.split('/').last.split('.').last);
-                    await FirebaseCollections.ADMISSIONCOACHING.doc().set({'image': imageUrl, 'title':controller.text});
+                    var upload = await FirebaseStorage.instance
+                        .ref()
+                        .child("coaching")
+                        .child(nameController.text)
+                        .putFile(image!);
+                    var downloadUrl = await upload.ref.getDownloadURL();
+                    var bannerUrls = <String>[];
+                    bannerUrls =
+                        await Future.wait(await bannerImages.map((e) async {
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("coaching")
+                          .child(nameController.text)
+                          .putFile(image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      return downloadUrl;
+                    }).toList());
+                    await CoachingModel(
+                      name: nameController.text,
+                      image: downloadUrl,
+                      bannerImages: bannerUrls,
+                      courses: [],
+                      type: CoachingController.to.selectedType(),
+                    ).save();
                     Get.snackbar(
                       "Done",
                       "Coaching Added",
