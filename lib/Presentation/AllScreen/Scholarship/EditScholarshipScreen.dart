@@ -105,30 +105,45 @@ class _EditScholarshipScreenState extends State<EditScholarshipScreen> {
               FutureBuilder<List<UniversityModel>>(
                 builder: (context, snapshot) {
                   return snapshot.hasData
-                      ? DropdownButton<String>(
-                          items: snapshot.data!
-                              .map((e) => DropdownMenuItem(
-                                    child: Text(e.name),
-                                    value: e.id,
-                                  ))
-                              .toList(),
-                          value: selectedUniversity?.id,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedUniversityId = value;
-                              selectedUniversity = snapshot.data!
-                                  .firstWhere((e) => e.id == value);
-                            });
-                          },
-                          hint: Text("Select University"),
-                        )
+                      ? Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide:
+                            BorderSide(color: Colors.green, width: 1)),
+                    ),
+                            items: snapshot.data!
+                                .map((e) => DropdownMenuItem(
+                                      child: Text(e.name),
+                                      value: e.id,
+                                    ))
+                                .toList(),
+                            value: selectedUniversity?.id,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedUniversityId = value;
+                                selectedUniversity = snapshot.data!
+                                    .firstWhere((e) => e.id == value);
+                              });
+                            },
+                            hint: Text("Select University"),
+                          ),
+                      )
                       : CircularProgressIndicator();
                 },
                 future: UniversityModel.getAllUniversities(),
               ),
               selectedUniversity == null
                   ? Container()
-                  : DropdownButton<CourseModel>(
+                  : DropdownButtonFormField<CourseModel>(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide:
+                      BorderSide(color: Colors.green, width: 1)),
+                ),
                       items: selectedUniversity!.courseList
                           .map((e) => DropdownMenuItem(
                                 child: Text(e.name),

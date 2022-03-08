@@ -87,7 +87,13 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
               FutureBuilder<List<UniversityModel>>(
                 builder: (context, snapshot) {
                   return snapshot.hasData
-                      ? DropdownButton<String>(
+                      ? DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
                           items: snapshot.data!
                               .map((e) => DropdownMenuItem(
                                     child: Text(e.name),
@@ -110,21 +116,30 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
               ),
               selectedUniversity == null
                   ? Container()
-                  : DropdownButton<CourseModel>(
-                      items: selectedUniversity!.courseList
-                          .map((e) => DropdownMenuItem(
-                                child: Text(e.name),
-                                value: e,
-                              ))
-                          .toList(),
-                      value: selectedCourse,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedCourse = value;
-                        });
-                      },
-                      hint: Text("Select Course"),
-                    ),
+                  : Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: DropdownButtonFormField<CourseModel>(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                        BorderSide(color: Colors.green, width: 1)),
+                ),
+                        items: selectedUniversity!.courseList
+                            .map((e) => DropdownMenuItem(
+                                  child: Text(e.name),
+                                  value: e,
+                                ))
+                            .toList(),
+                        value: selectedCourse,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedCourse = value;
+                          });
+                        },
+                        hint: Text("Select Course"),
+                      ),
+                  ),
               SizedBox(height: 20),
               Container(
                 height: 50,
