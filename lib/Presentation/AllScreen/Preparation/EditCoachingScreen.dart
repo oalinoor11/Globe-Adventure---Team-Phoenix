@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/coaching_model.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -7,16 +11,32 @@ import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
-class EditCoachingScreen extends StatelessWidget {
+class EditCoachingScreen extends StatefulWidget {
+  @override
+  State<EditCoachingScreen> createState() => _EditCoachingScreenState();
+}
 
+class _EditCoachingScreenState extends State<EditCoachingScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
   ScreenshotController screenshotController = ScreenshotController();
+
+  CoachingModel coachingModel = Get.arguments;
+
+  TextEditingController nameController = TextEditingController();
+  File? image;
+  @override
+  void initState() {
+    nameController = TextEditingController(text: coachingModel.name);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
           "Edit Coaching",
@@ -29,15 +49,15 @@ class EditCoachingScreen extends StatelessWidget {
           child: Column(
             children: [
               TextField(
-                keyboardType: TextInputType.text, cursorColor: Colors.green,
+                controller: nameController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                      BorderSide(color: Colors.green, width: 1)),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
                   labelText: "Coaching Name",
-                  labelStyle: TextStyle(
-                      fontSize: 16.0, color: Colors.black),
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
                 style: TextStyle(
                   fontSize: 14.0,
@@ -49,6 +69,11 @@ class EditCoachingScreen extends StatelessWidget {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      image = File(pickedFile.path);
+                    });
+                  }
                 },
                 child: Container(
                   height: 65,
@@ -61,24 +86,14 @@ class EditCoachingScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Text("Coaching Logo",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add_a_photo,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
+                  child: image == null
+                      ? Image.network(coachingModel.image)
+                      : Image.file(image!),
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.green,
@@ -86,8 +101,19 @@ class EditCoachingScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    if (image != null) {
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("coaching")
+                          .child(nameController.text)
+                          .putFile(image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      coachingModel.image = downloadUrl;
+                    }
+                    coachingModel.name = nameController.text;
+                    await coachingModel.update();
+                    Get.back();
                   },
                   child: Center(
                     child: Text(
@@ -100,7 +126,8 @@ class EditCoachingScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Container(height: 50,
+              Container(
+                height: 50,
                 child: RaisedButton(
                   elevation: 0,
                   color: Colors.red,
@@ -108,33 +135,21 @@ class EditCoachingScreen extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  onPressed: () {
-                    var result = CoolAlert.show(
+                  onPressed: () async {
+                    var result = await CoolAlert.show(
                       backgroundColor: Colors.green,
                       confirmBtnColor: Colors.red,
                       confirmBtnText: ("Delete"),
                       width: 10,
                       context: context,
                       type: CoolAlertType.confirm,
-                      onCancelBtnTap: () =>
-                          Get.back(result: false),
-                      onConfirmBtnTap: () =>
-                          Get.back(result: true),
+                      onCancelBtnTap: () => Get.back(result: false),
+                      onConfirmBtnTap: () => Get.back(result: true),
                     );
-                    // if (result) {
-                    //   var response =
-                    //       await MaterialRepository()
-                    //       .deleteMaterial(e);
-                    //   if (response) {
-                    //     await CoolAlert.show(
-                    //         context: context,
-                    //         type: CoolAlertType.success);
-                    //   } else {
-                    //     await CoolAlert.show(
-                    //         context: context,
-                    //         type: CoolAlertType.error);
-                    //   }
-                    // }
+                    if (result) {
+                      await coachingModel.delete();
+                      Get.back();
+                    }
                   },
                   child: Center(
                     child: Text(
