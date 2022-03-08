@@ -144,7 +144,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _admissionFeesController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -160,7 +160,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _tuitionFeesController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
