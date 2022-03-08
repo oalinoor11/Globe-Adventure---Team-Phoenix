@@ -25,6 +25,7 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
 
   TextEditingController nameController = TextEditingController();
   File? image;
+  bool loader = false;
   @override
   void initState() {
     nameController = TextEditingController(text: coachingModel.name);
@@ -94,36 +95,46 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  elevation: 0,
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(8.0),
-                  ),
-                  onPressed: () async {
-                    if (image != null) {
-                      var upload = await FirebaseStorage.instance
-                          .ref()
-                          .child("coaching")
-                          .child(nameController.text)
-                          .putFile(image!);
-                      var downloadUrl = await upload.ref.getDownloadURL();
-                      coachingModel.image = downloadUrl;
-                    }
-                    coachingModel.name = nameController.text;
-                    await coachingModel.update();
-                    Get.back();
-                  },
-                  child: Center(
-                    child: Text(
-                      "Save Changes",
-                      style: TextStyle(
-                        fontSize: 22.0,
+                child: loader
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : RaisedButton(
+                        elevation: 0,
+                        color: Colors.green,
+                        textColor: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(8.0),
+                        ),
+                        onPressed: () async {
+                          setState(() {
+                            loader = true;
+                          });
+                          if (image != null) {
+                            var upload = await FirebaseStorage.instance
+                                .ref()
+                                .child("coaching")
+                                .child(nameController.text)
+                                .putFile(image!);
+                            var downloadUrl = await upload.ref.getDownloadURL();
+                            coachingModel.image = downloadUrl;
+                          }
+                          coachingModel.name = nameController.text;
+                          await coachingModel.update();
+                          setState(() {
+                            loader = false;
+                          });
+                          Get.back();
+                        },
+                        child: Center(
+                          child: Text(
+                            "Save Changes",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: 20),
               Container(
@@ -136,6 +147,9 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      loader = true;
+                    });
                     var result = await CoolAlert.show(
                       backgroundColor: Colors.green,
                       confirmBtnColor: Colors.red,
@@ -148,8 +162,14 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                     );
                     if (result) {
                       await coachingModel.delete();
+                      setState(() {
+                        loader = false;
+                      });
                       Get.back();
                     }
+                    setState(() {
+                      loader = false;
+                    });
                   },
                   child: Center(
                     child: Text(
