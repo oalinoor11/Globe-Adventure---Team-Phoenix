@@ -321,26 +321,6 @@ class AppRoutes {
         page: () => SirajacademyScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-    // GetPage(
-    //     name: IELTSCOACHINGSCREEN,
-    //     page: () => IeltsCoachingScreen(),
-    //     transitionDuration: Duration(milliseconds: 100),
-    //     transition: Transition.cupertino),
-    // GetPage(
-    //     name: JOBCOACHINGSCREEN,
-    //     page: () => JobCoachingScreen(),
-    //     transitionDuration: Duration(milliseconds: 100),
-    //     transition: Transition.cupertino),
-    // GetPage(
-    //     name: ISSBCOACHINGSCREEN,
-    //     page: () => IssbCoachingScreen(),
-    //     transitionDuration: Duration(milliseconds: 100),
-    //     transition: Transition.cupertino),
-    // GetPage(
-    //     name: ACADEMICCOACHINGSCREEN,
-    //     page: () => AcademicCoachingScreen(),
-    //     transitionDuration: Duration(milliseconds: 100),
-    //     transition: Transition.cupertino),
     GetPage(
         name: UCCSCREEN,
         page: () => UccScreen(),

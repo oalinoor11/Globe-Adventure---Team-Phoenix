@@ -71,24 +71,45 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
               CoachingCourseModel courseModel = coachingModel.courses[index];
               return InkWell(
                 child: Container(
-                  height: 180.0,
-                  width: 180.0,
                   decoration: new BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     boxShadow: [
                       new BoxShadow(
-                        color: Colors.grey.withOpacity(0.25),
+                        color: Colors.grey.withOpacity(0.15),
                         blurRadius: 5.0,
                       ),
                     ],
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image(
-                      image: NetworkImage(courseModel.image),
-                      fit: BoxFit.cover,
-                    ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(
+                            image: NetworkImage(courseModel.image),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(courseModel.name,
+                          textAlign: TextAlign.center,
+                          style:
+                          TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 5),
+                      Text(courseModel.regularCourseFee.toString(),
+                          textAlign: TextAlign.center,
+                          style:
+                          TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 5),
+                      Text(courseModel.discountedCourseFee.toString(),
+                          textAlign: TextAlign.center,
+                          style:
+                          TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 5),
+                    ],
                   ),
                 ),
                 onTap: () {
