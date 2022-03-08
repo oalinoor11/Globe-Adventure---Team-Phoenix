@@ -16,6 +16,7 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
   TextEditingController _videoIdController = TextEditingController();
   TextEditingController _applicationLinkController = TextEditingController();
   UniversityModel? selectedUniversity;
+  String? selectedUniversityId;
   CourseModel? selectedCourse;
 
   @override
@@ -83,26 +84,29 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              StreamBuilder<List<UniversityModel>>(
+              FutureBuilder<List<UniversityModel>>(
                 builder: (context, snapshot) {
                   return snapshot.hasData
-                      ? DropdownButton<UniversityModel>(
+                      ? DropdownButton<String>(
                           items: snapshot.data!
                               .map((e) => DropdownMenuItem(
                                     child: Text(e.name),
-                                    value: e,
+                                    value: e.id,
                                   ))
                               .toList(),
-                          value: selectedUniversity,
+                          value: selectedUniversity?.id,
                           onChanged: (value) {
                             setState(() {
-                              selectedUniversity = value;
+                              selectedUniversityId = value;
+                              selectedUniversity = snapshot.data!
+                                  .firstWhere((e) => e.id == value);
                             });
                           },
+                          hint: Text("Select University"),
                         )
                       : CircularProgressIndicator();
                 },
-                stream: UniversityModel.getAllUniversities(),
+                future: UniversityModel.getAllUniversities(),
               ),
               selectedUniversity == null
                   ? Container()
@@ -119,6 +123,7 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                           selectedCourse = value;
                         });
                       },
+                      hint: Text("Select Course"),
                     ),
               SizedBox(height: 20),
               Container(
@@ -131,11 +136,37 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    if (selectedUniversity == null) {
+                      Get.snackbar(
+                        "Error",
+                        "Please select university",
+                        icon: Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.red,
+                      );
+                      return;
+                    }
+                    if (selectedCourse == null) {
+                      Get.snackbar(
+                        "Error",
+                        "Please select course",
+                        icon: Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.red,
+                      );
+                      return;
+                    }
                     await ScholarshipModel(
-                            name: _scholarshipNameController.text,
-                            applicationLink: _applicationLinkController.text,
-                            videoId: _videoIdController.text)
-                        .save();
+                      name: _scholarshipNameController.text,
+                      applicationLink: _applicationLinkController.text,
+                      videoId: _videoIdController.text,
+                      university: selectedUniversity!,
+                      course: selectedCourse!,
+                    ).save();
                     Get.back();
                   },
                   child: Center(

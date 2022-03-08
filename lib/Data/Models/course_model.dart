@@ -38,4 +38,32 @@ class CourseModel {
     data['scholarship'] = this.scholarship;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'CourseModel{admissionFees: $admissionFees, tuitionFees: $tuitionFees, name: $name, duration: $duration, level: $level, requirements: $requirements, scholarship: $scholarship}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CourseModel &&
+          runtimeType == other.runtimeType &&
+          admissionFees == other.admissionFees &&
+          tuitionFees == other.tuitionFees &&
+          name == other.name &&
+          duration == other.duration &&
+          level == other.level &&
+          requirements == other.requirements &&
+          scholarship == other.scholarship;
+
+  @override
+  int get hashCode =>
+      admissionFees.hashCode ^
+      tuitionFees.hashCode ^
+      name.hashCode ^
+      duration.hashCode ^
+      level.hashCode ^
+      requirements.hashCode ^
+      scholarship.hashCode;
 }

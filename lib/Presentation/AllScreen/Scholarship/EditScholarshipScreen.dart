@@ -1,4 +1,6 @@
+import 'package:BornoBangla/Data/Models/course_model.dart';
 import 'package:BornoBangla/Data/Models/scholarship_model.dart';
+import 'package:BornoBangla/Data/Models/university_model.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -19,12 +21,19 @@ class _EditScholarshipScreenState extends State<EditScholarshipScreen> {
 
   TextEditingController _applicationLinkController = TextEditingController();
   ScholarshipModel _scholarshipModel = Get.arguments;
+  UniversityModel? selectedUniversity;
+  String? selectedUniversityId;
+  CourseModel? selectedCourse;
 
   @override
   void initState() {
     _scholarshipNameController.text = _scholarshipModel.name;
     _videoIdController.text = _scholarshipModel.videoId;
     _applicationLinkController.text = _scholarshipModel.applicationLink;
+    selectedUniversity = _scholarshipModel.university;
+    selectedCourse = _scholarshipModel.course;
+    selectedUniversityId = _scholarshipModel.university.id;
+    selectedCourse = _scholarshipModel.course;
     super.initState();
   }
 
@@ -93,6 +102,48 @@ class _EditScholarshipScreenState extends State<EditScholarshipScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              FutureBuilder<List<UniversityModel>>(
+                builder: (context, snapshot) {
+                  return snapshot.hasData
+                      ? DropdownButton<String>(
+                          items: snapshot.data!
+                              .map((e) => DropdownMenuItem(
+                                    child: Text(e.name),
+                                    value: e.id,
+                                  ))
+                              .toList(),
+                          value: selectedUniversity?.id,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedUniversityId = value;
+                              selectedUniversity = snapshot.data!
+                                  .firstWhere((e) => e.id == value);
+                            });
+                          },
+                          hint: Text("Select University"),
+                        )
+                      : CircularProgressIndicator();
+                },
+                future: UniversityModel.getAllUniversities(),
+              ),
+              selectedUniversity == null
+                  ? Container()
+                  : DropdownButton<CourseModel>(
+                      items: selectedUniversity!.courseList
+                          .map((e) => DropdownMenuItem(
+                                child: Text(e.name),
+                                value: e,
+                              ))
+                          .toList(),
+                      value: selectedCourse,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCourse = value;
+                        });
+                      },
+                      hint: Text("Select Course"),
+                    ),
+              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: RaisedButton(
@@ -107,6 +158,8 @@ class _EditScholarshipScreenState extends State<EditScholarshipScreen> {
                     _scholarshipModel.videoId = _videoIdController.text;
                     _scholarshipModel.applicationLink =
                         _applicationLinkController.text;
+                    _scholarshipModel.university = selectedUniversity!;
+                    _scholarshipModel.course = selectedCourse!;
                     await _scholarshipModel.update();
                     Get.back();
                   },
