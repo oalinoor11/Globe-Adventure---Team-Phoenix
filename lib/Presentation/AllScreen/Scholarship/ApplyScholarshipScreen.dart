@@ -1,5 +1,6 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/scholarship_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -161,6 +162,10 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                             ),
                                           ),
                                           onTap: () {
+                                            ScholarshipController.to.university
+                                                .value = scholarship.university;
+                                            ScholarshipController.to.course
+                                                .value = scholarship.course;
                                             Get.toNamed(
                                                 AppRoutes
                                                     .SCHOLARSHIPAPPLYSCREEN,

@@ -60,21 +60,6 @@ class UniversityModel {
     }
   }
 
-  static Stream<List<UniversityModel>> getAllUniversities() {
-    try {
-      return FirebaseCollections.UNIVERSITYCOLLECTION
-          .snapshots()
-          .map((snapshot) {
-        return snapshot.docs.map((doc) {
-          return UniversityModel.fromJson(doc.data() as Map<String, dynamic>)
-            ..id = doc.id;
-        }).toList();
-      });
-    } on Exception catch (e) {
-      rethrow;
-    }
-  }
-
   save() {
     FirebaseCollections.UNIVERSITYCOLLECTION.doc(id).set(toJson());
   }
@@ -86,6 +71,15 @@ class UniversityModel {
   static Future<UniversityModel> getUniversity(String id) {
     return FirebaseCollections.UNIVERSITYCOLLECTION.doc(id).get().then((doc) {
       return UniversityModel.fromJson(doc.data() as Map<String, dynamic>);
+    });
+  }
+
+  static Future<List<UniversityModel>> getAllUniversities() async {
+    return FirebaseCollections.UNIVERSITYCOLLECTION.get().then((snapshot) {
+      return snapshot.docs.map((doc) {
+        return UniversityModel.fromJson(doc.data() as Map<String, dynamic>)
+          ..id = doc.id;
+      }).toList();
     });
   }
 
