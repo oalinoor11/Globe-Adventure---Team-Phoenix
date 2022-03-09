@@ -98,7 +98,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 controller: regularFeeTextEditingController,
                 decoration: InputDecoration(
@@ -114,7 +114,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 controller: discountFeeTextEditingController,
                 decoration: InputDecoration(
