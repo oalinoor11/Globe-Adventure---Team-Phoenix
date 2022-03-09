@@ -67,6 +67,7 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
+                childAspectRatio: 0.73,
                 crossAxisCount: context.width > 1080 ? 4 : 2,
               ),
               itemBuilder: (context, index) {
@@ -85,7 +86,6 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                     child: Column(
                       children: [
                         Container(
-                          height: 110,
                           child: ClipRRect(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(13),
