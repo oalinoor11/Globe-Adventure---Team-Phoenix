@@ -198,7 +198,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),
