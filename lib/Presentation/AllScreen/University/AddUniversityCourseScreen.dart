@@ -65,7 +65,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _durationController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -161,7 +161,11 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                     child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,

@@ -26,6 +26,7 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +104,11 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                      child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -115,6 +120,9 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                       Get.snackbar("Failed", "Please fill all the fields",
                           snackPosition: SnackPosition.BOTTOM);
                     } else {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("country_flags")
@@ -127,6 +135,10 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                         image: downloadUrl,
                         courseList: [],
                       ).save();
+                      setState(() {
+                        loader = false;
+                      });
+                      Navigator.of(context).pop(true);
                       Get.snackbar(
                         "Success",
                         "Country added successfully",
@@ -142,7 +154,7 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),
