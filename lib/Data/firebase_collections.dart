@@ -24,4 +24,7 @@ class FirebaseCollections {
       FirebaseFirestore.instance.collection("APPLYCOACHINGLIST");
   static CollectionReference BRANCHLIST =
       FirebaseFirestore.instance.collection("BRANCHLIST");
+
+  static CollectionReference APPLICATIONCOACHCOLLECTION =
+      FirebaseFirestore.instance.collection("APPLICATIONCOACHLIST");
 }

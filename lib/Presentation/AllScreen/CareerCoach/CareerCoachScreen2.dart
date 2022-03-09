@@ -100,7 +100,8 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                 ),
               ),
               SizedBox(height: 6),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Counselling Fee: ',
@@ -128,7 +129,8 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () {
-                    Get.toNamed(AppRoutes.BOOKAPPOINTMENTSCREEN);
+                    Get.toNamed(AppRoutes.BOOKAPPOINTMENTSCREEN,
+                        arguments: coach);
                   },
                   child: Center(
                     child: Text(
