@@ -73,6 +73,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 18.0),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 10,
+                          childAspectRatio: 0.85,
                           mainAxisSpacing: 10,
                           crossAxisCount: context.width > 1080 ? 4 : 2,
                         ),
@@ -86,7 +87,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
                             child: Container(
                               width: 175.0,
                               decoration: new BoxDecoration(
-                                border: Border.all(color: Colors.grey),
+                                border: Border.all(color: Colors.green, width: 1.5),
                                 boxShadow: [
                                   new BoxShadow(
                                     color: Colors.grey.withOpacity(0.15),
@@ -98,7 +99,6 @@ class _UniversityScreenState extends State<UniversityScreen> {
                               child: Column(
                                 children: [
                                   Container(
-                                    height: 140,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
                                       child: Image(
