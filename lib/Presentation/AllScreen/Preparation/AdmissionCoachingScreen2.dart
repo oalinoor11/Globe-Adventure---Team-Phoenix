@@ -1,6 +1,7 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/coaching_course_model.dart';
 import 'package:BornoBangla/Data/Models/coaching_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -133,6 +134,7 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                     ),
                   ),
                   onTap: () {
+                    CoachingController.to.coachingCourseModel(courseModel);
                     Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
                   },
                   onLongPress: () {
