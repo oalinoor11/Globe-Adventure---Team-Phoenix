@@ -69,7 +69,7 @@ class CollegeScreen2 extends StatelessWidget {
                       return InkWell(
                         child: Container(
                           decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: Colors.green, width: 1.5),
                             boxShadow: [
                               new BoxShadow(
                                 color: Colors.grey.withOpacity(0.15),
@@ -81,7 +81,6 @@ class CollegeScreen2 extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                height: 140,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: Image(
@@ -111,6 +110,7 @@ class CollegeScreen2 extends StatelessWidget {
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
+                      childAspectRatio: 0.85,
                       mainAxisSpacing: 10,
                       crossAxisCount: context.width > 1080 ? 4 : 2,
                     ),
