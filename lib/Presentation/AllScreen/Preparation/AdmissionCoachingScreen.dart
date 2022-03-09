@@ -103,6 +103,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                               ]),
                             ),
                             onTap: () {
+                              CoachingController.to.coachingModel(coaching);
                               Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN2,
                                   arguments: coaching);
                             },

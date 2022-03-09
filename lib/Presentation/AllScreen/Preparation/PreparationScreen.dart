@@ -1,9 +1,8 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Preparation/add_branch_page.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-// import 'package:carousel_pro/carousel_pro.dart';
 
 class PreparationScreen extends StatelessWidget {
   @override
@@ -19,6 +18,14 @@ class PreparationScreen extends StatelessWidget {
           "Preparation",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Get.to(AddBranchPage());
+            },
+          )
+        ],
       ),
       body: Column(
         children: [

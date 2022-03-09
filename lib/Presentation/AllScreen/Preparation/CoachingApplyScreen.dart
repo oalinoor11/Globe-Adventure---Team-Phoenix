@@ -1,8 +1,16 @@
+import 'dart:io';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/branch_model.dart';
+import 'package:BornoBangla/Data/Models/coaching_apply_form_model.dart';
+import 'package:BornoBangla/Data/Models/coaching_course_model.dart';
+import 'package:BornoBangla/Data/Models/coaching_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/route_manager.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
@@ -159,6 +167,31 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController fathersNameController = TextEditingController();
+  TextEditingController mothersNameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController studentsPhoneController = TextEditingController();
+  TextEditingController parentsPhoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController sscController = TextEditingController();
+  TextEditingController hscController = TextEditingController();
+  File? image;
+  File? signatureImage;
+
+  CoachingModel? selectedCoaching;
+  CoachingCourseModel? selectedProgram;
+  String? selectedBranch;
+  String? selectedTime;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    selectedCoaching = CoachingController.to.coachingModel();
+    selectedProgram = CoachingController.to.coachingCourseModel();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,6 +210,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
           child: Column(
             children: [
               TextField(
+                controller: nameController,
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -192,6 +226,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: fathersNameController,
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -207,6 +242,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: mothersNameController,
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -222,6 +258,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: addressController,
                 keyboardType: TextInputType.text,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -237,6 +274,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: studentsPhoneController,
                 keyboardType: TextInputType.phone,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -252,6 +290,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: parentsPhoneController,
                 keyboardType: TextInputType.phone,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -267,6 +306,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -282,6 +322,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: sscController,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -297,6 +338,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: hscController,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
@@ -312,20 +354,98 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               SizedBox(
-                child: DropdownButtonFormField(
+                child: StreamBuilder<List<CoachingModel>>(
+                    stream: CoachingModel.getCoachingList(
+                        CoachingController.to.selectedType()),
+                    builder: (context, snapshot) {
+                      return snapshot.hasData
+                          ? DropdownButtonFormField<CoachingModel>(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide(
+                                        color: Colors.green, width: 1)),
+                              ),
+                              onChanged: (v) {
+                                setState(() {
+                                  selectedCoaching = v;
+                                });
+                              },
+                              value: selectedCoaching,
+                              hint: Text("Select Coaching",
+                                  style: TextStyle(color: Colors.black)),
+                              items: snapshot.data!
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      child: Text(
+                                        e.name,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                      alignment: Alignment.topLeft,
+                                      value: e,
+                                    ),
+                                  )
+                                  .toList())
+                          : Container();
+                    }),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: StreamBuilder<List<BranchModel>>(
+                    stream: BranchModel.getAllAsStream(),
+                    builder: (context, snapshot) {
+                      return snapshot.hasData
+                          ? DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide(
+                                        color: Colors.green, width: 1)),
+                              ),
+                              onChanged: (v) {
+                                setState(() {
+                                  selectedBranch = v;
+                                });
+                              },
+                              value: selectedBranch,
+                              hint: Text("Select Branch",
+                                  style: TextStyle(color: Colors.black)),
+                              items: snapshot.data!
+                                  .map(
+                                    (e) => DropdownMenuItem<String>(
+                                      child: Text(
+                                        e.name,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                      alignment: Alignment.topLeft,
+                                      value: e.name,
+                                    ),
+                                  )
+                                  .toList())
+                          : Container();
+                    }),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<CoachingCourseModel>(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide:
                               BorderSide(color: Colors.green, width: 1)),
                     ),
-                    onChanged: (v) {},
-                    hint: Text("Select Coaching",
+                    onChanged: (v) {
+                      setState(() {
+                        selectedProgram = v;
+                      });
+                    },
+                    value: selectedProgram,
+                    hint: Text("Select Program",
                         style: TextStyle(color: Colors.black)),
-                    items: coachingList
+                    items: selectedCoaching?.courses
                         .map((e) => DropdownMenuItem(
                             child: Text(
-                              e,
+                              e.name,
                               textAlign: TextAlign.start,
                             ),
                             alignment: Alignment.topLeft,
@@ -334,62 +454,23 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               ),
               SizedBox(height: 20),
               SizedBox(
-                child: DropdownButtonFormField(
+                child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide:
                               BorderSide(color: Colors.green, width: 1)),
                     ),
-                    onChanged: (v) {},
-                    hint: Text("Select Branch",
-                        style: TextStyle(color: Colors.black)),
-                    items: branchList
-                        .map((e) => DropdownMenuItem(
-                            child: Text(
-                              e,
-                              textAlign: TextAlign.start,
-                            ),
-                            alignment: Alignment.topLeft,
-                            value: e))
-                        .toList()),
-              ),
-              SizedBox(height: 20),
-              SizedBox(
-                child: DropdownButtonFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              BorderSide(color: Colors.green, width: 1)),
-                    ),
-                    onChanged: (v) {},
-                    hint: Text("Program Area",
-                        style: TextStyle(color: Colors.black)),
-                    items: programList
-                        .map((e) => DropdownMenuItem(
-                            child: Text(
-                              e,
-                              textAlign: TextAlign.start,
-                            ),
-                            alignment: Alignment.topLeft,
-                            value: e))
-                        .toList()),
-              ),
-              SizedBox(height: 20),
-              SizedBox(
-                child: DropdownButtonFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              BorderSide(color: Colors.green, width: 1)),
-                    ),
-                    onChanged: (v) {},
+                    onChanged: (v) {
+                      setState(() {
+                        selectedTime = v;
+                      });
+                    },
+                    value: selectedTime,
                     hint: Text("Preferable Time",
                         style: TextStyle(color: Colors.black)),
                     items: timeList
-                        .map((e) => DropdownMenuItem(
+                        .map((e) => DropdownMenuItem<String>(
                             child: Text(
                               e,
                               textAlign: TextAlign.start,
@@ -404,6 +485,11 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                   print("camera button clicked");
                   var pickedFile = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      image = File(pickedFile.path);
+                    });
+                  }
                 },
                 child: Container(
                   height: 65,
@@ -475,25 +561,88 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               SizedBox(height: 10),
               Container(
                 height: 50,
-                child: RaisedButton(
-                  elevation: 0,
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(8.0),
-                  ),
-                  onPressed: () {
-                    Get.toNamed(AppRoutes.BKASHSCREEN);
-                  },
-                  child: Center(
-                    child: Text(
-                      "Next",
-                      style: TextStyle(
-                        fontSize: 22.0,
+                child: isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : RaisedButton(
+                        elevation: 0,
+                        color: Colors.green,
+                        textColor: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(8.0),
+                        ),
+                        onPressed: () async {
+                          if (image == null) {
+                            Get.showSnackbar(GetSnackBar(
+                              message: "Please select student's photo",
+                              backgroundColor: Colors.red,
+                            ));
+                            return;
+                          }
+                          setState(() {
+                            isLoading = true;
+                          });
+                          var upload = await FirebaseStorage.instance
+                              .ref()
+                              .child("student_images_coaching")
+                              .child(nameController.text)
+                              .putFile(image!);
+                          var studentImageUrl =
+                              await upload.ref.getDownloadURL();
+                          var tempData = await screenshotController.capture(
+                              pixelRatio: 10);
+                          var signatureImageUrl;
+                          if (tempData != null) {
+                            final directory =
+                                await getApplicationDocumentsDirectory();
+                            signatureImage =
+                                await File('${directory.path}/image.png')
+                                    .create();
+                            await signatureImage!.writeAsBytes(tempData);
+
+                            upload = await FirebaseStorage.instance
+                                .ref()
+                                .child("signature_images")
+                                .child(nameController.text)
+                                .putFile(signatureImage!);
+                            signatureImageUrl =
+                                await upload.ref.getDownloadURL();
+                          }
+
+                          CoachingApplyFormModel model = CoachingApplyFormModel(
+                            name: nameController.text,
+                            email: emailController.text,
+                            studentsPhone: studentsPhoneController.text,
+                            parentsPhone: parentsPhoneController.text,
+                            address: addressController.text,
+                            branch: selectedBranch!,
+                            coachingCourse: selectedProgram!,
+                            preferableTime: selectedTime!,
+                            image: studentImageUrl,
+                            signatureImage: signatureImageUrl,
+                            coachingName: selectedCoaching!.name,
+                            fathersName: fathersNameController.text,
+                            mothersName: mothersNameController.text,
+                            hscResult: hscController.text,
+                            sscResult: sscController.text,
+                          );
+                          await model.save();
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          Get.toNamed(AppRoutes.BKASHSCREEN);
+                        },
+                        child: Center(
+                          child: Text(
+                            "Next",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),

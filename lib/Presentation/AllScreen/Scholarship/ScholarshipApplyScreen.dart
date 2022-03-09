@@ -338,7 +338,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                   .ref()
                                   .child("student_images")
                                   .child(_nameController.text)
-                                  .putFile(_studentsPhoto!);
+                                  .putFile(_signaturePhoto!);
                               signatureImageUrl =
                                   await upload.ref.getDownloadURL();
                             }
