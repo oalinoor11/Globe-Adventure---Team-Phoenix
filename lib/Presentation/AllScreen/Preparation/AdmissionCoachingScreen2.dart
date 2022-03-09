@@ -135,6 +135,11 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                   onTap: () {
                     Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
                   },
+                  onLongPress: () {
+                    Get.toNamed(AppRoutes.EDITCOACHINGCOURSESCREEN,
+                        // arguments: courseModel
+                        );
+                  },
                 );
               },
               itemCount: coachingModel.courses.length,

@@ -58,6 +58,8 @@ import 'package:BornoBangla/Presentation/AllScreen/Profile/SignUpScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../Presentation/AllScreen/Preparation/EditCoachingCourseScreen.dart';
+
 class AppRoutes {
   static const String INITAL = "/";
   static const String MAINSCREEN = "/mainscreen";
@@ -77,6 +79,7 @@ class AppRoutes {
   static const String ADDCOUNTRYSCREEN = "/addcountryscreen";
   static const String ADDCOLLEGESCREEN = "/addcollegescreen";
   static const String EDITCOACHINGSCREEN = "/editcoachingscreen";
+  static const String EDITCOACHINGCOURSESCREEN = "/editcoachingcoursescreen";
   static const String EDITSCHOOLSCREEN = "/editschoolscreen";
   static const String EDITCOLLEGESCREEN = "/editcollegescreen";
   static const String EDITUNIVERSITYSCREEN = "/edituniversityscreen";
@@ -179,6 +182,12 @@ class AppRoutes {
     GetPage(
         name: EDITCOACHINGSCREEN,
         page: () => EditCoachingScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
+        name: EDITCOACHINGSCREEN,
+        page: () => EditCoachingCourseScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
     GetPage(
