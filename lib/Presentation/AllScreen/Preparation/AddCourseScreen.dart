@@ -21,6 +21,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
   TextEditingController discountFeeTextEditingController =
       TextEditingController();
   File? image;
+  bool loader = false;
   CoachingModel coachingModel = Get.arguments;
 
   @override
@@ -129,8 +130,12 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              InkWell(
-                child: Container(
+              loader
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                        )
+              : InkWell(
+               child: Container(
                   height: 40.0,
                   width: 80.0,
                   decoration: new BoxDecoration(
@@ -146,6 +151,9 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                 ),
                 onTap: () async {
                   if (image != null) {
+                    setState(() {
+                      loader = true;
+                    });
                     var upload = await FirebaseStorage.instance
                         .ref()
                         .child("course")
@@ -163,6 +171,10 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     );
                     coachingModel.courses.add(coachingCourseModel);
                     await coachingModel.update();
+                    setState(() {
+                      loader = false;
+                    });
+                    Navigator.of(context).pop(true);
                     Get.snackbar(
                       "Done",
                       "Course Added",
@@ -170,7 +182,6 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                       backgroundColor: Colors.green,
                       colorText: Colors.white,
                     );
-                    Navigator.of(context).pop(true);
                   } else {
                     Get.snackbar(
                       "Failed!",
