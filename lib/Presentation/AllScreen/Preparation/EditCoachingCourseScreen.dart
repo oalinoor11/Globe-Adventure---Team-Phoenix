@@ -107,7 +107,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _regularCourseFee,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -123,7 +123,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _discountedCourseFee,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
