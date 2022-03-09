@@ -169,19 +169,19 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   ),
                   child: image == null
                       ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("Your Photo",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.add_a_photo,
-                              size: 20,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )
+                    children: [
+                      SizedBox(width: 10),
+                      Text("Coach Photo",
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16)),
+                      SizedBox(width: 10),
+                      Icon(
+                        Icons.add_a_photo,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ],
+                  )
                       : Image.file(image!),
                 ),
               ),

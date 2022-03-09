@@ -74,17 +74,11 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                           ScholarshipModel scholarship = snapshot.data![index];
                           return Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Colors.grey.withOpacity(0.15),
                                 border:
                                     Border.all(color: Colors.green, width: 1.5),
                                 borderRadius: BorderRadiusDirectional.circular(18),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      blurRadius: 3,
-                                      spreadRadius: 0,
-                                      offset: Offset(0, 2))
-                                ]),
+                                ),
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
