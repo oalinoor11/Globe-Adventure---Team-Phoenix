@@ -3,6 +3,7 @@ import 'package:BornoBangla/Data/Models/scholarship_model.dart';
 import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -58,131 +59,133 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                 );
               }).toList(),
             ),
+            SizedBox(
+              height: 18,
+            ),
             StreamBuilder<List<ScholarshipModel>>(
               stream: ScholarshipModel.getAll(),
               builder: (context, snapshot) {
                 return snapshot.hasData
-                    ? ListView.separated(
+                    ? GridView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 18.0),
                         shrinkWrap: true,
                         primary: false,
                         itemBuilder: (context, index) {
                           ScholarshipModel scholarship = snapshot.data![index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border:
-                                      Border.all(color: Colors.green, width: 2),
-                                  borderRadius: BorderRadiusDirectional.only(
-                                      bottomEnd: Radius.circular(18),
-                                      bottomStart: Radius.circular(18)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        blurRadius: 3,
-                                        spreadRadius: 0,
-                                        offset: Offset(0, 2))
-                                  ]),
-                              width: double.infinity,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
+                          return Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border:
+                                    Border.all(color: Colors.green, width: 1.5),
+                                borderRadius: BorderRadiusDirectional.circular(18),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      blurRadius: 3,
+                                      spreadRadius: 0,
+                                      offset: Offset(0, 2))
+                                ]),
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                InkWell(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(19),
+                                      topRight: Radius.circular(17),),
                                     child: YoutubePlayer(
                                       controller: YoutubePlayerController(
+                                    flags: const YoutubePlayerFlags(autoPlay: false),
                                           initialVideoId: scholarship.videoId),
                                       showVideoProgressIndicator: true,
                                       progressIndicatorColor: Colors.blueAccent,
                                     ),
-                                    onLongPress: () {
-                                      Get.toNamed(
-                                          AppRoutes.EDITSCHOLARSHIPSCREEN,
-                                          arguments: scholarship);
-                                    },
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.green,
-                                              borderRadius:
-                                                  BorderRadiusDirectional.only(
-                                                      bottomStart:
-                                                          Radius.circular(10)),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(12.0),
-                                              child: Text("Application Link",
-                                                  softWrap: true,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white)),
-                                            ),
+                                  onLongPress: () {
+                                    Get.toNamed(
+                                        AppRoutes.EDITSCHOLARSHIPSCREEN,
+                                        arguments: scholarship);
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      InkWell(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.green,
+                                            borderRadius:
+                                                BorderRadiusDirectional.circular(4),
                                           ),
-                                          onTap: () async {
-                                            await launch(
-                                              scholarship.applicationLink,
-                                              forceSafariVC: true,
-                                              forceWebView: true,
-                                              enableJavaScript: true,
-                                            );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.green,
-                                              borderRadius:
-                                                  BorderRadiusDirectional.only(
-                                                      bottomEnd:
-                                                          Radius.circular(10)),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(12.0),
-                                              child: Text(
-                                                  "Apply for Processing",
-                                                  softWrap: true,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white)),
-                                            ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: Text(" Application Link ",
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    color: Colors.white)),
                                           ),
-                                          onTap: () {
-                                            ScholarshipController.to.university
-                                                .value = scholarship.university;
-                                            ScholarshipController.to.course
-                                                .value = scholarship.course;
-                                            Get.toNamed(
-                                                AppRoutes
-                                                    .SCHOLARSHIPAPPLYSCREEN,
-                                                arguments: scholarship);
-                                          },
                                         ),
-                                      ],
-                                    ),
+                                        onTap: () async {
+                                          await launch(
+                                            scholarship.applicationLink,
+                                            forceSafariVC: true,
+                                            forceWebView: true,
+                                            enableJavaScript: true,
+                                          );
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
+                                      InkWell(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue,
+                                            borderRadius:
+                                                BorderRadiusDirectional.circular(4),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: Text(
+                                                " Apply for Processing ",
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    color: Colors.white)),
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          ScholarshipController.to.university
+                                              .value = scholarship.university;
+                                          ScholarshipController.to.course
+                                              .value = scholarship.course;
+                                          Get.toNamed(
+                                              AppRoutes
+                                                  .SCHOLARSHIPAPPLYSCREEN,
+                                              arguments: scholarship);
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           );
                         },
-                        separatorBuilder: (_, index) => SizedBox(
-                          height: 10,
-                        ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 1.026,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: context.width > 1080 ? 4 : 2,
+                  ),
                         itemCount: snapshot.data!.length,
                       )
                     : CircularProgressIndicator();
