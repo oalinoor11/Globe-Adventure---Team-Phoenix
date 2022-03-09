@@ -97,7 +97,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.green, width: 1)),
-                    labelText: "Mothers's Name",
+                    labelText: "Mother's Name",
                     labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
                   ),
                   style: TextStyle(

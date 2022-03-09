@@ -100,6 +100,23 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                 ),
               ),
               SizedBox(height: 6),
+              Row(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Counselling Fee: ',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  Text(
+                    coach.price,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8),
               Container(
                 height: 50,
                 width: 220,

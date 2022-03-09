@@ -18,6 +18,7 @@ class AddCoachingScreen extends StatefulWidget {
 class _AddCoachingScreenState extends State<AddCoachingScreen> {
   TextEditingController nameController = TextEditingController();
   File? image;
+  bool loader = false;
   List<File> bannerImages = [];
 
   @override
@@ -163,6 +164,9 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 ),
                 onTap: () async {
                   if (image != null) {
+                    setState(() {
+                      loader = true;
+                    });
                     var upload = await FirebaseStorage.instance
                         .ref()
                         .child("coaching")
@@ -187,6 +191,9 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                       courses: [],
                       type: CoachingController.to.selectedType(),
                     ).save();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.snackbar(
                       "Done",
                       "Coaching Added",

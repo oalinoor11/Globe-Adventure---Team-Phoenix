@@ -19,6 +19,7 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   File? image;
   TextEditingController _nameController = TextEditingController();
+  TextEditingController _priceController = TextEditingController();
   TextEditingController _titleController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
   TextEditingController _coachVideoIdController = TextEditingController();
@@ -104,6 +105,22 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              TextField(
+                controller: _priceController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Counselling Fee",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () async {
                   print("camera button clicked");
@@ -163,6 +180,7 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                     var downloadUrl = await upload.ref.getDownloadURL();
                     CoachModel(
                             name: _nameController.text,
+                            price: _priceController.text,
                             image: downloadUrl,
                             description: _descriptionController.text,
                             title: _titleController.text,

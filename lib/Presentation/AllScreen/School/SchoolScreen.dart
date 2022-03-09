@@ -67,7 +67,7 @@ class SchoolScreen extends StatelessWidget {
                         return InkWell(
                           child: Container(
                             decoration: new BoxDecoration(
-                              border: Border.all(color: Colors.grey),
+                              border: Border.all(color: Colors.green, width: 1.5),
                               boxShadow: [
                                 new BoxShadow(
                                   color: Colors.grey.withOpacity(0.15),
@@ -79,9 +79,8 @@ class SchoolScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  height: 80,
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(13),
                                     child: Image(
                                       image: NetworkImage(country.countryFlag),
                                       fit: BoxFit.cover,
@@ -110,6 +109,7 @@ class SchoolScreen extends StatelessWidget {
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
+                        childAspectRatio: 0.8,
                         mainAxisSpacing: 10,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),
@@ -121,6 +121,7 @@ class SchoolScreen extends StatelessWidget {
                   }
                 },
                 stream: CountryModel.getCountries()),
+            SizedBox(height: 8),
           ],
         ),
       ),

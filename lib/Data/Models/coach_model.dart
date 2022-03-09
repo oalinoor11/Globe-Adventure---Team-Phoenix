@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CoachModel {
   String? id;
   late String name;
+  late String price;
   late String image;
   late String description;
   late String title;
@@ -11,6 +12,7 @@ class CoachModel {
   CoachModel({
     this.id,
     required this.name,
+    required this.price,
     required this.image,
     required this.description,
     required this.title,
@@ -21,6 +23,7 @@ class CoachModel {
     return {
       'id': id,
       'name': name,
+      'price': price,
       'image': image,
       'description': description,
       'title': title,
@@ -32,6 +35,7 @@ class CoachModel {
     return CoachModel(
       id: map['id'],
       name: map['name'],
+      price: map['price'],
       image: map['image'],
       description: map['description'],
       title: map['title'],
@@ -56,7 +60,7 @@ class CoachModel {
 
   @override
   String toString() {
-    return 'CoachModel{id: $id, name: $name, image: $image, description: $description, title: $title, videoId: $videoId}';
+    return 'CoachModel{id: $id, name: $name, price: $price, image: $image, description: $description, title: $title, videoId: $videoId}';
   }
 
   @override
@@ -66,6 +70,7 @@ class CoachModel {
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&
+          price == other.price &&
           image == other.image &&
           description == other.description &&
           title == other.title &&
@@ -75,6 +80,7 @@ class CoachModel {
   int get hashCode =>
       id.hashCode ^
       name.hashCode ^
+      price.hashCode ^
       image.hashCode ^
       description.hashCode ^
       title.hashCode ^

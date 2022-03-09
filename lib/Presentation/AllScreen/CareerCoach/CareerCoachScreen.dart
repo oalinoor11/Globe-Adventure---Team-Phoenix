@@ -65,7 +65,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.75,
+                                  childAspectRatio: 0.78,
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10),
                           shrinkWrap: true,
@@ -74,9 +74,8 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                             CoachModel coach = snapshot.data![index];
                             return InkWell(
                               child: Container(
-                                width: 175.0,
                                 decoration: new BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
+                                  border: Border.all(color: Colors.green, width: 1.5),
                                   boxShadow: [
                                     new BoxShadow(
                                       color: Colors.grey.withOpacity(0.15),
@@ -88,9 +87,8 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                                 child: Column(
                                   children: [
                                     Container(
-                                      height: 175,
                                       child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius: BorderRadius.circular(13),
                                         child: Image(
                                           image: NetworkImage(coach.image),
                                           fit: BoxFit.cover,
