@@ -190,7 +190,7 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),
