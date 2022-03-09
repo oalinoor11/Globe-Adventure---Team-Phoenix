@@ -93,6 +93,7 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                                 topRight: Radius.circular(13)),
                             child: Image(
                               image: NetworkImage(courseModel.image),
+                              height: 100,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -137,9 +138,21 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                     CoachingController.to.coachingCourseModel(courseModel);
                     Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
                   },
-                  onLongPress: () {
-                    Get.toNamed(AppRoutes.EDITCOACHINGCOURSESCREEN,
+                  onLongPress: () async {
+                    var result = await Get.toNamed(
+                        AppRoutes.EDITCOACHINGCOURSESCREEN,
                         arguments: courseModel);
+                    if (result == true) {
+                      setState(() {
+                        coachingModel.courses.removeAt(index);
+                        coachingModel.update();
+                      });
+                    } else if (result is CoachingCourseModel) {
+                      setState(() {
+                        coachingModel.courses[index] = result;
+                        coachingModel.update();
+                      });
+                    }
                   },
                 );
               },

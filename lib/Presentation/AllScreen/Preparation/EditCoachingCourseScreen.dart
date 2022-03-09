@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -143,39 +144,39 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                 height: 50,
                 child: loader
                     ? Center(
-                  child: CircularProgressIndicator(),
-                )
+                        child: CircularProgressIndicator(),
+                      )
                     : RaisedButton(
-                  elevation: 0,
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(8.0),
-                  ),
-                  onPressed: () async {
-                    setState(() {
-                      loader = true;
-                    });
-                    _coachingCourseModel.discountedCourseFee =
-                        int.parse(_discountedCourseFee.text);
-                    _coachingCourseModel.regularCourseFee =
-                        int.parse(_regularCourseFee.text);
-                    _coachingCourseModel.name = _nameController.text;
-                    _coachingCourseModel.image = _imageController.text;
-                    Get.back(result: _coachingCourseModel);
-                    setState(() {
-                      loader = false;
-                    });
-                  },
-                  child: Center(
-                    child: Text(
-                      "Save Changes",
-                      style: TextStyle(
-                        fontSize: 22.0,
+                        elevation: 0,
+                        color: Colors.green,
+                        textColor: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(8.0),
+                        ),
+                        onPressed: () async {
+                          setState(() {
+                            loader = true;
+                          });
+                          _coachingCourseModel.discountedCourseFee =
+                              int.parse(_discountedCourseFee.text);
+                          _coachingCourseModel.regularCourseFee =
+                              int.parse(_regularCourseFee.text);
+                          _coachingCourseModel.name = _nameController.text;
+                          _coachingCourseModel.image = _imageController.text;
+                          Get.back(result: _coachingCourseModel);
+                          setState(() {
+                            loader = false;
+                          });
+                        },
+                        child: Center(
+                          child: Text(
+                            "Save Changes",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: 20),
               Container(
@@ -204,20 +205,6 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                     if (result) {
                       Get.back(result: true);
                     }
-
-                    if (result) {
-                      setState(() {
-                        loader = false;
-                      });
-                      // await coachingCourseModel.delete();
-                      setState(() {
-                        loader = false;
-                      });
-                      Get.back();
-                    }
-                    setState(() {
-                      loader = false;
-                    });
                   },
                   child: Center(
                     child: Text(
