@@ -342,7 +342,6 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                               signatureImageUrl =
                                   await upload.ref.getDownloadURL();
                             }
-
                             AppplyScholarshipFormModel
                                 appplyScholarshipFormModel =
                                 AppplyScholarshipFormModel(
