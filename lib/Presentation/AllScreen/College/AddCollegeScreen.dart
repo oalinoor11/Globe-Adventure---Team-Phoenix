@@ -177,7 +177,11 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                         image: downloadUrl,
                         country: CollegeController.to.selectedCountry(),
                       ).save();
-
+                      setState(() {
+                        loader = false;
+                      });
+                      Get.back();
+                    }
                       Get.snackbar(
                         "Success",
                         "College added successfully",
@@ -189,12 +193,6 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                         padding: EdgeInsets.all(8),
                         animationDuration: Duration(milliseconds: 500),
                       );
-                      setState(() {
-                        loader = false;
-                      });
-                      Get.back();
-                    }
-                    Navigator.pop(context);
                   },
                   child: Center(
                     child: Text(
