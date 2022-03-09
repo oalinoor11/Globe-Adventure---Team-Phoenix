@@ -35,7 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.3.4
   youtube_player_flutter: ^8.0.0
-  image_picker: ^0.8.4+6
+  image_picker: ^0.8.4+10
   screenshot: ^1.2.1
   syncfusion_flutter_signaturepad: ^19.2.46
   carousel_slider: ^4.0.0

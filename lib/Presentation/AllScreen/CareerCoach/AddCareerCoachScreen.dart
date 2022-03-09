@@ -18,6 +18,7 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
   File? image;
+  bool loader = false;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _titleController = TextEditingController();
@@ -107,7 +108,7 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _priceController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -164,7 +165,11 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                      child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -172,6 +177,9 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      loader = true;
+                    });
                     var upload = await FirebaseStorage.instance
                         .ref()
                         .child("coach")
@@ -186,11 +194,14 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                             title: _titleController.text,
                             videoId: _coachVideoIdController.text)
                         .save();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.back();
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),

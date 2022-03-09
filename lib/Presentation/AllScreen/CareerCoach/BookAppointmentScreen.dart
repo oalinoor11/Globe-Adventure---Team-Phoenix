@@ -99,7 +99,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: ageController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(

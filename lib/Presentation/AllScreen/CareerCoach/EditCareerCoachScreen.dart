@@ -22,6 +22,7 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
   ScreenshotController screenshotController = ScreenshotController();
 
   File? image;
+  bool loader = false;
 
   TextEditingController _nameController = TextEditingController();
 
@@ -128,7 +129,7 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
               SizedBox(height: 20),
               TextField(
                 controller: _priceController,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -172,7 +173,11 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                      child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -181,6 +186,9 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
                   ),
                   onPressed: () async {
                     if (image != null) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("coach")
@@ -195,6 +203,9 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
                     coach.description = _descriptionController.text;
                     coach.videoId = _coachVideoIdController.text;
                     await coach.Update();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.back();
                   },
                   child: Center(
