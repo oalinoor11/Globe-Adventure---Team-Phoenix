@@ -26,6 +26,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   void initState() {
@@ -109,7 +110,11 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                     child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -157,6 +162,9 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                       );
                     } else if (_image != null &&
                         _nameController.text.isNotEmpty) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("college")
@@ -181,6 +189,9 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                         padding: EdgeInsets.all(8),
                         animationDuration: Duration(milliseconds: 500),
                       );
+                      setState(() {
+                        loader = false;
+                      });
                       Get.back();
                     }
                     Navigator.pop(context);

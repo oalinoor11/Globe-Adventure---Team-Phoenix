@@ -125,8 +125,8 @@ class _EditSchoolScreenState extends State<EditSchoolScreen> {
                       loader = false;
                     });
                   },
-                  child: Center(
-                    child: Text(
+                    child: Center(
+                     child: Text(
                       "Save Changes",
                       style: TextStyle(
                         fontSize: 22.0,
