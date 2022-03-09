@@ -184,7 +184,6 @@ class AppRoutes {
         page: () => EditCoachingScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITCOACHINGSCREEN,
         page: () => EditCoachingCourseScreen(),
@@ -395,5 +394,9 @@ class AppRoutes {
         page: () => RetinaScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
+    GetPage(
+      name: EDITCOACHINGCOURSESCREEN,
+      page: () => EditCoachingCourseScreen(),
+    ),
   ];
 }

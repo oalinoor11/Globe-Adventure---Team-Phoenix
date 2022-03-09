@@ -137,8 +137,7 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                   },
                   onLongPress: () {
                     Get.toNamed(AppRoutes.EDITCOACHINGCOURSESCREEN,
-                        arguments: courseModel
-                        );
+                        arguments: courseModel);
                   },
                 );
               },
