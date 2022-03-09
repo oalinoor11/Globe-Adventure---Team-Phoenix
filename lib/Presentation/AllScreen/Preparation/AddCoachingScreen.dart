@@ -147,7 +147,11 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                   crossAxisCount: context.width > 1080 ? 4 : 3,),
               ),
               SizedBox(height: 20),
-              InkWell(
+              loader
+                ? Center(
+                child: CircularProgressIndicator(),
+                   )
+              : InkWell(
                 child: Container(
                   height: 40.0,
                   width: 80.0,
@@ -191,6 +195,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                       courses: [],
                       type: CoachingController.to.selectedType(),
                     ).save();
+                    Navigator.of(context).pop(true);
                     setState(() {
                       loader = false;
                     });
@@ -201,7 +206,6 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                       backgroundColor: Colors.green,
                       colorText: Colors.white,
                     );
-                    Navigator.of(context).pop(true);
                   } else {
                     Get.snackbar(
                       "Failed!",
