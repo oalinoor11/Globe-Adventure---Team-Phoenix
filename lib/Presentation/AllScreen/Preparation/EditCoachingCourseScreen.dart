@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:BornoBangla/Core/AppRoutes.dart';
-import 'package:BornoBangla/Data/Models/course_model.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -13,7 +11,8 @@ import '../../../Data/Models/coaching_course_model.dart';
 
 class EditCoachingCourseScreen extends StatefulWidget {
   @override
-  State<EditCoachingCourseScreen> createState() => _EditCoachingCourseScreenState();
+  State<EditCoachingCourseScreen> createState() =>
+      _EditCoachingCourseScreenState();
 }
 
 class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
@@ -38,8 +37,10 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
   void initState() {
     _nameController = TextEditingController(text: _coachingCourseModel.name);
     _imageController = TextEditingController(text: _coachingCourseModel.image);
-    _regularCourseFee = TextEditingController(text: _coachingCourseModel.regularCourseFee.toString());
-    _discountedCourseFee = TextEditingController(text: _coachingCourseModel.discountedCourseFee.toString());
+    _regularCourseFee = TextEditingController(
+        text: _coachingCourseModel.regularCourseFee.toString());
+    _discountedCourseFee = TextEditingController(
+        text: _coachingCourseModel.discountedCourseFee.toString());
     super.initState();
   }
 
