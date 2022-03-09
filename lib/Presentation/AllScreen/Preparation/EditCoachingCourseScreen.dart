@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -26,8 +27,6 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
 
   TextEditingController _nameController = TextEditingController();
 
-  TextEditingController _imageController = TextEditingController();
-
   TextEditingController _regularCourseFee = TextEditingController();
 
   TextEditingController _discountedCourseFee = TextEditingController();
@@ -39,7 +38,6 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
   @override
   void initState() {
     _nameController = TextEditingController(text: _coachingCourseModel.name);
-    _imageController = TextEditingController(text: _coachingCourseModel.image);
     _regularCourseFee = TextEditingController(
         text: _coachingCourseModel.regularCourseFee.toString());
     _discountedCourseFee = TextEditingController(
@@ -157,12 +155,20 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                           setState(() {
                             loader = true;
                           });
+                          if (image != null) {
+                            var upload = await FirebaseStorage.instance
+                                .ref()
+                                .child("coaching")
+                                .child(_nameController.text)
+                                .putFile(image!);
+                            var downloadUrl = await upload.ref.getDownloadURL();
+                            _coachingCourseModel.image = downloadUrl;
+                          }
                           _coachingCourseModel.discountedCourseFee =
                               int.parse(_discountedCourseFee.text);
                           _coachingCourseModel.regularCourseFee =
                               int.parse(_regularCourseFee.text);
                           _coachingCourseModel.name = _nameController.text;
-                          _coachingCourseModel.image = _imageController.text;
                           Get.back(result: _coachingCourseModel);
                           setState(() {
                             loader = false;
