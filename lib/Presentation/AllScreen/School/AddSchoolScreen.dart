@@ -27,6 +27,7 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +105,11 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                     child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -152,6 +157,9 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                       );
                     } else if (_image != null &&
                         _nameController.text.isNotEmpty) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("school")
@@ -163,6 +171,10 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                               image: downloadUrl,
                               country: SchoolController.to.selectedCountry())
                           .save();
+                      setState(() {
+                        loader = false;
+                      });
+                      Navigator.of(context).pop(true);
                       Get.snackbar(
                         "Success",
                         "School added successfully",
