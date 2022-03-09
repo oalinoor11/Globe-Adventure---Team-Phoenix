@@ -8,6 +8,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
 import '../../../Data/Models/coaching_course_model.dart';
+import '../../../Data/Models/coaching_model.dart';
 
 class EditCoachingCourseScreen extends StatefulWidget {
   @override
@@ -31,6 +32,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
   TextEditingController _discountedCourseFee = TextEditingController();
 
   File? image;
+  bool loader = false;
   CoachingCourseModel coachingCourseModel = Get.arguments;
 
   @override
@@ -139,7 +141,11 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -147,6 +153,9 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      loader = true;
+                    });
                     _coachingCourseModel.discountedCourseFee =
                         int.parse(_discountedCourseFee.text);
                     _coachingCourseModel.regularCourseFee =
@@ -154,6 +163,9 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                     _coachingCourseModel.name = _nameController.text;
                     _coachingCourseModel.image = _imageController.text;
                     Get.back(result: _coachingCourseModel);
+                    setState(() {
+                      loader = false;
+                    });
                   },
                   child: Center(
                     child: Text(
@@ -176,6 +188,9 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      loader = true;
+                    });
                     var result = await CoolAlert.show(
                       backgroundColor: Colors.green,
                       confirmBtnColor: Colors.red,
@@ -190,20 +205,19 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                       Get.back(result: true);
                     }
 
-                    // if (result) {
-                    //   var response =
-                    //       await MaterialRepository()
-                    //       .deleteMaterial(e);
-                    //   if (response) {
-                    //     await CoolAlert.show(
-                    //         context: context,
-                    //         type: CoolAlertType.success);
-                    //   } else {
-                    //     await CoolAlert.show(
-                    //         context: context,
-                    //         type: CoolAlertType.error);
-                    //   }
-                    // }
+                    if (result) {
+                      setState(() {
+                        loader = false;
+                      });
+                      await coachingCourseModel.delete();
+                      setState(() {
+                        loader = false;
+                      });
+                      Get.back();
+                    }
+                    setState(() {
+                      loader = false;
+                    });
                   },
                   child: Center(
                     child: Text(
