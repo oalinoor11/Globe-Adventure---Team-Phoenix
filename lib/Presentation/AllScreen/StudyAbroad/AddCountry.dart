@@ -24,6 +24,7 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +113,11 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -160,6 +165,9 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                       );
                     } else if (_image != null &&
                         _nameController.text.isNotEmpty) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("country_flags")
@@ -170,6 +178,10 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                         "countryName": _nameController.text,
                         "countryFlag": downloadUrl,
                       });
+                      setState(() {
+                        loader = false;
+                      });
+                      Navigator.of(context).pop(true);
                       Get.snackbar(
                         "Success",
                         "Country added successfully",
@@ -185,7 +197,7 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),

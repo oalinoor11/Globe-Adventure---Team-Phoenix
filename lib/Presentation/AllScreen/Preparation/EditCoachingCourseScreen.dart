@@ -209,7 +209,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                       setState(() {
                         loader = false;
                       });
-                      await coachingCourseModel.delete();
+                      // await coachingCourseModel.delete();
                       setState(() {
                         loader = false;
                       });

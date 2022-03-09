@@ -10,7 +10,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class StudyAbroadScreen extends StatelessWidget {
+class StudyAbroadScreen extends StatefulWidget {
+  @override
+  State<StudyAbroadScreen> createState() => _StudyAbroadScreenState();
+}
+
+class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
