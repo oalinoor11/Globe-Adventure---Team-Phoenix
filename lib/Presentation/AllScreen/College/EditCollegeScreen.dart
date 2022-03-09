@@ -23,6 +23,7 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
   CollegeModel collegeModel = Get.arguments;
   TextEditingController _nameController = TextEditingController();
   File? _image;
+  bool loader = false;
 
   @override
   void initState() {
@@ -94,7 +95,11 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -103,6 +108,9 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
                   ),
                   onPressed: () async {
                     if (_image != null) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("college")
@@ -113,10 +121,13 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
                     }
                     collegeModel.name = _nameController.text;
                     await collegeModel.update();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.back();
                   },
-                  child: Center(
-                    child: Text(
+                     child: Center(
+                      child: Text(
                       "Save Changes",
                       style: TextStyle(
                         fontSize: 22.0,

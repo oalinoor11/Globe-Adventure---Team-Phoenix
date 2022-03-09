@@ -26,6 +26,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   void initState() {
@@ -109,7 +110,11 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                     child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -157,6 +162,9 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                       );
                     } else if (_image != null &&
                         _nameController.text.isNotEmpty) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("college")
@@ -169,7 +177,11 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                         image: downloadUrl,
                         country: CollegeController.to.selectedCountry(),
                       ).save();
-
+                      setState(() {
+                        loader = false;
+                      });
+                      Get.back();
+                    }
                       Get.snackbar(
                         "Success",
                         "College added successfully",
@@ -181,13 +193,10 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                         padding: EdgeInsets.all(8),
                         animationDuration: Duration(milliseconds: 500),
                       );
-                      Get.back();
-                    }
-                    Navigator.pop(context);
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),

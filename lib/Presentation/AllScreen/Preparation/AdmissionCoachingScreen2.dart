@@ -93,8 +93,6 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                                 topRight: Radius.circular(13)),
                             child: Image(
                               image: NetworkImage(courseModel.image),
-                              height: 100,
-                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
