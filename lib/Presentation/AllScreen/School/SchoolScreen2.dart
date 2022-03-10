@@ -26,7 +26,7 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-            "Study in "+country.countryName,
+            "Study in " +country.countryName,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
