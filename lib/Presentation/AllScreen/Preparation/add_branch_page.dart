@@ -15,7 +15,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: const Text('Add Branch')),
+        title: Center(child: const Text('Add Coaching Branches')),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -47,7 +47,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue,
+                  color: Colors.green,
                 ),
                 child: const Text(
                   'Add Branch',
@@ -57,6 +57,9 @@ class _AddBranchPageState extends State<AddBranchPage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: StreamBuilder<List<BranchModel>>(
                 stream: BranchModel.getAllAsStream(),
@@ -65,12 +68,13 @@ class _AddBranchPageState extends State<AddBranchPage> {
                     return ListView.separated(
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return Card(
+                        return Card(color: Colors.green.withOpacity(0.99),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: ListTile(
-                            title: Text(snapshot.data![index].name),
+                            title: Text(snapshot.data![index].name,
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                             trailing: IconButton(
                               icon: Icon(Icons.delete),
                               onPressed: () async {
