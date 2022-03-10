@@ -49,6 +49,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
           "Apply for Processing",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(

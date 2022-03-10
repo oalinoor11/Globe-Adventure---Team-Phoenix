@@ -39,10 +39,13 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Edit Coaching",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Edit Coaching",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -165,11 +168,11 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                       setState(() {
                         loader = false;
                       });
-                      Get.back();
                     }
                     setState(() {
                       loader = false;
                     });
+                    Get.back();
                   },
                   child: Center(
                     child: Text(

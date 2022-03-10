@@ -31,10 +31,13 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New Course",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New Course",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(

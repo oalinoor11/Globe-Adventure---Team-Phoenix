@@ -48,6 +48,7 @@ class _EditScholarshipScreenState extends State<EditScholarshipScreen> {
           "Edit Scholarship",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(

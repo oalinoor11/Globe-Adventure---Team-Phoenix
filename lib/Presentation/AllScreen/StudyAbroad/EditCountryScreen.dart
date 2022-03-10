@@ -26,6 +26,7 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
   TextEditingController nameController = TextEditingController();
 
   File? image;
+  bool loader = false;
   @override
   void initState() {
     nameController.text = countryModel.countryName;
@@ -39,10 +40,13 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Edit Country",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Edit Country",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -95,7 +99,11 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -104,6 +112,9 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
                   ),
                   onPressed: () async {
                     if (image != null) {
+                      setState(() {
+                        loader = true;
+                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
                           .child("country")
@@ -114,6 +125,9 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
                     }
                     countryModel.countryName = nameController.text;
                     await countryModel.update();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.back();
                   },
                   child: Center(

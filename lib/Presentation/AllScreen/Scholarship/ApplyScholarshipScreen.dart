@@ -22,10 +22,13 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Scholarship",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Scholarship",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),

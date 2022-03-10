@@ -52,10 +52,13 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Edit Course",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Edit Course",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(

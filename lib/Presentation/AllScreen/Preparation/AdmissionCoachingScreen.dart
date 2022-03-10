@@ -22,10 +22,13 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
         centerTitle: true,
         title:
             // Image.asset("assets/logo.png", height: 130),
-            Text(
+            Center(
+              child: Text(
           "${CoachingController.to.selectedType()} Coaching",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+            ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),

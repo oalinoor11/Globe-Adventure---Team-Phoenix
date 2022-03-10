@@ -23,10 +23,13 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Study Abroad",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Study Abroad",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),

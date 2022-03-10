@@ -18,6 +18,7 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
   UniversityModel? selectedUniversity;
   String? selectedUniversityId;
   CourseModel? selectedCourse;
+  bool loader = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,13 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New Scholarship",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New Scholarship",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -163,17 +167,10 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                       );
                       return;
                     }
-                    if (selectedCourse == null) {
-                      Get.snackbar(
-                        "Error",
-                        "Please select course",
-                        icon: Icon(
-                          Icons.error,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.red,
-                      );
-                      return;
+                    if (selectedCourse != null) {
+                      setState(() {
+                        loader = true;
+                      });
                     }
                     await ScholarshipModel(
                       name: _scholarshipNameController.text,
@@ -182,7 +179,20 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                       university: selectedUniversity!,
                       course: selectedCourse!,
                     ).save();
+                    setState(() {
+                      loader = false;
+                    });
                     Get.back();
+                    Get.snackbar(
+                      "Success",
+                      "Congratulation! Scholarship added successfully",
+                      icon: Icon(
+                        Icons.error,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Colors.red,
+                    );
+                    return;
                   },
                   child: Center(
                     child: Text(

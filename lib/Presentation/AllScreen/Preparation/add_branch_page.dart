@@ -1,6 +1,5 @@
 import 'package:BornoBangla/Data/Models/branch_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AddBranchPage extends StatefulWidget {
   const AddBranchPage({Key? key}) : super(key: key);
@@ -16,6 +15,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: const Text('Add Coaching Branches')),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

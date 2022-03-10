@@ -14,10 +14,13 @@ class PreparationScreen extends StatelessWidget {
         centerTitle: true,
         title:
             // Image.asset("assets/logo.png", height: 130),
-            Text(
+            Center(
+              child: Text(
           "Preparation",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+            ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: Icon(Icons.add),
