@@ -2,7 +2,6 @@ import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/AddCareerCoachScr
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/BookAppointmentScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/CareerCoachScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/EditCareerCoachScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/AcademicCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AddCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/College/AddCollegeScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroad/AddCountry.dart';
@@ -14,8 +13,6 @@ import 'package:BornoBangla/Presentation/AllScreen/University/AddUniversityScree
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AdmissionCoachingScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Scholarship/ApplyScholarshipScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/BcsbyrsScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/BcsbytgScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Payment/BkashScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/CoachingApplyScreen.dart';
@@ -30,30 +27,18 @@ import 'package:BornoBangla/Presentation/AllScreen/University/EditCourseScreen.d
 import 'package:BornoBangla/Presentation/AllScreen/Scholarship/EditScholarshipScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/School/EditSchoolScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/University/EditUniversityScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/EhokScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/Englisha2zScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/IeltsCoachingScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/IssbCoachingScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/JobCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Job/JobScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/MabsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/MainScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/MentorsScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/PreparationScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Home/HomeScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/RetinaScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/SIrajacademyScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/SaifursScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Scholarship/ScholarshipApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/School/SchoolScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/School/SchoolScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Profile/SignInScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroad/StudyAbroadScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Tutor/TutorScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/UccScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/University/UniversityScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Preparation/UttoronScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Profile/SignUpScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -101,10 +86,6 @@ class AppRoutes {
   static const String ADMISSIONCOACHINGSCREEN2 = "/admissioncoachingscreen2";
   static const String ADDCOACHINGSCREEN = "/addcoachingscreen";
   static const String ADDCOURSESCREEN = "/addcoursescreen";
-  // static const String ACADEMICCOACHINGSCREEN = "/academiccoachingscreen";
-  // static const String IELTSCOACHINGSCREEN = "/ieltscoachingscreen";
-  // static const String JOBCOACHINGSCREEN = "/jobcoachingscreen";
-  // static const String ISSBCOACHINGSCREEN = "/issbcoachingscreen";
   static const String UCCSCREEN = "/uccscreen";
   static const String UDVASHSCREEN = "/udvashscreen";
   static const String EHOKSCREEN = "/ehokscreen";
@@ -325,56 +306,6 @@ class AppRoutes {
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
     GetPage(
-        name: SIRAJACADEMYSCREEN,
-        page: () => SirajacademyScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: UCCSCREEN,
-        page: () => UccScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: BCSBYTGSCREEN,
-        page: () => BcsbytgScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: BCSBYRSSCREEN,
-        page: () => BcsbyrsScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: UTTORONSCREEN,
-        page: () => UttoronScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: MABSSCREEN,
-        page: () => MabsScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: EHOKSCREEN,
-        page: () => EhokScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: ENGLISHA2ZSCREEN,
-        page: () => Englisha2zScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: SAIFURSSCREEN,
-        page: () => SaifursScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: MENTORSSCREEN,
-        page: () => MentorsScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
         name: COACHINGAPPLYSCREEN,
         page: () => CoachingApplyScreen(),
         transitionDuration: Duration(milliseconds: 100),
@@ -387,11 +318,6 @@ class AppRoutes {
     GetPage(
         name: BKASHSCREEN,
         page: () => BkashScreen(),
-        transitionDuration: Duration(milliseconds: 100),
-        transition: Transition.cupertino),
-    GetPage(
-        name: RETINASCREEN,
-        page: () => RetinaScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
     GetPage(

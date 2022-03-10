@@ -1,15 +1,10 @@
 import 'dart:math';
-
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/coaching_model.dart';
-import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AdmissionCoachingScreen extends StatefulWidget {
   @override
@@ -28,7 +23,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
         title:
             // Image.asset("assets/logo.png", height: 130),
             Text(
-          "${CoachingController.to.selectedType().capitalize} Coaching",
+          "${CoachingController.to.selectedType()} Coaching",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

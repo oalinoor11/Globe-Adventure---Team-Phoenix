@@ -60,7 +60,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('admission');
+                        CoachingController.to.selectedType('Admission');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -88,7 +88,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('academic');
+                        CoachingController.to.selectedType('Academic');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -121,7 +121,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('ielts');
+                        CoachingController.to.selectedType('IELTS');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -149,7 +149,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('job');
+                        CoachingController.to.selectedType('Job');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -182,7 +182,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('issb');
+                        CoachingController.to.selectedType('ISSB');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
