@@ -103,7 +103,8 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                           onTap: () {
                             UniversityController.to
                                 .selectedCountry(country.countryName);
-                            Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                            Get.toNamed(AppRoutes.UNIVERSITYSCREEN,
+                                arguments: country);
                           },
                           onLongPress: () {
                             Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
