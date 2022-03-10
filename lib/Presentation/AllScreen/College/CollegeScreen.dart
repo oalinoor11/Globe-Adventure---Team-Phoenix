@@ -68,7 +68,8 @@ class CollegeScreen extends StatelessWidget {
                         return InkWell(
                           child: Container(
                             decoration: new BoxDecoration(
-                              border: Border.all(color: Colors.green, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.green, width: 1.5),
                               boxShadow: [
                                 new BoxShadow(
                                   color: Colors.grey.withOpacity(0.15),
@@ -100,7 +101,8 @@ class CollegeScreen extends StatelessWidget {
                           onTap: () {
                             CollegeController.to
                                 .selectedCountry(country.countryName);
-                            Get.toNamed(AppRoutes.COLLEGESCREEN2);
+                            Get.toNamed(AppRoutes.COLLEGESCREEN2,
+                                arguments: country);
                           },
                           onLongPress: () {
                             Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
