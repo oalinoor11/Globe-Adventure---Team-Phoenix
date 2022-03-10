@@ -361,7 +361,8 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Row(
+                  child: image == null
+                      ? Row(
                     children: [
                       SizedBox(width: 10),
                       Text("Student's Photo",
@@ -373,7 +374,8 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                         color: Colors.black,
                       ),
                     ],
-                  ),
+                  )
+                      : Image.file(image!),
                 ),
               ),
               SizedBox(height: 20),
