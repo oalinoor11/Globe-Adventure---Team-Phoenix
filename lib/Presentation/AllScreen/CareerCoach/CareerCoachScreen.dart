@@ -126,6 +126,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                 },
               ),
             ),
+            SizedBox(height: 14),
           ],
         ),
       ),

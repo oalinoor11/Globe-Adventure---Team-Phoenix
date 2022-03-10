@@ -22,7 +22,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Selected University",
+          universityModel.name,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

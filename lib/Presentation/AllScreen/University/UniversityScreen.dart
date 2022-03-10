@@ -18,6 +18,7 @@ class UniversityScreen extends StatefulWidget {
 }
 
 class _UniversityScreenState extends State<UniversityScreen> {
+  CountryModel country = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Selected Country",
+          "Study in "+country.countryName,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

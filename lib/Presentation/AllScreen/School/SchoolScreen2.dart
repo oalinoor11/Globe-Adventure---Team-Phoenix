@@ -9,8 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import '../../../Core/AppRoutes.dart';
+import '../../../Data/Models/country_model.dart';
 
-class SchoolScreen2 extends StatelessWidget {
+class SchoolScreen2 extends StatefulWidget {
+  @override
+  State<SchoolScreen2> createState() => _SchoolScreen2State();
+}
+
+class _SchoolScreen2State extends State<SchoolScreen2> {
+  CountryModel country = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +27,7 @@ class SchoolScreen2 extends StatelessWidget {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          "Study in Selected Country",
+            "Study in "+country.countryName,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
