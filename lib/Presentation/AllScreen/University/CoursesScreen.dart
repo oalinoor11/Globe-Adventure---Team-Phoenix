@@ -172,7 +172,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.history_edu, color: Colors.red),
+                                      Icon(Icons.history_edu,
+                                          color: Colors.red),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -278,7 +279,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   universityModel.update();
                                 });
                               } else {
-                                universityModel.courseList[index] = result;
+                                universityModel.courseList[index] =
+                                    result ?? courseModel;
                                 setState(() {
                                   universityModel.update();
                                 });
