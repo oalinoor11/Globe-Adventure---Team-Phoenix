@@ -66,20 +66,31 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _durationController,
-                keyboardType: TextInputType.number,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Course Duration",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedLevel = v;
+                      });
+                    },
+                    value: selectedLevel,
+                    hint: Text("Course Duration",
+                        style: TextStyle(color: Colors.black)),
+                    items: levelList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               SizedBox(
