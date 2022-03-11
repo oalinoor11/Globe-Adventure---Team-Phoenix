@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Core/AppRoutes.dart';
+import 'Presentation/AllScreen/Profile/SignInScreen.dart';
 
 void main() async {
   // WidgetsBinding.instance?.ensureVisualUpdate();
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
       title: 'Borno Bangla',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
-      initialRoute: AppRoutes.MAINSCREEN,
+      initialRoute: FirebaseAuth.instance.currentUser == null
+          ? AppRoutes.SIGNINSCREEN
+          : AppRoutes.MAINSCREEN,
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );

@@ -4,6 +4,7 @@ import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/CareerCoachScreen
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/EditCareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AddCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/College/AddCollegeScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Profile/OtpScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/StudyAbroad/AddCountry.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AddCourseScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Scholarship/AddScholarshipScreen.dart';
@@ -48,6 +49,7 @@ import '../Presentation/AllScreen/Preparation/EditCoachingCourseScreen.dart';
 class AppRoutes {
   static const String INITAL = "/";
   static const String MAINSCREEN = "/mainscreen";
+  static const String OTPSCREEN = "/otpscreen";
   static const String HOMESCREEN = "/firstscreen";
   static const String BOOKAPPOINTMENTSCREEN = "/bookappointmentscreen";
   static const String UNIVERSITYSCREEN = "/universityscreen";
@@ -108,6 +110,12 @@ class AppRoutes {
     GetPage(
         name: PROFILESCREEN,
         page: () => ProfileScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
+        name: OTPSCREEN,
+        page: () => OtpScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
     GetPage(

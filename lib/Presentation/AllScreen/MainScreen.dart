@@ -59,9 +59,7 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          FirebaseAuth.instance.currentUser == null
-              ? SignInScreen()
-              : ProfileScreen(),
+          ProfileScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
       ),
