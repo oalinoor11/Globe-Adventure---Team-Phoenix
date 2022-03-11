@@ -18,13 +18,14 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
+  List levelList = ["Diploma", "Undergraduate", "Postgraduate", "PhD", "Certificate"];
+  String? selectedLevel;
+
   CourseModel _courseModel = Get.arguments;
 
   TextEditingController _nameController = TextEditingController();
 
   TextEditingController _durationController = TextEditingController();
-
-  TextEditingController _levelController = TextEditingController();
 
   TextEditingController _requirementsController = TextEditingController();
 
@@ -37,7 +38,6 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   @override
   void initState() {
     _nameController = TextEditingController(text: _courseModel.name);
-    _levelController = TextEditingController(text: _courseModel.level);
     _requirementsController = TextEditingController(text: _courseModel.requirements);
     _scholarshipController = TextEditingController(text: _courseModel.scholarship);
     _durationController = TextEditingController(text: _courseModel.duration);
@@ -100,20 +100,31 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _levelController,
-                keyboardType: TextInputType.text,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Level",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedLevel = v;
+                      });
+                    },
+                    value: selectedLevel,
+                    hint: Text("Level",
+                        style: TextStyle(color: Colors.black)),
+                    items: levelList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -195,7 +206,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                     _courseModel.tuitionFees =
                         int.parse(_tuitionFeesController.text);
                     _courseModel.name = _nameController.text;
-                    _courseModel.level = _levelController.text;
+                    _courseModel.level = selectedLevel!;
                     _courseModel.requirements = _requirementsController.text;
                     _courseModel.scholarship = _scholarshipController.text;
                     _courseModel.duration = _durationController.text;

@@ -17,11 +17,11 @@ class AddUniversityCourseScreen extends StatefulWidget {
 
 class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
-
+  List levelList = ["Diploma", "Undergraduate", "Postgraduate", "PhD", "Certificate"];
+  String? selectedLevel;
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _durationController = TextEditingController();
-  TextEditingController _levelController = TextEditingController();
   TextEditingController _requirementsController = TextEditingController();
   TextEditingController _scholarshipController = TextEditingController();
   TextEditingController _admissionFeesController = TextEditingController();
@@ -82,20 +82,31 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _levelController,
-                keyboardType: TextInputType.text,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Level",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedLevel = v;
+                      });
+                    },
+                    value: selectedLevel,
+                    hint: Text("Level",
+                        style: TextStyle(color: Colors.black)),
+                    items: levelList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -183,7 +194,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                       admissionFees: int.parse(_admissionFeesController.text),
                       tuitionFees: int.parse(_tuitionFeesController.text),
                       name: _nameController.text,
-                      level: _levelController.text,
+                      level: selectedLevel!,
                       requirements: _requirementsController.text,
                       scholarship: _scholarshipController.text,
                       duration: _durationController.text,
