@@ -18,7 +18,13 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  List levelList = ["Diploma", "Undergraduate", "Postgraduate", "PhD", "Certificate"];
+  List levelList = [
+    "Diploma",
+    "Undergraduate",
+    "Postgraduate",
+    "PhD",
+    "Certificate"
+  ];
   String? selectedLevel;
 
   CourseModel _courseModel = Get.arguments;
@@ -38,13 +44,16 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   @override
   void initState() {
     _nameController = TextEditingController(text: _courseModel.name);
-    _requirementsController = TextEditingController(text: _courseModel.requirements);
-    _scholarshipController = TextEditingController(text: _courseModel.scholarship);
+    _requirementsController =
+        TextEditingController(text: _courseModel.requirements);
+    _scholarshipController =
+        TextEditingController(text: _courseModel.scholarship);
     _durationController = TextEditingController(text: _courseModel.duration);
     _admissionFeesController =
         TextEditingController(text: _courseModel.admissionFees.toString());
     _tuitionFeesController =
         TextEditingController(text: _courseModel.tuitionFees.toString());
+    selectedLevel = _courseModel.level;
     super.initState();
   }
 
@@ -106,7 +115,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide:
-                          BorderSide(color: Colors.green, width: 1)),
+                              BorderSide(color: Colors.green, width: 1)),
                     ),
                     onChanged: (v) {
                       setState(() {
@@ -114,16 +123,15 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                       });
                     },
                     value: selectedLevel,
-                    hint: Text("Level",
-                        style: TextStyle(color: Colors.black)),
+                    hint: Text("Level", style: TextStyle(color: Colors.black)),
                     items: levelList
                         .map((e) => DropdownMenuItem<String>(
-                        child: Text(
-                          e,
-                          textAlign: TextAlign.start,
-                        ),
-                        alignment: Alignment.topLeft,
-                        value: e))
+                            child: Text(
+                              e,
+                              textAlign: TextAlign.start,
+                            ),
+                            alignment: Alignment.topLeft,
+                            value: e))
                         .toList()),
               ),
               SizedBox(height: 20),
