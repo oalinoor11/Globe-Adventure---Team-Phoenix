@@ -49,7 +49,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
                 onTap: (){
-                  Get.offAllNamed(AppRoutes.MAINSCREEN);
+                  Get.offAllNamed(AppRoutes.SIGNINSCREEN);
                 },
               ),
             ],

@@ -254,7 +254,7 @@ class SignUpScreen extends StatelessWidget
         backgroundColor: Colors.blue,
         colorText: Colors.white,
       );
-      Get.offAllNamed(AppRoutes.SIGNINSCREEN);
+      Get.offAllNamed(AppRoutes.OTPSCREEN);
     }
     else
     {
