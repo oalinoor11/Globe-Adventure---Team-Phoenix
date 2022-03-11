@@ -266,13 +266,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             "type": "text",
             "contacts": phoneTextEditingController.text.trim(),
             "senderid": "37935",
-            "msg": "Test message one",
+            "msg": "ধন্যবাদ, "+nameTextEditingController.text.trim()+". আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
           },
         ),
       );
 
-      Get.toNamed(AppRoutes.SIGNINSCREEN);
-      FirebaseAuth.instance.signOut();
+      Get.toNamed(AppRoutes.MAINSCREEN);
     } else {
       Navigator.pop(context);
       Get.snackbar(
