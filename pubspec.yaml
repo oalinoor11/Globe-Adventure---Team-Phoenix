@@ -49,6 +49,7 @@ dependencies:
   url_launcher: ^6.0.12
   cool_alert:
   path_provider:
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
