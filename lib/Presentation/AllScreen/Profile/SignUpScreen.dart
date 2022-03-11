@@ -10,13 +10,21 @@ import 'SignInScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
-class SignUpScreen extends StatelessWidget
+class SignUpScreen extends StatefulWidget
 {
   static const String idScreen = "register";
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController nameTextEditingController = TextEditingController();
+
   TextEditingController phoneTextEditingController = TextEditingController();
+
   TextEditingController emailTextEditingController = TextEditingController();
+
   TextEditingController passwordTextEditingController = TextEditingController();
 
   @override
@@ -208,6 +216,7 @@ class SignUpScreen extends StatelessWidget
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   void registerNewUser(BuildContext context) async
   {
     showDialog(
@@ -251,10 +260,11 @@ class SignUpScreen extends StatelessWidget
         "Congratulations!",
         "Your account has been Created successfully",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.offAllNamed(AppRoutes.OTPSCREEN);
+      Get.toNamed(AppRoutes.SIGNINSCREEN);
+      FirebaseAuth.instance.signOut();
     }
     else
     {

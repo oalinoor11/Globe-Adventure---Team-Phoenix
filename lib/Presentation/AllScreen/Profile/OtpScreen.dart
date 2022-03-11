@@ -11,6 +11,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  TextEditingController otpTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +21,34 @@ class _OtpScreenState extends State<OtpScreen> {
         child: SingleChildScrollView(
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [Container(),
-              const SizedBox(height: 200.0),
+            SizedBox(height: 80.0,),
+            Image(image: AssetImage("assets/coppedlogo.png"),
+            height: 180, alignment: Alignment.center),
+
+            SizedBox(height: 10.0,),
+
+            Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+            children: [
+
+            SizedBox(height: 5.0,),
+            TextField(
+            controller: otpTextEditingController,
+            keyboardType: TextInputType.name,
+            decoration: InputDecoration(labelText: "Enter OTP",
+            labelStyle: TextStyle(
+            fontSize: 14.0),
+            hintStyle: TextStyle(
+            color: Colors.grey,
+            fontSize: 10.0,
+            ),
+            ),
+            style: TextStyle(
+            fontSize: 14.0,
+            ),
+            ),
+              const SizedBox(height: 20.0),
               InkWell(
                 child: Container(
                   height: 50.0,
@@ -40,7 +68,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     borderRadius: BorderRadius.circular(15),
                     child: Center(
                       child: Text(
-                        "otp verification",
+                        "verify",
                         style: TextStyle(
                           fontSize: 16.0,
                         ),
@@ -50,13 +78,20 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 onTap: (){
                   Get.offAllNamed(AppRoutes.SIGNINSCREEN);
+                  Get.snackbar(
+                    "Congratulations!",
+                    "Your account has been Created successfully",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.blue,
+                    colorText: Colors.white,
+                  );
                 },
               ),
             ],
           ),
         ),
-      ),
-    );
+      ]),
+    )));
   }
 }
 
