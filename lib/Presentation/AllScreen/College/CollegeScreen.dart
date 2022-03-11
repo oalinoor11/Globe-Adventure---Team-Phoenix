@@ -20,10 +20,13 @@ class CollegeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "College",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "College",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
