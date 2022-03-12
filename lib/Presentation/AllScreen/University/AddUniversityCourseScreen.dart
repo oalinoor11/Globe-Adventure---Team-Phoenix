@@ -38,7 +38,9 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
     "1.5 Years",
     "2 Years",
     "2.5 Years",
+    "3 Years",
     "3.5 Years",
+    "4 Years",
     "4.5 Years",
     "5.5 Years",
     "6 Years"
