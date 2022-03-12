@@ -27,11 +27,12 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   ];
   String? selectedLevel;
 
+  List durationList = ["1 Month", "2 Month", "3 Month", "6 Month", "1 Year"];
+  String? selectedDuration;
+
   CourseModel _courseModel = Get.arguments;
 
   TextEditingController _nameController = TextEditingController();
-
-  TextEditingController _durationController = TextEditingController();
 
   TextEditingController _requirementsController = TextEditingController();
 
@@ -48,12 +49,12 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
         TextEditingController(text: _courseModel.requirements);
     _scholarshipController =
         TextEditingController(text: _courseModel.scholarship);
-    _durationController = TextEditingController(text: _courseModel.duration);
     _admissionFeesController =
         TextEditingController(text: _courseModel.admissionFees.toString());
     _tuitionFeesController =
         TextEditingController(text: _courseModel.tuitionFees.toString());
     selectedLevel = _courseModel.level;
+    selectedDuration = _courseModel.duration;
     super.initState();
   }
 
@@ -93,20 +94,30 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _durationController,
-                keyboardType: TextInputType.text,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Course Duration",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedDuration = v;
+                      });
+                    },
+                    value: selectedDuration,
+                    hint: Text("Course Duration", style: TextStyle(color: Colors.black)),
+                    items: durationList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               SizedBox(
@@ -217,7 +228,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                     _courseModel.level = selectedLevel!;
                     _courseModel.requirements = _requirementsController.text;
                     _courseModel.scholarship = _scholarshipController.text;
-                    _courseModel.duration = _durationController.text;
+                    _courseModel.duration = selectedDuration!;
                     Get.back(result: _courseModel);
                   },
                   child: Center(

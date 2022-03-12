@@ -19,9 +19,12 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   List levelList = ["Diploma", "Undergraduate", "Postgraduate", "PhD", "Certificate"];
   String? selectedLevel;
+
+  List durationList = ["1 Month", "2 Month", "3 Month", "6 Month", "1 Year"];
+  String? selectedDuration;
+
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _durationController = TextEditingController();
   TextEditingController _requirementsController = TextEditingController();
   TextEditingController _scholarshipController = TextEditingController();
   TextEditingController _admissionFeesController = TextEditingController();
@@ -76,13 +79,13 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                     ),
                     onChanged: (v) {
                       setState(() {
-                        selectedLevel = v;
+                        selectedDuration = v;
                       });
                     },
-                    value: selectedLevel,
+                    value: selectedDuration,
                     hint: Text("Course Duration",
                         style: TextStyle(color: Colors.black)),
-                    items: levelList
+                    items: durationList
                         .map((e) => DropdownMenuItem<String>(
                         child: Text(
                           e,
@@ -208,7 +211,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                       level: selectedLevel!,
                       requirements: _requirementsController.text,
                       scholarship: _scholarshipController.text,
-                      duration: _durationController.text,
+                      duration: selectedDuration!,
                     );
                     _universityModel.courseList.add(courseModel);
                     _universityModel.update();
