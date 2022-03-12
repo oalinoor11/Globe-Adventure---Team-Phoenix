@@ -240,8 +240,8 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                     });
                     Get.back();
                   },
-                  child: Center(
-                    child: Text(
+                     child: Center(
+                      child: Text(
                       "Save",
                       style: TextStyle(
                         fontSize: 22.0,

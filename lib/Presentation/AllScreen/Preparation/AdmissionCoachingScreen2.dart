@@ -108,7 +108,10 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Regular Fee: ',
+                              'Regular Fee:  ',
+                              textAlign: TextAlign.center,
+                            ),Text(
+                              courseModel.currency.toString(),
                               textAlign: TextAlign.center,
                             ),
                             Text(
@@ -123,7 +126,11 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Discount Fee: ',
+                              'Discount Fee:  ',
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              courseModel.currency.toString(),
                               textAlign: TextAlign.center,
                             ),
                             Text(

@@ -21,6 +21,10 @@ class EditCoachingCourseScreen extends StatefulWidget {
 class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
+
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
+
   ScreenshotController screenshotController = ScreenshotController();
 
   CoachingCourseModel _coachingCourseModel = Get.arguments;
@@ -42,6 +46,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
         text: _coachingCourseModel.regularCourseFee.toString());
     _discountedCourseFee = TextEditingController(
         text: _coachingCourseModel.discountedCourseFee.toString());
+    selectedCurrency = coachingCourseModel.currency;
     super.initState();
   }
 
@@ -109,6 +114,33 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               TextField(
                 controller: _regularCourseFee,
                 keyboardType: TextInputType.number,
@@ -171,6 +203,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                               int.parse(_discountedCourseFee.text);
                           _coachingCourseModel.regularCourseFee =
                               int.parse(_regularCourseFee.text);
+                          _coachingCourseModel.currency = selectedCurrency!;
                           _coachingCourseModel.name = _nameController.text;
                           Get.back(result: _coachingCourseModel);
                           setState(() {

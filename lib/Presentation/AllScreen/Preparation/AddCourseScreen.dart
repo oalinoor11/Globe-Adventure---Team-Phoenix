@@ -15,6 +15,8 @@ class AddCourseScreen extends StatefulWidget {
 }
 
 class _AddCourseScreenState extends State<AddCourseScreen> {
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController regularFeeTextEditingController =
       TextEditingController();
@@ -101,6 +103,33 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.green,
@@ -166,6 +195,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     CoachingCourseModel coachingCourseModel =
                         CoachingCourseModel(
                       name: nameTextEditingController.text,
+                          currency: selectedCurrency!,
                       image: downloadUrl,
                       regularCourseFee:
                           int.parse(regularFeeTextEditingController.text),
