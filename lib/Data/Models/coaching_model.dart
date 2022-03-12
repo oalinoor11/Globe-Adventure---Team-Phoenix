@@ -6,6 +6,7 @@ class CoachingModel {
   String? id;
   late String name;
   late String image;
+  late String rating;
   List<String> bannerImages = [];
   List<CoachingCourseModel> courses = [];
   late String type;
@@ -13,6 +14,7 @@ class CoachingModel {
     this.id,
     required this.name,
     required this.image,
+    required this.rating,
     required this.bannerImages,
     required this.courses,
     required this.type,
@@ -22,6 +24,7 @@ class CoachingModel {
     String? id,
     String? name,
     String? image,
+    String? rating,
     List<String>? bannerImages,
     List<CoachingCourseModel>? courses,
     String? type,
@@ -30,6 +33,7 @@ class CoachingModel {
       id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
+      rating: image ?? this.rating,
       bannerImages: bannerImages ?? this.bannerImages,
       courses: courses ?? this.courses,
       type: type ?? this.type,
@@ -41,6 +45,7 @@ class CoachingModel {
       'id': id,
       'name': name,
       'image': image,
+      'rating': rating,
       'bannerImages': bannerImages,
       'courses': courses.map((x) => x.toMap()).toList(),
       'type': type,
@@ -52,6 +57,7 @@ class CoachingModel {
       id: map['id'],
       name: map['name'],
       image: map['image'],
+      rating: map['rating'],
       bannerImages: List<String>.from(map['bannerImages']),
       courses: List<CoachingCourseModel>.from(
           map['courses']?.map((x) => CoachingCourseModel.fromMap(x))),
@@ -61,7 +67,7 @@ class CoachingModel {
 
   @override
   String toString() {
-    return 'CoachingModel(id: $id, name: $name, image: $image, bannerImages: $bannerImages, courses: $courses, type: $type)';
+    return 'CoachingModel(id: $id, name: $name, image: $image, rating: $rating, bannerImages: $bannerImages, courses: $courses, type: $type)';
   }
 
   @override
@@ -71,6 +77,7 @@ class CoachingModel {
     return other is CoachingModel &&
         other.id == id &&
         other.name == name &&
+        other.rating == rating &&
         other.image == image &&
         listEquals(other.bannerImages, bannerImages) &&
         listEquals(other.courses, courses) &&
@@ -82,6 +89,7 @@ class CoachingModel {
     return id.hashCode ^
         name.hashCode ^
         image.hashCode ^
+    rating.hashCode ^
         bannerImages.hashCode ^
         courses.hashCode ^
         type.hashCode;

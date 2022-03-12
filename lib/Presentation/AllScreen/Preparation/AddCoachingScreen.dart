@@ -18,6 +18,8 @@ class AddCoachingScreen extends StatefulWidget {
 class _AddCoachingScreenState extends State<AddCoachingScreen> {
   TextEditingController nameController = TextEditingController();
   File? image;
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   bool loader = false;
   List<File> bannerImages = [];
 
@@ -55,6 +57,33 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("Coaching Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               InkWell(
@@ -194,6 +223,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                     await CoachingModel(
                       name: nameController.text,
                       image: downloadUrl,
+                      rating: selectedRating!,
                       bannerImages: bannerUrls,
                       courses: [],
                       type: CoachingController.to.selectedType(),
