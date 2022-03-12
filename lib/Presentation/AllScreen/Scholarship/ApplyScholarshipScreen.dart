@@ -160,10 +160,6 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                           ),
                                         ),
                                         onTap: () {
-                                          ScholarshipController.to.university
-                                              .value = scholarship.university;
-                                          ScholarshipController.to.course
-                                              .value = scholarship.course;
                                           Get.toNamed(
                                               AppRoutes
                                                   .SCHOLARSHIPAPPLYSCREEN,

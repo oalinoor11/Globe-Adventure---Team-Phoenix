@@ -15,9 +15,6 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
   TextEditingController _scholarshipNameController = TextEditingController();
   TextEditingController _videoIdController = TextEditingController();
   TextEditingController _applicationLinkController = TextEditingController();
-  UniversityModel? selectedUniversity;
-  String? selectedUniversityId;
-  CourseModel? selectedCourse;
   bool loader = false;
 
   @override
@@ -88,63 +85,6 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              FutureBuilder<List<UniversityModel>>(
-                builder: (context, snapshot) {
-                  return snapshot.hasData
-                      ? DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                          BorderSide(color: Colors.green, width: 1)),
-                    ),
-                          items: snapshot.data!
-                              .map((e) => DropdownMenuItem(
-                                    child: Text(e.name),
-                                    value: e.id,
-                                  ))
-                              .toList(),
-                          value: selectedUniversity?.id,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedUniversityId = value;
-                              selectedUniversity = snapshot.data!
-                                  .firstWhere((e) => e.id == value);
-                            });
-                          },
-                          hint: Text("Select University"),
-                        )
-                      : CircularProgressIndicator();
-                },
-                future: UniversityModel.getAllUniversities(),
-              ),
-              selectedUniversity == null
-                  ? Container()
-                  : Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: DropdownButtonFormField<CourseModel>(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide:
-                        BorderSide(color: Colors.green, width: 1)),
-                ),
-                        items: selectedUniversity!.courseList
-                            .map((e) => DropdownMenuItem(
-                                  child: Text(e.name),
-                                  value: e,
-                                ))
-                            .toList(),
-                        value: selectedCourse,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedCourse = value;
-                          });
-                        },
-                        hint: Text("Select Course"),
-                      ),
-                  ),
-              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: RaisedButton(
@@ -155,10 +95,10 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (selectedUniversity == null) {
+                    if (_scholarshipNameController == null) {
                       Get.snackbar(
                         "Error",
-                        "Please select university",
+                        "Please a Scholarship Nmae",
                         icon: Icon(
                           Icons.error,
                           color: Colors.white,
@@ -167,7 +107,7 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                       );
                       return;
                     }
-                    if (selectedCourse != null) {
+                    if (_videoIdController != null) {
                       setState(() {
                         loader = true;
                       });
@@ -176,8 +116,8 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                       name: _scholarshipNameController.text,
                       applicationLink: _applicationLinkController.text,
                       videoId: _videoIdController.text,
-                      university: selectedUniversity!,
-                      course: selectedCourse!,
+                      university: "none",
+                      course: "none",
                     ).save();
                     setState(() {
                       loader = false;
@@ -186,11 +126,7 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                     Get.snackbar(
                       "Success",
                       "Congratulation! Scholarship added successfully",
-                      icon: Icon(
-                        Icons.error,
-                        color: Colors.white,
-                      ),
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.green,
                     );
                     return;
                   },

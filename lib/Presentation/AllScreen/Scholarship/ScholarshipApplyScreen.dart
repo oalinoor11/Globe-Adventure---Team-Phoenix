@@ -205,7 +205,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                 SizedBox(height: 20),
                 TextFormField(
                   controller: _referralCodeController,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.name,
                   cursorColor: Colors.green,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
