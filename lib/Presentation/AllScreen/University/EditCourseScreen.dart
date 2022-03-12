@@ -42,13 +42,13 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
     "9 Months",
     "10 Months",
     "11 Months",
-    "1 Year"
-    "1.5 Years"
-    "2 Years"
-    "2.5 Years"
-    "3.5 Years"
-    "4.5 Years"
-    "5.5 Years"
+    "1 Year",
+    "1.5 Years",
+    "2 Years",
+    "2.5 Years",
+    "3.5 Years",
+    "4.5 Years",
+    "5.5 Years",
     "6 Years"
   ];
   String? selectedDuration;
