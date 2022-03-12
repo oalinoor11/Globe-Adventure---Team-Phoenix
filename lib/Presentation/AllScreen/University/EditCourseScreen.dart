@@ -27,7 +27,27 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   ];
   String? selectedLevel;
 
-  List durationList = ["1 Month", "2 Month", "3 Month", "6 Month", "1 Year"];
+  List durationList = [
+    "1 Month",
+    "2 Months",
+    "3 Months",
+    "4 Months",
+    "5 Months",
+    "6 Months",
+    "7 Months",
+    "8 Months",
+    "9 Months",
+    "10 Months",
+    "11 Months",
+    "1 Year"
+    "1.5 Years"
+    "2 Years"
+    "2.5 Years"
+    "3.5 Years"
+    "4.5 Years"
+    "5.5 Years"
+    "6 Years"
+  ];
   String? selectedDuration;
 
   CourseModel _courseModel = Get.arguments;
