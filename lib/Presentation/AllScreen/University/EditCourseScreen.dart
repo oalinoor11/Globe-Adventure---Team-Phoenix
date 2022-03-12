@@ -27,6 +27,9 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   ];
   String? selectedLevel;
 
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
+
   List durationList = [
     "1 Month",
     "2 Months",
@@ -75,6 +78,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
         TextEditingController(text: _courseModel.tuitionFees.toString());
     selectedLevel = _courseModel.level;
     selectedDuration = _courseModel.duration;
+    selectedCurrency = _courseModel.currency;
     super.initState();
   }
 
@@ -198,6 +202,33 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               TextField(
                 controller: _admissionFeesController,
                 keyboardType: TextInputType.number,
@@ -248,6 +279,7 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                     _courseModel.level = selectedLevel!;
                     _courseModel.requirements = _requirementsController.text;
                     _courseModel.scholarship = _scholarshipController.text;
+                    _courseModel.currency = selectedCurrency!;
                     _courseModel.duration = selectedDuration!;
                     Get.back(result: _courseModel);
                   },

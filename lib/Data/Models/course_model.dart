@@ -4,6 +4,7 @@ class CourseModel {
   late String name;
   late String duration;
   late String level;
+  late String currency;
   late String requirements;
   late String scholarship;
 
@@ -12,6 +13,7 @@ class CourseModel {
       required this.tuitionFees,
       required this.name,
       required this.level,
+      required this.currency,
       required this.requirements,
       required this.scholarship,
       required this.duration});
@@ -22,6 +24,7 @@ class CourseModel {
         tuitionFees: int.parse(json['tuitionFees'].toString()),
         name: json['name'],
         level: json['level'],
+        currency: json['currency'],
         requirements: json['requirements'],
         scholarship: json['scholarship'],
         duration: json['duration']);
@@ -34,6 +37,7 @@ class CourseModel {
     data['name'] = this.name;
     data['duration'] = this.duration;
     data['level'] = this.level;
+    data['currency'] = this.currency;
     data['requirements'] = this.requirements;
     data['scholarship'] = this.scholarship;
     return data;
@@ -41,7 +45,7 @@ class CourseModel {
 
   @override
   String toString() {
-    return 'CourseModel{admissionFees: $admissionFees, tuitionFees: $tuitionFees, name: $name, duration: $duration, level: $level, requirements: $requirements, scholarship: $scholarship}';
+    return 'CourseModel{admissionFees: $admissionFees, tuitionFees: $tuitionFees, name: $name, duration: $duration, currency: $currency, level: $level, requirements: $requirements, scholarship: $scholarship}';
   }
 
   @override
@@ -54,6 +58,7 @@ class CourseModel {
           name == other.name &&
           duration == other.duration &&
           level == other.level &&
+          currency == other.currency &&
           requirements == other.requirements &&
           scholarship == other.scholarship;
 
@@ -64,6 +69,7 @@ class CourseModel {
       name.hashCode ^
       duration.hashCode ^
       level.hashCode ^
+      currency.hashCode ^
       requirements.hashCode ^
       scholarship.hashCode;
 }

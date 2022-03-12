@@ -17,6 +17,8 @@ class AddUniversityCourseScreen extends StatefulWidget {
 
 class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
   List levelList = ["Diploma", "Undergraduate", "Postgraduate", "PhD", "Certificate"];
   String? selectedLevel;
 
@@ -175,6 +177,33 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               TextField(
                 controller: _admissionFeesController,
                 keyboardType: TextInputType.number,
@@ -228,6 +257,7 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                       admissionFees: int.parse(_admissionFeesController.text),
                       tuitionFees: int.parse(_tuitionFeesController.text),
                       name: _nameController.text,
+                      currency: selectedCurrency!,
                       level: selectedLevel!,
                       requirements: _requirementsController.text,
                       scholarship: _scholarshipController.text,
