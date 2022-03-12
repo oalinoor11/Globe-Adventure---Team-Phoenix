@@ -110,8 +110,8 @@ class _EditScholarshipScreenState extends State<EditScholarshipScreen> {
                     _scholarshipModel.videoId = _videoIdController.text;
                     _scholarshipModel.applicationLink =
                         _applicationLinkController.text;
-                    _scholarshipModel.university = "none";
-                    _scholarshipModel.course = "none";
+                    _scholarshipModel.university = null;
+                    _scholarshipModel.course = null;
                     await _scholarshipModel.update();
                     Get.back();
                   },

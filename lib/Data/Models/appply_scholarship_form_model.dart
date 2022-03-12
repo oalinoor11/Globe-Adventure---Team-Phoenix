@@ -20,8 +20,8 @@ class AppplyScholarshipFormModel {
   late String referralCode;
   late String image;
   late String signature;
-  late CourseModel course;
-  late UniversityModel university;
+  late CourseModel? course;
+  late UniversityModel? university;
 
   AppplyScholarshipFormModel({
     this.id,
@@ -92,8 +92,8 @@ class AppplyScholarshipFormModel {
       'referralCode': referralCode,
       'image': image,
       'signature': signature,
-      'course': course.toJson(),
-      'university': university.toJson(),
+      'course': course?.toJson(),
+      'university': university?.toJson(),
     };
   }
 
@@ -112,8 +112,11 @@ class AppplyScholarshipFormModel {
       referralCode: map['referralCode'],
       image: map['image'],
       signature: map['signature'],
-      course: CourseModel.fromJson(map['course']),
-      university: UniversityModel.fromJson(map['university']),
+      course:
+          map['course'] != null ? CourseModel.fromJson(map['course']) : null,
+      university: map['university'] != null
+          ? UniversityModel.fromJson(map['university'])
+          : null,
     );
   }
 

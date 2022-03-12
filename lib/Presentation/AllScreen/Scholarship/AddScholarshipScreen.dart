@@ -95,7 +95,7 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_scholarshipNameController == null) {
+                    if (_scholarshipNameController.text.isEmpty) {
                       Get.snackbar(
                         "Error",
                         "Please a Scholarship Nmae",
@@ -107,17 +107,32 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                       );
                       return;
                     }
-                    if (_videoIdController != null) {
+                    if (_videoIdController.text.isNotEmpty) {
                       setState(() {
                         loader = true;
                       });
+                    } else {
+                      Get.snackbar(
+                        "Error",
+                        "Please a Video ID",
+                        icon: Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.red,
+                      );
+                      return;
                     }
+
+                    // regex code for website url
+                    // RegExp exp = new RegExp(
+                    //     r"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$");
                     await ScholarshipModel(
                       name: _scholarshipNameController.text,
                       applicationLink: _applicationLinkController.text,
                       videoId: _videoIdController.text,
-                      university: "none",
-                      course: "none",
+                      university: null,
+                      course: null,
                     ).save();
                     setState(() {
                       loader = false;

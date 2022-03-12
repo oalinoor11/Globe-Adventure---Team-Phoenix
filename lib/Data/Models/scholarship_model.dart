@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:BornoBangla/Data/Models/course_model.dart';
-import 'package:BornoBangla/Data/Models/university_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 
 class ScholarshipModel {
@@ -9,8 +5,8 @@ class ScholarshipModel {
   late String name;
   late String applicationLink;
   late String videoId;
-  late String university;
-  late String course;
+  late String? university;
+  late String? course;
   ScholarshipModel({
     this.id,
     required this.name,

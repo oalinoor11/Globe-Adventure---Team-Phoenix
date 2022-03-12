@@ -359,9 +359,8 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                               referralCode: _referralCodeController.text,
                               image: studentImageUrl,
                               signature: signatureImageUrl,
-                              course: ScholarshipController.to.course()!,
-                              university:
-                                  ScholarshipController.to.university()!,
+                              course: ScholarshipController.to.course(),
+                              university: ScholarshipController.to.university(),
                             );
                             await appplyScholarshipFormModel.save();
                             setState(() {
@@ -377,9 +376,12 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                 queryParameters: {
                                   "api_key": "C20081696225eaffaf0075.13009072",
                                   "type": "text",
-                                  "contacts": _studentsPhoneController.text.trim(),
+                                  "contacts":
+                                      _studentsPhoneController.text.trim(),
                                   "senderid": "37935",
-                                  "msg": "প্রিয় "+_nameController.text.trim()+", আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ স্কলারশিপের আবেদন করেছেন।",
+                                  "msg": "প্রিয় " +
+                                      _nameController.text.trim() +
+                                      ", আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ স্কলারশিপের আবেদন করেছেন।",
                                 },
                               ),
                             );
