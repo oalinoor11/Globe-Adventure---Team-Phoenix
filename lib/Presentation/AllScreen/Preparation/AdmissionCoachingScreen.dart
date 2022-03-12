@@ -50,7 +50,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 8,
                           mainAxisSpacing: 8,
-                          childAspectRatio: 0.65,
+                          childAspectRatio: 0.74,
                           crossAxisCount: context.width > 1080 ? 4 : 2,
                         ),
                         itemBuilder: (context, index) {
@@ -82,28 +82,30 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5),
+                                  SizedBox(height: 10),
                                   Text(coaching.name,
                                       textAlign: TextAlign.center,
                                       style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
+                                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                                   SizedBox(height: 5),
-                                  Row(
+                                  Row(mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(Icons.star,color: Colors.white,),
+                                      Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
+                                      Icon(Icons.star,color: Colors.black54,size: 15),
                                       Text(
                                         coaching.rating,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1!
                                             .copyWith(
-                                          color: Colors.white,
+                                          color: Colors.black54,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20,
+                                          fontSize: 15,
                                         ),
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 5),
 
 
 
