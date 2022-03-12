@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatelessWidget {
 
@@ -91,13 +92,94 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
 
                 ),
-                  child: Row(
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Log Out",
-                        style: TextStyle(
-                            fontSize: 16.0, color: Colors.red, fontWeight: FontWeight.bold
+                      InkWell(
+                        child: Container(
+                          height: 50,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.blue, width: 2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.asset(
+                              "assets/sociallogo/facebook.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
+                        onTap: () async {
+                          await launch(
+                            "http://facebook.com/bornobanglaofficial",
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 10.0),
+                      InkWell(
+                        child: Container(
+                          height: 50,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.red, width: 2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.asset(
+                              "assets/sociallogo/youtube.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        onTap: () async {
+                          await launch(
+                            "http://youtube.com/channel/UCEsr4lXaksFUE5xZYkNkuhw",
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 10.0),
+                      InkWell(
+                        child: Container(
+                          height: 50,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.green, width: 2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.asset(
+                              "assets/sociallogo/phone.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        onTap: () async {
+                          await launch(
+                            "tel: +8801798161323",
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 10.0),
+                      InkWell(
+                        child: Container(
+                          height: 50,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.black, width: 2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.asset(
+                              "assets/sociallogo/website.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        onTap: () async {
+                          await launch(
+                            "http://bornobangla.com",
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -125,7 +207,7 @@ class ProfileScreen extends StatelessWidget {
                     child: Text(
                       "Log Out",
                       style: TextStyle(
-                          fontSize: 16.0, color: Colors.red, fontWeight: FontWeight.bold
+                          fontSize: 18.0, color: Colors.red, fontWeight: FontWeight.bold
                       ),
                     ),
                   ),
