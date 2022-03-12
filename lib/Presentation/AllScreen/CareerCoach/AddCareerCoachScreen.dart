@@ -14,6 +14,8 @@ class AddCareerCoachScreen extends StatefulWidget {
 }
 
 class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
   ScreenshotController screenshotController = ScreenshotController();
@@ -109,6 +111,33 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               TextField(
                 controller: _priceController,
                 keyboardType: TextInputType.number,
@@ -192,6 +221,7 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                     CoachModel(
                             name: _nameController.text,
                             price: _priceController.text,
+                            currency: selectedCurrency!,
                             image: downloadUrl,
                             description: _descriptionController.text,
                             title: _titleController.text,

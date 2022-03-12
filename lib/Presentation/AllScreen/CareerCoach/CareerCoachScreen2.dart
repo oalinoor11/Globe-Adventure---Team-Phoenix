@@ -107,10 +107,14 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Counselling Fee: ',
+                    'Counselling Fee:  ',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
+                  ),
+                  Text(
+                    coach.currency.toString(),
+                    textAlign: TextAlign.center,
                   ),
                   Text(
                     coach.price,

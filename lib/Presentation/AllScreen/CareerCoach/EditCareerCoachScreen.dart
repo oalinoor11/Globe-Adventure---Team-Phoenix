@@ -24,6 +24,9 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
   File? image;
   bool loader = false;
 
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
+
   TextEditingController _nameController = TextEditingController();
 
   TextEditingController _priceController = TextEditingController();
@@ -43,6 +46,7 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
     _titleController = TextEditingController(text: coach.title);
     _descriptionController = TextEditingController(text: coach.description);
     _coachVideoIdController = TextEditingController(text: coach.videoId);
+    selectedCurrency = coach.currency;
     super.initState();
   }
 
@@ -130,6 +134,33 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               TextField(
                 controller: _priceController,
                 keyboardType: TextInputType.number,
@@ -204,6 +235,7 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
                     coach.price = _priceController.text;
                     coach.title = _titleController.text;
                     coach.description = _descriptionController.text;
+                    coach.currency = selectedCurrency!;
                     coach.videoId = _coachVideoIdController.text;
                     await coach.Update();
                     setState(() {
