@@ -110,7 +110,8 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                             Text(
                               'Regular Fee:  ',
                               textAlign: TextAlign.center,
-                            ),Text(
+                            ),
+                            Text(
                               courseModel.currency.toString(),
                               textAlign: TextAlign.center,
                             ),

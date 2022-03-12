@@ -226,19 +226,24 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Text("Admission Fees: ",
+                                      Text("Admission Fees:  ",
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.bold)),
-                                      Expanded(
-                                        child: Text(
-                                            "\$${courseModel.admissionFees} USD",
-                                            softWrap: true,
-                                            maxLines: 3,
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                            )),
-                                      ),
+                                      Text(
+                                          courseModel.currency.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
+                                      Text(
+                                        courseModel.admissionFees.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
                                     ],
                                   ),
                                   SizedBox(
@@ -255,15 +260,20 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.bold)),
-                                      Expanded(
-                                        child: Text(
-                                            "\$${courseModel.tuitionFees} USD",
-                                            softWrap: true,
-                                            maxLines: 3,
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                            )),
-                                      ),
+                                      Text(
+                                          courseModel.currency.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
+                                      Text(
+                                          courseModel.tuitionFees.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
                                     ],
                                   ),
                                 ],
