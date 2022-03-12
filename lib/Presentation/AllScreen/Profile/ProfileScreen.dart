@@ -5,8 +5,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,15 +74,65 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
 
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      "vjnfx",
-                      style: TextStyle(
-                          fontSize: 16.0, color: Colors.red, fontWeight: FontWeight.bold
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextField(
+                        controller: nameController,
+                        keyboardType: TextInputType.text,
+                        cursorColor: Colors.green,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide(color: Colors.green, width: 1)),
+                          labelText: "Your Profession",
+                          labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        ),
+                        style: TextStyle(
+                          fontSize: 14.0,
+                        ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 15.0),
+                      TextField(
+                        controller: addressController,
+                        keyboardType: TextInputType.text,
+                        cursorColor: Colors.green,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide(color: Colors.green, width: 1)),
+                          labelText: "Your Address",
+                          labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        ),
+                        style: TextStyle(
+                          fontSize: 14.0,
+                        ),
+                      ),
+                      const SizedBox(height: 15.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60, right: 60),
+                        child: InkWell(
+                          child: Container(
+                            height: 50,
+                            width: double.infinity,
+                            decoration: new BoxDecoration(
+                              boxShadow: [
+                                new BoxShadow(
+                                  color: Colors.green,
+                                  blurRadius: 0,
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(child: Text("Be a Partner", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white),)),
+                          ),
+                          // onTap: () async {},
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 15.0),
