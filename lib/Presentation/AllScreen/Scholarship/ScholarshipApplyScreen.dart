@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:http/http.dart' as http;
 
 class ScholarshipApplyScreen extends StatefulWidget {
   @override
@@ -367,6 +368,21 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                               loader = false;
                             });
                             Get.toNamed(AppRoutes.BKASHSCREEN);
+                            // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                            var result = await http.get(
+                              Uri(
+                                scheme: "http",
+                                host: "msg.elitbuzz-bd.com",
+                                path: "/smsapi",
+                                queryParameters: {
+                                  "api_key": "C20081696225eaffaf0075.13009072",
+                                  "type": "text",
+                                  "contacts": _studentsPhoneController.text.trim(),
+                                  "senderid": "37935",
+                                  "msg": "প্রিয় "+_nameController.text.trim()+", আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ স্কলারশিপের আবেদন করেছেন।",
+                                },
+                              ),
+                            );
                           },
                           child: Center(
                             child: Text(

@@ -57,7 +57,7 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/schoolbanner2.png",
                         fit: BoxFit.cover,
                       ),
                     );

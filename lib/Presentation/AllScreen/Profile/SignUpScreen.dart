@@ -255,7 +255,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         colorText: Colors.white,
       );
 
-      // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01744198508&senderid=37935&msg=Test message one
+      // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
       var result = await http.get(
         Uri(
           scheme: "http",

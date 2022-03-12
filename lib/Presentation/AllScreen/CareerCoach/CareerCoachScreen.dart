@@ -49,7 +49,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/careercoachbanner.png",
                         fit: BoxFit.cover,
                       ),
                     );

@@ -49,7 +49,7 @@ class SchoolScreen extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/schoolbanner.png",
                         fit: BoxFit.cover,
                       ),
                     );

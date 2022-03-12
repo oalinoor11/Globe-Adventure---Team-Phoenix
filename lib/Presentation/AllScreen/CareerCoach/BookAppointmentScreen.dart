@@ -11,6 +11,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:http/http.dart' as http;
 
 class BookAppointmentScreen extends StatefulWidget {
   @override
@@ -174,7 +175,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                       ? Row(
                     children: [
                       SizedBox(width: 10),
-                      Text("Coach Photo",
+                      Text("Your Photo",
                           style: TextStyle(
                               color: Colors.black, fontSize: 16)),
                       SizedBox(width: 10),
@@ -226,6 +227,21 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                           setState(() {
                             isLoading = false;
                           });
+                          // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                          var result = await http.get(
+                            Uri(
+                              scheme: "http",
+                              host: "msg.elitbuzz-bd.com",
+                              path: "/smsapi",
+                              queryParameters: {
+                                "api_key": "C20081696225eaffaf0075.13009072",
+                                "type": "text",
+                                "contacts": phoneController.text.trim(),
+                                "senderid": "37935",
+                                "msg": "প্রিয় "+nameController.text.trim()+", আপনি সফলভাবে "+coachModel.name+"  এর এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
+                              },
+                            ),
+                          );
                           Get.toNamed(AppRoutes.BKASHSCREEN);
                         },
                         child: Center(

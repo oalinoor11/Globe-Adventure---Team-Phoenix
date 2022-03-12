@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:http/http.dart' as http;
 
 class CoachingApplyScreen extends StatefulWidget {
   @override
@@ -495,8 +496,23 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           setState(() {
                             isLoading = false;
                           });
-
                           Get.toNamed(AppRoutes.BKASHSCREEN);
+                          Get.toNamed(AppRoutes.BKASHSCREEN);
+                          // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                          var result = await http.get(
+                            Uri(
+                              scheme: "http",
+                              host: "msg.elitbuzz-bd.com",
+                              path: "/smsapi",
+                              queryParameters: {
+                                "api_key": "C20081696225eaffaf0075.13009072",
+                                "type": "text",
+                                "contacts": studentsPhoneController.text.trim(),
+                                "senderid": "37935",
+                                "msg": "প্রিয় "+nameController.text.trim()+", আপনি সফলভাবে "+selectedCoaching!.name+" কোচিং -এ "+selectedProgram!.name+" কোর্সে ভর্তির আবেদন করেছেন।",
+                              },
+                            ),
+                          );
                         },
                         child: Center(
                           child: Text(
