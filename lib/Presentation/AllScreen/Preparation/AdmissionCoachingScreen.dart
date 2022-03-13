@@ -50,7 +50,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 8,
                           mainAxisSpacing: 8,
-                          childAspectRatio: 0.74,
+                          childAspectRatio: 0.72,
                           crossAxisCount: context.width > 1080 ? 4 : 2,
                         ),
                         itemBuilder: (context, index) {

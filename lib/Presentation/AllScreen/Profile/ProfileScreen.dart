@@ -174,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
                         },
                       ),
-                      const SizedBox(width: 10.0),
+                      const SizedBox(width: 15.0),
                       InkWell(
                         child: Container(
                           height: 50,
@@ -196,7 +196,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
                         },
                       ),
-                      const SizedBox(width: 10.0),
+                      const SizedBox(width: 15.0),
                       InkWell(
                         child: Container(
                           height: 50,
@@ -218,7 +218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
                         },
                       ),
-                      const SizedBox(width: 10.0),
+                      const SizedBox(width: 15.0),
                       InkWell(
                         child: Container(
                           height: 50,
