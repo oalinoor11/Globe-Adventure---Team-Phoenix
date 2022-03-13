@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Text("oalinoor11@gmail.com", style: TextStyle(fontSize: 12, color: Colors.black87)),
                       ],
                     ),
-                    const SizedBox(width: 20.0),
+                    const SizedBox(width: 15.0),
                     Icon(Icons.arrow_forward_ios, color: Colors.grey,),
                   ],
                 ),
