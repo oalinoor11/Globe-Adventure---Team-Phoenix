@@ -3,11 +3,13 @@ import 'package:BornoBangla/Data/firebase_collections.dart';
 class CollegeModel {
   String? id;
   late String name;
+  late String rating;
   late String image;
   late String country;
   CollegeModel({
     this.id,
     required this.name,
+    required this.rating,
     required this.image,
     required this.country,
   });
@@ -15,6 +17,7 @@ class CollegeModel {
   factory CollegeModel.fromJson(Map<String, dynamic> json) => CollegeModel(
         id: json["id"],
         name: json["name"],
+        rating: json["rating"],
         image: json["image"],
         country: json["country"],
       );
@@ -22,13 +25,14 @@ class CollegeModel {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "rating": rating,
         "image": image,
         "country": country,
       };
 
   @override
   String toString() {
-    return 'CollegeModel{id: $id, name: $name, image: $image, country: $country}';
+    return 'CollegeModel{id: $id, name: $name, rating: $rating, image: $image, country: $country}';
   }
 
   save() {

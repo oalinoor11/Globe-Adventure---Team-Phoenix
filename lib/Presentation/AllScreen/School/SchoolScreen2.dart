@@ -104,6 +104,7 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   )),
+                              SizedBox(height: 5),
                               Row(mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
@@ -122,7 +123,6 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
                                 ],
                               ),
                               SizedBox(height: 5),
-                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -137,7 +137,7 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
-                      childAspectRatio: 0.85,
+                      childAspectRatio: 0.76,
                       mainAxisSpacing: 10,
                       crossAxisCount: context.width > 1080 ? 4 : 2,
                     ),

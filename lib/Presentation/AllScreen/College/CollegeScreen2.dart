@@ -103,6 +103,24 @@ class _CollegeScreen2State extends State<CollegeScreen2> {
                                     fontWeight: FontWeight.bold,
                                   )),
                               SizedBox(height: 5),
+                              Row(mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
+                                  Icon(Icons.star,color: Colors.black54,size: 15),
+                                  Text(
+                                    college.rating,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
                             ],
                           ),
                         ),
@@ -117,7 +135,7 @@ class _CollegeScreen2State extends State<CollegeScreen2> {
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
-                      childAspectRatio: 0.85,
+                      childAspectRatio: 0.76,
                       mainAxisSpacing: 10,
                       crossAxisCount: context.width > 1080 ? 4 : 2,
                     ),

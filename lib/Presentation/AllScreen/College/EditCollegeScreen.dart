@@ -22,12 +22,15 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   CollegeModel collegeModel = Get.arguments;
   TextEditingController _nameController = TextEditingController();
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   File? _image;
   bool loader = false;
 
   @override
   void initState() {
     _nameController = TextEditingController(text: collegeModel.name);
+    selectedRating = collegeModel.rating;
     super.initState();
   }
 
@@ -65,6 +68,33 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("College Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               InkWell(
@@ -123,6 +153,7 @@ class _EditCollegeScreenState extends State<EditCollegeScreen> {
                       collegeModel.image = downloadUrl;
                     }
                     collegeModel.name = _nameController.text;
+                    collegeModel.rating = selectedRating!;
                     await collegeModel.update();
                     setState(() {
                       loader = false;

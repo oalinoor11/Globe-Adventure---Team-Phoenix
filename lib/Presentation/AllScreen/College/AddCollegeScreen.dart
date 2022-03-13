@@ -25,6 +25,9 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _nameController = TextEditingController();
 
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
+
   File? _image;
   bool loader = false;
 
@@ -67,6 +70,33 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("School Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               InkWell(
@@ -177,6 +207,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
 
                       await CollegeModel(
                         name: _nameController.text,
+                        rating: selectedRating!,
                         image: downloadUrl,
                         country: CollegeController.to.selectedCountry(),
                       ).save();

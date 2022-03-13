@@ -30,6 +30,7 @@ class _EditSchoolScreenState extends State<EditSchoolScreen> {
   @override
   void initState() {
     _nameController.text = schoolModel.name;
+    selectedRating = schoolModel.rating;
     super.initState();
   }
 
