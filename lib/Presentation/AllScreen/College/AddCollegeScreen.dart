@@ -86,7 +86,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                       });
                     },
                     value: selectedRating,
-                    hint: Text("School Rating",
+                    hint: Text("College Rating",
                         style: TextStyle(color: Colors.black)),
                     items: ratingList
                         .map((e) => DropdownMenuItem<String>(

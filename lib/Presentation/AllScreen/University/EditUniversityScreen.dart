@@ -20,6 +20,8 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
   ScreenshotController screenshotController = ScreenshotController();
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   UniversityModel universityModel = Get.arguments;
 
   TextEditingController _nameController = TextEditingController();
@@ -29,6 +31,7 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
   @override
   void initState() {
     _nameController.text = universityModel.name;
+    selectedRating = universityModel.rating;
     super.initState();
   }
 
@@ -66,6 +69,33 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("University Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               InkWell(
@@ -125,6 +155,7 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                             .putFile(_image!);
                         var downloadUrl = await upload.ref.getDownloadURL();
                         universityModel.image = downloadUrl;
+                        universityModel.rating = selectedRating!;
                       }
                       await universityModel.update();
                       Get.back();

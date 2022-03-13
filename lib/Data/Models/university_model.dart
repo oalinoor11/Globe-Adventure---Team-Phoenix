@@ -6,6 +6,7 @@ import 'course_model.dart';
 class UniversityModel {
   String? id;
   late String name;
+  late String rating;
   late String image;
   late String country;
   List<CourseModel> courseList = [];
@@ -13,6 +14,7 @@ class UniversityModel {
   UniversityModel(
       {this.id,
       required this.name,
+      required this.rating,
       required this.image,
       required this.country,
       required this.courseList});
@@ -21,6 +23,7 @@ class UniversityModel {
     return UniversityModel(
       id: json['id'],
       name: json['name'],
+      rating: json['rating'],
       image: json['image'],
       country: json['country'],
       courseList: (json['courseList'] as List)
@@ -33,6 +36,7 @@ class UniversityModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
+    data['rating'] = this.rating;
     data['image'] = this.image;
     data['country'] = this.country;
     data['courseList'] = this.courseList.map((i) => i.toJson()).toList();
@@ -41,7 +45,7 @@ class UniversityModel {
 
   @override
   String toString() {
-    return 'UniversityModel{id: $id, name: $name, image: $image, Country: $country, courseList: $courseList}';
+    return 'UniversityModel{id: $id, name: $name, rating: $rating, image: $image, Country: $country, courseList: $courseList}';
   }
 
   static Stream<List<UniversityModel>> getUniversities(String country) {

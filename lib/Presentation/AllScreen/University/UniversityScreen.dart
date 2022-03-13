@@ -119,6 +119,24 @@ class _UniversityScreenState extends State<UniversityScreen> {
                                         fontWeight: FontWeight.bold,
                                       )),
                                   SizedBox(height: 5),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
+                                      Icon(Icons.star,color: Colors.black54,size: 15),
+                                      Text(
+                                        universityModel.rating,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
                                 ],
                               ),
                             ),
