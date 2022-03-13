@@ -77,7 +77,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 18.0),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 10,
-                          childAspectRatio: 0.85,
+                          childAspectRatio: 0.76,
                           mainAxisSpacing: 10,
                           crossAxisCount: context.width > 1080 ? 4 : 2,
                         ),
