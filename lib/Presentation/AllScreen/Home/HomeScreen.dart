@@ -47,11 +47,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 6),
             Container(
               height: 160,
-              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
               decoration: new BoxDecoration(color: Colors.white),
               child: InkWell(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: new BoxDecoration(
                         border: Border.all(color: Colors.grey),
@@ -79,7 +78,6 @@ class HomeScreen extends StatelessWidget {
             Container(
               height: 160,
               width: double.infinity,
-              padding: new EdgeInsets.only(left: 8, right: 8),
               decoration: new BoxDecoration(color: Colors.white),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -88,7 +86,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         child: Container(
-                          height: 150.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -112,7 +109,6 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(width: 8),
                       InkWell(
                         child: Container(
-                          height: 150.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -136,7 +132,6 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(width: 8),
                       InkWell(
                         child: Container(
-                          height: 150.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -163,17 +158,14 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 5),
             Container(
               height: 160,
-              width: double.infinity,
-              padding: new EdgeInsets.only(left: 8, right: 8),
               decoration: new BoxDecoration(color: Colors.white),
               child: Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.all(8.0),
                 child: new Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
                         child: Container(
-                          height: 150.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -197,7 +189,6 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(width: 8),
                       InkWell(
                         child: Container(
-                          height: 150.0,
                           decoration: new BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             boxShadow: [
@@ -224,11 +215,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 5),
             Container(
               height: 160,
-              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
               decoration: new BoxDecoration(color: Colors.white),
               child: InkWell(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: new BoxDecoration(
                       border: Border.all(color: Colors.grey),
@@ -255,11 +245,9 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 5),
             Container(
               height: 160,
-              width: double.infinity,
-              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
               decoration: new BoxDecoration(color: Colors.white),
               child: Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.all(8.0),
                 child: new Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
