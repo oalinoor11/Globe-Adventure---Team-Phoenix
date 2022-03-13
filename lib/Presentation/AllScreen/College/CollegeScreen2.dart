@@ -135,7 +135,7 @@ class _CollegeScreen2State extends State<CollegeScreen2> {
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
-                      childAspectRatio: 0.76,
+                      childAspectRatio: 0.74,
                       mainAxisSpacing: 10,
                       crossAxisCount: context.width > 1080 ? 4 : 2,
                     ),

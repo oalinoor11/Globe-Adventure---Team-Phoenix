@@ -27,6 +27,7 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   void initState() {
@@ -136,7 +137,11 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                      child: CircularProgressIndicator(),
+                     )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -144,22 +149,25 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_nameController.text.isEmpty) {
-                    } else {
-                      universityModel.name = _nameController.text;
-                      if (_image != null) {
-                        var upload = await FirebaseStorage.instance
-                            .ref()
-                            .child("country_flags")
-                            .child(_nameController.text)
-                            .putFile(_image!);
-                        var downloadUrl = await upload.ref.getDownloadURL();
-                        universityModel.image = downloadUrl;
-                        universityModel.rating = selectedRating!;
-                      }
-                      await universityModel.update();
-                      Get.back();
+                    if (_image != null) {
+                      setState(() {
+                        loader = true;
+                      });
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("university")
+                          .child(_nameController.text)
+                          .putFile(_image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      universityModel.image = downloadUrl;
                     }
+                    universityModel.name = _nameController.text;
+                    universityModel.rating = selectedRating!;
+                    await universityModel.update();
+                    Get.back();
+                    setState(() {
+                      loader = false;
+                    });
                   },
                   child: Center(
                     child: Text(
