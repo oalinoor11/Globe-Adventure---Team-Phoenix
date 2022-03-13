@@ -156,7 +156,7 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold,
-                                                    color: Colors.white)),
+                                                    color: Colors.white, fontSize: 12)),
                                           ),
                                         ),
                                         onTap: () {
@@ -175,7 +175,7 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                         },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10,
-                    childAspectRatio: 1.026,
+                    childAspectRatio: 1,
                     mainAxisSpacing: 10,
                     crossAxisCount: context.width > 1080 ? 4 : 2,
                   ),
