@@ -28,6 +28,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
   ScreenshotController screenshotController = ScreenshotController();
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController referralController = TextEditingController();
   TextEditingController fathersNameController = TextEditingController();
   TextEditingController mothersNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
@@ -383,6 +384,22 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              TextField(
+                controller: referralController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Referral Code (optional)",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 child: Row(
@@ -477,6 +494,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
 
                           CoachingApplyFormModel model = CoachingApplyFormModel(
                             name: nameController.text,
+                            referral: referralController.text,
                             email: emailController.text,
                             studentsPhone: studentsPhoneController.text,
                             parentsPhone: parentsPhoneController.text,
