@@ -114,7 +114,7 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.8,
+                        childAspectRatio: 0.78,
                         mainAxisSpacing: 10,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),
