@@ -112,6 +112,16 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.center,
                                     children: [
+                                      Text(
+                                          scholarship.name,
+                                          softWrap: true,
+                                          style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.bold,
+                                              color: Colors.black, fontSize: 16)),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
                                       InkWell(
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -175,7 +185,7 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                         },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10,
-                    childAspectRatio: 1,
+                    childAspectRatio: 0.88,
                     mainAxisSpacing: 10,
                     crossAxisCount: context.width > 1080 ? 4 : 2,
                   ),
