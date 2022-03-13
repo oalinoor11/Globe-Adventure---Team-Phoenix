@@ -114,7 +114,7 @@ class SchoolScreen extends StatelessWidget {
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.8,
+                        childAspectRatio: 0.76,
                         mainAxisSpacing: 10,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),
