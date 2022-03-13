@@ -47,26 +47,27 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 6),
             Container(
               height: 160,
-              width: double.infinity,
               padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
               decoration: new BoxDecoration(color: Colors.white),
               child: InkWell(
-                child: Container(
-                  width: double.infinity,
-                  decoration: new BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.grey.withOpacity(0.25),
-                        blurRadius: 5.0,
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(15),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: Container(
+                    decoration: new BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.grey.withOpacity(0.25),
+                          blurRadius: 5.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
 
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image(image: AssetImage("assets/preparation.png"), fit: BoxFit.cover,),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image(image: AssetImage("assets/preparation.png"), fit: BoxFit.cover,),
+                    ),
                   ),
                 ),
                 onTap: (){
@@ -78,170 +79,172 @@ class HomeScreen extends StatelessWidget {
             Container(
               height: 160,
               width: double.infinity,
-              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              padding: new EdgeInsets.only(left: 8, right: 8),
               decoration: new BoxDecoration(color: Colors.white),
-              child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/studyabroad.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/studyabroad.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.STUDYABROADSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.STUDYABROADSCREEN);
-                      },
-                    ),
-                    SizedBox(width: 8),
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+                      SizedBox(width: 8),
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/scholarship.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/scholarship.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.APPLYSCHOLARSHIPSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.APPLYSCHOLARSHIPSCREEN);
-                      },
-                    ),
-                    SizedBox(width: 8),
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+                      SizedBox(width: 8),
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/careercoach.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/careercoach.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.CAREERCOACHSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.CAREERCOACHSCREEN);
-                      },
-                    ),
-                  ]),
+                    ]),
+              ),
             ),
             SizedBox(height: 5),
             Container(
               height: 160,
               width: double.infinity,
-              padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              padding: new EdgeInsets.only(left: 8, right: 8),
               decoration: new BoxDecoration(color: Colors.white),
-              child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 170.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/school.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/school.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.SCHOOLSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.SCHOOLSCREEN);
-                      },
-                    ),
-                    SizedBox(width: 8),
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 170.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+                      SizedBox(width: 8),
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/college.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/college.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.COLLEGESCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.COLLEGESCREEN);
-                      },
-                    ),
-                  ]),
+                    ]),
+              ),
             ),
             SizedBox(height: 5),
             Container(
               height: 160,
-              width: double.infinity,
               padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
               decoration: new BoxDecoration(color: Colors.white),
               child: InkWell(
-                child: Container(
-                  width: double.infinity,
-                  decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.grey.withOpacity(0.25),
-                        blurRadius: 5.0,
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(15),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.grey.withOpacity(0.25),
+                          blurRadius: 5.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(15),
 
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image(image: AssetImage("assets/university.png"),fit: BoxFit.cover,),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image(image: AssetImage("assets/university.png"),fit: BoxFit.cover,),
+                    ),
                   ),
                 ),
                 onTap: (){
@@ -255,84 +258,84 @@ class HomeScreen extends StatelessWidget {
               width: double.infinity,
               padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
               decoration: new BoxDecoration(color: Colors.white),
-              child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/tutor.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/tutor.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.TUTORSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.TUTORSCREEN);
-                      },
-                    ),
-                    SizedBox(width: 8),
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+                      SizedBox(width: 8),
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/job.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/job.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.JOBSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.JOBSCREEN);
-                      },
-                    ),
-                    SizedBox(width: 8),
-                    InkWell(
-                      child: Container(
-                        height: 150.0,
-                        width: 110.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(0.25),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(15),
+                      SizedBox(width: 8),
+                      InkWell(
+                        child: Container(
+                          height: 150.0,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey.withOpacity(0.25),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(15),
 
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image(image: AssetImage("assets/BOOK.png"),fit: BoxFit.cover,),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image(image: AssetImage("assets/BOOK.png"),fit: BoxFit.cover,),
-                        ),
+                        onTap: (){
+                          Get.toNamed(AppRoutes.BOOKSCREEN);
+                        },
                       ),
-                      onTap: (){
-                        Get.toNamed(AppRoutes.BOOKSCREEN);
-                      },
-                    ),
-                  ]),
+                    ]),
+              ),
             ),
             SizedBox(height: 5),
           ],
