@@ -27,6 +27,8 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   bool loader = false;
 
   @override
@@ -63,6 +65,33 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("School Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               InkWell(
@@ -171,6 +200,7 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                       var downloadUrl = await upload.ref.getDownloadURL();
                       await SchoolModel(
                               name: _nameController.text,
+                              rating: selectedRating!,
                               image: downloadUrl,
                               country: SchoolController.to.selectedCountry())
                           .save();

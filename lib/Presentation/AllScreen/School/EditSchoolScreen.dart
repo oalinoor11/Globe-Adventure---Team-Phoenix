@@ -21,6 +21,8 @@ class _EditSchoolScreenState extends State<EditSchoolScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
   SchoolModel schoolModel = Get.arguments;
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   TextEditingController _nameController = TextEditingController();
   File? _image;
   bool loader = false;
@@ -65,6 +67,33 @@ class _EditSchoolScreenState extends State<EditSchoolScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("School Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               InkWell(
@@ -122,6 +151,7 @@ class _EditSchoolScreenState extends State<EditSchoolScreen> {
                       schoolModel.image = downloadUrl;
                     }
                     schoolModel.name = _nameController.text;
+                    schoolModel.rating = selectedRating!;
                     await schoolModel.update();
                     Get.back();
                     setState(() {
