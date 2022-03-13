@@ -24,6 +24,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   ScreenshotController screenshotController = ScreenshotController();
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController referralController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -190,6 +191,22 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              TextField(
+                controller: referralController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Referral Code (optional)",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: isLoading
@@ -216,6 +233,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
                           AppointmentApplicationModel(
                             name: nameController.text,
+                            referral: referralController.text,
                             phone: phoneController.text,
                             email: emailController.text,
                             age: ageController.text,

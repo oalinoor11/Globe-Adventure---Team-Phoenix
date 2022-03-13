@@ -6,6 +6,7 @@ import 'package:BornoBangla/Data/firebase_collections.dart';
 class AppointmentApplicationModel {
   String? id;
   late String name;
+  late String referral;
   late String phone;
   late String email;
   late String age;
@@ -16,6 +17,7 @@ class AppointmentApplicationModel {
   AppointmentApplicationModel({
     this.id,
     required this.name,
+    required this.referral,
     required this.phone,
     required this.email,
     required this.age,
@@ -28,6 +30,7 @@ class AppointmentApplicationModel {
   AppointmentApplicationModel copyWith({
     String? id,
     String? name,
+    String? referral,
     String? phone,
     String? email,
     String? age,
@@ -39,6 +42,7 @@ class AppointmentApplicationModel {
     return AppointmentApplicationModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      referral: referral ?? this.referral,
       phone: phone ?? this.phone,
       email: email ?? this.email,
       age: age ?? this.age,
@@ -53,6 +57,7 @@ class AppointmentApplicationModel {
     return {
       'id': id,
       'name': name,
+      'referral': referral,
       'phone': phone,
       'email': email,
       'age': age,
@@ -67,6 +72,7 @@ class AppointmentApplicationModel {
     return AppointmentApplicationModel(
       id: map['id'],
       name: map['name'],
+      referral: map['referral'],
       phone: map['phone'],
       email: map['email'],
       age: map['age'],
@@ -78,7 +84,7 @@ class AppointmentApplicationModel {
   }
   @override
   String toString() {
-    return 'AppointmentApplicationModel(id: $id, name: $name, phone: $phone, email: $email, age: $age, profession: $profession, purposeOfMeeting: $purposeOfMeeting, image: $image, coachModel: $coachModel)';
+    return 'AppointmentApplicationModel(id: $id, name: $name, referral: $referral, phone: $phone, email: $email, age: $age, profession: $profession, purposeOfMeeting: $purposeOfMeeting, image: $image, coachModel: $coachModel)';
   }
 
   @override
@@ -88,6 +94,7 @@ class AppointmentApplicationModel {
     return other is AppointmentApplicationModel &&
         other.id == id &&
         other.name == name &&
+        other.referral == referral &&
         other.phone == phone &&
         other.email == email &&
         other.age == age &&
@@ -101,6 +108,7 @@ class AppointmentApplicationModel {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
+    referral.hashCode ^
         phone.hashCode ^
         email.hashCode ^
         age.hashCode ^
