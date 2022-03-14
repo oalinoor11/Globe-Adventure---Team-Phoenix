@@ -5,6 +5,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../Data/Models/profile_model.dart';
+
 class ProfileScreen extends StatefulWidget {
 
   @override
@@ -12,7 +14,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  TextEditingController nameController = TextEditingController();
+  // ProfileModel profile = Get.arguments;
+  TextEditingController professionController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -24,42 +27,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [Container(),
               const SizedBox(height: 40.0),
-              Container(
-                width: double.infinity,
-                height: 130.0,
-                decoration: new BoxDecoration(
-                  boxShadow: [
-                    new BoxShadow(
-                      color: Colors.white,
-                      blurRadius: 0,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(width: 20.0),
-                    Container(
-                      height: 80,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset(
-                          "assets/shahed.png",
-                          fit: BoxFit.cover,
+              InkWell(
+                onTap: () {
+                  Get.toNamed(AppRoutes.EDITPROFILESCREEN,
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 130.0,
+                  decoration: new BoxDecoration(
+                    boxShadow: [
+                      new BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 20.0),
+                      Container(
+                        height: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset(
+                            "assets/shahed.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 20.0),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Shahed Oali Noor", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 10.0),
-                        Text("oalinoor11@gmail.com", style: TextStyle(fontSize: 12, color: Colors.black87)),
-                      ],
-                    ),
-                    const SizedBox(width: 15.0),
-                    Icon(Icons.arrow_forward_ios, color: Colors.grey,),
-                  ],
+                      const SizedBox(width: 20.0),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Shahed Oali Noor", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 10.0),
+                          Text("oalinoor11@gmail.com", style: TextStyle(fontSize: 12, color: Colors.black87)),
+                        ],
+                      ),
+                      const SizedBox(width: 15.0),
+                      Icon(Icons.arrow_forward_ios, color: Colors.grey,),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 15.0),
@@ -81,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextField(
-                        controller: nameController,
+                        controller: professionController,
                         keyboardType: TextInputType.text,
                         cursorColor: Colors.green,
                         decoration: InputDecoration(

@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 class FirebaseCollections {
   static CollectionReference COUNTRYCOLLECTION =
       FirebaseFirestore.instance.collection("COUNTRYLIST");
+  static CollectionReference PROFILECOLLECTION =
+  FirebaseFirestore.instance.collection("PROFILELIST");
   static CollectionReference SCHOOLCOLLECTION =
       FirebaseFirestore.instance.collection("SCHOOLLIST");
   static CollectionReference COLLEGECOLLECTION =

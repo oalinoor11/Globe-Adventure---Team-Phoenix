@@ -45,6 +45,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 import '../Presentation/AllScreen/Preparation/EditCoachingCourseScreen.dart';
+import '../Presentation/AllScreen/Profile/EditProfileScreen.dart';
 
 class AppRoutes {
   static const String INITAL = "/";
@@ -105,11 +106,18 @@ class AppRoutes {
   static const String UTTORONSCREEN = "/uttoronscreen";
   static const String SIRAJACADEMYSCREEN = "/sirajacademyscreen";
   static const String PROFILESCREEN = "/profilescreen";
+  static const String EDITPROFILESCREEN = "/editprofilescreen";
 
   static List<GetPage> routes = [
     GetPage(
         name: PROFILESCREEN,
         page: () => ProfileScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+
+    GetPage(
+        name: EDITPROFILESCREEN,
+        page: () => EditProfileScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
 

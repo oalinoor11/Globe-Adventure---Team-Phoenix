@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import '../../../Data/firebase_collections.dart';
 import '../../../main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
@@ -247,6 +248,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       };
 
       userRef.child(firebaseuser.uid).set(userDataMap);
+      FirebaseCollections.PROFILECOLLECTION.add({
+        "name": nameTextEditingController.text,
+        "phone": phoneTextEditingController.text,
+        "email": emailTextEditingController.text,
+      });
       Get.snackbar(
         "Congratulations!",
         "Your account has been Created successfully",
