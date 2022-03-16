@@ -14,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // ProfileModel profile = Get.arguments;
+  // ProfileModel profileModel = Get.arguments;
   TextEditingController professionController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   @override
@@ -30,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               InkWell(
                 onTap: () {
                   Get.toNamed(AppRoutes.EDITPROFILESCREEN,
+                      // arguments: profileModel
                   );
                 },
                 child: Container(

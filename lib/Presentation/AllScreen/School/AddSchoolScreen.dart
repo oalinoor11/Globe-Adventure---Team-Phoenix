@@ -14,6 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
+import '../../../Data/Models/profile_model.dart';
+
 class AddSchoolScreen extends StatefulWidget {
   @override
   State<AddSchoolScreen> createState() => _AddSchoolScreenState();

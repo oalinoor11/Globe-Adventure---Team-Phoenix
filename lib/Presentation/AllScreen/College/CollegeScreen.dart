@@ -116,7 +116,7 @@ class CollegeScreen extends StatelessWidget {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 0.76,
+                        childAspectRatio: 0.95,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),
                       // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
