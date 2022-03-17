@@ -15,6 +15,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   // ProfileModel profileModel = Get.arguments;
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+
   bool loader = false;
 
   // @override
