@@ -25,6 +25,7 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
 
   File? _image;
   bool loader = false;
+  List<File> bannerImages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +114,58 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                 ),
               ),
               Text("(image ratio should be 4/3)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
+              GridView.builder(
+                //padding: EdgeInsets.symmetric(horizontal: 18.0),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () async {
+                      var pickedFile = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        setState(() {
+                          bannerImages.add(File(pickedFile.path));
+                        });
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: bannerImages.length > index
+                          ? Image.file(bannerImages[index])
+                          : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Banner Image",
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 14)),
+                          SizedBox(height: 5),
+                          Icon(
+                            Icons.add_a_photo,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: bannerImages.length + 1,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 16/9,
+                  crossAxisCount: context.width > 1080 ? 4 : 3,),
+              ),
+              Text("(image ratio should be 16/9)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
