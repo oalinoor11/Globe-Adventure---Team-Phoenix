@@ -112,8 +112,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -123,13 +123,12 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: _image == null
-                      ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("College Image",
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("College Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -140,6 +139,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                       : Image.file(_image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
