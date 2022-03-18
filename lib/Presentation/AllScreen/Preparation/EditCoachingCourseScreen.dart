@@ -98,8 +98,8 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -113,6 +113,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                       : Image.file(image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               SizedBox(
                 child: DropdownButtonFormField<String>(
