@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                   channel.id,
                   channel.name,
                   // channel.description,
-                  // color: Colors.white,
+                  // color: Colors.green,
                   playSound: true,
                   icon: '@mipmap/ic_launcher',
                 )
