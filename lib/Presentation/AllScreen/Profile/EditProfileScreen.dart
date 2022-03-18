@@ -11,10 +11,12 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  TextEditingController nameController = TextEditingController();
   // ProfileModel profileModel = Get.arguments;
+  TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController professionController = TextEditingController();
 
   bool loader = false;
 
@@ -31,6 +33,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        centerTitle: true,
+        title: Center(
+          child: Text(
+            "Edit Profile",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -85,6 +98,38 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
                 SizedBox(height: 20,),
+                TextField(
+                  controller: professionController,
+                  keyboardType: TextInputType.text,
+                  cursorColor: Colors.green,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.green, width: 1)),
+                    labelText: "Your Profession",
+                    labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                  ),
+                  style: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                ),
+                SizedBox(height: 20,),
+                TextField(
+                  controller: addressController,
+                  keyboardType: TextInputType.text,
+                  cursorColor: Colors.green,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.green, width: 1)),
+                    labelText: "Your Address",
+                    labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                  ),
+                  style: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                ),
+                SizedBox(height: 20,),
                 Container(
                   height: 50,
                   child: RaisedButton(
@@ -98,13 +143,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       // if (
                       //     phoneController.text.isNotEmpty &&
                       //     emailController.text.isNotEmpty &&
+                      //     professionController.text.isNotEmpty &&
+                      //     addressController.text.isNotEmpty &&
                       //     nameController.text.isNotEmpty) {
                       //   setState(() {
                       //     loader = true;
                       //   });
                       //   profileModel.name = nameController.text;
                       //   profileModel.phone = phoneController.text;
-                      //   profileModel.phone = emailController.text;
+                      //   profileModel.email = emailController.text;
+                      //   profileModel.address = emailController.text;
+                      //   profileModel.profession = emailController.text;
                       //   await profileModel.update();
                       //   setState(() {
                       //     loader = false;
