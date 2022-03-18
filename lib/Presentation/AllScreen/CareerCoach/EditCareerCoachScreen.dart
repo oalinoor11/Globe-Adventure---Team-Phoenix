@@ -189,8 +189,8 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
