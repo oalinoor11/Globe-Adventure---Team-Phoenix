@@ -96,7 +96,7 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
                       : Image.file(image!),
                 ),
               ),
-              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+              Text("(image ratio should be 4/3)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
