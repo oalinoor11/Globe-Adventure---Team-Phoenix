@@ -231,8 +231,8 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     }
                   },
                   child: Container(
-                    height: 65,
-                    width: double.infinity,
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -242,13 +242,12 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: _studentsPhoto == null
-                        ? Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Text("Student's Photo",
+                        ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Student's Photo",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16)),
-                              SizedBox(width: 10),
+                                      color: Colors.black, fontSize: 12)),
+                              SizedBox(height: 10),
                               Icon(
                                 Icons.add_a_photo,
                                 size: 20,
