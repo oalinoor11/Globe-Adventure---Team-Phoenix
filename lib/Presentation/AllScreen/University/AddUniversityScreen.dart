@@ -106,8 +106,8 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -117,13 +117,12 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: _image == null
-                      ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("University Image",
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("University Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -134,6 +133,7 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                       : Image.file(_image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
