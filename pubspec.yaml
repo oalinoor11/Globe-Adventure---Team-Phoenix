@@ -45,6 +45,8 @@ dependencies:
   firebase_database: ^7.1.1
   firebase_storage: ^10.2.4
   firebase_auth: ^2.0.0
+  firebase_messaging: ^11.2.11
+  flutter_local_notifications: ^9.4.0
   shared_preferences: ^2.0.12
   url_launcher: ^6.0.12
   cool_alert:
