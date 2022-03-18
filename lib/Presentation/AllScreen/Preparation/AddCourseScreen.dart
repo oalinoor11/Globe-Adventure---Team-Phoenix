@@ -74,8 +74,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -85,13 +85,12 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: image == null
-                      ? Row(
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(width: 10),
                             Text("Course Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -102,6 +101,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                       : Image.file(image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               SizedBox(
                 child: DropdownButtonFormField<String>(
