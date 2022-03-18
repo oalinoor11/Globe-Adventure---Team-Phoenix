@@ -81,8 +81,8 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 75,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -96,6 +96,7 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
                       : Image.file(image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
