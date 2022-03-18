@@ -113,8 +113,8 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
-                    height: 150,
-                    width: double.infinity,
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -134,6 +134,7 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                   ),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
