@@ -111,7 +111,6 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                   child: image == null
                       ? Column(mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(width: 10),
                             Text("Logo",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 16)),
