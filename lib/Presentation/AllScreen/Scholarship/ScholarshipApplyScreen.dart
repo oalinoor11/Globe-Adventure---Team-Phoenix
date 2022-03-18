@@ -258,6 +258,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                         : Image.file(_studentsPhoto!),
                   ),
                 ),
+                Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
                 SizedBox(height: 20),
                 Container(
                   width: double.infinity,
