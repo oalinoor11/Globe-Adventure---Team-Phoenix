@@ -22,6 +22,7 @@ class CoachingApplyScreen extends StatefulWidget {
 
 class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
   List timeList = ["Morning", "Day", "Evening"];
+  String? selectedTime;
 
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
@@ -43,7 +44,6 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
   CoachingModel? selectedCoaching;
   CoachingCourseModel? selectedProgram;
   String? selectedBranch;
-  String? selectedTime;
   bool isLoading = false;
 
   @override
