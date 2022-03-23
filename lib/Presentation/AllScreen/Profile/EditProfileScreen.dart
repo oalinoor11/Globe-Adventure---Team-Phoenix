@@ -59,7 +59,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image(
-                      image: NetworkImage("https://firebasestorage.googleapis.com/v0/b/bornobangla-48c47.appspot.com/o/samplepropic.png?alt=media&token=cdd47354-ad50-43f3-9c03-752265b83605"),
+                      image: NetworkImage("https://scontent.fdac11-2.fna.fbcdn.net/v/t1.6435-9/65957001_487220221850166_7397278334893162496_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF0h-Up5BzXreiJSQWvOneFriIYRDQUdRuuIhhENBR1G6wYzRUn1MyFn8TND0B7xPlr05IMEQbu46eum4Pe_6hT&_nc_ohc=1a9SL5kiRFwAX-Eyckc&_nc_ht=scontent.fdac11-2.fna&oh=00_AT_LnN1CwAgDxRl5e3VYpQwkHCqRfMAsU5tOqr8eNN5Lqw&oe=625FEF3E"),
                       fit: BoxFit.cover,
                     ),
                   ),
