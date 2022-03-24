@@ -26,6 +26,7 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
   TextEditingController nameController = TextEditingController();
 
   File? image;
+  File? bannerImages;
   bool loader = false;
   @override
   void initState() {
@@ -98,6 +99,38 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
               ),
               Text("(image ratio should be 4/3)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
+              InkWell(
+                onTap: () async {
+                  print("camera button clicked");
+                  var pickedFile = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      bannerImages = File(pickedFile.path);
+                    });
+                  }
+                },
+                child: Container(
+                  height: 90,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: bannerImages == null
+                      ? Image.network(countryModel.bannerImages)
+                      : Image.file(bannerImages!),
+                ),
+              ),
+              Text(
+                "(image ratio should be 16/9)",
+                style: TextStyle(color: Colors.grey),
+              ),
+              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: loader
@@ -112,17 +145,27 @@ class _EditCountryScreenState extends State<EditCountryScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      loader = true;
+                    });
                     if (image != null) {
-                      setState(() {
-                        loader = true;
-                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
-                          .child("country")
+                          .child("image")
                           .child(nameController.text)
                           .putFile(image!);
-                      var countryImage = await upload.ref.getDownloadURL();
-                      countryModel.countryFlag = countryImage;
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      countryModel.countryFlag = downloadUrl;
+                    }
+                    if (bannerImages != null) {
+                      var upload2 = await FirebaseStorage.instance
+                          .ref()
+                          .child("banner")
+                          .child(nameController.text)
+                          .putFile(bannerImages!);
+                      var bannerUrls = await upload2.ref.getDownloadURL();
+
+                      countryModel.bannerImages = bannerUrls;
                     }
                     countryModel.countryName = nameController.text;
                     await countryModel.update();
