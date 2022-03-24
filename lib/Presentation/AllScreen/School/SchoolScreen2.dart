@@ -43,27 +43,10 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(),
-            CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 1.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
+            Container(
+              child: Image(
+                image: NetworkImage(country.bannerImages),
               ),
-              items: [1].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: double.infinity,
-                      child: Image.asset(
-                        "assets/schoolbanner2.png",
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
             ),
             const SizedBox(height: 18.0),
             StreamBuilder(
