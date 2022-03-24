@@ -27,6 +27,7 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
   List ratingList = ["1", "2", "3", "4", "5"];
   String? selectedRating;
   File? image;
+  File? bannerImages;
   bool loader = false;
   @override
   void initState() {
@@ -127,6 +128,35 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
               ),
               Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
+              InkWell(
+                onTap: () async {
+                  print("camera button clicked");
+                  var pickedFile = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      bannerImages = File(pickedFile.path);
+                    });
+                  }
+                },
+                child: Container(
+                  height: 90,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: bannerImages == null
+                      ? Image.network(coachingModel.bannerImages)
+                      : Image.file(bannerImages!),
+                ),
+              ),
+              Text("(image ratio should be 16/9)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: loader
@@ -140,27 +170,35 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(8.0),
                         ),
-                        onPressed: () async {
-                          setState(() {
-                            loader = true;
-                          });
-                          if (image != null) {
-                            var upload = await FirebaseStorage.instance
-                                .ref()
-                                .child("coaching")
-                                .child(nameController.text)
-                                .putFile(image!);
-                            var downloadUrl = await upload.ref.getDownloadURL();
-                            coachingModel.image = downloadUrl;
-                          }
-                          coachingModel.name = nameController.text;
-                          coachingModel.rating = selectedRating!;
-                          await coachingModel.update();
-                          setState(() {
-                            loader = false;
-                          });
-                          Get.back();
-                        },
+                  onPressed: () async {
+                    if (image != null && bannerImages != null) {
+                      setState(() {
+                        loader = true;
+                      });
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("image")
+                          .child(nameController.text)
+                          .putFile(image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+
+                      var upload2 = await FirebaseStorage.instance
+                          .ref()
+                          .child("banner")
+                          .child(nameController.text)
+                          .putFile(bannerImages!);
+                      var bannerUrls = await upload2.ref.getDownloadURL();
+
+                      coachingModel.image = downloadUrl;
+                      coachingModel.bannerImages = bannerUrls;
+                    }
+                    coachingModel.name = nameController.text;
+                    await coachingModel.update();
+                    setState(() {
+                      loader = false;
+                    });
+                    Get.back();
+                  },
                         child: Center(
                           child: Text(
                             "Save Changes",
