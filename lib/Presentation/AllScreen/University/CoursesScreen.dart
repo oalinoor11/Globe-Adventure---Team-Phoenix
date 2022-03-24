@@ -43,27 +43,10 @@ class _CoursesScreenState extends State<CoursesScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(),
-            CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 1.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
+            Container(
+              child: Image(
+                image: NetworkImage(universityModel.bannerImages),
               ),
-              items: [1].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: double.infinity,
-                      child: Image.asset(
-                        "assets/coursebanner.png",
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
             ),
             SizedBox(height: 10),
             ListView.separated(
