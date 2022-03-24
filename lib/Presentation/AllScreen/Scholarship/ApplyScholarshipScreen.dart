@@ -194,6 +194,9 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                     : CircularProgressIndicator();
               },
             ),
+            SizedBox(
+              height: 18,
+            ),
           ],
         ),
       ),

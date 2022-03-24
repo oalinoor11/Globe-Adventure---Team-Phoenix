@@ -126,6 +126,9 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                   }
                 },
                 stream: CountryModel.getCountries()),
+            SizedBox(
+              height: 18,
+            ),
           ],
         ),
       ),
