@@ -90,106 +90,105 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   ),
                   child:
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20.0),
-                        Text("Good Day!", style: TextStyle(fontSize: 25,
-                            color: Colors.teal,),),
-                        const SizedBox(height: 25.0),
-                        Container(
-                          width: 200,
-                          height: 50,
-                          decoration: new BoxDecoration(
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.teal,
-                                blurRadius: 0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(8),
-
-                          ),
-                          child:
-                          Center(child: Text("ABCDHSEF", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
-                            color: Colors.white,),),),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text("Share you partner code with your friend", style: TextStyle(fontSize: 12,
-                          color: Colors.blue,),),
-                      ],
-                    ),
-                  ),
                   // Padding(
                   //   padding: const EdgeInsets.all(20.0),
-                  //   child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  //   child: Column(
                   //     children: [
-                  //       const SizedBox(height: 15.0),
+                  //       const SizedBox(height: 20.0),
+                  //       Text("Good Day!", style: TextStyle(fontSize: 25,
+                  //           color: Colors.teal,),),
+                  //       const SizedBox(height: 25.0),
                   //       Container(
-                  //         height: 120,
-                  //         child: ClipRRect(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           child: Image.asset(
-                  //             "assets/partner.png",
-                  //             fit: BoxFit.cover,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(left: 60, right: 60),
-                  //         child: InkWell(
-                  //           onTap: () async {
-                  //             var result = await CoolAlert.show(
-                  //               backgroundColor: Colors.green,
-                  //               confirmBtnColor: Colors.green,
-                  //               confirmBtnText: ("Confirm"),
-                  //               width: 10,
-                  //               context: context,
-                  //               type: CoolAlertType.confirm,
-                  //               onCancelBtnTap: () => Get.back(result: false),
-                  //               onConfirmBtnTap: () => Get.back(result: true),
-                  //             );
-                  //             if (result) {
-                  //               var result = await http.get(
-                  //                 Uri(
-                  //                   scheme: "http",
-                  //                   host: "msg.elitbuzz-bd.com",
-                  //                   path: "/smsapi",
-                  //                   queryParameters: {
-                  //                     "api_key": "C20081696225eaffaf0075.13009072",
-                  //                     "type": "text",
-                  //                     "contacts": "01798161323",
-                  //                     "senderid": "37935",
-                  //                     "msg": "প্রিয় Shahed, পার্টনার হওয়ার জন্য আপনার অনুরোধটি গ্রহণ করা হয়েছ।  আপনার পার্টনার কোড: HDBFH",
-                  //                   },
-                  //                 ),
-                  //               );
-                  //               Get.back();
-                  //             }
-                  //           },
-                  //           child: Container(
-                  //             height: 50,
-                  //             width: double.infinity,
-                  //             decoration: new BoxDecoration(
-                  //               boxShadow: [
-                  //                 new BoxShadow(
-                  //                   color: Colors.green,
-                  //                   blurRadius: 0,
-                  //                 ),
-                  //               ],
-                  //               borderRadius: BorderRadius.circular(10),
+                  //         width: 200,
+                  //         height: 50,
+                  //         decoration: new BoxDecoration(
+                  //           boxShadow: [
+                  //             new BoxShadow(
+                  //               color: Colors.teal,
+                  //               blurRadius: 0,
                   //             ),
-                  //             child: Center(child: Text("Be a Partner", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white),)),
-                  //           ),
-                  //           // onTap: () async {},
-                  //         ),
-                  //       ),
-                  //       const SizedBox(height: 15.0),
+                  //           ],
+                  //           borderRadius: BorderRadius.circular(8),
                   //
+                  //         ),
+                  //         child:
+                  //         Center(child: Text("ABCDHSEF", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
+                  //           color: Colors.white,),),),
+                  //       ),
+                  //       const SizedBox(height: 8.0),
+                  //       Text("Share you partner code with your friend", style: TextStyle(fontSize: 12,
+                  //         color: Colors.blue,),),
                   //     ],
                   //   ),
                   // ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 120,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/partner.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 60, right: 60),
+                          child: InkWell(
+                            onTap: () async {
+                              var result = await CoolAlert.show(
+                                backgroundColor: Colors.green,
+                                confirmBtnColor: Colors.green,
+                                confirmBtnText: ("Confirm"),
+                                width: 10,
+                                context: context,
+                                type: CoolAlertType.confirm,
+                                onCancelBtnTap: () => Get.back(result: false),
+                                onConfirmBtnTap: () => Get.back(result: true),
+                              );
+                              if (result) {
+                                var result = await http.get(
+                                  Uri(
+                                    scheme: "http",
+                                    host: "msg.elitbuzz-bd.com",
+                                    path: "/smsapi",
+                                    queryParameters: {
+                                      "api_key": "C20081696225eaffaf0075.13009072",
+                                      "type": "text",
+                                      "contacts": "01798161323",
+                                      "senderid": "37935",
+                                      "msg": "প্রিয় Shahed, পার্টনার হওয়ার জন্য আপনার অনুরোধটি গ্রহণ করা হয়েছ।  আপনার পার্টনার কোড: HDBFH",
+                                    },
+                                  ),
+                                );
+                                Get.back();
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              width: double.infinity,
+                              decoration: new BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.green,
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(child: Text("Be a Partner", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white),)),
+                            ),
+                            // onTap: () async {},
+                          ),
+                        ),
+                        const SizedBox(height: 15.0),
+
+                      ],
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 15.0),
                 Container(
