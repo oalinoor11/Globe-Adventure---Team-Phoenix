@@ -38,7 +38,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
             CarouselSlider(
               options: CarouselOptions(
                 viewportFraction: 1.0,
-                autoPlay: true,
+                autoPlay: false,
                 autoPlayInterval: Duration(seconds: 3),
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 autoPlayCurve: Curves.fastOutSlowIn,
