@@ -26,8 +26,8 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  File? bannerImages;
   bool loader = false;
-  List<File> bannerImages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -117,55 +117,44 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
               ),
               Text("(image ratio should be 4/3)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
-              GridView.builder(
-                //padding: EdgeInsets.symmetric(horizontal: 18.0),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () async {
-                      var pickedFile = await ImagePicker()
-                          .pickImage(source: ImageSource.gallery);
-                      if (pickedFile != null) {
-                        setState(() {
-                          bannerImages.add(File(pickedFile.path));
-                        });
-                      }
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: bannerImages.length > index
-                          ? Image.file(bannerImages[index])
-                          : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Banner Image",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 14)),
-                          SizedBox(height: 5),
-                          Icon(
-                            Icons.add_a_photo,
-                            size: 20,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+              InkWell(
+                onTap: () async {
+                  print("camera button clicked");
+                  var pickedFile = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      bannerImages = File(pickedFile.path);
+                    });
+                  }
                 },
-                itemCount: bannerImages.length + 1,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 16/9,
-                  crossAxisCount: context.width > 1080 ? 4 : 3,),
+                child: Container(
+                  height: 90,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: bannerImages == null
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Banner Image",
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16)),
+                      SizedBox(height: 10),
+                      Icon(
+                        Icons.add_a_photo,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ],
+                  )
+                      : Image.file(bannerImages!),
+                ),
               ),
               Text("(image ratio should be 16/9)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
@@ -221,7 +210,7 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                         padding: EdgeInsets.all(8),
                         animationDuration: Duration(milliseconds: 500),
                       );
-                    } else if (_image != null &&
+                    } else if (_image != null && bannerImages != null &&
                         _nameController.text.isNotEmpty) {
                       setState(() {
                         loader = true;
@@ -232,20 +221,18 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
-                      var bannerUrls = <String>[];
-                      bannerUrls =
-                      await Future.wait(await bannerImages.map((e) async {
-                        var upload = await FirebaseStorage.instance
-                            .ref()
-                            .child("country_flags")
-                            .child(_nameController.text)
-                            .putFile(_image!);
-                        var downloadUrl = await upload.ref.getDownloadURL();
-                        return downloadUrl;
-                      }).toList());
+
+                      var upload2 = await FirebaseStorage.instance
+                          .ref()
+                          .child("banner")
+                          .child(_nameController.text)
+                          .putFile(bannerImages!);
+                      var bannerUrls = await upload2.ref.getDownloadURL();
+
                       await CountryModel(
                         countryName: _nameController.text,
                         countryFlag: downloadUrl,
+                        bannerImages: bannerUrls,
                       ).save();
                       setState(() {
                         loader = false;

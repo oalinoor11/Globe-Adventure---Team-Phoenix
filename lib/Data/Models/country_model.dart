@@ -4,27 +4,31 @@ class CountryModel {
   String? id;
   late String countryName;
   late String countryFlag;
+  late String bannerImages;
   CountryModel({
     this.id,
     required this.countryName,
     required this.countryFlag,
+    required this.bannerImages,
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
         id: json["id"],
         countryName: json["countryName"],
         countryFlag: json["countryFlag"],
+        bannerImages: json["bannerImages"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "countryName": countryName,
         "countryFlag": countryFlag,
+        "bannerImages": bannerImages,
       };
 
   @override
   String toString() {
-    return 'CountryModel{id: $id, countryName: $countryName, countryFlag: $countryFlag}';
+    return 'CountryModel{id: $id, countryName: $countryName, countryFlag: $countryFlag, bannerImages: $bannerImages}';
   }
 
   save() {
