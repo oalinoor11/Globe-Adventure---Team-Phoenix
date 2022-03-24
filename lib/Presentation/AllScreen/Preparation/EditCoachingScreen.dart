@@ -200,6 +200,7 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                             coachingModel.bannerImages = bannerUrls;
                           }
                           coachingModel.name = nameController.text;
+                          coachingModel.rating = selectedRating!;
                           await coachingModel.update();
                           setState(() {
                             loader = false;
