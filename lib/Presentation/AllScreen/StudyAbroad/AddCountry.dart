@@ -12,6 +12,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
+import '../../../Data/Models/country_model.dart';
+
 class AddCountryScreen extends StatefulWidget {
   @override
   State<AddCountryScreen> createState() => _AddCountryScreenState();
@@ -230,10 +232,21 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
-                      FirebaseCollections.COUNTRYCOLLECTION.add({
-                        "countryName": _nameController.text,
-                        "countryFlag": downloadUrl,
-                      });
+                      var bannerUrls = <String>[];
+                      bannerUrls =
+                      await Future.wait(await bannerImages.map((e) async {
+                        var upload = await FirebaseStorage.instance
+                            .ref()
+                            .child("country_flags")
+                            .child(_nameController.text)
+                            .putFile(_image!);
+                        var downloadUrl = await upload.ref.getDownloadURL();
+                        return downloadUrl;
+                      }).toList());
+                      await CountryModel(
+                        countryName: _nameController.text,
+                        countryFlag: downloadUrl,
+                      ).save();
                       setState(() {
                         loader = false;
                       });

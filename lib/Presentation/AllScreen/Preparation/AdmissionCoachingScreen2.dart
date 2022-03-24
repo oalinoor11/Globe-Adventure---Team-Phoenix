@@ -41,27 +41,10 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 1.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
+            Container(
+              child: Image(
+                image: NetworkImage(coachingModel.bannerImages),
               ),
-              items: coachingModel.bannerImages.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: double.infinity,
-                      child: Image.network(
-                        i,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
             ),
             SizedBox(height: 18),
             GridView.builder(

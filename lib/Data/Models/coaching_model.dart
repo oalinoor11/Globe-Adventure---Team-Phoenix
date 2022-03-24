@@ -6,8 +6,8 @@ class CoachingModel {
   String? id;
   late String name;
   late String image;
+  late String bannerImages;
   late String rating;
-  List<String> bannerImages = [];
   List<CoachingCourseModel> courses = [];
   late String type;
   CoachingModel({
@@ -24,8 +24,8 @@ class CoachingModel {
     String? id,
     String? name,
     String? image,
+    String? bannerImages,
     String? rating,
-    List<String>? bannerImages,
     List<CoachingCourseModel>? courses,
     String? type,
   }) {
@@ -57,8 +57,8 @@ class CoachingModel {
       id: map['id'],
       name: map['name'],
       image: map['image'],
+      bannerImages: map['bannerImages'],
       rating: map['rating'],
-      bannerImages: List<String>.from(map['bannerImages']),
       courses: List<CoachingCourseModel>.from(
           map['courses']?.map((x) => CoachingCourseModel.fromMap(x))),
       type: map['type'],
@@ -79,7 +79,7 @@ class CoachingModel {
         other.name == name &&
         other.rating == rating &&
         other.image == image &&
-        listEquals(other.bannerImages, bannerImages) &&
+        other.bannerImages == bannerImages &&
         listEquals(other.courses, courses) &&
         other.type == type;
   }
@@ -89,7 +89,7 @@ class CoachingModel {
     return id.hashCode ^
         name.hashCode ^
         image.hashCode ^
-    rating.hashCode ^
+        rating.hashCode ^
         bannerImages.hashCode ^
         courses.hashCode ^
         type.hashCode;
