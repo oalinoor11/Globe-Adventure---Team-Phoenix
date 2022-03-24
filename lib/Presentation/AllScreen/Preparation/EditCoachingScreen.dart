@@ -78,7 +78,7 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide:
-                          BorderSide(color: Colors.green, width: 1)),
+                              BorderSide(color: Colors.green, width: 1)),
                     ),
                     onChanged: (v) {
                       setState(() {
@@ -90,12 +90,12 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                         style: TextStyle(color: Colors.black)),
                     items: ratingList
                         .map((e) => DropdownMenuItem<String>(
-                        child: Text(
-                          e,
-                          textAlign: TextAlign.start,
-                        ),
-                        alignment: Alignment.topLeft,
-                        value: e))
+                            child: Text(
+                              e,
+                              textAlign: TextAlign.start,
+                            ),
+                            alignment: Alignment.topLeft,
+                            value: e))
                         .toList()),
               ),
               SizedBox(height: 20),
@@ -126,7 +126,10 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                       : Image.file(image!),
                 ),
               ),
-              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+              Text(
+                "(image ratio should be 1/1)",
+                style: TextStyle(color: Colors.grey),
+              ),
               SizedBox(height: 20),
               InkWell(
                 onTap: () async {
@@ -155,7 +158,10 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                       : Image.file(bannerImages!),
                 ),
               ),
-              Text("(image ratio should be 16/9)", style: TextStyle(color: Colors.grey),),
+              Text(
+                "(image ratio should be 16/9)",
+                style: TextStyle(color: Colors.grey),
+              ),
               SizedBox(height: 20),
               Container(
                 height: 50,
@@ -170,35 +176,36 @@ class _EditCoachingScreenState extends State<EditCoachingScreen> {
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(8.0),
                         ),
-                  onPressed: () async {
-                    if (image != null && bannerImages != null) {
-                      setState(() {
-                        loader = true;
-                      });
-                      var upload = await FirebaseStorage.instance
-                          .ref()
-                          .child("image")
-                          .child(nameController.text)
-                          .putFile(image!);
-                      var downloadUrl = await upload.ref.getDownloadURL();
+                        onPressed: () async {
+                          setState(() {
+                            loader = true;
+                          });
+                          if (image != null) {
+                            var upload = await FirebaseStorage.instance
+                                .ref()
+                                .child("image")
+                                .child(nameController.text)
+                                .putFile(image!);
+                            var downloadUrl = await upload.ref.getDownloadURL();
+                            coachingModel.image = downloadUrl;
+                          }
+                          if (bannerImages != null) {
+                            var upload2 = await FirebaseStorage.instance
+                                .ref()
+                                .child("banner")
+                                .child(nameController.text)
+                                .putFile(bannerImages!);
+                            var bannerUrls = await upload2.ref.getDownloadURL();
 
-                      var upload2 = await FirebaseStorage.instance
-                          .ref()
-                          .child("banner")
-                          .child(nameController.text)
-                          .putFile(bannerImages!);
-                      var bannerUrls = await upload2.ref.getDownloadURL();
-
-                      coachingModel.image = downloadUrl;
-                      coachingModel.bannerImages = bannerUrls;
-                    }
-                    coachingModel.name = nameController.text;
-                    await coachingModel.update();
-                    setState(() {
-                      loader = false;
-                    });
-                    Get.back();
-                  },
+                            coachingModel.bannerImages = bannerUrls;
+                          }
+                          coachingModel.name = nameController.text;
+                          await coachingModel.update();
+                          setState(() {
+                            loader = false;
+                          });
+                          Get.back();
+                        },
                         child: Center(
                           child: Text(
                             "Save Changes",
