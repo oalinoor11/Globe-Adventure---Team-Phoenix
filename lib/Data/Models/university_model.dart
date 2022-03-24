@@ -8,6 +8,7 @@ class UniversityModel {
   late String name;
   late String rating;
   late String image;
+  late String bannerImages;
   late String country;
   List<CourseModel> courseList = [];
 
@@ -16,6 +17,7 @@ class UniversityModel {
       required this.name,
       required this.rating,
       required this.image,
+      required this.bannerImages,
       required this.country,
       required this.courseList});
 
@@ -25,6 +27,7 @@ class UniversityModel {
       name: json['name'],
       rating: json['rating'],
       image: json['image'],
+      bannerImages: json['bannerImages'],
       country: json['country'],
       courseList: (json['courseList'] as List)
           .map((i) => CourseModel.fromJson(i))
@@ -38,6 +41,7 @@ class UniversityModel {
     data['name'] = this.name;
     data['rating'] = this.rating;
     data['image'] = this.image;
+    data['bannerImages'] = this.bannerImages;
     data['country'] = this.country;
     data['courseList'] = this.courseList.map((i) => i.toJson()).toList();
     return data;
@@ -45,7 +49,7 @@ class UniversityModel {
 
   @override
   String toString() {
-    return 'UniversityModel{id: $id, name: $name, rating: $rating, image: $image, Country: $country, courseList: $courseList}';
+    return 'UniversityModel{id: $id, name: $name, rating: $rating, image: $image, Country: $country, courseList: $courseList, bannerImages: $bannerImages}';
   }
 
   static Stream<List<UniversityModel>> getUniversities(String country) {

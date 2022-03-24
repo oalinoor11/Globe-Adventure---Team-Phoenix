@@ -29,6 +29,7 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
   String? selectedRating;
 
   File? _image;
+  File? bannerImages;
   bool loader = false;
 
   @override
@@ -135,6 +136,47 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
               ),
               Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
+              InkWell(
+                onTap: () async {
+                  print("camera button clicked");
+                  var pickedFile = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      bannerImages = File(pickedFile.path);
+                    });
+                  }
+                },
+                child: Container(
+                  height: 90,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: bannerImages == null
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Banner Image",
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 16)),
+                      SizedBox(height: 10),
+                      Icon(
+                        Icons.add_a_photo,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ],
+                  )
+                      : Image.file(bannerImages!),
+                ),
+              ),
+              Text("(image ratio should be 16/9)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: loader
@@ -162,11 +204,20 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
+
+                      var upload2 = await FirebaseStorage.instance
+                          .ref()
+                          .child("banner")
+                          .child(_nameController.text)
+                          .putFile(bannerImages!);
+                      var bannerUrls = await upload2.ref.getDownloadURL();
+
                       await UniversityModel(
                         country: UniversityController.to.selectedCountry(),
                         name: _nameController.text,
                         rating: selectedRating!,
                         image: downloadUrl,
+                        bannerImages: bannerUrls,
                         courseList: [],
                       ).save();
                       setState(() {
