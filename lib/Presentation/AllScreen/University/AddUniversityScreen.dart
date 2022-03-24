@@ -25,6 +25,9 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
 
   TextEditingController _nameController = TextEditingController();
 
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
+
   File? _image;
   bool loader = false;
 
@@ -35,10 +38,13 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New University",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New University",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -61,6 +67,33 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("University Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () async {
                   print("camera button clicked");
@@ -73,8 +106,8 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -84,13 +117,12 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: _image == null
-                      ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("University Image",
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("University Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -101,6 +133,7 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                       : Image.file(_image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
@@ -132,6 +165,7 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                       await UniversityModel(
                         country: UniversityController.to.selectedCountry(),
                         name: _nameController.text,
+                        rating: selectedRating!,
                         image: downloadUrl,
                         courseList: [],
                       ).save();

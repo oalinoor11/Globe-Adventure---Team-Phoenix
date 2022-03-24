@@ -25,6 +25,9 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _nameController = TextEditingController();
 
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
+
   File? _image;
   bool loader = false;
 
@@ -40,10 +43,13 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New College",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New College",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,6 +72,33 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("College Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () async {
                   print("camera button clicked");
@@ -79,8 +112,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -90,13 +123,12 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: _image == null
-                      ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("College Image",
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("College Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -107,6 +139,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                       : Image.file(_image!),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
@@ -174,6 +207,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
 
                       await CollegeModel(
                         name: _nameController.text,
+                        rating: selectedRating!,
                         image: downloadUrl,
                         country: CollegeController.to.selectedCountry(),
                       ).save();

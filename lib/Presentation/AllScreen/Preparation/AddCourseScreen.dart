@@ -15,6 +15,8 @@ class AddCourseScreen extends StatefulWidget {
 }
 
 class _AddCourseScreenState extends State<AddCourseScreen> {
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController regularFeeTextEditingController =
       TextEditingController();
@@ -31,10 +33,13 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New Course",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New Course",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -69,8 +74,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -80,13 +85,12 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: image == null
-                      ? Row(
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(width: 10),
                             Text("Course Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -96,6 +100,34 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                         )
                       : Image.file(image!),
                 ),
+              ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -163,6 +195,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     CoachingCourseModel coachingCourseModel =
                         CoachingCourseModel(
                       name: nameTextEditingController.text,
+                          currency: selectedCurrency!,
                       image: downloadUrl,
                       regularCourseFee:
                           int.parse(regularFeeTextEditingController.text),

@@ -14,10 +14,13 @@ class PreparationScreen extends StatelessWidget {
         centerTitle: true,
         title:
             // Image.asset("assets/logo.png", height: 130),
-            Text(
+            Center(
+              child: Text(
           "Preparation",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+            ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -40,7 +43,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 175.0,
+                        width: 160.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -60,7 +63,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('admission');
+                        CoachingController.to.selectedType('Admission');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -68,7 +71,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 175.0,
+                        width: 160.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -88,7 +91,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('academic');
+                        CoachingController.to.selectedType('Academic');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -101,7 +104,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 175.0,
+                        width: 160.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -121,7 +124,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('ielts');
+                        CoachingController.to.selectedType('IELTS');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -129,7 +132,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 175.0,
+                        width: 160.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -149,7 +152,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('job');
+                        CoachingController.to.selectedType('Job');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),
@@ -162,7 +165,7 @@ class PreparationScreen extends StatelessWidget {
                     InkWell(
                       child: Container(
                         height: 180.0,
-                        width: 175.0,
+                        width: 160.0,
                         decoration: new BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           boxShadow: [
@@ -182,7 +185,7 @@ class PreparationScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        CoachingController.to.selectedType('issb');
+                        CoachingController.to.selectedType('ISSB');
                         Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN);
                       },
                     ),

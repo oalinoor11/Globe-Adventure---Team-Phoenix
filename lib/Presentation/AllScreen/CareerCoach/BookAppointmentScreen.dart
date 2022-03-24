@@ -11,6 +11,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:http/http.dart' as http;
 
 class BookAppointmentScreen extends StatefulWidget {
   @override
@@ -23,6 +24,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   ScreenshotController screenshotController = ScreenshotController();
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController referralController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -39,10 +41,13 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Book an Appointment",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Book an Appointment",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -157,8 +162,8 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -168,13 +173,12 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: image == null
-                      ? Row(
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 10),
-                      Text("Coach Photo",
+                      Text("Your Photo",
                           style: TextStyle(
-                              color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
+                              color: Colors.black, fontSize: 12)),
+                      SizedBox(height: 10),
                       Icon(
                         Icons.add_a_photo,
                         size: 20,
@@ -183,6 +187,23 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     ],
                   )
                       : Image.file(image!),
+                ),
+              ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
+              TextField(
+                controller: referralController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Referral Code (optional)",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
                 ),
               ),
               SizedBox(height: 20),
@@ -212,6 +233,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
                           AppointmentApplicationModel(
                             name: nameController.text,
+                            referral: referralController.text,
                             phone: phoneController.text,
                             email: emailController.text,
                             age: ageController.text,
@@ -223,6 +245,21 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                           setState(() {
                             isLoading = false;
                           });
+                          // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                          var result = await http.get(
+                            Uri(
+                              scheme: "http",
+                              host: "msg.elitbuzz-bd.com",
+                              path: "/smsapi",
+                              queryParameters: {
+                                "api_key": "C20081696225eaffaf0075.13009072",
+                                "type": "text",
+                                "contacts": phoneController.text.trim(),
+                                "senderid": "37935",
+                                "msg": "আপনি সফলভাবে "+coachModel.name+" -এর এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
+                              },
+                            ),
+                          );
                           Get.toNamed(AppRoutes.BKASHSCREEN);
                         },
                         child: Center(

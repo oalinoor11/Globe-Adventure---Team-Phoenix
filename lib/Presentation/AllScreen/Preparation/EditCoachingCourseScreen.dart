@@ -21,6 +21,10 @@ class EditCoachingCourseScreen extends StatefulWidget {
 class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
+
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
+
   ScreenshotController screenshotController = ScreenshotController();
 
   CoachingCourseModel _coachingCourseModel = Get.arguments;
@@ -42,6 +46,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
         text: _coachingCourseModel.regularCourseFee.toString());
     _discountedCourseFee = TextEditingController(
         text: _coachingCourseModel.discountedCourseFee.toString());
+    selectedCurrency = coachingCourseModel.currency;
     super.initState();
   }
 
@@ -52,10 +57,13 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Edit Course",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Edit Course",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -90,8 +98,8 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -104,6 +112,34 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                       ? Image.network(coachingCourseModel.image)
                       : Image.file(image!),
                 ),
+              ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -168,6 +204,7 @@ class _EditCoachingCourseScreenState extends State<EditCoachingCourseScreen> {
                               int.parse(_discountedCourseFee.text);
                           _coachingCourseModel.regularCourseFee =
                               int.parse(_regularCourseFee.text);
+                          _coachingCourseModel.currency = selectedCurrency!;
                           _coachingCourseModel.name = _nameController.text;
                           Get.back(result: _coachingCourseModel);
                           setState(() {

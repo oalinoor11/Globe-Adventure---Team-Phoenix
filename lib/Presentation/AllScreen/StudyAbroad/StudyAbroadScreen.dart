@@ -1,14 +1,11 @@
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/country_model.dart';
-import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/university.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class StudyAbroadScreen extends StatefulWidget {
   @override
@@ -23,10 +20,13 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Study Abroad",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Study Abroad",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -50,7 +50,7 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/studyabroadbanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -103,7 +103,8 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                           onTap: () {
                             UniversityController.to
                                 .selectedCountry(country.countryName);
-                            Get.toNamed(AppRoutes.UNIVERSITYSCREEN);
+                            Get.toNamed(AppRoutes.UNIVERSITYSCREEN,
+                                arguments: country);
                           },
                           onLongPress: () {
                             Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
@@ -113,7 +114,7 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.8,
+                        childAspectRatio: 0.95,
                         mainAxisSpacing: 10,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),
@@ -125,6 +126,9 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                   }
                 },
                 stream: CountryModel.getCountries()),
+            SizedBox(
+              height: 18,
+            ),
           ],
         ),
       ),

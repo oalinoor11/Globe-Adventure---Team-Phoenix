@@ -3,11 +3,13 @@ import 'dart:convert';
 class CoachingCourseModel {
   late String name;
   late String image;
+  late String currency;
   late int regularCourseFee;
   int? discountedCourseFee;
   CoachingCourseModel({
     required this.name,
     required this.image,
+    required this.currency,
     required this.regularCourseFee,
     this.discountedCourseFee,
   });
@@ -15,6 +17,7 @@ class CoachingCourseModel {
   CoachingCourseModel copyWith({
     String? name,
     String? image,
+    String? currency,
     int? regularCourseFee,
     int? discountedCourseFee,
     String? type,
@@ -22,6 +25,7 @@ class CoachingCourseModel {
     return CoachingCourseModel(
       name: name ?? this.name,
       image: image ?? this.image,
+      currency: currency ?? this.currency,
       regularCourseFee: regularCourseFee ?? this.regularCourseFee,
       discountedCourseFee: discountedCourseFee ?? this.discountedCourseFee,
     );
@@ -31,6 +35,7 @@ class CoachingCourseModel {
     return {
       'name': name,
       'image': image,
+      'currency': currency,
       'regularCourseFee': regularCourseFee,
       'discountedCourseFee': discountedCourseFee,
     };
@@ -40,6 +45,7 @@ class CoachingCourseModel {
     return CoachingCourseModel(
       name: map['name'],
       image: map['image'],
+      currency: map['currency'],
       regularCourseFee: int.parse(map['regularCourseFee'].toString()),
       discountedCourseFee: map['discountedCourseFee']?.toInt(),
     );
@@ -52,7 +58,7 @@ class CoachingCourseModel {
 
   @override
   String toString() {
-    return 'CoachingCourseModel(name: $name, image: $image, regularCourseFee: $regularCourseFee, discountedCourseFee: $discountedCourseFee)';
+    return 'CoachingCourseModel(name: $name, image: $image, currency: $currency, regularCourseFee: $regularCourseFee, discountedCourseFee: $discountedCourseFee)';
   }
 
   @override
@@ -62,6 +68,7 @@ class CoachingCourseModel {
     return other is CoachingCourseModel &&
         other.name == name &&
         other.image == image &&
+        other.currency == currency &&
         other.regularCourseFee == regularCourseFee &&
         other.discountedCourseFee == discountedCourseFee;
   }
@@ -70,6 +77,7 @@ class CoachingCourseModel {
   int get hashCode {
     return name.hashCode ^
         image.hashCode ^
+        currency.hashCode ^
         regularCourseFee.hashCode ^
         discountedCourseFee.hashCode;
   }

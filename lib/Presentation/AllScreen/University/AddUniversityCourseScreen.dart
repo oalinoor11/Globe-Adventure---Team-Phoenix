@@ -17,11 +17,38 @@ class AddUniversityCourseScreen extends StatefulWidget {
 
 class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
+  List levelList = ["Diploma", "Undergraduate", "Postgraduate", "PhD", "Certificate"];
+  String? selectedLevel;
+
+  List durationList = [
+    "1 Month",
+    "2 Months",
+    "3 Months",
+    "4 Months",
+    "5 Months",
+    "6 Months",
+    "7 Months",
+    "8 Months",
+    "9 Months",
+    "10 Months",
+    "11 Months",
+    "1 Year",
+    "1.5 Years",
+    "2 Years",
+    "2.5 Years",
+    "3 Years",
+    "3.5 Years",
+    "4 Years",
+    "4.5 Years",
+    "5.5 Years",
+    "6 Years"
+  ];
+  String? selectedDuration;
 
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _durationController = TextEditingController();
-  TextEditingController _levelController = TextEditingController();
   TextEditingController _requirementsController = TextEditingController();
   TextEditingController _scholarshipController = TextEditingController();
   TextEditingController _admissionFeesController = TextEditingController();
@@ -37,10 +64,13 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New Course",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New Course",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -63,36 +93,58 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _durationController,
-                keyboardType: TextInputType.number,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Course Duration",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedDuration = v;
+                      });
+                    },
+                    value: selectedDuration,
+                    hint: Text("Course Duration",
+                        style: TextStyle(color: Colors.black)),
+                    items: durationList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _levelController,
-                keyboardType: TextInputType.text,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Level",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedLevel = v;
+                      });
+                    },
+                    value: selectedLevel,
+                    hint: Text("Level",
+                        style: TextStyle(color: Colors.black)),
+                    items: levelList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -125,6 +177,33 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -180,10 +259,11 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                       admissionFees: int.parse(_admissionFeesController.text),
                       tuitionFees: int.parse(_tuitionFeesController.text),
                       name: _nameController.text,
-                      level: _levelController.text,
+                      currency: selectedCurrency!,
+                      level: selectedLevel!,
                       requirements: _requirementsController.text,
                       scholarship: _scholarshipController.text,
-                      duration: _durationController.text,
+                      duration: selectedDuration!,
                     );
                     _universityModel.courseList.add(courseModel);
                     _universityModel.update();
@@ -192,8 +272,8 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                     });
                     Get.back();
                   },
-                  child: Center(
-                    child: Text(
+                     child: Center(
+                      child: Text(
                       "Save",
                       style: TextStyle(
                         fontSize: 22.0,

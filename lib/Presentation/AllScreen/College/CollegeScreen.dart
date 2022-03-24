@@ -20,10 +20,13 @@ class CollegeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "College",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "College",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -47,7 +50,7 @@ class CollegeScreen extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/collegebanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -68,7 +71,8 @@ class CollegeScreen extends StatelessWidget {
                         return InkWell(
                           child: Container(
                             decoration: new BoxDecoration(
-                              border: Border.all(color: Colors.green, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.green, width: 1.5),
                               boxShadow: [
                                 new BoxShadow(
                                   color: Colors.grey.withOpacity(0.15),
@@ -100,7 +104,8 @@ class CollegeScreen extends StatelessWidget {
                           onTap: () {
                             CollegeController.to
                                 .selectedCountry(country.countryName);
-                            Get.toNamed(AppRoutes.COLLEGESCREEN2);
+                            Get.toNamed(AppRoutes.COLLEGESCREEN2,
+                                arguments: country);
                           },
                           onLongPress: () {
                             Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
@@ -111,7 +116,7 @@ class CollegeScreen extends StatelessWidget {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 0.8,
+                        childAspectRatio: 0.95,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),
                       // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,

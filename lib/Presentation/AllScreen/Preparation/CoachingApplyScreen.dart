@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:http/http.dart' as http;
 
 class CoachingApplyScreen extends StatefulWidget {
   @override
@@ -21,12 +22,14 @@ class CoachingApplyScreen extends StatefulWidget {
 
 class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
   List timeList = ["Morning", "Day", "Evening"];
+  String? selectedTime;
 
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
   ScreenshotController screenshotController = ScreenshotController();
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController referralController = TextEditingController();
   TextEditingController fathersNameController = TextEditingController();
   TextEditingController mothersNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
@@ -41,7 +44,6 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
   CoachingModel? selectedCoaching;
   CoachingCourseModel? selectedProgram;
   String? selectedBranch;
-  String? selectedTime;
   bool isLoading = false;
 
   @override
@@ -58,10 +60,13 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Apply Now",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Apply Now",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -351,8 +356,8 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -361,19 +366,37 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Row(
+                  child: image == null
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 10),
                       Text("Student's Photo",
-                          style: TextStyle(color: Colors.black, fontSize: 16)),
-                      SizedBox(width: 10),
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
+                      SizedBox(height: 10),
                       Icon(
                         Icons.add_a_photo,
                         size: 20,
                         color: Colors.black,
                       ),
                     ],
-                  ),
+                  )
+                      : Image.file(image!),
+                ),
+              ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
+              TextField(
+                controller: referralController,
+                keyboardType: TextInputType.text,
+                cursorColor: Colors.green,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green, width: 1)),
+                  labelText: "Referral Code (optional)",
+                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                style: TextStyle(
+                  fontSize: 14.0,
                 ),
               ),
               SizedBox(height: 20),
@@ -471,6 +494,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
 
                           CoachingApplyFormModel model = CoachingApplyFormModel(
                             name: nameController.text,
+                            referral: referralController.text,
                             email: emailController.text,
                             studentsPhone: studentsPhoneController.text,
                             parentsPhone: parentsPhoneController.text,
@@ -490,8 +514,23 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           setState(() {
                             isLoading = false;
                           });
-
                           Get.toNamed(AppRoutes.BKASHSCREEN);
+                          Get.toNamed(AppRoutes.BKASHSCREEN);
+                          // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                          var result = await http.get(
+                            Uri(
+                              scheme: "http",
+                              host: "msg.elitbuzz-bd.com",
+                              path: "/smsapi",
+                              queryParameters: {
+                                "api_key": "C20081696225eaffaf0075.13009072",
+                                "type": "text",
+                                "contacts": studentsPhoneController.text.trim(),
+                                "senderid": "37935",
+                                "msg": "আপনি সফলভাবে "+selectedCoaching!.name+" কোচিং -এ "+selectedProgram!.name+" কোর্সে ভর্তির আবেদন করেছেন।",
+                              },
+                            ),
+                          );
                         },
                         child: Center(
                           child: Text(

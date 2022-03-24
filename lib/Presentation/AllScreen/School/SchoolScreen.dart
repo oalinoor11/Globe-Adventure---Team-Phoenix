@@ -19,10 +19,13 @@ class SchoolScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "School",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "School",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -46,7 +49,7 @@ class SchoolScreen extends StatelessWidget {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/schoolbanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -67,7 +70,8 @@ class SchoolScreen extends StatelessWidget {
                         return InkWell(
                           child: Container(
                             decoration: new BoxDecoration(
-                              border: Border.all(color: Colors.green, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.green, width: 1.5),
                               boxShadow: [
                                 new BoxShadow(
                                   color: Colors.grey.withOpacity(0.15),
@@ -99,7 +103,8 @@ class SchoolScreen extends StatelessWidget {
                           onTap: () {
                             SchoolController.to
                                 .selectedCountry(country.countryName);
-                            Get.toNamed(AppRoutes.SCHOOLSCREEN2);
+                            Get.toNamed(AppRoutes.SCHOOLSCREEN2,
+                                arguments: country);
                           },
                           onLongPress: () {
                             Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
@@ -109,7 +114,7 @@ class SchoolScreen extends StatelessWidget {
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.8,
+                        childAspectRatio: 0.95,
                         mainAxisSpacing: 10,
                         crossAxisCount: context.width > 1080 ? 4 : 3,
                       ),

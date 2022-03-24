@@ -18,10 +18,13 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Career Coach",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Career Coach",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -46,7 +49,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/careercoachbanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -65,7 +68,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  childAspectRatio: 0.78,
+                                  childAspectRatio: 0.75,
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10),
                           shrinkWrap: true,
@@ -126,6 +129,7 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                 },
               ),
             ),
+            SizedBox(height: 14),
           ],
         ),
       ),

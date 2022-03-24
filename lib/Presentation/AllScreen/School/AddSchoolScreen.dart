@@ -14,6 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
+import '../../../Data/Models/profile_model.dart';
+
 class AddSchoolScreen extends StatefulWidget {
   @override
   State<AddSchoolScreen> createState() => _AddSchoolScreenState();
@@ -27,6 +29,8 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   bool loader = false;
 
   @override
@@ -36,10 +40,13 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New School",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New School",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -62,6 +69,33 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("School Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () async {
                   print("camera button clicked");
@@ -74,8 +108,8 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -85,13 +119,12 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: _image == null
-                      ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("School Image",
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("School Image",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -168,6 +201,7 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                       var downloadUrl = await upload.ref.getDownloadURL();
                       await SchoolModel(
                               name: _nameController.text,
+                              rating: selectedRating!,
                               image: downloadUrl,
                               country: SchoolController.to.selectedCountry())
                           .save();

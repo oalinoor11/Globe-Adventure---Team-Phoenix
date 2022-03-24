@@ -34,10 +34,13 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          coach.name,
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            coach.name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -104,7 +107,7 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Counselling Fee: ',
+                    'Counselling Fee:  '+coach.currency.toString(),
                     style: TextStyle(
                       fontSize: 16.0,
                     ),

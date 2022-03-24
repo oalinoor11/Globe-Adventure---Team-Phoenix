@@ -21,10 +21,13 @@ class _CoursesScreenState extends State<CoursesScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Selected University",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            universityModel.name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -54,7 +57,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/coursebanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -169,7 +172,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.history_edu, color: Colors.red),
+                                      Icon(Icons.history_edu,
+                                          color: Colors.red),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -222,19 +226,24 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Text("Admission Fees: ",
+                                      Text("Admission Fees:  ",
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.bold)),
-                                      Expanded(
-                                        child: Text(
-                                            "\$${courseModel.admissionFees} USD",
-                                            softWrap: true,
-                                            maxLines: 3,
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                            )),
-                                      ),
+                                      Text(
+                                          courseModel.currency.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
+                                      Text(
+                                        courseModel.admissionFees.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
                                     ],
                                   ),
                                   SizedBox(
@@ -251,15 +260,20 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.bold)),
-                                      Expanded(
-                                        child: Text(
-                                            "\$${courseModel.tuitionFees} USD",
-                                            softWrap: true,
-                                            maxLines: 3,
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                            )),
-                                      ),
+                                      Text(
+                                          courseModel.currency.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
+                                      Text(
+                                          courseModel.tuitionFees.toString(),
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          )),
                                     ],
                                   ),
                                 ],
@@ -275,7 +289,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   universityModel.update();
                                 });
                               } else {
-                                universityModel.courseList[index] = result;
+                                universityModel.courseList[index] =
+                                    result ?? courseModel;
                                 setState(() {
                                   universityModel.update();
                                 });

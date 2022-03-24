@@ -1,15 +1,10 @@
 import 'dart:math';
-
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/coaching_model.dart';
-import 'package:BornoBangla/Data/firebase_collections.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AdmissionCoachingScreen extends StatefulWidget {
   @override
@@ -27,10 +22,13 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
         centerTitle: true,
         title:
             // Image.asset("assets/logo.png", height: 130),
-            Text(
-          "${CoachingController.to.selectedType().capitalize} Coaching",
+            Center(
+              child: Text(
+          "${CoachingController.to.selectedType()} Coaching",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+            ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -39,7 +37,7 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
           }),
       body: Column(
         children: [
-          SizedBox(height: 15),
+          SizedBox(height: 18),
           Expanded(
             child: StreamBuilder<List<CoachingModel>>(
                 stream: CoachingModel.getCoachingList(
@@ -47,60 +45,89 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return GridView.builder(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 18.0),
                         itemCount: snapshot.data!.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 8,
                           mainAxisSpacing: 8,
-                          childAspectRatio: 1 / 1,
+                          childAspectRatio: 0.72,
                           crossAxisCount: context.width > 1080 ? 4 : 2,
                         ),
                         itemBuilder: (context, index) {
                           var coaching = snapshot.data![index];
                           return InkWell(
-                            child: Container(
+                            child:
+                            Container(
                               decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.green, width: 1.5),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.15),
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
                                 borderRadius: BorderRadius.circular(15),
-                                border:
-                                    Border.all(color: Colors.green, width: 1.5),
-                                image: DecorationImage(
-                                    image: NetworkImage(coaching.image)),
-                                // boxShadow: [
-                                //   new BoxShadow(
-                                //     color: Colors.black.withOpacity(1),
-                                //     blurRadius: 5.0,
-                                //   ),
-                                // ],
                               ),
-                              child: Stack(children: [
-                                Positioned(
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(13),
-                                            bottomRight: Radius.circular(13),
-                                          ),
-                                          color: Colors.green.withOpacity(0.93),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(13),
+                                      child:
+                                      Container(
+                                        child: Image(
+                                          image: NetworkImage(coaching.image),
+                                          fit: BoxFit.cover,
                                         ),
-                                        child: Center(
-                                            child: Padding(
-                                          padding: const EdgeInsets.all(7.0),
-                                          child: Text(
-                                            coaching.name,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1!
-                                                .copyWith(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20,
-                                                ),
-                                          ),
-                                        )))),
-                              ]),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(coaching.name,
+                                      textAlign: TextAlign.center,
+                                      style:
+                                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                  SizedBox(height: 5),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
+                                      Icon(Icons.star,color: Colors.black54,size: 15),
+                                      Text(
+                                        coaching.rating,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+
+
+
+                                  // Row(
+                                  //   children: [
+                                  //
+                                  //     Icon(Icons.star,color: Colors.white,),
+                                  //     Text(
+                                  //       coaching.rating,
+                                  //       style: Theme.of(context)
+                                  //           .textTheme
+                                  //           .bodyText1!
+                                  //           .copyWith(
+                                  //         color: Colors.white,
+                                  //         fontWeight: FontWeight.bold,
+                                  //         fontSize: 20,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                ],
+                              ),
                             ),
                             onTap: () {
                               CoachingController.to.coachingModel(coaching);

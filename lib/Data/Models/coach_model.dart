@@ -5,6 +5,7 @@ class CoachModel {
   String? id;
   late String name;
   late String price;
+  late String currency;
   late String image;
   late String description;
   late String title;
@@ -13,6 +14,7 @@ class CoachModel {
     this.id,
     required this.name,
     required this.price,
+    required this.currency,
     required this.image,
     required this.description,
     required this.title,
@@ -24,6 +26,7 @@ class CoachModel {
       'id': id,
       'name': name,
       'price': price,
+      'currency': currency,
       'image': image,
       'description': description,
       'title': title,
@@ -36,6 +39,7 @@ class CoachModel {
       id: map['id'],
       name: map['name'],
       price: map['price'],
+      currency: map['currency'],
       image: map['image'],
       description: map['description'],
       title: map['title'],
@@ -60,7 +64,7 @@ class CoachModel {
 
   @override
   String toString() {
-    return 'CoachModel{id: $id, name: $name, price: $price, image: $image, description: $description, title: $title, videoId: $videoId}';
+    return 'CoachModel{id: $id, name: $name, price: $price, currency: $currency, image: $image, description: $description, title: $title, videoId: $videoId}';
   }
 
   @override
@@ -71,6 +75,7 @@ class CoachModel {
           id == other.id &&
           name == other.name &&
           price == other.price &&
+          currency == other.currency &&
           image == other.image &&
           description == other.description &&
           title == other.title &&
@@ -81,6 +86,7 @@ class CoachModel {
       id.hashCode ^
       name.hashCode ^
       price.hashCode ^
+      currency.hashCode ^
       image.hashCode ^
       description.hashCode ^
       title.hashCode ^

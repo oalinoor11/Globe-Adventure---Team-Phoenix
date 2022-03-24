@@ -18,6 +18,7 @@ class UniversityScreen extends StatefulWidget {
 }
 
 class _UniversityScreenState extends State<UniversityScreen> {
+  CountryModel country = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +26,13 @@ class _UniversityScreenState extends State<UniversityScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Selected Country",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Study in "+country.countryName,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -54,7 +58,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
                     return Container(
                       width: double.infinity,
                       child: Image.asset(
-                        "assets/scholarshipbanner.png",
+                        "assets/universitybanner.png",
                         fit: BoxFit.cover,
                       ),
                     );
@@ -73,7 +77,7 @@ class _UniversityScreenState extends State<UniversityScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 18.0),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: 10,
-                          childAspectRatio: 0.85,
+                          childAspectRatio: 0.76,
                           mainAxisSpacing: 10,
                           crossAxisCount: context.width > 1080 ? 4 : 2,
                         ),
@@ -114,6 +118,24 @@ class _UniversityScreenState extends State<UniversityScreen> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       )),
+                                  SizedBox(height: 5),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
+                                      Icon(Icons.star,color: Colors.black54,size: 15),
+                                      Text(
+                                        universityModel.rating,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   SizedBox(height: 5),
                                 ],
                               ),

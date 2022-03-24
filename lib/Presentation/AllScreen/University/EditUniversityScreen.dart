@@ -20,15 +20,19 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
   ScreenshotController screenshotController = ScreenshotController();
+  List ratingList = ["1", "2", "3", "4", "5"];
+  String? selectedRating;
   UniversityModel universityModel = Get.arguments;
 
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  bool loader = false;
 
   @override
   void initState() {
     _nameController.text = universityModel.name;
+    selectedRating = universityModel.rating;
     super.initState();
   }
 
@@ -39,10 +43,13 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Edit University",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Edit University",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -65,6 +72,33 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedRating = v;
+                      });
+                    },
+                    value: selectedRating,
+                    hint: Text("University Rating",
+                        style: TextStyle(color: Colors.black)),
+                    items: ratingList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () async {
                   print("camera button clicked");
@@ -79,8 +113,8 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
-                    height: 150,
-                    width: double.infinity,
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -100,10 +134,15 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                   ),
                 ),
               ),
+              Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: loader
+                    ? Center(
+                      child: CircularProgressIndicator(),
+                     )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -111,21 +150,25 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_nameController.text.isEmpty) {
-                    } else {
-                      universityModel.name = _nameController.text;
-                      if (_image != null) {
-                        var upload = await FirebaseStorage.instance
-                            .ref()
-                            .child("country_flags")
-                            .child(_nameController.text)
-                            .putFile(_image!);
-                        var downloadUrl = await upload.ref.getDownloadURL();
-                        universityModel.image = downloadUrl;
-                      }
-                      await universityModel.update();
-                      Get.back();
+                    if (_image != null) {
+                      setState(() {
+                        loader = true;
+                      });
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("university")
+                          .child(_nameController.text)
+                          .putFile(_image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      universityModel.image = downloadUrl;
                     }
+                    universityModel.name = _nameController.text;
+                    universityModel.rating = selectedRating!;
+                    await universityModel.update();
+                    Get.back();
+                    setState(() {
+                      loader = false;
+                    });
                   },
                   child: Center(
                     child: Text(

@@ -12,6 +12,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
+import '../../../Data/Models/country_model.dart';
+
 class AddCountryScreen extends StatefulWidget {
   @override
   State<AddCountryScreen> createState() => _AddCountryScreenState();
@@ -25,6 +27,7 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
 
   File? _image;
   bool loader = false;
+  List<File> bannerImages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +36,13 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Add New Country",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Add New Country",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -82,8 +88,8 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                   }
                 },
                 child: Container(
-                  height: 65,
-                  width: double.infinity,
+                  height: 75,
+                  width: 100,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.grey,
@@ -93,13 +99,12 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: _image == null
-                      ? Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Text("Country FLag",
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Country FLag",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16)),
-                            SizedBox(width: 10),
+                                    color: Colors.black, fontSize: 12)),
+                            SizedBox(height: 10),
                             Icon(
                               Icons.add_a_photo,
                               size: 20,
@@ -110,6 +115,59 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                       : Image.file(_image!),
                 ),
               ),
+              Text("(image ratio should be 4/3)", style: TextStyle(color: Colors.grey),),
+              SizedBox(height: 20),
+              GridView.builder(
+                //padding: EdgeInsets.symmetric(horizontal: 18.0),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () async {
+                      var pickedFile = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        setState(() {
+                          bannerImages.add(File(pickedFile.path));
+                        });
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: bannerImages.length > index
+                          ? Image.file(bannerImages[index])
+                          : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Banner Image",
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 14)),
+                          SizedBox(height: 5),
+                          Icon(
+                            Icons.add_a_photo,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: bannerImages.length + 1,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 16/9,
+                  crossAxisCount: context.width > 1080 ? 4 : 3,),
+              ),
+              Text("(image ratio should be 16/9)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
               Container(
                 height: 50,
@@ -174,10 +232,21 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
-                      FirebaseCollections.COUNTRYCOLLECTION.add({
-                        "countryName": _nameController.text,
-                        "countryFlag": downloadUrl,
-                      });
+                      var bannerUrls = <String>[];
+                      bannerUrls =
+                      await Future.wait(await bannerImages.map((e) async {
+                        var upload = await FirebaseStorage.instance
+                            .ref()
+                            .child("country_flags")
+                            .child(_nameController.text)
+                            .putFile(_image!);
+                        var downloadUrl = await upload.ref.getDownloadURL();
+                        return downloadUrl;
+                      }).toList());
+                      await CountryModel(
+                        countryName: _nameController.text,
+                        countryFlag: downloadUrl,
+                      ).save();
                       setState(() {
                         loader = false;
                       });

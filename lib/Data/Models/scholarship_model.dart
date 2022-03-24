@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:BornoBangla/Data/Models/course_model.dart';
-import 'package:BornoBangla/Data/Models/university_model.dart';
 import 'package:BornoBangla/Data/firebase_collections.dart';
 
 class ScholarshipModel {
@@ -9,8 +5,8 @@ class ScholarshipModel {
   late String name;
   late String applicationLink;
   late String videoId;
-  late UniversityModel university;
-  late CourseModel course;
+  late String? university;
+  late String? course;
   ScholarshipModel({
     this.id,
     required this.name,
@@ -54,8 +50,8 @@ class ScholarshipModel {
       'name': name,
       'applicationLink': applicationLink,
       'videoId': videoId,
-      'university': university.toJson(),
-      'course': course.toJson(),
+      'university': university,
+      'course': course,
     };
   }
 
@@ -65,8 +61,8 @@ class ScholarshipModel {
       name: map['name'],
       applicationLink: map['applicationLink'],
       videoId: map['videoId'],
-      university: UniversityModel.fromJson(map['university']),
-      course: CourseModel.fromJson(map['course']),
+      university: map['university'],
+      course: map['course'],
     );
   }
 
@@ -75,8 +71,8 @@ class ScholarshipModel {
     String? name,
     String? applicationLink,
     String? videoId,
-    UniversityModel? university,
-    CourseModel? course,
+    String? university,
+    String? course,
   }) {
     return ScholarshipModel(
       id: id ?? this.id,

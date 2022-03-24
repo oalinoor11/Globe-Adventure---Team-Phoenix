@@ -22,10 +22,13 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Scholarship",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Scholarship",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -109,6 +112,16 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.center,
                                     children: [
+                                      Text(
+                                          scholarship.name,
+                                          softWrap: true,
+                                          style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.bold,
+                                              color: Colors.black, fontSize: 16)),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
                                       InkWell(
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -153,14 +166,10 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold,
-                                                    color: Colors.white)),
+                                                    color: Colors.white, fontSize: 12)),
                                           ),
                                         ),
                                         onTap: () {
-                                          ScholarshipController.to.university
-                                              .value = scholarship.university;
-                                          ScholarshipController.to.course
-                                              .value = scholarship.course;
                                           Get.toNamed(
                                               AppRoutes
                                                   .SCHOLARSHIPAPPLYSCREEN,
@@ -176,7 +185,7 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                         },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10,
-                    childAspectRatio: 1.026,
+                    childAspectRatio: 0.88,
                     mainAxisSpacing: 10,
                     crossAxisCount: context.width > 1080 ? 4 : 2,
                   ),
@@ -184,6 +193,9 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                       )
                     : CircularProgressIndicator();
               },
+            ),
+            SizedBox(
+              height: 18,
             ),
           ],
         ),

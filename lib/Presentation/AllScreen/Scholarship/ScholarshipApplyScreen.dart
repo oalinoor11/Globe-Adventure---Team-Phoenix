@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:http/http.dart' as http;
 
 class ScholarshipApplyScreen extends StatefulWidget {
   @override
@@ -49,6 +50,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
           "Apply for Processing",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -203,7 +205,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                 SizedBox(height: 20),
                 TextFormField(
                   controller: _referralCodeController,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.name,
                   cursorColor: Colors.green,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -229,8 +231,8 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     }
                   },
                   child: Container(
-                    height: 65,
-                    width: double.infinity,
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -240,13 +242,12 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: _studentsPhoto == null
-                        ? Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Text("Student's Photo",
+                        ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Student's Photo",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16)),
-                              SizedBox(width: 10),
+                                      color: Colors.black, fontSize: 12)),
+                              SizedBox(height: 10),
                               Icon(
                                 Icons.add_a_photo,
                                 size: 20,
@@ -257,6 +258,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                         : Image.file(_studentsPhoto!),
                   ),
                 ),
+                Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
                 SizedBox(height: 20),
                 Container(
                   width: double.infinity,
@@ -357,15 +359,30 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                               referralCode: _referralCodeController.text,
                               image: studentImageUrl,
                               signature: signatureImageUrl,
-                              course: ScholarshipController.to.course()!,
-                              university:
-                                  ScholarshipController.to.university()!,
+                              course: ScholarshipController.to.course(),
+                              university: ScholarshipController.to.university(),
                             );
                             await appplyScholarshipFormModel.save();
                             setState(() {
                               loader = false;
                             });
                             Get.toNamed(AppRoutes.BKASHSCREEN);
+                            // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                            var result = await http.get(
+                              Uri(
+                                scheme: "http",
+                                host: "msg.elitbuzz-bd.com",
+                                path: "/smsapi",
+                                queryParameters: {
+                                  "api_key": "C20081696225eaffaf0075.13009072",
+                                  "type": "text",
+                                  "contacts":
+                                      _studentsPhoneController.text.trim(),
+                                  "senderid": "37935",
+                                  "msg": "BORNOBANGLA অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
+                                },
+                              ),
+                            );
                           },
                           child: Center(
                             child: Text(

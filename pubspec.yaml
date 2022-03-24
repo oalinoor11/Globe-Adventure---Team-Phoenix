@@ -35,7 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.3.4
   youtube_player_flutter: ^8.0.0
-  image_picker: ^0.8.4+10
+  image_picker: ^0.8.4+11
   screenshot: ^1.2.1
   syncfusion_flutter_signaturepad: ^19.2.46
   carousel_slider: ^4.0.0
@@ -45,10 +45,13 @@ dependencies:
   firebase_database: ^7.1.1
   firebase_storage: ^10.2.4
   firebase_auth: ^2.0.0
+  firebase_messaging: ^11.2.11
+  flutter_local_notifications: ^9.4.0
   shared_preferences: ^2.0.12
   url_launcher: ^6.0.12
   cool_alert:
   path_provider:
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
@@ -84,8 +87,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/CountryFlag/
-    - assets/UniversityImage/
+    - assets/sociallogo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

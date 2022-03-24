@@ -21,10 +21,13 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          coachingModel.name,
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            coachingModel.name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -38,27 +41,10 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 1.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
+            Container(
+              child: Image(
+                image: NetworkImage(coachingModel.bannerImages),
               ),
-              items: coachingModel.bannerImages.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: double.infinity,
-                      child: Image.network(
-                        i,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
             ),
             SizedBox(height: 18),
             GridView.builder(
@@ -68,7 +54,7 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 0.73,
+                childAspectRatio: 0.70,
                 crossAxisCount: context.width > 1080 ? 4 : 2,
               ),
               itemBuilder: (context, index) {
@@ -105,7 +91,11 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Regular Fee: ',
+                              'Regular Fee:  ',
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              courseModel.currency.toString(),
                               textAlign: TextAlign.center,
                             ),
                             Text(
@@ -120,7 +110,11 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Discount Fee: ',
+                              'Discount Fee:  ',
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              courseModel.currency.toString(),
                               textAlign: TextAlign.center,
                             ),
                             Text(

@@ -18,13 +18,46 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
+  List levelList = [
+    "Diploma",
+    "Undergraduate",
+    "Postgraduate",
+    "PhD",
+    "Certificate"
+  ];
+  String? selectedLevel;
+
+  List currencyList = ["\$", "৳", "₹"];
+  String? selectedCurrency;
+
+  List durationList = [
+    "1 Month",
+    "2 Months",
+    "3 Months",
+    "4 Months",
+    "5 Months",
+    "6 Months",
+    "7 Months",
+    "8 Months",
+    "9 Months",
+    "10 Months",
+    "11 Months",
+    "1 Year",
+    "1.5 Years",
+    "2 Years",
+    "2.5 Years",
+    "3 Years",
+    "3.5 Years",
+    "4 Years",
+    "4.5 Years",
+    "5.5 Years",
+    "6 Years"
+  ];
+  String? selectedDuration;
+
   CourseModel _courseModel = Get.arguments;
 
   TextEditingController _nameController = TextEditingController();
-
-  TextEditingController _durationController = TextEditingController();
-
-  TextEditingController _levelController = TextEditingController();
 
   TextEditingController _requirementsController = TextEditingController();
 
@@ -37,14 +70,17 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
   @override
   void initState() {
     _nameController = TextEditingController(text: _courseModel.name);
-    _levelController = TextEditingController(text: _courseModel.level);
-    _requirementsController = TextEditingController(text: _courseModel.requirements);
-    _scholarshipController = TextEditingController(text: _courseModel.scholarship);
-    _durationController = TextEditingController(text: _courseModel.duration);
+    _requirementsController =
+        TextEditingController(text: _courseModel.requirements);
+    _scholarshipController =
+        TextEditingController(text: _courseModel.scholarship);
     _admissionFeesController =
         TextEditingController(text: _courseModel.admissionFees.toString());
     _tuitionFeesController =
         TextEditingController(text: _courseModel.tuitionFees.toString());
+    selectedLevel = _courseModel.level;
+    selectedDuration = _courseModel.duration;
+    selectedCurrency = _courseModel.currency;
     super.initState();
   }
 
@@ -55,10 +91,13 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
-          "Edit Course",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            "Edit Course",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -81,36 +120,56 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _durationController,
-                keyboardType: TextInputType.text,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Course Duration",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedDuration = v;
+                      });
+                    },
+                    value: selectedDuration,
+                    hint: Text("Course Duration", style: TextStyle(color: Colors.black)),
+                    items: durationList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
-              TextField(
-                controller: _levelController,
-                keyboardType: TextInputType.text,
-                cursorColor: Colors.green,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Colors.green, width: 1)),
-                  labelText: "Level",
-                  labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedLevel = v;
+                      });
+                    },
+                    value: selectedLevel,
+                    hint: Text("Level", style: TextStyle(color: Colors.black)),
+                    items: levelList
+                        .map((e) => DropdownMenuItem<String>(
+                            child: Text(
+                              e,
+                              textAlign: TextAlign.start,
+                            ),
+                            alignment: Alignment.topLeft,
+                            value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -143,6 +202,33 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                 style: TextStyle(
                   fontSize: 14.0,
                 ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                    ),
+                    onChanged: (v) {
+                      setState(() {
+                        selectedCurrency = v;
+                      });
+                    },
+                    value: selectedCurrency,
+                    hint: Text("Select Currency",
+                        style: TextStyle(color: Colors.black)),
+                    items: currencyList
+                        .map((e) => DropdownMenuItem<String>(
+                        child: Text(
+                          e,
+                          textAlign: TextAlign.start,
+                        ),
+                        alignment: Alignment.topLeft,
+                        value: e))
+                        .toList()),
               ),
               SizedBox(height: 20),
               TextField(
@@ -192,10 +278,11 @@ class _EditCourseScreenState extends State<EditCourseScreen> {
                     _courseModel.tuitionFees =
                         int.parse(_tuitionFeesController.text);
                     _courseModel.name = _nameController.text;
-                    _courseModel.level = _levelController.text;
+                    _courseModel.level = selectedLevel!;
                     _courseModel.requirements = _requirementsController.text;
                     _courseModel.scholarship = _scholarshipController.text;
-                    _courseModel.duration = _durationController.text;
+                    _courseModel.currency = selectedCurrency!;
+                    _courseModel.duration = selectedDuration!;
                     Get.back(result: _courseModel);
                   },
                   child: Center(

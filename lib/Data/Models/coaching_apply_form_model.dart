@@ -4,6 +4,7 @@ import 'package:BornoBangla/Data/firebase_collections.dart';
 class CoachingApplyFormModel {
   String? id;
   late String name;
+  late String referral;
   late String fathersName;
   late String mothersName;
   late String studentsPhone;
@@ -22,6 +23,7 @@ class CoachingApplyFormModel {
   CoachingApplyFormModel({
     this.id,
     required this.name,
+    required this.referral,
     required this.fathersName,
     required this.mothersName,
     required this.studentsPhone,
@@ -41,6 +43,7 @@ class CoachingApplyFormModel {
   CoachingApplyFormModel copyWith({
     String? id,
     String? name,
+    String? referral,
     String? fathersName,
     String? mothersName,
     String? studentsPhone,
@@ -59,6 +62,7 @@ class CoachingApplyFormModel {
     return CoachingApplyFormModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      referral: referral ?? this.referral,
       fathersName: fathersName ?? this.fathersName,
       mothersName: mothersName ?? this.mothersName,
       studentsPhone: studentsPhone ?? this.studentsPhone,
@@ -80,6 +84,7 @@ class CoachingApplyFormModel {
     return {
       'id': id,
       'name': name,
+      'referral': referral,
       'fathersName': fathersName,
       'mothersName': mothersName,
       'studentsPhone': studentsPhone,
@@ -101,6 +106,7 @@ class CoachingApplyFormModel {
     return CoachingApplyFormModel(
       id: map['id'],
       name: map['name'],
+      referral: map['referral'],
       fathersName: map['fathersName'],
       mothersName: map['mothersName'],
       studentsPhone: map['studentsPhone'],
@@ -120,7 +126,7 @@ class CoachingApplyFormModel {
 
   @override
   String toString() {
-    return 'CoachingApplyFormModel(id: $id, name: $name, fathersName: $fathersName, mothersName: $mothersName, studentsPhone: $studentsPhone, parentsPhone: $parentsPhone, email: $email, address: $address, sscResult: $sscResult, hscResult: $hscResult, coachingName: $coachingName, coachingCourse: $coachingCourse, branch: $branch, preferableTime: $preferableTime, image: $image, signatureImage: $signatureImage)';
+    return 'CoachingApplyFormModel(id: $id, name: $name, referral: $referral, fathersName: $fathersName, mothersName: $mothersName, studentsPhone: $studentsPhone, parentsPhone: $parentsPhone, email: $email, address: $address, sscResult: $sscResult, hscResult: $hscResult, coachingName: $coachingName, coachingCourse: $coachingCourse, branch: $branch, preferableTime: $preferableTime, image: $image, signatureImage: $signatureImage)';
   }
 
   @override
@@ -130,6 +136,7 @@ class CoachingApplyFormModel {
     return other is CoachingApplyFormModel &&
         other.id == id &&
         other.name == name &&
+        other.referral == referral &&
         other.fathersName == fathersName &&
         other.mothersName == mothersName &&
         other.studentsPhone == studentsPhone &&
@@ -150,6 +157,7 @@ class CoachingApplyFormModel {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
+        referral.hashCode ^
         fathersName.hashCode ^
         mothersName.hashCode ^
         studentsPhone.hashCode ^
