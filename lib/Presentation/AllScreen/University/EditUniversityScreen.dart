@@ -27,6 +27,7 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
   TextEditingController _nameController = TextEditingController();
 
   File? _image;
+  File? bannerImages;
   bool loader = false;
 
   @override
@@ -136,6 +137,38 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
               ),
               Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
               SizedBox(height: 20),
+              InkWell(
+                onTap: () async {
+                  print("camera button clicked");
+                  var pickedFile = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  if (pickedFile != null) {
+                    setState(() {
+                      bannerImages = File(pickedFile.path);
+                    });
+                  }
+                },
+                child: Container(
+                  height: 90,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: bannerImages == null
+                      ? Image.network(universityModel.bannerImages)
+                      : Image.file(bannerImages!),
+                ),
+              ),
+              Text(
+                "(image ratio should be 16/9)",
+                style: TextStyle(color: Colors.grey),
+              ),
+              SizedBox(height: 20),
               Container(
                 height: 50,
                 child: loader
@@ -150,25 +183,35 @@ class _EditUniversityScreenState extends State<EditUniversityScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
+                    setState(() {
+                      loader = true;
+                    });
                     if (_image != null) {
-                      setState(() {
-                        loader = true;
-                      });
                       var upload = await FirebaseStorage.instance
                           .ref()
-                          .child("university")
+                          .child("image")
                           .child(_nameController.text)
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
                       universityModel.image = downloadUrl;
                     }
+                    if (bannerImages != null) {
+                      var upload2 = await FirebaseStorage.instance
+                          .ref()
+                          .child("banner")
+                          .child(_nameController.text)
+                          .putFile(bannerImages!);
+                      var bannerUrls = await upload2.ref.getDownloadURL();
+
+                      universityModel.bannerImages = bannerUrls;
+                    }
                     universityModel.name = _nameController.text;
                     universityModel.rating = selectedRating!;
                     await universityModel.update();
-                    Get.back();
                     setState(() {
                       loader = false;
                     });
+                    Get.back();
                   },
                   child: Center(
                     child: Text(
