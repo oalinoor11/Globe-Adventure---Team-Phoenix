@@ -379,9 +379,7 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                   "contacts":
                                       _studentsPhoneController.text.trim(),
                                   "senderid": "37935",
-                                  "msg": "প্রিয় " +
-                                      _nameController.text.trim() +
-                                      ", BORNOBANGLA অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
+                                  "msg": "BORNOBANGLA অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
                                 },
                               ),
                             );

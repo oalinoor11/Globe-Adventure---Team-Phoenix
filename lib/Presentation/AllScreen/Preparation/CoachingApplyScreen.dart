@@ -527,7 +527,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                                 "type": "text",
                                 "contacts": studentsPhoneController.text.trim(),
                                 "senderid": "37935",
-                                "msg": "প্রিয় "+nameController.text.trim()+", আপনি সফলভাবে "+selectedCoaching!.name+" কোচিং -এ "+selectedProgram!.name+" কোর্সে ভর্তির আবেদন করেছেন।",
+                                "msg": "আপনি সফলভাবে "+selectedCoaching!.name+" কোচিং -এ "+selectedProgram!.name+" কোর্সে ভর্তির আবেদন করেছেন।",
                               },
                             ),
                           );

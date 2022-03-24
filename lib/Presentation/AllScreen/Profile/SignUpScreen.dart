@@ -252,6 +252,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "name": nameTextEditingController.text,
         "phone": phoneTextEditingController.text,
         "email": emailTextEditingController.text,
+        "profession": null,
+        "address": null,
+        "partnerid": null,
       });
       Get.snackbar(
         "Congratulations!",
@@ -272,7 +275,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             "type": "text",
             "contacts": phoneTextEditingController.text.trim(),
             "senderid": "37935",
-            "msg": "ধন্যবাদ, "+nameTextEditingController.text.trim()+". আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
+            "msg": "ধন্যবাদ, আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
           },
         ),
       );
