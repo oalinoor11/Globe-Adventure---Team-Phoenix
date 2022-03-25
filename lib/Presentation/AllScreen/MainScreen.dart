@@ -1,6 +1,8 @@
+import 'package:BornoBangla/Data/Models/profile_model.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
+import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/university.dart';
@@ -8,7 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Home/HomeScreen.dart';
-import 'Profile/SignInScreen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -26,7 +27,17 @@ class _MainScreenState extends State<MainScreen> {
     Get.lazyPut(() => UniversityController());
     Get.lazyPut(() => CoachingController());
     Get.lazyPut(() => ScholarshipController());
+    Get.lazyPut(() => ProfileController());
+    storeUserData();
     super.initState();
+  }
+
+  void storeUserData() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      var profile = await ProfileModel.getProfileByUserId(
+          uId: FirebaseAuth.instance.currentUser!.uid);
+      ProfileController.to.profile(profile);
+    }
   }
 
   @override

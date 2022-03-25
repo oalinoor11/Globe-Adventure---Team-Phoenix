@@ -1,5 +1,7 @@
 import 'package:BornoBangla/AllWidgets/progressDialog.dart';
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/profile_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -226,7 +228,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 password: passwordTextEditingController.text)
             .catchError((errMsg) {
       Navigator.pop(context);
-      Navigator.pop(context);
       Get.snackbar(
         "Failed!",
         "You already have an account",
@@ -239,23 +240,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     if (firebaseuser != null) //user created
     {
-      //save user into database
-
-      Map userDataMap = {
-        "name": nameTextEditingController.text.trim(),
-        "phone": phoneTextEditingController.text.trim(),
-        "email": emailTextEditingController.text.trim(),
-      };
-
-      userRef.child(firebaseuser.uid).set(userDataMap);
-      FirebaseCollections.PROFILECOLLECTION.add({
-        "name": nameTextEditingController.text,
-        "phone": phoneTextEditingController.text,
-        "email": emailTextEditingController.text,
-        "profession": null,
-        "address": null,
-        "partnerid": null,
-      });
+      var profile = ProfileModel(
+        id: firebaseuser.uid,
+        name: nameTextEditingController.text,
+        phone: phoneTextEditingController.text,
+        email: emailTextEditingController.text,
+      )..save();
+      ProfileController.to.profile(profile);
       Get.snackbar(
         "Congratulations!",
         "Your account has been Created successfully",
@@ -264,7 +255,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         colorText: Colors.white,
       );
 
-      // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
       var result = await http.get(
         Uri(
           scheme: "http",
@@ -275,7 +265,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             "type": "text",
             "contacts": phoneTextEditingController.text.trim(),
             "senderid": "37935",
-            "msg": "ধন্যবাদ, আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
+            "msg":
+                "ধন্যবাদ, আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
           },
         ),
       );

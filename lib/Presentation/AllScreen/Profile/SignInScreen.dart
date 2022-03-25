@@ -1,5 +1,7 @@
 import 'package:BornoBangla/AllWidgets/progressDialog.dart';
 import 'package:BornoBangla/Core/AppRoutes.dart';
+import 'package:BornoBangla/Data/Models/profile_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +11,11 @@ import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import '../../../main.dart';
 import '../mainscreen.dart';
 
-
-class SignInScreen extends StatelessWidget
-{
+class SignInScreen extends StatelessWidget {
   static const String idScreen = "login";
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,28 +24,34 @@ class SignInScreen extends StatelessWidget
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8.0),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Container(),
-              SizedBox(height: 80.0,),
-              Image(image: AssetImage("assets/coppedlogo.png"),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(),
+              SizedBox(
+                height: 80.0,
+              ),
+              Image(
+                image: AssetImage("assets/coppedlogo.png"),
                 height: 180,
                 alignment: Alignment.center,
               ),
-
-              SizedBox(height: 10.0,),
-
+              SizedBox(
+                height: 10.0,
+              ),
               Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-
-                    SizedBox(height: 5.0,),
+                    SizedBox(
+                      height: 5.0,
+                    ),
                     TextField(
                       controller: emailTextEditingController,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(labelText: "Email",
-                        labelStyle: TextStyle(
-                          fontSize: 14.0),
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        labelStyle: TextStyle(fontSize: 14.0),
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 10.0,
@@ -56,14 +61,15 @@ class SignInScreen extends StatelessWidget
                         fontSize: 14.0,
                       ),
                     ),
-
-                    SizedBox(height: 5.0,),
+                    SizedBox(
+                      height: 5.0,
+                    ),
                     TextField(
                       controller: passwordTextEditingController,
                       obscureText: true,
-                      decoration: InputDecoration(labelText: "Password",
-                        labelStyle: TextStyle(
-                          fontSize: 14.0),
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        labelStyle: TextStyle(fontSize: 14.0),
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontSize: 10.0,
@@ -73,8 +79,9 @@ class SignInScreen extends StatelessWidget
                         fontSize: 14.0,
                       ),
                     ),
-
-                    SizedBox(height: 20.0,),
+                    SizedBox(
+                      height: 20.0,
+                    ),
                     RaisedButton(
                       color: Colors.green,
                       textColor: Colors.white,
@@ -93,10 +100,8 @@ class SignInScreen extends StatelessWidget
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(24.0),
                       ),
-                      onPressed: () async
-                      {
-                        if(!emailTextEditingController.text.contains("@"))
-                        {
+                      onPressed: () async {
+                        if (!emailTextEditingController.text.contains("@")) {
                           Get.snackbar(
                             "Invalid Email!",
                             "Enter correct email address",
@@ -104,10 +109,7 @@ class SignInScreen extends StatelessWidget
                             backgroundColor: Colors.red,
                             colorText: Colors.white,
                           );
-                        }
-
-                        else if(passwordTextEditingController.text.isEmpty)
-                        {
+                        } else if (passwordTextEditingController.text.isEmpty) {
                           Get.snackbar(
                             "Password Required!",
                             "Enter your account password",
@@ -115,10 +117,7 @@ class SignInScreen extends StatelessWidget
                             backgroundColor: Colors.red,
                             colorText: Colors.white,
                           );
-                        }
-
-                        else
-                        {
+                        } else {
                           await loginAndAuthenticateUser(context);
                         }
                         print("clicked Login button");
@@ -127,42 +126,37 @@ class SignInScreen extends StatelessWidget
                   ],
                 ),
               ),
-
               TextButton(
-                onPressed: (){
+                onPressed: () {
                   Get.offAllNamed(AppRoutes.SIGNUPSCREEN);
                   print("clicked to go signup");
                 },
                 child: Text(
-                    "Do not have an Account? Register Here.",
+                  "Do not have an Account? Register Here.",
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
-
             ],
           ),
         ),
       ),
-
     );
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  Future<void> loginAndAuthenticateUser(BuildContext context) async
-  {
+  Future<void> loginAndAuthenticateUser(BuildContext context) async {
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return ProgressDialog(message: "Authenticating, Please wait...");
-        }
-    );
+        });
 
     final User? firebaseuser = (await _firebaseAuth
-        .signInWithEmailAndPassword(
-        email: emailTextEditingController.text,
-        password: passwordTextEditingController.text
-    ).catchError((errMsg) {
+            .signInWithEmailAndPassword(
+                email: emailTextEditingController.text,
+                password: passwordTextEditingController.text)
+            .catchError((errMsg) {
       print(errMsg.toString());
       Get.back();
       Get.snackbar(
@@ -172,13 +166,15 @@ class SignInScreen extends StatelessWidget
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
-    })).user;
-
+    }))
+        .user;
 
     if (firebaseuser != null) {
       print("User is not null");
       try {
-        // var snap =  await userRef.child(firebaseuser.uid).once();
+        ProfileModel profileModel =
+            await ProfileModel.getProfileByUserId(uId: firebaseuser.uid);
+        ProfileController.to.profile(profileModel);
       } on Exception catch (e) {
         print(e.toString());
       }
@@ -190,10 +186,8 @@ class SignInScreen extends StatelessWidget
         colorText: Colors.white,
       );
       Get.offAllNamed(AppRoutes.MAINSCREEN);
-
-    } else{
+    } else {
       print("User is null");
     }
   }
-
 }

@@ -1,24 +1,29 @@
+import 'dart:io';
+
+import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../Data/Models/profile_model.dart';
 
 class EditProfileScreen extends StatefulWidget {
-
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   // ProfileModel profileModel = Get.arguments;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController professionController = TextEditingController();
+  late TextEditingController nameController;
+  late TextEditingController phoneController;
+  late TextEditingController emailController;
+  late TextEditingController addressController;
+  late TextEditingController professionController;
 
   bool loader = false;
+  File? image;
 
   // @override
   // void initState() {
@@ -27,7 +32,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   //   emailController.text = profileModel.email;
   //   super.initState();
   // }
-
+  @override
+  void initState() {
+    nameController =
+        TextEditingController(text: ProfileController.to.profile()!.name);
+    phoneController =
+        TextEditingController(text: ProfileController.to.profile()!.phone);
+    emailController =
+        TextEditingController(text: ProfileController.to.profile()!.email);
+    addressController =
+        TextEditingController(text: ProfileController.to.profile()!.address);
+    professionController =
+        TextEditingController(text: ProfileController.to.profile()!.profession);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,24 +65,47 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 10),
+            padding:
+                const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 10),
             child: Column(
               children: [
-                Container(
-                  height: 150,
-                  decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.green, width: 2),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image(
-                      image: NetworkImage("https://firebasestorage.googleapis.com/v0/b/bornobangla-48c47.appspot.com/o/samplepropic.png?alt=media&token=cdd47354-ad50-43f3-9c03-752265b83605"),
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () async {
+                    var pickedFile = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery);
+                    if (pickedFile != null) {
+                      setState(() {
+                        image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                  child: Container(
+                    height: 150,
+                    decoration: new BoxDecoration(
+                      border: Border.all(color: Colors.green, width: 2),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: image == null
+                          ? Image(
+                              image: NetworkImage(ProfileController.to
+                                          .profile()!
+                                          .profilePicture !=
+                                      null
+                                  ? ProfileController.to
+                                      .profile()!
+                                      .profilePicture!
+                                  : "https://firebasestorage.googleapis.com/v0/b/bornobangla-48c47.appspot.com/o/samplepropic.png?alt=media&token=cdd47354-ad50-43f3-9c03-752265b83605"),
+                              fit: BoxFit.cover,
+                            )
+                          : Image.file(image!),
                     ),
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   controller: nameController,
                   keyboardType: TextInputType.text,
@@ -80,7 +121,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 14.0,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   controller: phoneController,
                   keyboardType: TextInputType.text,
@@ -96,7 +139,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 14.0,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   controller: emailController,
                   keyboardType: TextInputType.text,
@@ -112,7 +157,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 14.0,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   controller: professionController,
                   keyboardType: TextInputType.text,
@@ -128,7 +175,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 14.0,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   controller: addressController,
                   keyboardType: TextInputType.text,
@@ -144,7 +193,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 14.0,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   height: 50,
                   child: RaisedButton(
@@ -155,26 +206,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       borderRadius: new BorderRadius.circular(8.0),
                     ),
                     onPressed: () async {
-                      // if (
-                      //     phoneController.text.isNotEmpty &&
-                      //     emailController.text.isNotEmpty &&
-                      //     professionController.text.isNotEmpty &&
-                      //     addressController.text.isNotEmpty &&
-                      //     nameController.text.isNotEmpty) {
-                      //   setState(() {
-                      //     loader = true;
-                      //   });
-                      //   profileModel.name = nameController.text;
-                      //   profileModel.phone = phoneController.text;
-                      //   profileModel.email = emailController.text;
-                      //   profileModel.address = emailController.text;
-                      //   profileModel.profession = emailController.text;
-                      //   await profileModel.update();
-                      //   setState(() {
-                      //     loader = false;
-                      //   });
-                      //   Get.back();
-                      // }
+                      setState(() {
+                        loader = true;
+                      });
+                      ProfileModel profile =
+                          ProfileController.to.profile()!.copyWith(
+                                name: nameController.text,
+                                phone: phoneController.text,
+                                address: addressController.text,
+                                profession: professionController.text,
+                              );
+                      if (image != null) {
+                        var upload = await FirebaseStorage.instance
+                            .ref()
+                            .child("profile_pictures")
+                            .child(nameController.text)
+                            .putFile(image!);
+                        var downloadUrl = await upload.ref.getDownloadURL();
+                        profile = profile.copyWith(
+                          profilePicture: downloadUrl,
+                        );
+                      }
+                      await profile.save();
+                      ProfileController.to.profile(profile);
+
+                      setState(() {
+                        loader = false;
+                      });
                     },
                     child: Center(
                       child: Text(
@@ -195,4 +253,3 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 }
-
