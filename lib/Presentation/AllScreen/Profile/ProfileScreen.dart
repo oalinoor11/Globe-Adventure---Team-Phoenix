@@ -64,6 +64,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(width: 20.0),
                         Container(
                           height: 80,
+                          width: 80,
+                          decoration: new BoxDecoration(
+                            border: Border.all(color: Colors.blue, width: 2),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             child: Obx(

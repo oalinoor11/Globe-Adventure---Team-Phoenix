@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    Get.lazyPut(() => ProfileController());
     Get.lazyPut(() => SchoolController());
     Get.lazyPut(() => CollegeController());
     Get.lazyPut(() => UniversityController());

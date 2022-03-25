@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../Core/AppRoutes.dart';
 import '../../../Data/Models/profile_model.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -81,6 +82,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   },
                   child: Container(
                     height: 150,
+                    width: 150,
                     decoration: new BoxDecoration(
                       border: Border.all(color: Colors.green, width: 2),
                       borderRadius: BorderRadius.circular(100),
@@ -198,7 +200,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 Container(
                   height: 50,
-                  child: RaisedButton(
+                  child: loader
+                      ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                      : RaisedButton(
                     elevation: 0,
                     color: Colors.green,
                     textColor: Colors.white,
@@ -233,6 +239,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       setState(() {
                         loader = false;
                       });
+                      Get.snackbar(
+                        "Success",
+                        "Profile updated successfully",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.green,
+                        borderRadius: 8,
+                        snackStyle: SnackStyle.FLOATING,
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        animationDuration: Duration(milliseconds: 500),
+                      );
+                      Get.offAllNamed(AppRoutes.MAINSCREEN);
                     },
                     child: Center(
                       child: Text(
