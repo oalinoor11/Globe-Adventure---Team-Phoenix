@@ -52,6 +52,7 @@ dependencies:
   cool_alert:
   path_provider:
   http: ^0.13.4
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:
