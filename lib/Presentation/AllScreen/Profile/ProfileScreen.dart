@@ -226,10 +226,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               "api_key":
                                                   "C20081696225eaffaf0075.13009072",
                                               "type": "text",
-                                              "contacts": "01798161323",
+                                              "contacts": "${ProfileController.to.profile()!.phone}",
                                               "senderid": "37935",
                                               "msg":
-                                                  "প্রিয় Shahed, পার্টনার হওয়ার জন্য আপনার অনুরোধটি গ্রহণ করা হয়েছ।  আপনার পার্টনার কোড: $refferalNumber",
+                                                  "পার্টনার হওয়ার জন্য আপনার অনুরোধটি গ্রহণ করা হয়েছ।  আপনার পার্টনার কোড: $refferalNumber",
                                             },
                                           ),
                                         );
