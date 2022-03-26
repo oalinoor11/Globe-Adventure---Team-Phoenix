@@ -266,7 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             "contacts": phoneTextEditingController.text.trim(),
             "senderid": "37935",
             "msg":
-                "ধন্যবাদ, আপনি সফলভাবে BORNOBANGLA অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
+                "ধন্যবাদ, আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ রেজিস্ট্রেশন সম্পন্ন করেছেন।",
           },
         ),
       );

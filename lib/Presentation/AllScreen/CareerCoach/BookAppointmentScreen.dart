@@ -256,7 +256,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                 "type": "text",
                                 "contacts": phoneController.text.trim(),
                                 "senderid": "37935",
-                                "msg": "আপনি সফলভাবে "+coachModel.name+" -এর এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
+                                "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
                               },
                             ),
                           );
