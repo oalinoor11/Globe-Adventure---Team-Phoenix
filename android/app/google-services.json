@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:370739428686:android:8065ccfa5e13a5800b321f",
+        "mobilesdk_app_id": "1:370739428686:android:9f0d3ce84cdbbebb0b321f",
         "android_client_info": {
-          "package_name": "com.oalinoor11.bornobangla"
+          "package_name": "net.carboncodes.bornobangla"
         }
       },
       "oauth_client": [
@@ -37,9 +37,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:370739428686:android:9f0d3ce84cdbbebb0b321f",
+        "mobilesdk_app_id": "1:370739428686:android:391d4a83c125f45d0b321f",
         "android_client_info": {
-          "package_name": "net.carboncodes.bornobangla"
+          "package_name": "net.carboncodes.bornobangla_admin"
         }
       },
       "oauth_client": [
