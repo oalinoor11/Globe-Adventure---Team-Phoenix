@@ -9,6 +9,7 @@
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -39,6 +40,14 @@
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <receiver android:name=".BootCompletedIntentReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+
+        </receiver>
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
