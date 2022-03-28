@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class ApplyScholarshipScreen extends StatefulWidget {
   @override
@@ -92,12 +92,10 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(19),
                                       topRight: Radius.circular(17),),
-                                    child: YoutubePlayer(
+                                    child: YoutubePlayerIFrame(
                                       controller: YoutubePlayerController(
-                                    flags: const YoutubePlayerFlags(autoPlay: false),
+                                    params: const YoutubePlayerParams(autoPlay: false),
                                           initialVideoId: scholarship.videoId),
-                                      showVideoProgressIndicator: true,
-                                      progressIndicatorColor: Colors.blueAccent,
                                     ),
                                   ),
                                   onLongPress: () {
