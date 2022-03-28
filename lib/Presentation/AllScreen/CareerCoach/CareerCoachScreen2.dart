@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:BornoBangla/Data/Models/coach_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../../Core/AppRoutes.dart';
 
@@ -18,13 +21,28 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
 
   @override
   void initState() {
-    _controller = YoutubePlayerController(
-        initialVideoId: coach.videoId,
-        flags: YoutubePlayerFlags(
-          autoPlay: false,
-          mute: false,
-        ));
     super.initState();
+    _controller = YoutubePlayerController(
+      initialVideoId: coach.videoId,
+      params: const YoutubePlayerParams(
+        showControls: true,
+        showFullscreenButton: true,
+        desktopMode: false,
+        privacyEnhanced: true,
+        useHybridComposition: true,
+        autoPlay: false,
+      ),
+    );
+    _controller.onEnterFullscreen = () {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+      log('Entered Fullscreen');
+    };
+    _controller.onExitFullscreen = () {
+      log('Exited Fullscreen');
+    };
   }
 
   @override
@@ -57,15 +75,13 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                 child: Container(
                   width: double.infinity,
                   decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.white),
+                    border: Border.all(color: Colors.grey.withOpacity(0.4)),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: YoutubePlayer(
+                    child: YoutubePlayerIFrame(
                       controller: _controller,
-                      showVideoProgressIndicator: false,
-                      progressIndicatorColor: Colors.blueAccent,
                     ),
                   ),
                 ),
