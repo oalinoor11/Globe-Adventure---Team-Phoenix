@@ -8,6 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'Core/AppRoutes.dart';
+import 'Presentation/Controllers/coaching_controller.dart';
+import 'Presentation/Controllers/college_controller.dart';
+import 'Presentation/Controllers/scholarship_controller.dart';
+import 'Presentation/Controllers/school_controller_controller.dart';
+import 'Presentation/Controllers/university.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', //id
@@ -95,6 +100,22 @@ class _MyAppState extends State<MyApp> {
             });
       }
     });
+
+    Get.lazyPut(() => ProfileController());
+    Get.lazyPut(() => SchoolController());
+    Get.lazyPut(() => CollegeController());
+    Get.lazyPut(() => UniversityController());
+    Get.lazyPut(() => CoachingController());
+    Get.lazyPut(() => ScholarshipController());
+    storeUserData();
+  }
+
+  void storeUserData() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      var profile = await ProfileModel.getProfileByUserId(
+          uId: FirebaseAuth.instance.currentUser!.uid);
+      ProfileController.to.profile(profile);
+    }
   }
 
   @override

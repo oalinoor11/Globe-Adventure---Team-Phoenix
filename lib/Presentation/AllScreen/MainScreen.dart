@@ -22,24 +22,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    Get.lazyPut(() => ProfileController());
-    Get.lazyPut(() => SchoolController());
-    Get.lazyPut(() => CollegeController());
-    Get.lazyPut(() => UniversityController());
-    Get.lazyPut(() => CoachingController());
-    Get.lazyPut(() => ScholarshipController());
-    storeUserData();
     super.initState();
   }
-
-  void storeUserData() async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      var profile = await ProfileModel.getProfileByUserId(
-          uId: FirebaseAuth.instance.currentUser!.uid);
-      ProfileController.to.profile(profile);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
