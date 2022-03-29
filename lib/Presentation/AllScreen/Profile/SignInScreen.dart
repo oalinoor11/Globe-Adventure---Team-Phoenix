@@ -5,6 +5,7 @@ import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
@@ -24,119 +25,124 @@ class SignInScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(),
-              SizedBox(
-                height: 80.0,
-              ),
-              Image(
-                image: AssetImage("assets/coppedlogo.png"),
-                height: 180,
-                alignment: Alignment.center,
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    TextField(
-                      controller: emailTextEditingController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(fontSize: 14.0),
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 10.0,
+          child: Center(
+            child: Container(
+              width: context.width > 550 ? 550 : double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(),
+                  SizedBox(
+                    height: 50.0,
+                  ),
+                  Image(
+                    image: AssetImage("assets/coppedlogo.png"),
+                    height: 180,
+                    alignment: Alignment.center,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 5.0,
                         ),
-                      ),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    TextField(
-                      controller: passwordTextEditingController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(fontSize: 14.0),
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 10.0,
-                        ),
-                      ),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    RaisedButton(
-                      color: Colors.green,
-                      textColor: Colors.white,
-                      child: Container(
-                        height: 50.0,
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontFamily: "bolt-semibold",
+                        TextField(
+                          controller: emailTextEditingController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            labelStyle: TextStyle(fontSize: 14.0),
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0,
                             ),
                           ),
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
                         ),
-                      ),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(24.0),
-                      ),
-                      onPressed: () async {
-                        if (!emailTextEditingController.text.contains("@")) {
-                          Get.snackbar(
-                            "Invalid Email!",
-                            "Enter correct email address",
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else if (passwordTextEditingController.text.isEmpty) {
-                          Get.snackbar(
-                            "Password Required!",
-                            "Enter your account password",
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else {
-                          await loginAndAuthenticateUser(context);
-                        }
-                        print("clicked Login button");
-                      },
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        TextField(
+                          controller: passwordTextEditingController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            labelStyle: TextStyle(fontSize: 14.0),
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10.0,
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        RaisedButton(
+                          color: Colors.green,
+                          textColor: Colors.white,
+                          child: Container(
+                            height: 50.0,
+                            child: Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: "bolt-semibold",
+                                ),
+                              ),
+                            ),
+                          ),
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(24.0),
+                          ),
+                          onPressed: () async {
+                            if (!emailTextEditingController.text.contains("@")) {
+                              Get.snackbar(
+                                "Invalid Email!",
+                                "Enter correct email address",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
+                            } else if (passwordTextEditingController.text.isEmpty) {
+                              Get.snackbar(
+                                "Password Required!",
+                                "Enter your account password",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              await loginAndAuthenticateUser(context);
+                            }
+                            print("clicked Login button");
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Get.offAllNamed(AppRoutes.SIGNUPSCREEN);
+                      print("clicked to go signup");
+                    },
+                    child: Text(
+                      "Do not have an Account? Register Here.",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  Get.offAllNamed(AppRoutes.SIGNUPSCREEN);
-                  print("clicked to go signup");
-                },
-                child: Text(
-                  "Do not have an Account? Register Here.",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
