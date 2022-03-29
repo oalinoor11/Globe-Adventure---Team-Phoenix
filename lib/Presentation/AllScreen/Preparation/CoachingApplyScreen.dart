@@ -14,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class CoachingApplyScreen extends StatefulWidget {
   @override
@@ -440,7 +441,41 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              Row(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "By clicking ",
+                    style: TextStyle(color: Colors.black87,
+                        fontSize: 11),
+                  ),
+                  Text(
+                    "Next",
+                    style: TextStyle(color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11),
+                  ),
+                  Text(
+                    ", you are agreeing to the",
+                    style: TextStyle(color: Colors.black87,
+                        fontSize: 11),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      await launch(
+                        "https://drive.google.com/file/d/1BAnNHhmwrYWABwOlSXNO3uebgwsYHxuR/view?usp=sharing",
+                      );
+                    },
+                    child: Text(
+                      "terms & conditions",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11),
+                    ),
+                  ),
+                ],
+              ),
               Container(
                 height: 50,
                 child: isLoading

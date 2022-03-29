@@ -5,6 +5,7 @@ import 'package:BornoBangla/Data/Models/appply_scholarship_form_model.dart';
 import 'package:BornoBangla/Data/Models/scholarship_model.dart';
 import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -13,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class ScholarshipApplyScreen extends StatefulWidget {
   @override
@@ -286,9 +288,6 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      width: 10,
-                    ),
                     TextButton(
                       onPressed: () {
                         _signaturePadKey.currentState!.clear();
@@ -300,7 +299,41 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "By clicking ",
+                      style: TextStyle(color: Colors.black87,
+                      fontSize: 11),
+                    ),
+                    Text(
+                      "Next",
+                      style: TextStyle(color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11),
+                    ),
+                    Text(
+                      ", you are agreeing to the",
+                      style: TextStyle(color: Colors.black87,
+                      fontSize: 11),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        await launch(
+                          "https://drive.google.com/file/d/1BAnNHhmwrYWABwOlSXNO3uebgwsYHxuR/view?usp=sharing",
+                        );
+                      },
+                      child: Text(
+                        "terms & conditions",
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11),
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   height: 50,
                   child: loader

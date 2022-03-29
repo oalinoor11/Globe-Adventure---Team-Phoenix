@@ -140,9 +140,6 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                         onTap: () async {
                                           await launch(
                                             scholarship.applicationLink,
-                                            forceSafariVC: true,
-                                            forceWebView: true,
-                                            enableJavaScript: true,
                                           );
                                         },
                                       ),
@@ -157,7 +154,7 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                                 BorderRadiusDirectional.circular(4),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(3.0),
+                                            padding: const EdgeInsets.all(6.0),
                                             child: Text(
                                                 " Apply for Processing ",
                                                 softWrap: true,
