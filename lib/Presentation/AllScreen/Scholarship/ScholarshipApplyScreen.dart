@@ -244,9 +244,10 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: _studentsPhoto == null
-                        ? Column(mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Student's Photo",
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Student's Photo",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 12)),
                               SizedBox(height: 10),
@@ -260,7 +261,10 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                         : Image.file(_studentsPhoto!),
                   ),
                 ),
-                Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+                Text(
+                  "(image ratio should be 1/1)",
+                  style: TextStyle(color: Colors.grey),
+                ),
                 SizedBox(height: 20),
                 Container(
                   width: double.infinity,
@@ -299,23 +303,23 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     ),
                   ],
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "By clicking ",
-                      style: TextStyle(color: Colors.black87,
-                      fontSize: 11),
+                      style: TextStyle(color: Colors.black87, fontSize: 11),
                     ),
                     Text(
                       "Next",
-                      style: TextStyle(color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 11),
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11),
                     ),
                     Text(
                       ", you are agreeing to the",
-                      style: TextStyle(color: Colors.black87,
-                      fontSize: 11),
+                      style: TextStyle(color: Colors.black87, fontSize: 11),
                     ),
                     TextButton(
                       onPressed: () async {
@@ -399,8 +403,8 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                             setState(() {
                               loader = false;
                             });
-                            Get.toNamed(AppRoutes.BKASHSCREEN);
-                            // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                            Get.toNamed(AppRoutes.BKASHSCREEN,
+                                arguments: 5000.0);
                             var result = await http.get(
                               Uri(
                                 scheme: "http",
@@ -412,7 +416,8 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                   "contacts":
                                       _studentsPhoneController.text.trim(),
                                   "senderid": "37935",
-                                  "msg": "বর্ণবাংলা অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
+                                  "msg":
+                                      "বর্ণবাংলা অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
                                 },
                               ),
                             );
