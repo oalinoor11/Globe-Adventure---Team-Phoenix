@@ -28,7 +28,6 @@ class _MainScreenState extends State<MainScreen> {
     Get.lazyPut(() => UniversityController());
     Get.lazyPut(() => CoachingController());
     Get.lazyPut(() => ScholarshipController());
-    Get.lazyPut(() => ProfileController());
     storeUserData();
     super.initState();
   }
