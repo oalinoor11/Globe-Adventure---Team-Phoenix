@@ -188,7 +188,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                               fontWeight: FontWeight.bold))),
                 ),
                 onTap: () async {
-                  if (image != null) {
+                  if (image != null && nameController.text.isNotEmpty && selectedRating != null && bannerImages != null) {
                     setState(() {
                       loader = true;
                     });
@@ -227,7 +227,7 @@ class _AddCoachingScreenState extends State<AddCoachingScreen> {
                   } else {
                     Get.snackbar(
                       "Failed!",
-                      "Add valid Name and Logo",
+                      "Fill up all the fields",
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.red,
                       colorText: Colors.white,
