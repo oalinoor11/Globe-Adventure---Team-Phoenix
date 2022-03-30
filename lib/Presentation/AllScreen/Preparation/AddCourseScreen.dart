@@ -182,7 +182,9 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                               fontWeight: FontWeight.bold))),
                 ),
                 onTap: () async {
-                  if (image != null) {
+                  if (image != null && nameTextEditingController.text.isNotEmpty && selectedCurrency != null
+                      && regularFeeTextEditingController.text.isNotEmpty
+                      && discountFeeTextEditingController.text.isNotEmpty) {
                     setState(() {
                       loader = true;
                     });
