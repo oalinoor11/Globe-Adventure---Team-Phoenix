@@ -24,6 +24,7 @@ class CoachingApplyScreen extends StatefulWidget {
 class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
   List timeList = ["Morning", "Day", "Evening"];
   String? selectedTime;
+  double amount = Get.arguments;
 
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
@@ -549,8 +550,9 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           setState(() {
                             isLoading = false;
                           });
-                          Get.toNamed(AppRoutes.BKASHSCREEN);
-                          Get.toNamed(AppRoutes.BKASHSCREEN);
+                          print(amount);
+                          Get.toNamed(AppRoutes.BKASHSCREEN,
+                              arguments: amount);
                           // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
                           var result = await http.get(
                             Uri(

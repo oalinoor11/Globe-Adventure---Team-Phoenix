@@ -13,6 +13,9 @@ class AdmissionCoachingScreen2 extends StatefulWidget {
 }
 
 class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
+  double? amount;
+  double? rupee;
+  double? usd;
   CoachingModel coachingModel = Get.arguments;
   @override
   Widget build(BuildContext context) {
@@ -128,7 +131,27 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                   ),
                   onTap: () {
                     CoachingController.to.coachingCourseModel(courseModel);
-                    Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN);
+
+                    if(courseModel.currency.toString() == "৳")
+                      {amount = courseModel.discountedCourseFee?.toDouble();}
+
+                    else if(courseModel.currency.toString() == "₹")
+                    {
+                      rupee = (courseModel.discountedCourseFee?.toDouble());
+                      amount = (rupee!*1.2).toDouble();
+                    }
+
+                    else if(courseModel.currency.toString() == "\$")
+                    {
+                    usd = (courseModel.discountedCourseFee?.toDouble());
+                    amount = (usd!*85).toDouble();
+                    };
+
+
+                    Get.toNamed(AppRoutes.COACHINGAPPLYSCREEN,
+                        arguments: amount
+                    );
+                    print(amount);
                   },
                   onLongPress: () async {
                     var result = await Get.toNamed(
