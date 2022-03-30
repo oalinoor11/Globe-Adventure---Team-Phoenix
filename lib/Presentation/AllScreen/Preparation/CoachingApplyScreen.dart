@@ -491,13 +491,17 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           borderRadius: new BorderRadius.circular(8.0),
                         ),
                         onPressed: () async {
-                          if (image == null) {
-                            Get.showSnackbar(GetSnackBar(
-                              message: "Please select student's photo",
-                              backgroundColor: Colors.red,
-                            ));
-                            return;
-                          }
+                          if (image != null && nameController.text.isNotEmpty
+                          && fathersNameController.text.isNotEmpty
+                          && mothersNameController.text.isNotEmpty
+                          && addressController.text.isNotEmpty
+                          && studentsPhoneController.text.isNotEmpty
+                          && parentsPhoneController.text.isNotEmpty
+                          && emailController.text.isNotEmpty
+                          && sscController.text.isNotEmpty
+                          && hscController.text.isNotEmpty
+                          && selectedBranch != null
+                          && selectedTime != null) {
                           setState(() {
                             isLoading = true;
                           });
@@ -567,7 +571,17 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                                 "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ কোচিং -এ ভর্তির আবেদন করেছেন।",
                               },
                             ),
-                          );
+                          );}
+                          else {
+                            Get.snackbar(
+                              "Failed!",
+                              "Fill up all field",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                            );
+                            return;
+                          }
                         },
                         child: Center(
                           child: Text(
