@@ -22,6 +22,10 @@ class BookAppointmentScreen extends StatefulWidget {
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
+  double? amount;
+  double? rupee;
+  double? usd;
+
   ScreenshotController screenshotController = ScreenshotController();
 
   TextEditingController nameController = TextEditingController();
@@ -296,7 +300,24 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                               },
                             ),
                           );
-                          Get.toNamed(AppRoutes.BKASHSCREEN);
+                          if(coachModel.currency.toString() == "৳")
+                          {amount = coachModel.price?.toDouble();}
+
+                          else if(coachModel.currency.toString() == "₹")
+                          {
+                            rupee = coachModel.price?.toDouble();
+                            amount = (rupee!*1.2).toDouble();
+                          }
+
+                          else if(coachModel.currency.toString() == "\$")
+                          {
+                            usd = coachModel.price?.toDouble();
+                            amount = (usd!*85).toDouble();
+                          };
+
+                          Get.toNamed(AppRoutes.BKASHSCREEN,
+                          arguments: amount);
+                          print(amount);
                         },
                         child: Center(
                           child: Text(

@@ -1,10 +1,9 @@
 import 'package:BornoBangla/Data/firebase_collections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CoachModel {
   String? id;
   late String name;
-  late String price;
+  late int? price;
   late String currency;
   late String image;
   late String description;

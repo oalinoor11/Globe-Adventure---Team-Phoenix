@@ -220,7 +220,7 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                     var downloadUrl = await upload.ref.getDownloadURL();
                     CoachModel(
                             name: _nameController.text,
-                            price: _priceController.text,
+                            price: int.parse(_priceController.text),
                             currency: selectedCurrency!,
                             image: downloadUrl,
                             description: _descriptionController.text,

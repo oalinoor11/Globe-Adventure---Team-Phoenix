@@ -129,7 +129,7 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                     ),
                   ),
                   Text(
-                    coach.price,
+                    coach.price.toString(),
                     style: TextStyle(
                       fontSize: 16.0,
                     ),

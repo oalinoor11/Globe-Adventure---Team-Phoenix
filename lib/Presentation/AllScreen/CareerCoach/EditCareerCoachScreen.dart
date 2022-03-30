@@ -42,7 +42,7 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
   @override
   void initState() {
     _nameController = TextEditingController(text: coach.name);
-    _priceController = TextEditingController(text: coach.price);
+    _priceController = TextEditingController(text: coach.price.toString());
     _titleController = TextEditingController(text: coach.title);
     _descriptionController = TextEditingController(text: coach.description);
     _coachVideoIdController = TextEditingController(text: coach.videoId);
@@ -232,7 +232,7 @@ class _EditCareerCoachScreenState extends State<EditCareerCoachScreen> {
                       coach.image = downloadUrl;
                     }
                     coach.name = _nameController.text;
-                    coach.price = _priceController.text;
+                    coach.price = int.parse(_priceController.text);
                     coach.title = _titleController.text;
                     coach.description = _descriptionController.text;
                     coach.currency = selectedCurrency!;
