@@ -1,5 +1,7 @@
 import 'package:BornoBangla/Data/Models/branch_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class AddBranchPage extends StatefulWidget {
   const AddBranchPage({Key? key}) : super(key: key);
@@ -37,11 +39,23 @@ class _AddBranchPageState extends State<AddBranchPage> {
             ),
             InkWell(
               onTap: () async {
-                BranchModel branchModel = BranchModel(
-                  name: branchNameController.text,
-                );
-                await branchModel.save();
-                branchNameController.clear();
+                if (branchNameController.text.isNotEmpty)
+                {
+                  BranchModel branchModel = BranchModel(
+                      name: branchNameController.text,
+                    );
+                  await branchModel.save();
+                  branchNameController.clear();
+                }
+                else{
+                  Get.snackbar(
+                    "Failed!",
+                    "Enter correct branch name",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                }
               },
               child: Container(
                 padding: const EdgeInsets.all(10),
