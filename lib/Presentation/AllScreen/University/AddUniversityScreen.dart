@@ -191,10 +191,10 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_nameController.text.isEmpty || _image == null) {
-                      Get.snackbar("Failed", "Please fill all the fields",
-                          snackPosition: SnackPosition.BOTTOM);
-                    } else {
+                    if (_image != null &&
+                        bannerImages != null &&
+                        selectedRating != null &&
+                        _nameController.text.isNotEmpty) {
                       setState(() {
                         loader = true;
                       });
@@ -229,12 +229,18 @@ class _AddUniversityScreenState extends State<AddUniversityScreen> {
                         "Country added successfully",
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.green,
-                        borderRadius: 8,
-                        snackStyle: SnackStyle.FLOATING,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
+                        colorText: Colors.white,
                       );
+                    }
+                    else {
+                    Get.snackbar(
+                    "Failed!",
+                    "Fill up all field",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                    );
+                    return;
                     }
                   },
                   child: Center(
