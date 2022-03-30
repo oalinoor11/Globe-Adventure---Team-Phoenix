@@ -182,11 +182,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                         "College added successfully",
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.green,
-                        borderRadius: 8,
-                        snackStyle: SnackStyle.FLOATING,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
+                        colorText: Colors.white,
                       );
                       Get.back();
                     }
