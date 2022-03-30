@@ -209,29 +209,49 @@ class _AddCareerCoachScreenState extends State<AddCareerCoachScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    setState(() {
-                      loader = true;
-                    });
-                    var upload = await FirebaseStorage.instance
-                        .ref()
-                        .child("coach")
-                        .child(_nameController.text)
-                        .putFile(image!);
-                    var downloadUrl = await upload.ref.getDownloadURL();
-                    CoachModel(
-                            name: _nameController.text,
-                            price: int.parse(_priceController.text),
-                            currency: selectedCurrency!,
-                            image: downloadUrl,
-                            description: _descriptionController.text,
-                            title: _titleController.text,
-                            videoId: _coachVideoIdController.text)
-                        .save();
-                    setState(() {
-                      loader = false;
-                    });
-                    Get.back();
-                  },
+                    if (image != null
+                        && selectedCurrency != null
+                        && _nameController.text.isNotEmpty
+                        && _titleController.text.isNotEmpty
+                        && _descriptionController.text.isNotEmpty
+                        && _coachVideoIdController.text.isNotEmpty
+                        && _priceController.text.isNotEmpty
+                    )
+                    {
+                      setState(() {
+                        loader = true;
+                      });
+                      var upload = await FirebaseStorage.instance
+                          .ref()
+                          .child("coach")
+                          .child(_nameController.text)
+                          .putFile(image!);
+                      var downloadUrl = await upload.ref.getDownloadURL();
+                      CoachModel(
+                          name: _nameController.text,
+                          price: int.parse(_priceController.text),
+                          currency: selectedCurrency!,
+                          image: downloadUrl,
+                          description: _descriptionController.text,
+                          title: _titleController.text,
+                          videoId: _coachVideoIdController.text)
+                          .save();
+                      setState(() {
+                        loader = false;
+                      });
+                      Get.back();
+                    }
+                    else {
+                      Get.snackbar(
+                        "Failed!",
+                        "Fill up all field",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                      return;
+                    }
+                    },
                   child: Center(
                     child: Text(
                       "Save",
