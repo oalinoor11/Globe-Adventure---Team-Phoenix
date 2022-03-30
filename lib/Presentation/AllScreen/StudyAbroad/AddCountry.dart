@@ -172,45 +172,7 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_image == null && _nameController.text.isNotEmpty) {
-                      print("image is null");
-                      Get.snackbar(
-                        "Error",
-                        "Please select a Country image",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        borderRadius: 8,
-                        snackStyle: SnackStyle.FLOATING,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
-                      );
-                    } else if (_image == null && _nameController.text.isEmpty) {
-                      print("image is null");
-                      Get.snackbar(
-                        "Error",
-                        "Please select a Country image",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        borderRadius: 8,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
-                      );
-                    } else if (_image != null && _nameController.text.isEmpty) {
-                      print("image is not null");
-                      Get.snackbar(
-                        "Error",
-                        "Please enter a Country name",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        borderRadius: 8,
-                        snackStyle: SnackStyle.FLOATING,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
-                      );
-                    } else if (_image != null && bannerImages != null &&
+                    if (_image != null && bannerImages != null &&
                         _nameController.text.isNotEmpty) {
                       setState(() {
                         loader = true;
@@ -249,6 +211,16 @@ class _AddCountryScreenState extends State<AddCountryScreen> {
                         padding: EdgeInsets.all(8),
                         animationDuration: Duration(milliseconds: 500),
                       );
+                    }
+                    else {
+                      Get.snackbar(
+                        "Failed!",
+                        "Fill up all field",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                      return;
                     }
                   },
                   child: Center(
