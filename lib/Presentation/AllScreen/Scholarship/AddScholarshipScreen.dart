@@ -11,6 +11,7 @@ class AddScholarshipScreen extends StatefulWidget {
 }
 
 class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
+  bool isLoading = false;
   ScreenshotController screenshotController = ScreenshotController();
   TextEditingController _scholarshipNameController = TextEditingController();
   TextEditingController _videoIdController = TextEditingController();
@@ -87,7 +88,11 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
               SizedBox(height: 20),
               Container(
                 height: 50,
-                child: RaisedButton(
+                child: isLoading
+                    ? Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : RaisedButton(
                   elevation: 0,
                   color: Colors.green,
                   textColor: Colors.white,
@@ -95,39 +100,14 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_scholarshipNameController.text.isEmpty) {
-                      Get.snackbar(
-                        "Error",
-                        "Please a Scholarship Nmae",
-                        icon: Icon(
-                          Icons.error,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.red,
-                      );
-                      return;
-                    }
-                    if (_videoIdController.text.isNotEmpty) {
-                      setState(() {
-                        loader = true;
-                      });
-                    } else {
-                      Get.snackbar(
-                        "Error",
-                        "Please a Video ID",
-                        icon: Icon(
-                          Icons.error,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.red,
-                      );
-                      return;
-                    }
-
-                    // regex code for website url
-                    // RegExp exp = new RegExp(
-                    //     r"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$");
-                    await ScholarshipModel(
+                     if (_scholarshipNameController.text.isNotEmpty
+                    && _videoIdController.text.isNotEmpty
+                    && _applicationLinkController.text.isNotEmpty)
+                       {
+                         setState(() {
+                           loader = true;
+                         });
+                         await ScholarshipModel(
                       name: _scholarshipNameController.text,
                       applicationLink: _applicationLinkController.text,
                       videoId: _videoIdController.text,
@@ -141,13 +121,26 @@ class _AddScholarshipScreenState extends State<AddScholarshipScreen> {
                     Get.snackbar(
                       "Success",
                       "Congratulation! Scholarship added successfully",
+                      colorText: Colors.white,
+                      snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.green,
                     );
                     return;
+                    }
+                    else {
+                      Get.snackbar(
+                        "Error",
+                        "Please fill up all the fields",
+                        colorText: Colors.white,
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                      );
+                      return;
+                    }
                   },
                   child: Center(
                     child: Text(
-                      "Save Changes",
+                      "Save",
                       style: TextStyle(
                         fontSize: 22.0,
                       ),
