@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sslcommerz/model/SSLCSdkType.dart';
@@ -18,25 +20,13 @@ class _BkashScreenState extends State<BkashScreen> {
   late Sslcommerz sslcommerz;
   @override
   void initState() {
-// Sslcommerz sslcommerz = Sslcommerz(
-//     initializer: SSLCommerzInitialization(
-//  //   ipn_url: "www.ipnurl.com",
-//   multi_card_name: "visa,master,bkash",
-//   currency: SSLCurrencyType.BDT,
-//   product_category: "Food",
-//   sdkType: SSLCSdkType.TESTBOX,
-//   store_id: "your_store_id",
-//   store_passwd: "your_store_password",
-//   total_amount: "payment_amount",
-//   tran_id: "custom_transaction_id"));
-
     sslcommerz = Sslcommerz(
       initializer: SSLCommerzInitialization(
-        store_id: 'test',
-        store_passwd: 'test',
+        store_id: 'shiha6243d63450d79',
+        store_passwd: 'shiha6243d63450d79@ssl',
         currency: SSLCurrencyType.BDT,
         total_amount: paymentAmount,
-        tran_id: 'test',
+        tran_id: 'test${Random().nextInt(9999)}',
         sdkType: SSLCSdkType.TESTBOX,
         multi_card_name: 'visa,master,bkash',
         product_category: 'Application Fee',
