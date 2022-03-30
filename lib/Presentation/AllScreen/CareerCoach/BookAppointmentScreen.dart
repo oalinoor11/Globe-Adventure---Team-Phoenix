@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
@@ -261,64 +262,83 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                           borderRadius: new BorderRadius.circular(8.0),
                         ),
                         onPressed: () async {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          var upload = await FirebaseStorage.instance
-                              .ref()
-                              .child("coach_appointment_images")
-                              .child(nameController.text)
-                              .putFile(image!);
-                          var downloadUrl = await upload.ref.getDownloadURL();
-
-                          AppointmentApplicationModel(
-                            name: nameController.text,
-                            referral: referralController.text,
-                            phone: phoneController.text,
-                            email: emailController.text,
-                            age: ageController.text,
-                            profession: professionController.text,
-                            purposeOfMeeting: purposeOfMeetingController.text,
-                            image: downloadUrl,
-                            coachModel: coachModel,
-                          ).save();
-                          setState(() {
-                            isLoading = false;
-                          });
-                          // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
-                          var result = await http.get(
-                            Uri(
-                              scheme: "http",
-                              host: "msg.elitbuzz-bd.com",
-                              path: "/smsapi",
-                              queryParameters: {
-                                "api_key": "C20081696225eaffaf0075.13009072",
-                                "type": "text",
-                                "contacts": phoneController.text.trim(),
-                                "senderid": "37935",
-                                "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
-                              },
-                            ),
-                          );
-                          if(coachModel.currency.toString() == "৳")
-                          {amount = coachModel.price?.toDouble();}
-
-                          else if(coachModel.currency.toString() == "₹")
+                          if (image != null
+                              && nameController.text.isNotEmpty
+                              && phoneController.text.isNotEmpty
+                              && emailController.text.isNotEmpty
+                              && ageController.text.isNotEmpty
+                              && professionController.text.isNotEmpty
+                              && purposeOfMeetingController.text.isNotEmpty
+                          )
                           {
-                            rupee = coachModel.price?.toDouble();
-                            amount = (rupee!*1.2).toDouble();
+                            setState(() {
+                              isLoading = true;
+                            });
+                            var upload = await FirebaseStorage.instance
+                                .ref()
+                                .child("coach_appointment_images")
+                                .child(nameController.text)
+                                .putFile(image!);
+                            var downloadUrl = await upload.ref.getDownloadURL();
+
+                            AppointmentApplicationModel(
+                              name: nameController.text,
+                              referral: referralController.text,
+                              phone: phoneController.text,
+                              email: emailController.text,
+                              age: ageController.text,
+                              profession: professionController.text,
+                              purposeOfMeeting: purposeOfMeetingController.text,
+                              image: downloadUrl,
+                              coachModel: coachModel,
+                            ).save();
+                            setState(() {
+                              isLoading = false;
+                            });
+                            // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                            var result = await http.get(
+                              Uri(
+                                scheme: "http",
+                                host: "msg.elitbuzz-bd.com",
+                                path: "/smsapi",
+                                queryParameters: {
+                                  "api_key": "C20081696225eaffaf0075.13009072",
+                                  "type": "text",
+                                  "contacts": phoneController.text.trim(),
+                                  "senderid": "37935",
+                                  "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
+                                },
+                              ),
+                            );
+                            if (coachModel.currency.toString() == "৳") {
+                              amount = coachModel.price?.toDouble();
+                            }
+
+                            else if (coachModel.currency.toString() == "₹") {
+                              rupee = coachModel.price?.toDouble();
+                              amount = (rupee! * 1.2).toDouble();
+                            }
+
+                            else if (coachModel.currency.toString() == "\$") {
+                              usd = coachModel.price?.toDouble();
+                              amount = (usd! * 85).toDouble();
+                            };
+
+                            Get.toNamed(AppRoutes.BKASHSCREEN,
+                                arguments: amount);
+                            print(amount);
                           }
-
-                          else if(coachModel.currency.toString() == "\$")
-                          {
-                            usd = coachModel.price?.toDouble();
-                            amount = (usd!*85).toDouble();
-                          };
-
-                          Get.toNamed(AppRoutes.BKASHSCREEN,
-                          arguments: amount);
-                          print(amount);
-                        },
+                          else {
+                          Get.snackbar(
+                          "Failed!",
+                          "Fill up all field",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                          );
+                          return;
+                          }
+                          },
                         child: Center(
                           child: Text(
                             "Next",
