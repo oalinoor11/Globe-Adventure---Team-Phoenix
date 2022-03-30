@@ -5,6 +5,7 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
@@ -252,26 +253,46 @@ class _AddUniversityCourseScreenState extends State<AddUniversityCourseScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () {
-                    setState(() {
-                      loader = true;
-                    });
-                    CourseModel courseModel = CourseModel(
-                      admissionFees: int.parse(_admissionFeesController.text),
-                      tuitionFees: int.parse(_tuitionFeesController.text),
-                      name: _nameController.text,
-                      currency: selectedCurrency!,
-                      level: selectedLevel!,
-                      requirements: _requirementsController.text,
-                      scholarship: _scholarshipController.text,
-                      duration: selectedDuration!,
-                    );
-                    _universityModel.courseList.add(courseModel);
-                    _universityModel.update();
-                    setState(() {
-                      loader = false;
-                    });
-                    Get.back();
-                  },
+                    if (selectedDuration != null &&
+                        selectedLevel != null &&
+                        selectedCurrency != null &&
+                        _nameController.text.isNotEmpty &&
+                        _requirementsController.text.isNotEmpty &&
+                        _scholarshipController.text.isNotEmpty &&
+                        _admissionFeesController.text.isNotEmpty &&
+                        _tuitionFeesController.text.isNotEmpty
+                    ) {
+                      setState(() {
+                        loader = true;
+                      });
+                      CourseModel courseModel = CourseModel(
+                        admissionFees: int.parse(_admissionFeesController.text),
+                        tuitionFees: int.parse(_tuitionFeesController.text),
+                        name: _nameController.text,
+                        currency: selectedCurrency!,
+                        level: selectedLevel!,
+                        requirements: _requirementsController.text,
+                        scholarship: _scholarshipController.text,
+                        duration: selectedDuration!,
+                      );
+                      _universityModel.courseList.add(courseModel);
+                      _universityModel.update();
+                      setState(() {
+                        loader = false;
+                      });
+                      Get.back();
+                    }
+                    else {
+                      Get.snackbar(
+                        "Failed!",
+                        "Fill up all field",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                      return;
+                    }
+                    },
                      child: Center(
                       child: Text(
                       "Save",
