@@ -150,46 +150,7 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   onPressed: () async {
-                    if (_image == null && _nameController.text.isNotEmpty) {
-                      print("image is null");
-                      Get.snackbar(
-                        "Error",
-                        "Please select a School image",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        borderRadius: 8,
-                        snackStyle: SnackStyle.FLOATING,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
-                      );
-                    } else if (_image == null && _nameController.text.isEmpty) {
-                      print("image is null");
-                      Get.snackbar(
-                        "Error",
-                        "Please select a School image",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        borderRadius: 8,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
-                      );
-                    } else if (_image != null && _nameController.text.isEmpty) {
-                      print("image is not null");
-                      Get.snackbar(
-                        "Error",
-                        "Please enter a School name",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        borderRadius: 8,
-                        snackStyle: SnackStyle.FLOATING,
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        animationDuration: Duration(milliseconds: 500),
-                      );
-                    } else if (_image != null &&
-                        _nameController.text.isNotEmpty) {
+                    if (_image != null && selectedRating != null && _nameController.text.isNotEmpty) {
                       setState(() {
                         loader = true;
                       });
@@ -200,10 +161,10 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                           .putFile(_image!);
                       var downloadUrl = await upload.ref.getDownloadURL();
                       await SchoolModel(
-                              name: _nameController.text,
-                              rating: selectedRating!,
-                              image: downloadUrl,
-                              country: SchoolController.to.selectedCountry())
+                          name: _nameController.text,
+                          rating: selectedRating!,
+                          image: downloadUrl,
+                          country: SchoolController.to.selectedCountry())
                           .save();
                       setState(() {
                         loader = false;
@@ -220,6 +181,16 @@ class _AddSchoolScreenState extends State<AddSchoolScreen> {
                         padding: EdgeInsets.all(8),
                         animationDuration: Duration(milliseconds: 500),
                       );
+                    }
+                    else {
+                      Get.snackbar(
+                        "Failed!",
+                        "Fill up all field",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                      return;
                     }
                   },
                   child: Center(
