@@ -29,15 +29,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () async {
-            await Get.toNamed(AppRoutes.ADDUNIVERSITYCOURSESCREEN,
-                arguments: universityModel);
-            setState(() {
-              universityModel;
-            });
-          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -262,23 +253,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                 ],
                               ),
                             ),
-                            onLongPress: () async {
-                              var result = await Get.toNamed(
-                                  AppRoutes.EDITCOURSESCREEN,
-                                  arguments: courseModel);
-                              if (result == true) {
-                                universityModel.courseList.removeAt(index);
-                                setState(() {
-                                  universityModel.update();
-                                });
-                              } else {
-                                universityModel.courseList[index] =
-                                    result ?? courseModel;
-                                setState(() {
-                                  universityModel.update();
-                                });
-                              }
-                            },
                           ),
                           SizedBox(
                             height: 20,
