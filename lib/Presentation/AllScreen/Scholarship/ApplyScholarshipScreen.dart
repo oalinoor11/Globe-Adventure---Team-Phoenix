@@ -30,11 +30,6 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDSCHOLARSHIPSCREEN);
-          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,11 +93,6 @@ class _ApplyScholarshipScreenState extends State<ApplyScholarshipScreen> {
                                           initialVideoId: scholarship.videoId),
                                     ),
                                   ),
-                                  onLongPress: () {
-                                    Get.toNamed(
-                                        AppRoutes.EDITSCHOLARSHIPSCREEN,
-                                        arguments: scholarship);
-                                  },
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
