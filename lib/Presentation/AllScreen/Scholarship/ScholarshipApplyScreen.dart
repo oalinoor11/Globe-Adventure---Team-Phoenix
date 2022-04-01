@@ -353,90 +353,109 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                             borderRadius: new BorderRadius.circular(8.0),
                           ),
                           onPressed: () async {
-                            if (_studentsPhoto != null
-                                && _signaturePhoto != null
-                                && _nameController.text.isNotEmpty
-                                && _fatherNameController.text.isNotEmpty
-                                && _motherNameController.text.isNotEmpty
-                                && _presentAddressController.text.isNotEmpty
-                                && _studentsPhoneController.text.isNotEmpty
-                                && _parentsPhoneController.text.isNotEmpty
-                                && _emailAddressController.text.isNotEmpty
-                                && _sscResultController.text.isNotEmpty
-                                && _hscResultController.text.isNotEmpty
-                            )
-                            {
-                            setState(() {
-                              loader = true;
-                            });
-                            var upload = await FirebaseStorage.instance
-                                .ref()
-                                .child("student_images")
-                                .child(_nameController.text)
-                                .putFile(_studentsPhoto!);
-                            var studentImageUrl =
-                                await upload.ref.getDownloadURL();
-                            var tempData = await screenshotController.capture(
-                                pixelRatio: 10);
-                            var signatureImageUrl;
-                            if (tempData != null) {
-                              final directory =
-                                  await getApplicationDocumentsDirectory();
-                              _signaturePhoto =
-                                  await File('${directory.path}/image.png')
-                                      .create();
-                              await _signaturePhoto!.writeAsBytes(tempData);
+                            if (_studentsPhoto != null &&
+                                _nameController.text.isNotEmpty &&
+                                _fatherNameController.text.isNotEmpty &&
+                                _motherNameController.text.isNotEmpty &&
+                                _presentAddressController.text.isNotEmpty &&
+                                _studentsPhoneController.text.isNotEmpty &&
+                                _parentsPhoneController.text.isNotEmpty &&
+                                _emailAddressController.text.isNotEmpty &&
+                                _sscResultController.text.isNotEmpty &&
+                                _hscResultController.text.isNotEmpty) {
+                              var isPaymentComplete = await Get.toNamed(
+                                  AppRoutes.PAYMENTSCREEN,
+                                  arguments: 5000.0);
+                              if (isPaymentComplete == true) {
+                                Get.snackbar(
+                                  "Success",
+                                  "Your application is being submitted",
+                                  snackPosition: SnackPosition.TOP,
+                                  backgroundColor: Colors.green,
+                                  borderRadius: 8,
+                                  margin: EdgeInsets.all(8),
+                                  borderColor: Colors.green,
+                                  duration: Duration(seconds: 3),
+                                );
+                                setState(() {
+                                  loader = true;
+                                });
+                                var upload = await FirebaseStorage.instance
+                                    .ref()
+                                    .child("student_images")
+                                    .child(_nameController.text)
+                                    .putFile(_studentsPhoto!);
+                                var studentImageUrl =
+                                    await upload.ref.getDownloadURL();
+                                var tempData = await screenshotController
+                                    .capture(pixelRatio: 10);
+                                var signatureImageUrl;
+                                if (tempData != null) {
+                                  final directory =
+                                      await getApplicationDocumentsDirectory();
+                                  _signaturePhoto =
+                                      await File('${directory.path}/image.png')
+                                          .create();
+                                  await _signaturePhoto!.writeAsBytes(tempData);
 
-                              upload = await FirebaseStorage.instance
-                                  .ref()
-                                  .child("student_images")
-                                  .child(_nameController.text)
-                                  .putFile(_signaturePhoto!);
-                              signatureImageUrl =
-                                  await upload.ref.getDownloadURL();
-                            }
-                            AppplyScholarshipFormModel
-                                appplyScholarshipFormModel =
-                                AppplyScholarshipFormModel(
-                              name: _nameController.text,
-                              email: _emailAddressController.text,
-                              studentsPhone: _studentsPhoneController.text,
-                              parentsPhone: _parentsPhoneController.text,
-                              fathersName: _fatherNameController.text,
-                              mothersName: _motherNameController.text,
-                              addressName: _presentAddressController.text,
-                              sscResult: _sscResultController.text,
-                              hscResult: _hscResultController.text,
-                              referralCode: _referralCodeController.text,
-                              image: studentImageUrl,
-                              signature: signatureImageUrl,
-                              course: ScholarshipController.to.course(),
-                              university: ScholarshipController.to.university(),
-                            );
-                            await appplyScholarshipFormModel.save();
-                            setState(() {
-                              loader = false;
-                            });
-                            Get.toNamed(AppRoutes.BKASHSCREEN,
-                                arguments: 5000.0);
-                            var result = await http.get(
-                              Uri(
-                                scheme: "http",
-                                host: "msg.elitbuzz-bd.com",
-                                path: "/smsapi",
-                                queryParameters: {
-                                  "api_key": "C20081696225eaffaf0075.13009072",
-                                  "type": "text",
-                                  "contacts":
-                                      _studentsPhoneController.text.trim(),
-                                  "senderid": "37935",
-                                  "msg":
-                                      "বর্ণবাংলা অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
-                                },
-                              ),
-                            );
-                          }
-                            else {
+                                  upload = await FirebaseStorage.instance
+                                      .ref()
+                                      .child("student_images")
+                                      .child(_nameController.text)
+                                      .putFile(_signaturePhoto!);
+                                  signatureImageUrl =
+                                      await upload.ref.getDownloadURL();
+                                }
+                                AppplyScholarshipFormModel
+                                    appplyScholarshipFormModel =
+                                    AppplyScholarshipFormModel(
+                                  name: _nameController.text,
+                                  email: _emailAddressController.text,
+                                  studentsPhone: _studentsPhoneController.text,
+                                  parentsPhone: _parentsPhoneController.text,
+                                  fathersName: _fatherNameController.text,
+                                  mothersName: _motherNameController.text,
+                                  addressName: _presentAddressController.text,
+                                  sscResult: _sscResultController.text,
+                                  hscResult: _hscResultController.text,
+                                  referralCode: _referralCodeController.text,
+                                  image: studentImageUrl,
+                                  signature: signatureImageUrl,
+                                  course: ScholarshipController.to.course(),
+                                  university:
+                                      ScholarshipController.to.university(),
+                                );
+                                await appplyScholarshipFormModel.save();
+                                setState(() {
+                                  loader = false;
+                                });
+                                var result = await http.get(
+                                  Uri(
+                                    scheme: "http",
+                                    host: "msg.elitbuzz-bd.com",
+                                    path: "/smsapi",
+                                    queryParameters: {
+                                      "api_key":
+                                          "C20081696225eaffaf0075.13009072",
+                                      "type": "text",
+                                      "contacts":
+                                          _studentsPhoneController.text.trim(),
+                                      "senderid": "37935",
+                                      "msg":
+                                          "বর্ণবাংলা অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
+                                    },
+                                  ),
+                                );
+                              } else {
+                                Get.snackbar(
+                                  "Error",
+                                  "Payment is not complete",
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor: Colors.red,
+                                  colorText: Colors.white,
+                                );
+                              }
+                            } else {
                               Get.snackbar(
                                 "Failed!",
                                 "Fill up all field",

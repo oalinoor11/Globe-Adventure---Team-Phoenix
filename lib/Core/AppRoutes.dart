@@ -14,7 +14,7 @@ import 'package:BornoBangla/Presentation/AllScreen/University/AddUniversityScree
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AdmissionCoachingScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/AdmissionCoachingScreen2.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Scholarship/ApplyScholarshipScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Payment/BkashScreen.dart';
+import 'package:BornoBangla/Presentation/AllScreen/Payment/PaymentScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/CareerCoach/CareerCoachScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Preparation/CoachingApplyScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/College/CollegeScreen.dart';
@@ -96,7 +96,7 @@ class AppRoutes {
   static const String MARSSCREEN = "/marsscreen";
   static const String COACHINGAPPLYSCREEN = "/coachingapplyscreen";
   static const String SCHOLARSHIPAPPLYSCREEN = "/scholarshipapplyscreen";
-  static const String BKASHSCREEN = "/bkashscreen";
+  static const String PAYMENTSCREEN = "/paymentScreen";
   static const String RETINASCREEN = "/retinascreen";
   static const String ENGLISHA2ZSCREEN = "/englisha2zscreen";
   static const String SAIFURSSCREEN = "/saifursscreen";
@@ -114,13 +114,11 @@ class AppRoutes {
         page: () => ProfileScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: EDITPROFILESCREEN,
         page: () => EditProfileScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
     GetPage(
         name: OTPSCREEN,
         page: () => OtpScreen(),
@@ -332,8 +330,8 @@ class AppRoutes {
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
     GetPage(
-        name: BKASHSCREEN,
-        page: () => BkashScreen(),
+        name: PAYMENTSCREEN,
+        page: () => PaymentScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
     GetPage(

@@ -324,7 +324,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                               amount = (usd! * 85).toDouble();
                             };
 
-                            Get.toNamed(AppRoutes.BKASHSCREEN,
+                            Get.toNamed(AppRoutes.PAYMENTSCREEN,
                                 arguments: amount);
                             print(amount);
                           }

@@ -54,8 +54,7 @@ dependencies:
   path_provider:
   http: ^0.13.4
   uuid: ^3.0.6
-  flutter_sslcommerz: ^2.1.1-nullsafety.0
-
+  webview_flutter: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

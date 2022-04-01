@@ -555,7 +555,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                             isLoading = false;
                           });
                           print(amount);
-                          Get.toNamed(AppRoutes.BKASHSCREEN,
+                          Get.toNamed(AppRoutes.PAYMENTSCREEN,
                               arguments: amount);
                           // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
                           var result = await http.get(
