@@ -21,14 +21,6 @@ class PreparationScreen extends StatelessWidget {
         ),
             ),
         automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Get.to(AddBranchPage());
-            },
-          )
-        ],
       ),
       body: Column(
         children: [

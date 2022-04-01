@@ -338,10 +338,10 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                               snackPosition: SnackPosition.BOTTOM,
                               colorText: Colors.white,
                             );
+                            Get.toNamed(AppRoutes.MAINSCREEN);
                             setState(() {
                               isLoading = false;
                             });
-                            Get.toNamed(AppRoutes.MAINSCREEN);
                           }
                             else {
                               Get.snackbar(

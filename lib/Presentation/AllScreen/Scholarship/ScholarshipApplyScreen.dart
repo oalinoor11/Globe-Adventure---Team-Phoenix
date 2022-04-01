@@ -441,10 +441,10 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                   snackPosition: SnackPosition.BOTTOM,
                                   colorText: Colors.white,
                                 );
+                                Get.offAllNamed(AppRoutes.MAINSCREEN);
                                 setState(() {
                                   loader = false;
                                 });
-                                Get.offAllNamed(AppRoutes.MAINSCREEN);
                               } else {
                                 Get.snackbar(
                                   "Payment Failed",
