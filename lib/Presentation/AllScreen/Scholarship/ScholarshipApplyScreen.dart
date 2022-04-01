@@ -363,20 +363,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                 _emailAddressController.text.isNotEmpty &&
                                 _sscResultController.text.isNotEmpty &&
                                 _hscResultController.text.isNotEmpty) {
+                              FocusManager.instance.primaryFocus?.unfocus();
                               var isPaymentComplete = await Get.toNamed(
                                   AppRoutes.PAYMENTSCREEN,
                                   arguments: 5000.0);
                               if (isPaymentComplete == true) {
-                                Get.snackbar(
-                                  "Success",
-                                  "Your application is being submitted",
-                                  snackPosition: SnackPosition.TOP,
-                                  backgroundColor: Colors.green,
-                                  borderRadius: 8,
-                                  margin: EdgeInsets.all(8),
-                                  borderColor: Colors.green,
-                                  duration: Duration(seconds: 3),
-                                );
                                 setState(() {
                                   loader = true;
                                 });
@@ -446,6 +437,13 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                     },
                                   ),
                                 );
+                                await Get.snackbar(
+                                  "Application Submitted",
+                                  "Your Application has been submitted",
+                                  backgroundColor: Colors.green,
+                                  colorText: Colors.white,
+                                );
+                                Get.offAllNamed(AppRoutes.HOMESCREEN);
                               } else {
                                 Get.snackbar(
                                   "Error",
