@@ -33,11 +33,6 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDSCHOOLSCREEN);
-          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,10 +106,6 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
                         ),
                         onTap: () {
                           //Get.toNamed(AppRoutes.COURSESSCREEN);
-                        },
-                        onLongPress: () {
-                          Get.toNamed(AppRoutes.EDITSCHOOLSCREEN,
-                              arguments: school);
                         },
                       );
                     },
