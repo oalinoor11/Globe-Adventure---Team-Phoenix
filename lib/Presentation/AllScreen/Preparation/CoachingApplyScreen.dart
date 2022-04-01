@@ -502,7 +502,12 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           && hscController.text.isNotEmpty
                           && selectedBranch != null
                           && selectedTime != null) {
-                          setState(() {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            var isPaymentComplete = await Get.toNamed(
+                                AppRoutes.PAYMENTSCREEN,
+                                arguments: amount);
+                            if (isPaymentComplete == true){
+                              setState(() {
                             isLoading = true;
                           });
                           var upload = await FirebaseStorage.instance
@@ -551,12 +556,6 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                             sscResult: sscController.text,
                           );
                           await model.save();
-                          setState(() {
-                            isLoading = false;
-                          });
-                          print(amount);
-                          Get.toNamed(AppRoutes.PAYMENTSCREEN,
-                              arguments: amount);
                           // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
                           var result = await http.get(
                             Uri(
@@ -571,7 +570,29 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                                 "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ কোচিং -এ ভর্তির আবেদন করেছেন।",
                               },
                             ),
-                          );}
+                          );
+                              await Get.snackbar(
+                                "Application Submitted",
+                                "Your Application has been submitted",
+                                backgroundColor: Colors.green,
+                                snackPosition: SnackPosition.BOTTOM,
+                                colorText: Colors.white,
+                              );
+                              setState(() {
+                                isLoading = false;
+                              });
+                              Get.toNamed(AppRoutes.MAINSCREEN);
+                          }
+                            else {
+                              Get.snackbar(
+                                "Payment Failed",
+                                "Payment is not complete",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
+                            }
+                          }
                           else {
                             Get.snackbar(
                               "Failed!",

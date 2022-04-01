@@ -417,9 +417,6 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                       ScholarshipController.to.university(),
                                 );
                                 await appplyScholarshipFormModel.save();
-                                setState(() {
-                                  loader = false;
-                                });
                                 var result = await http.get(
                                   Uri(
                                     scheme: "http",
@@ -441,12 +438,16 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                   "Application Submitted",
                                   "Your Application has been submitted",
                                   backgroundColor: Colors.green,
+                                  snackPosition: SnackPosition.BOTTOM,
                                   colorText: Colors.white,
                                 );
-                                Get.offAllNamed(AppRoutes.HOMESCREEN);
+                                setState(() {
+                                  loader = false;
+                                });
+                                Get.offAllNamed(AppRoutes.MAINSCREEN);
                               } else {
                                 Get.snackbar(
-                                  "Error",
+                                  "Payment Failed",
                                   "Payment is not complete",
                                   snackPosition: SnackPosition.BOTTOM,
                                   backgroundColor: Colors.red,
