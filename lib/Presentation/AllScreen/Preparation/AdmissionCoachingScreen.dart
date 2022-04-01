@@ -30,11 +30,6 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
             ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDCOACHINGSCREEN);
-          }),
       body: Column(
         children: [
           SizedBox(height: 18),
@@ -132,10 +127,6 @@ class _AdmissionCoachingScreenState extends State<AdmissionCoachingScreen> {
                             onTap: () {
                               CoachingController.to.coachingModel(coaching);
                               Get.toNamed(AppRoutes.ADMISSIONCOACHINGSCREEN2,
-                                  arguments: coaching);
-                            },
-                            onLongPress: () {
-                              Get.toNamed(AppRoutes.EDITCOACHINGSCREEN,
                                   arguments: coaching);
                             },
                           );
