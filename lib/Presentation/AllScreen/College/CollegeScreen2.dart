@@ -31,11 +31,6 @@ class _CollegeScreen2State extends State<CollegeScreen2> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDCOLLEGESCREEN);
-          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,10 +104,6 @@ class _CollegeScreen2State extends State<CollegeScreen2> {
                         ),
                         onTap: () {
                           //Get.toNamed(AppRoutes.COURSESSCREEN);
-                        },
-                        onLongPress: () {
-                          Get.toNamed(AppRoutes.EDITCOLLEGESCREEN,
-                              arguments: college);
                         },
                       );
                     },
