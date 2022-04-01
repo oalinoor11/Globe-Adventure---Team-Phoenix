@@ -34,11 +34,6 @@ class _UniversityScreenState extends State<UniversityScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDUNIVERSITYSCREEN);
-          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -127,10 +122,6 @@ class _UniversityScreenState extends State<UniversityScreen> {
                               ScholarshipController.to
                                   .university(universityModel);
                               Get.toNamed(AppRoutes.COURSESSCREEN,
-                                  arguments: universityModel);
-                            },
-                            onLongPress: () {
-                              Get.toNamed(AppRoutes.EDITUNIVERSITYSCREEN,
                                   arguments: universityModel);
                             },
                           );
