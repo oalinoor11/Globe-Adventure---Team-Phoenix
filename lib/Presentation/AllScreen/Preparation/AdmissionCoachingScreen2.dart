@@ -32,15 +32,6 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () async {
-            await Get.toNamed(AppRoutes.ADDCOURSESCREEN,
-                arguments: coachingModel);
-            setState(() {
-              coachingModel;
-            });
-          }),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -152,22 +143,6 @@ class _AdmissionCoachingScreen2State extends State<AdmissionCoachingScreen2> {
                         arguments: amount
                     );
                     print(amount);
-                  },
-                  onLongPress: () async {
-                    var result = await Get.toNamed(
-                        AppRoutes.EDITCOACHINGCOURSESCREEN,
-                        arguments: courseModel);
-                    if (result == true) {
-                      setState(() {
-                        coachingModel.courses.removeAt(index);
-                        coachingModel.update();
-                      });
-                    } else if (result is CoachingCourseModel) {
-                      setState(() {
-                        coachingModel.courses[index] = result;
-                        coachingModel.update();
-                      });
-                    }
                   },
                 );
               },
