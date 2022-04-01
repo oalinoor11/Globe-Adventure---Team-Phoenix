@@ -28,11 +28,6 @@ class CollegeScreen extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDCOUNTRYSCREEN);
-          }),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -105,10 +100,6 @@ class CollegeScreen extends StatelessWidget {
                             CollegeController.to
                                 .selectedCountry(country.countryName);
                             Get.toNamed(AppRoutes.COLLEGESCREEN2,
-                                arguments: country);
-                          },
-                          onLongPress: () {
-                            Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
                                 arguments: country);
                           },
                         );
