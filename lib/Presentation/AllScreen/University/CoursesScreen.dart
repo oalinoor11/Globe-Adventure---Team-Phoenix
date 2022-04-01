@@ -290,6 +290,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     ),
                   ),
                 );
+
               },
               separatorBuilder: (context, index) {
                 return Divider();
