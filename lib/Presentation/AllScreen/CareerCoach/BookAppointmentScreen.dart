@@ -271,6 +271,26 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                               && purposeOfMeetingController.text.isNotEmpty
                           )
                           {
+                            if (coachModel.currency.toString() == "৳") {
+                              amount = coachModel.price?.toDouble();
+                            }
+
+                            else if (coachModel.currency.toString() == "₹") {
+                              rupee = coachModel.price?.toDouble();
+                              amount = (rupee! * 1.2).toDouble();
+                            }
+
+                            else if (coachModel.currency.toString() == "\$") {
+                              usd = coachModel.price?.toDouble();
+                              amount = (usd! * 85).toDouble();
+                            };
+
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            var isPaymentComplete = await Get.toNamed(
+                                AppRoutes.PAYMENTSCREEN,
+                                arguments: amount);
+                            if (isPaymentComplete == true)
+                            {
                             setState(() {
                               isLoading = true;
                             });
@@ -310,23 +330,28 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                 },
                               ),
                             );
-                            if (coachModel.currency.toString() == "৳") {
-                              amount = coachModel.price?.toDouble();
+
+                            await Get.snackbar(
+                              "Application Submitted",
+                              "Your Application has been submitted",
+                              backgroundColor: Colors.green,
+                              snackPosition: SnackPosition.BOTTOM,
+                              colorText: Colors.white,
+                            );
+                            setState(() {
+                              isLoading = false;
+                            });
+                            Get.toNamed(AppRoutes.MAINSCREEN);
+                          }
+                            else {
+                              Get.snackbar(
+                                "Payment Failed",
+                                "Payment is not complete",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
                             }
-
-                            else if (coachModel.currency.toString() == "₹") {
-                              rupee = coachModel.price?.toDouble();
-                              amount = (rupee! * 1.2).toDouble();
-                            }
-
-                            else if (coachModel.currency.toString() == "\$") {
-                              usd = coachModel.price?.toDouble();
-                              amount = (usd! * 85).toDouble();
-                            };
-
-                            Get.toNamed(AppRoutes.PAYMENTSCREEN,
-                                arguments: amount);
-                            print(amount);
                           }
                           else {
                           Get.snackbar(
