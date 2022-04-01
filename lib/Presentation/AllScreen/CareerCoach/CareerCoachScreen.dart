@@ -26,12 +26,6 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () async {
-            await Get.toNamed(AppRoutes.ADDCAREERCOACHSCREEN);
-            setState(() {});
-          }),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -112,12 +106,6 @@ class _CareerCoachScreenState extends State<CareerCoachScreen> {
                               ),
                               onTap: () async {
                                 await Get.toNamed(AppRoutes.CAREERCOACHSCREEN2,
-                                    arguments: coach);
-                                setState(() {});
-                              },
-                              onLongPress: () async {
-                                await Get.toNamed(
-                                    AppRoutes.EDITCAREERCOACHSCREEN,
                                     arguments: coach);
                                 setState(() {});
                               },
