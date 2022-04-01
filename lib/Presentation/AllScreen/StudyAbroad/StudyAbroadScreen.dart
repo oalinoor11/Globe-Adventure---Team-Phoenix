@@ -28,11 +28,6 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Get.toNamed(AppRoutes.ADDCOUNTRYSCREEN);
-          }),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -104,10 +99,6 @@ class _StudyAbroadScreenState extends State<StudyAbroadScreen> {
                             UniversityController.to
                                 .selectedCountry(country.countryName);
                             Get.toNamed(AppRoutes.UNIVERSITYSCREEN,
-                                arguments: country);
-                          },
-                          onLongPress: () {
-                            Get.toNamed(AppRoutes.EDITCOUNTRYSCREEN,
                                 arguments: country);
                           },
                         );
