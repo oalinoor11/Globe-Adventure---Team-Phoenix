@@ -9,7 +9,7 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  bool loader = false;
+  bool loader = true;
   double paymentAmount = Get.arguments;
   late WebViewController controller;
   @override
@@ -32,20 +32,36 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         automaticallyImplyLeading: false,
       ),
-      body: WebView(
-        initialUrl:
-            "http://payment.bornobangla.com/init?payment_amount=$paymentAmount",
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webViewController) {
-          controller = webViewController;
-        },
-        onPageFinished: (url) {
-          if (url.contains("payment.bornobangla.com/success")) {
-            Get.back(result: true);
-          } else if (url.contains("payment.bornobangla.com/fail")) {
-            Get.back(result: false);
-          }
-        },
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: WebView(
+              initialUrl:
+                  "http://payment.bornobangla.com/init?payment_amount=$paymentAmount",
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (WebViewController webViewController) {
+                controller = webViewController;
+              },
+              onPageFinished: (url) {
+                setState(() {
+                  loader = false;
+                });
+                if (url.contains("payment.bornobangla.com/success")) {
+                  Get.back(result: true);
+                } else if (url.contains("payment.bornobangla.com/fail")) {
+                  Get.back(result: false);
+                }
+              },
+            ),
+          ),
+          if (loader)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(0.1),
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ),
+        ],
       ),
     );
   }
