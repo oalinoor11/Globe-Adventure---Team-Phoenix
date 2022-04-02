@@ -81,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               .profilePicture ==
                                           null
                                       ? Image.network(
-                                          "https://firebasestorage.googleapis.com/v0/b/bornobangla-48c47.appspot.com/o/samplepropic.png?alt=media&token=cdd47354-ad50-43f3-9c03-752265b83605",
+                                          "https://firebasestorage.googleapis.com/v0/b/bornobangla-48c47.appspot.com/o/samplepropic.png?alt=media&token=f0380d2e-9d9b-4082-a96d-d50c8f8bc4f5",
                                           fit: BoxFit.cover,
                                         )
                                       : Image.network(
