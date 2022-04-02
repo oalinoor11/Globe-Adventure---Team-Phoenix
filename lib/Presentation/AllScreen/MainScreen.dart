@@ -26,37 +26,40 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.green,
-        onTap: (index) {
-          pageController.jumpToPage(index);
-          setState(() {
-            currentIndex = index;
-          });
-          // pageController.animateToPage(index, duration: Duration(seconds: 0), curve: Curves.ease);
-        },
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
-        ],
-      ),
-      body: PageView(
-        controller: pageController,
-        children: [
-          HomeScreen(),
-          ProfileScreen(),
-        ],
-        physics: NeverScrollableScrollPhysics(),
+    return Container(
+      width: context.width > 550 ? 550 : double.infinity,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.green,
+          onTap: (index) {
+            pageController.jumpToPage(index);
+            setState(() {
+              currentIndex = index;
+            });
+            // pageController.animateToPage(index, duration: Duration(seconds: 0), curve: Curves.ease);
+          },
+          type: BottomNavigationBarType.fixed,
+          currentIndex: currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
+            ),
+          ],
+        ),
+        body: PageView(
+          controller: pageController,
+          children: [
+            HomeScreen(),
+            ProfileScreen(),
+          ],
+          physics: NeverScrollableScrollPhysics(),
+        ),
       ),
     );
   }
