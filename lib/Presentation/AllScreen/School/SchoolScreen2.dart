@@ -20,115 +20,121 @@ class _SchoolScreen2State extends State<SchoolScreen2> {
   CountryModel country = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        centerTitle: true,
-        title: Center(
-          child: Text(
-              "Study in " +country.countryName,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        automaticallyImplyLeading: false,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(),
-            Container(
-              child: Image(
-                image: NetworkImage(country.bannerImages),
+    return Center(
+      child: Container(
+        decoration: context.width > 550 ? BoxDecoration(border: Border.all(width: 2, color: Colors.grey.withOpacity(0.35))): null,
+        width: context.width > 550 ? 550 : double.infinity,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.green,
+            centerTitle: true,
+            title: Center(
+              child: Text(
+                  "Study in " +country.countryName,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            const SizedBox(height: 18.0),
-            StreamBuilder(
-              builder: (context, AsyncSnapshot<List<SchoolModel>> snapshot) {
-                if (snapshot.hasData) {
-                  return GridView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 18.0),
-                    primary: false,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      SchoolModel school = snapshot.data![index];
-                      return InkWell(
-                        child: Container(
-                          decoration: new BoxDecoration(
-                            border: Border.all(color: Colors.green, width: 1.5),
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey.withOpacity(0.15),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(13),
-                                  child: Image(
-                                    image: NetworkImage(school.image),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(school.name,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              SizedBox(height: 5),
-                              Row(mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
-                                  Icon(Icons.star,color: Colors.black54,size: 15),
-                                  Text(
-                                    school.rating,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
+            automaticallyImplyLeading: false,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(),
+                Container(
+                  child: Image(
+                    image: NetworkImage(country.bannerImages),
+                  ),
+                ),
+                const SizedBox(height: 18.0),
+                StreamBuilder(
+                  builder: (context, AsyncSnapshot<List<SchoolModel>> snapshot) {
+                    if (snapshot.hasData) {
+                      return GridView.builder(
+                        padding: EdgeInsets.symmetric(horizontal: 18.0),
+                        primary: false,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          SchoolModel school = snapshot.data![index];
+                          return InkWell(
+                            child: Container(
+                              decoration: new BoxDecoration(
+                                border: Border.all(color: Colors.green, width: 1.5),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey.withOpacity(0.15),
+                                    blurRadius: 5.0,
                                   ),
                                 ],
+                                borderRadius: BorderRadius.circular(15),
                               ),
-                              SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          //Get.toNamed(AppRoutes.COURSESSCREEN);
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(13),
+                                      child: Image(
+                                        image: NetworkImage(school.image),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(school.name,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  SizedBox(height: 5),
+                                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("rating: ",style: TextStyle(color: Colors.black54, fontSize: 15)),
+                                      Icon(Icons.star,color: Colors.black54,size: 15),
+                                      Text(
+                                        school.rating,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+                                ],
+                              ),
+                            ),
+                            onTap: () {
+                              //Get.toNamed(AppRoutes.COURSESSCREEN);
+                            },
+                          );
                         },
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 0.74,
+                          mainAxisSpacing: 10,
+                          crossAxisCount: 2,
+                        ),
+                        // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
+                        itemCount: snapshot.data?.length ?? 0,
                       );
-                    },
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 0.74,
-                      mainAxisSpacing: 10,
-                      crossAxisCount: context.width > 1080 ? 4 : 2,
-                    ),
-                    // itemCount: (snapshot.data as QuerySnapshot).documents.length,) ,
-                    itemCount: snapshot.data?.length ?? 0,
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                } else {
-                  return CircularProgressIndicator();
-                }
-              },
-              stream:
-                  SchoolModel.getSchools(SchoolController.to.selectedCountry()),
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
+                  stream:
+                      SchoolModel.getSchools(SchoolController.to.selectedCountry()),
+                ),
+                SizedBox(height: 8),
+              ],
             ),
-            SizedBox(height: 8),
-          ],
+          ),
         ),
       ),
     );
