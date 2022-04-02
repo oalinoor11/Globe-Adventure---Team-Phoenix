@@ -47,68 +47,117 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        centerTitle: true,
-        title: Center(
-          child: Text(
-            coach.name,
-            style: TextStyle(fontWeight: FontWeight.bold),
+    return Center(
+      child: Container(
+        decoration: context.width > 550 ? BoxDecoration(border: Border.all(width: 2, color: Colors.grey.withOpacity(0.35))): null,
+        width: context.width > 550 ? 550 : double.infinity,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.green,
+            centerTitle: true,
+            title: Center(
+              child: Text(
+                coach.name,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            automaticallyImplyLeading: false,
           ),
-        ),
-        automaticallyImplyLeading: false,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(),
-              SizedBox(height: 6),
-              Container(
-                width: double.infinity,
-                padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-                decoration: new BoxDecoration(color: Colors.white),
-                child: Container(
-                  width: double.infinity,
-                  decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: YoutubePlayerIFrame(
-                      controller: _controller,
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(),
+                  SizedBox(height: 6),
+                  Container(
+                    width: double.infinity,
+                    padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                    decoration: new BoxDecoration(color: Colors.white),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: new BoxDecoration(
+                        border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: YoutubePlayerIFrame(
+                          controller: _controller,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-                decoration: new BoxDecoration(color: Colors.white),
-                child: Container(
-                  width: double.infinity,
-                  decoration: new BoxDecoration(
-                    border: Border.all(color: Colors.green),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.green.withOpacity(0.1),
-                        blurRadius: 0.0,
+                  Container(
+                    width: double.infinity,
+                    padding: new EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                    decoration: new BoxDecoration(color: Colors.white),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: new BoxDecoration(
+                        border: Border.all(color: Colors.green),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.green.withOpacity(0.1),
+                            blurRadius: 0.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Center(
+                            child: Text(
+                              coach.description,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Counselling Fee:  '+coach.currency.toString(),
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      Text(
+                        coach.price.toString(),
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ],
-                    borderRadius: BorderRadius.circular(15),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 50,
+                    width: 220,
+                    child: RaisedButton(
+                      elevation: 0,
+                      color: Colors.green,
+                      textColor: Colors.white,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(8.0),
+                      ),
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.BOOKAPPOINTMENTSCREEN,
+                            arguments: coach);
+                      },
                       child: Center(
                         child: Text(
-                          coach.description,
+                          "Request for Appointment",
                           style: TextStyle(
                             fontSize: 16.0,
                           ),
@@ -116,52 +165,9 @@ class _CareerCoachScreen2State extends State<CareerCoachScreen2> {
                       ),
                     ),
                   ),
-                ),
-              ),
-              SizedBox(height: 6),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Counselling Fee:  '+coach.currency.toString(),
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Text(
-                    coach.price.toString(),
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
                 ],
               ),
-              SizedBox(height: 8),
-              Container(
-                height: 50,
-                width: 220,
-                child: RaisedButton(
-                  elevation: 0,
-                  color: Colors.green,
-                  textColor: Colors.white,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(8.0),
-                  ),
-                  onPressed: () {
-                    Get.toNamed(AppRoutes.BOOKAPPOINTMENTSCREEN,
-                        arguments: coach);
-                  },
-                  child: Center(
-                    child: Text(
-                      "Request for Appointment",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
