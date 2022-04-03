@@ -6,6 +6,7 @@ import 'package:BornoBangla/Data/Models/scholarship_model.dart';
 import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -47,7 +48,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        decoration: context.width > 550 ? BoxDecoration(border: Border.all(width: 2, color: Colors.grey.withOpacity(0.35))): null,
+        decoration: context.width > 550
+            ? BoxDecoration(
+                border:
+                    Border.all(width: 2, color: Colors.grey.withOpacity(0.35)))
+            : null,
         width: context.width > 550 ? 550 : double.infinity,
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -74,9 +79,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Name",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -90,9 +97,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Father's Name",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -106,9 +115,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Mother's Name",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -122,9 +133,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Address",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -138,9 +151,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Student's Phone",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -154,9 +169,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Parent's Phone",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -170,9 +187,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Email Address",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -186,9 +205,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "SSC Result",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -202,9 +223,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "HSC Result",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -218,9 +241,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 1)),
                         labelText: "Referral Code (optional)",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                        labelStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.black),
                       ),
                       style: TextStyle(
                         fontSize: 14.0,
@@ -264,7 +289,9 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                   ),
                                 ],
                               )
-                            : Image.file(_studentsPhoto!),
+                            : kIsWeb
+                                ? Image.network(_studentsPhoto!.path)
+                                : Image.file(_studentsPhoto!),
                       ),
                     ),
                     Text(
@@ -389,10 +416,11 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                     if (tempData != null) {
                                       final directory =
                                           await getApplicationDocumentsDirectory();
-                                      _signaturePhoto =
-                                          await File('${directory.path}/image.png')
-                                              .create();
-                                      await _signaturePhoto!.writeAsBytes(tempData);
+                                      _signaturePhoto = await File(
+                                              '${directory.path}/image.png')
+                                          .create();
+                                      await _signaturePhoto!
+                                          .writeAsBytes(tempData);
 
                                       upload = await FirebaseStorage.instance
                                           .ref()
@@ -407,14 +435,18 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                         AppplyScholarshipFormModel(
                                       name: _nameController.text,
                                       email: _emailAddressController.text,
-                                      studentsPhone: _studentsPhoneController.text,
-                                      parentsPhone: _parentsPhoneController.text,
+                                      studentsPhone:
+                                          _studentsPhoneController.text,
+                                      parentsPhone:
+                                          _parentsPhoneController.text,
                                       fathersName: _fatherNameController.text,
                                       mothersName: _motherNameController.text,
-                                      addressName: _presentAddressController.text,
+                                      addressName:
+                                          _presentAddressController.text,
                                       sscResult: _sscResultController.text,
                                       hscResult: _hscResultController.text,
-                                      referralCode: _referralCodeController.text,
+                                      referralCode:
+                                          _referralCodeController.text,
                                       image: studentImageUrl,
                                       signature: signatureImageUrl,
                                       course: ScholarshipController.to.course(),
@@ -431,8 +463,9 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                                           "api_key":
                                               "C20081696225eaffaf0075.13009072",
                                           "type": "text",
-                                          "contacts":
-                                              _studentsPhoneController.text.trim(),
+                                          "contacts": _studentsPhoneController
+                                              .text
+                                              .trim(),
                                           "senderid": "37935",
                                           "msg":
                                               "বর্ণবাংলা অ্যাপ -এ আপনার আবেদনটি গ্রহণ করা হয়েছে, পরবর্তী আপডেটের জন্য অপেক্ষা করুন।",
