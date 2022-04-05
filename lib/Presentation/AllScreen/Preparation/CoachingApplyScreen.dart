@@ -7,6 +7,7 @@ import 'package:BornoBangla/Data/Models/coaching_course_model.dart';
 import 'package:BornoBangla/Data/Models/coaching_model.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
@@ -16,6 +17,8 @@ import 'package:screenshot/screenshot.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../Controllers/profile_controller.dart';
 
 class CoachingApplyScreen extends StatefulWidget {
   @override
@@ -31,18 +34,27 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController referralController = TextEditingController();
-  TextEditingController fathersNameController = TextEditingController();
-  TextEditingController mothersNameController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController studentsPhoneController = TextEditingController();
-  TextEditingController parentsPhoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController sscController = TextEditingController();
-  TextEditingController hscController = TextEditingController();
-  File? image;
-  File? signatureImage;
+  TextEditingController _nameController =
+  TextEditingController(text: ProfileController.to.profile()!.name);
+  TextEditingController _fatherNameController =
+  TextEditingController(text: ProfileController.to.profile()!.fatherName);
+  TextEditingController _motherNameController =
+  TextEditingController(text: ProfileController.to.profile()!.motherName);
+  TextEditingController _presentAddressController =
+  TextEditingController(text: ProfileController.to.profile()!.address);
+  TextEditingController _studentsPhoneController =
+  TextEditingController(text: ProfileController.to.profile()!.phone);
+  TextEditingController _parentsPhoneController =
+  TextEditingController(text: ProfileController.to.profile()!.parentPhone);
+  TextEditingController _emailAddressController =
+  TextEditingController(text: ProfileController.to.profile()!.email);
+  TextEditingController _sscResultController = TextEditingController(
+      text: ProfileController.to.profile()!.sscResult?.toString());
+  TextEditingController _hscResultController = TextEditingController(
+      text: ProfileController.to.profile()!.hscResult?.toString());
+  TextEditingController _referralController = TextEditingController();
+  File? _signaturePhoto;
+  File? _studentsPhoto;
 
   CoachingModel? selectedCoaching;
   CoachingCourseModel? selectedProgram;
@@ -80,144 +92,162 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
               padding: const EdgeInsets.all(40.0),
               child: Column(
                 children: [
-                  TextField(
-                    controller: nameController,
+                  TextFormField(
+                    controller: _nameController,
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "Name",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: fathersNameController,
+                  TextFormField(
+                    controller: _fatherNameController,
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "Father's Name",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: mothersNameController,
+                  TextFormField(
+                    controller: _motherNameController,
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
-                      labelText: "Mothers's Name",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                      labelText: "Mother's Name",
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: addressController,
+                  TextFormField(
+                    controller: _presentAddressController,
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "Address",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: studentsPhoneController,
+                  TextFormField(
+                    controller: _studentsPhoneController,
                     keyboardType: TextInputType.phone,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "Student's Phone",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: parentsPhoneController,
+                  TextFormField(
+                    controller: _parentsPhoneController,
                     keyboardType: TextInputType.phone,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "Parent's Phone",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: emailController,
+                  TextFormField(
+                    controller: _emailAddressController,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "Email Address",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: sscController,
+                  TextFormField(
+                    controller: _sscResultController,
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "SSC Result",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextField(
-                    controller: hscController,
+                  TextFormField(
+                    controller: _hscResultController,
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
                       labelText: "HSC Result",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -353,6 +383,24 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                             .toList()),
                   ),
                   SizedBox(height: 20),
+                  TextFormField(
+                    controller: _referralController,
+                    keyboardType: TextInputType.name,
+                    cursorColor: Colors.green,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide:
+                          BorderSide(color: Colors.green, width: 1)),
+                      labelText: "Referral Code (optional)",
+                      labelStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.black),
+                    ),
+                    style: TextStyle(
+                      fontSize: 14.0,
+                    ),
+                  ),
+                  SizedBox(height: 20),
                   InkWell(
                     onTap: () async {
                       print("camera button clicked");
@@ -360,7 +408,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           .pickImage(source: ImageSource.gallery);
                       if (pickedFile != null) {
                         setState(() {
-                          image = File(pickedFile.path);
+                          _studentsPhoto = File(pickedFile.path);
                         });
                       }
                     },
@@ -375,11 +423,19 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: image == null
-                          ? Column(mainAxisAlignment: MainAxisAlignment.center,
+                      child: _studentsPhoto == null
+                          ? ProfileController.to.profile()!.profilePicture !=
+                          null
+                          ? Image.network(ProfileController.to
+                          .profile()!
+                          .profilePicture!)
+                          : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Student's Photo",
-                              style: TextStyle(color: Colors.black, fontSize: 12)),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12)),
                           SizedBox(height: 10),
                           Icon(
                             Icons.add_a_photo,
@@ -388,25 +444,14 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                           ),
                         ],
                       )
-                          : Image.file(image!),
+                          : kIsWeb
+                          ? Image.network(_studentsPhoto!.path)
+                          : Image.file(_studentsPhoto!),
                     ),
                   ),
-                  Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
-                  SizedBox(height: 20),
-                  TextField(
-                    controller: referralController,
-                    keyboardType: TextInputType.text,
-                    cursorColor: Colors.green,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
-                      labelText: "Referral Code (optional)",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                    ),
-                    style: TextStyle(
-                      fontSize: 14.0,
-                    ),
+                  Text(
+                    "(image ratio should be 1/1)",
+                    style: TextStyle(color: Colors.grey),
                   ),
                   SizedBox(height: 20),
                   Container(
@@ -424,7 +469,11 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                   Container(
                     height: 140,
                     width: double.infinity,
-                    child: Screenshot(
+                    child: ProfileController.to.profile()!.signatureImage !=
+                        null
+                        ? Image.network(
+                        ProfileController.to.profile()!.signatureImage!)
+                        : Screenshot(
                       controller: screenshotController,
                       child: SfSignaturePad(
                         key: _signaturePadKey,
@@ -432,40 +481,38 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          _signaturePadKey.currentState!.clear();
-                        },
-                        child: const Text(
-                          "clear",
-                          style: TextStyle(color: Colors.blueGrey),
-                        ),
-                      ),
-                    ],
+                  Visibility(
+                    visible: ProfileController.to.profile()!.signatureImage ==
+                        null,
+                    child: InkWell(
+                      onTap: () async {
+                        _signaturePadKey.currentState?.clear();
+                      },
+                      child: Text("clear",
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "By clicking ",
-                        style: TextStyle(color: Colors.black87,
-                            fontSize: 11),
+                        style: TextStyle(color: Colors.black87, fontSize: 11),
                       ),
                       Text(
                         "Next",
-                        style: TextStyle(color: Colors.black,
+                        style: TextStyle(
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 11),
                       ),
                       Text(
                         ", you are agreeing to the",
-                        style: TextStyle(color: Colors.black87,
-                            fontSize: 11),
+                        style: TextStyle(color: Colors.black87, fontSize: 11),
                       ),
                       TextButton(
                         onPressed: () async {
@@ -498,15 +545,15 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                               borderRadius: new BorderRadius.circular(8.0),
                             ),
                             onPressed: () async {
-                              if (image != null && nameController.text.isNotEmpty
-                              && fathersNameController.text.isNotEmpty
-                              && mothersNameController.text.isNotEmpty
-                              && addressController.text.isNotEmpty
-                              && studentsPhoneController.text.isNotEmpty
-                              && parentsPhoneController.text.isNotEmpty
-                              && emailController.text.isNotEmpty
-                              && sscController.text.isNotEmpty
-                              && hscController.text.isNotEmpty
+                              if (_studentsPhoto != null && _nameController.text.isNotEmpty
+                              && _fatherNameController.text.isNotEmpty &&
+                                  _motherNameController.text.isNotEmpty &&
+                                  _presentAddressController.text.isNotEmpty &&
+                                  _studentsPhoneController.text.isNotEmpty &&
+                                  _parentsPhoneController.text.isNotEmpty &&
+                                  _emailAddressController.text.isNotEmpty &&
+                                  _sscResultController.text.isNotEmpty &&
+                                  _hscResultController.text.isNotEmpty
                               && selectedTime != null) {
                                 FocusManager.instance.primaryFocus?.unfocus();
                                 var isPaymentComplete = await Get.toNamed(
@@ -519,47 +566,48 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                               var upload = await FirebaseStorage.instance
                                   .ref()
                                   .child("student_images_coaching")
-                                  .child(nameController.text)
-                                  .putFile(image!);
+                                  .child(_nameController.text)
+                                  .putFile(_studentsPhoto!);
                               var studentImageUrl =
                                   await upload.ref.getDownloadURL();
-                              var tempData = await screenshotController.capture(
-                                  pixelRatio: 10);
-                              var signatureImageUrl;
-                              if (tempData != null) {
-                                final directory =
+                                  var tempData = await screenshotController
+                                      .capture(pixelRatio: 10);
+                                  var signatureImageUrl;
+                                  if (tempData != null) {
+                                    final directory =
                                     await getApplicationDocumentsDirectory();
-                                signatureImage =
-                                    await File('${directory.path}/image.png')
+                                    _signaturePhoto = await File(
+                                        '${directory.path}/image.png')
                                         .create();
-                                await signatureImage!.writeAsBytes(tempData);
+                                    await _signaturePhoto!
+                                        .writeAsBytes(tempData);
 
-                                upload = await FirebaseStorage.instance
-                                    .ref()
-                                    .child("signature_images")
-                                    .child(nameController.text)
-                                    .putFile(signatureImage!);
-                                signatureImageUrl =
+                                    upload = await FirebaseStorage.instance
+                                        .ref()
+                                        .child("student_images")
+                                        .child(_nameController.text)
+                                        .putFile(_signaturePhoto!);
+                                    signatureImageUrl =
                                     await upload.ref.getDownloadURL();
-                              }
+                                  }
 
                               CoachingApplyFormModel model = CoachingApplyFormModel(
-                                name: nameController.text,
-                                referral: referralController.text,
-                                email: emailController.text,
-                                studentsPhone: studentsPhoneController.text,
-                                parentsPhone: parentsPhoneController.text,
-                                address: addressController.text,
+                                name: _nameController.text,
+                                referral: _referralController.text,
+                                email: _emailAddressController.text,
+                                studentsPhone: _studentsPhoneController.text,
+                                parentsPhone: _parentsPhoneController.text,
+                                address: _presentAddressController.text,
                                 branch: "selectedBranch!",
                                 coachingCourse: selectedProgram!,
                                 preferableTime: selectedTime!,
                                 image: studentImageUrl,
                                 signatureImage: signatureImageUrl,
                                 coachingName: selectedCoaching!.name,
-                                fathersName: fathersNameController.text,
-                                mothersName: mothersNameController.text,
-                                hscResult: hscController.text,
-                                sscResult: sscController.text,
+                                fathersName: _fatherNameController.text,
+                                mothersName: _motherNameController.text,
+                                hscResult: _hscResultController.text,
+                                sscResult: _sscResultController.text,
                               );
                               await model.save();
                               // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
@@ -571,7 +619,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                                   queryParameters: {
                                     "api_key": "C20081696225eaffaf0075.13009072",
                                     "type": "text",
-                                    "contacts": studentsPhoneController.text.trim(),
+                                    "contacts": _studentsPhoneController.text.trim(),
                                     "senderid": "37935",
                                     "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ কোচিং -এ ভর্তির আবেদন করেছেন।",
                                   },
