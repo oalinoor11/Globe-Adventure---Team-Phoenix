@@ -7,10 +7,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../../Data/firebase_collections.dart';
 import '../../../main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+
+import '../../ad_helper.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String idScreen = "register";
@@ -27,6 +30,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
 
   TextEditingController passwordTextEditingController = TextEditingController();
+
+  late BannerAd _bannerAd;
+  bool _isBannerAdReady = false;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(size: AdSize.banner,
+        adUnitId: AdHelper.bannerAdUnitId,
+        listener: BannerAdListener(
+            onAdLoaded: (_){
+              setState(() {
+                _isBannerAdReady = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error){
+              print("Failed to load a banner ad${error.message}");
+              _isBannerAdReady = false;
+              ad.dispose();
+            }
+        ), request: AdRequest())..load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +83,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: EdgeInsets.all(20.0),
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        if(_isBannerAdReady)
+                          Container(
+                            height: _bannerAd.size.height.toDouble(),
+                            width: _bannerAd.size.width.toDouble(),
+                            child: AdWidget(ad: _bannerAd),
+                          ),
                         SizedBox(
                           height: 5.0,
                         ),

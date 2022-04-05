@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'Core/AppRoutes.dart';
 import 'Presentation/Controllers/coaching_controller.dart';
 import 'Presentation/Controllers/college_controller.dart';
@@ -34,6 +35,7 @@ void main() async {
   // WidgetsBinding.instance?.ensureVisualUpdate();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  MobileAds.instance.initialize();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await flutterLocalNotificationsPlugin

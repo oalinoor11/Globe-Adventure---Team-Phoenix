@@ -9,14 +9,45 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../../main.dart';
+import '../../ad_helper.dart';
 import '../mainscreen.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   static const String idScreen = "login";
 
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
+
   TextEditingController passwordTextEditingController = TextEditingController();
+
+  late BannerAd _bannerAd;
+  bool _isBannerAdReady = false;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(size: AdSize.banner,
+        adUnitId: AdHelper.bannerAdUnitId,
+        listener: BannerAdListener(
+            onAdLoaded: (_){
+              setState(() {
+                _isBannerAdReady = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error){
+              print("Failed to load a banner ad${error.message}");
+              _isBannerAdReady = false;
+              ad.dispose();
+            }
+        ), request: AdRequest())..load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +72,14 @@ class SignInScreen extends StatelessWidget {
                     alignment: Alignment.center,
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 15.0,
                   ),
+                  if(_isBannerAdReady)
+                    Container(
+                      height: _bannerAd.size.height.toDouble(),
+                      width: _bannerAd.size.width.toDouble(),
+                      child: AdWidget(ad: _bannerAd),
+                    ),
                   Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Column(
@@ -150,6 +187,7 @@ class SignInScreen extends StatelessWidget {
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   Future<void> loginAndAuthenticateUser(BuildContext context) async {
     showDialog(
         context: context,

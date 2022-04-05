@@ -11,10 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../Data/Models/profile_model.dart';
+import '../../ad_helper.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -23,6 +25,30 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   // ProfileModel profileModel = Get.arguments;
+
+  late BannerAd _bannerAd;
+  bool _isBannerAdReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(size: AdSize.banner,
+        adUnitId: AdHelper.bannerAdUnitId,
+        listener: BannerAdListener(
+            onAdLoaded: (_){
+              setState(() {
+                _isBannerAdReady = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error){
+              print("Failed to load a banner ad${error.message}");
+              _isBannerAdReady = false;
+              ad.dispose();
+            }
+        ), request: AdRequest())..load();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -116,7 +142,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15.0),
+                    const SizedBox(height: 10.0),
+                    if(_isBannerAdReady)
+                      Container(
+                        height: _bannerAd.size.height.toDouble(),
+                        width: _bannerAd.size.width.toDouble(),
+                        child: AdWidget(ad: _bannerAd),
+                      ),
+                    const SizedBox(height: 10.0),
                     Container(
                       width: double.infinity,
                       height: 230.0,
