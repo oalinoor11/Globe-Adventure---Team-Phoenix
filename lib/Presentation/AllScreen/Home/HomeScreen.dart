@@ -23,10 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Colors.green,
             centerTitle: true,
             title:
-                Text(
+                Center(
+                  child: Text(
               "Borno Bangla",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
+                ),
+            automaticallyImplyLeading: false,
           ),
           body: SingleChildScrollView(
             child: Column(
