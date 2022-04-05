@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/appply_scholarship_form_model.dart';
 import 'package:BornoBangla/Data/Models/scholarship_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,15 +31,24 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _fatherNameController = TextEditingController();
-  TextEditingController _motherNameController = TextEditingController();
-  TextEditingController _presentAddressController = TextEditingController();
-  TextEditingController _studentsPhoneController = TextEditingController();
-  TextEditingController _parentsPhoneController = TextEditingController();
-  TextEditingController _emailAddressController = TextEditingController();
-  TextEditingController _sscResultController = TextEditingController();
-  TextEditingController _hscResultController = TextEditingController();
+  TextEditingController _nameController =
+      TextEditingController(text: ProfileController.to.profile()!.name);
+  TextEditingController _fatherNameController =
+      TextEditingController(text: ProfileController.to.profile()!.fatherName);
+  TextEditingController _motherNameController =
+      TextEditingController(text: ProfileController.to.profile()!.motherName);
+  TextEditingController _presentAddressController =
+      TextEditingController(text: ProfileController.to.profile()!.address);
+  TextEditingController _studentsPhoneController =
+      TextEditingController(text: ProfileController.to.profile()!.phone);
+  TextEditingController _parentsPhoneController =
+      TextEditingController(text: ProfileController.to.profile()!.parentPhone);
+  TextEditingController _emailAddressController =
+      TextEditingController(text: ProfileController.to.profile()!.email);
+  TextEditingController _sscResultController = TextEditingController(
+      text: ProfileController.to.profile()!.sscResult?.toString());
+  TextEditingController _hscResultController = TextEditingController(
+      text: ProfileController.to.profile()!.hscResult?.toString());
   TextEditingController _referralCodeController = TextEditingController();
   File? _studentsPhoto;
   File? _signaturePhoto;
@@ -275,20 +285,26 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: _studentsPhoto == null
-                            ? Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("Student's Photo",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 12)),
-                                  SizedBox(height: 10),
-                                  Icon(
-                                    Icons.add_a_photo,
-                                    size: 20,
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              )
+                            ? ProfileController.to.profile()!.profilePicture !=
+                                    null
+                                ? Image.network(ProfileController.to
+                                    .profile()!
+                                    .profilePicture!)
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Student's Photo",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12)),
+                                      SizedBox(height: 10),
+                                      Icon(
+                                        Icons.add_a_photo,
+                                        size: 20,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  )
                             : kIsWeb
                                 ? Image.network(_studentsPhoto!.path)
                                 : Image.file(_studentsPhoto!),
@@ -314,27 +330,31 @@ class _ScholarshipApplyScreenState extends State<ScholarshipApplyScreen> {
                     Container(
                       height: 140,
                       width: double.infinity,
-                      child: Screenshot(
-                        controller: screenshotController,
-                        child: SfSignaturePad(
-                          key: _signaturePadKey,
-                          backgroundColor: Colors.grey[200],
-                        ),
-                      ),
+                      child: ProfileController.to.profile()!.signatureImage !=
+                              null
+                          ? Image.network(
+                              ProfileController.to.profile()!.signatureImage!)
+                          : Screenshot(
+                              controller: screenshotController,
+                              child: SfSignaturePad(
+                                key: _signaturePadKey,
+                                backgroundColor: Colors.grey[200],
+                              ),
+                            ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            _signaturePadKey.currentState!.clear();
-                          },
-                          child: const Text(
-                            "clear",
-                            style: TextStyle(color: Colors.blueGrey),
-                          ),
-                        ),
-                      ],
+                    Visibility(
+                      visible: ProfileController.to.profile()!.signatureImage ==
+                          null,
+                      child: InkWell(
+                        onTap: () async {
+                          _signaturePadKey.currentState?.clear();
+                        },
+                        child: Text("clear",
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold)),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

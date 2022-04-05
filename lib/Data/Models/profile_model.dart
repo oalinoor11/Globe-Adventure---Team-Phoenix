@@ -9,6 +9,13 @@ class ProfileModel {
   String? address;
   String? partnerid;
   String? profilePicture;
+  String? fatherName;
+  String? motherName;
+  String? parentPhone;
+  double? sscResult;
+  double? hscResult;
+  String? signatureImage;
+  int? age;
   ProfileModel({
     this.id,
     required this.name,
@@ -18,6 +25,13 @@ class ProfileModel {
     this.address,
     this.partnerid,
     this.profilePicture,
+    this.fatherName,
+    this.motherName,
+    this.parentPhone,
+    this.sscResult,
+    this.hscResult,
+    this.signatureImage,
+    this.age,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
@@ -29,6 +43,13 @@ class ProfileModel {
         address: json["address"],
         partnerid: json["partnerid"],
         profilePicture: json["profilePicture"],
+        fatherName: json["fatherName"],
+        motherName: json["motherName"],
+        parentPhone: json["parentPhone"],
+        sscResult: json["sscResult"],
+        hscResult: json["hscResult"],
+        signatureImage: json["signatureImage"],
+        age: json["age"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -40,11 +61,18 @@ class ProfileModel {
         "address": address,
         "partnerid": partnerid,
         "profilePicture": profilePicture,
+        "fatherName": fatherName,
+        "motherName": motherName,
+        "parentPhone": parentPhone,
+        "sscResult": sscResult,
+        "hscResult": hscResult,
+        "signatureImage": signatureImage,
+        "age": age,
       };
 
   @override
   String toString() {
-    return 'CountryModel{id: $id, name: $name, phone: $phone, email: $email, profession: $profession, address: $address, partnerid: $partnerid}';
+    return 'CountryModel{id: $id, name: $name, phone: $phone, email: $email, profession: $profession, address: $address, partnerid: $partnerid, profilePicture: $profilePicture, fatherName: $fatherName, motherName: $motherName, parentPhone: $parentPhone, sscResult: $sscResult, hscResult: $hscResult, signatureImage: $signatureImage, age: $age}';
   }
 
   ProfileModel copyWith({
@@ -56,6 +84,13 @@ class ProfileModel {
     String? address,
     String? partnerid,
     String? profilePicture,
+    String? fatherName,
+    String? motherName,
+    String? parentPhone,
+    double? sscResult,
+    double? hscResult,
+    String? signatureImage,
+    int? age,
   }) {
     return ProfileModel(
       id: id ?? this.id,
@@ -66,6 +101,13 @@ class ProfileModel {
       address: address ?? this.address,
       partnerid: partnerid ?? this.partnerid,
       profilePicture: profilePicture ?? this.profilePicture,
+      fatherName: fatherName ?? this.fatherName,
+      motherName: motherName ?? this.motherName,
+      parentPhone: parentPhone ?? this.parentPhone,
+      sscResult: sscResult ?? this.sscResult,
+      hscResult: hscResult ?? this.hscResult,
+      signatureImage: signatureImage ?? this.signatureImage,
+      age: age ?? this.age,
     );
   }
 

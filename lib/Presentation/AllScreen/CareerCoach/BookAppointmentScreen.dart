@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:BornoBangla/Core/AppRoutes.dart';
 import 'package:BornoBangla/Data/Models/appointment_application_model.dart';
 import 'package:BornoBangla/Data/Models/coach_model.dart';
+import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,12 +31,17 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController nameController =
+      TextEditingController(text: ProfileController.to.profile()!.name);
   TextEditingController referralController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  TextEditingController professionController = TextEditingController();
+  TextEditingController phoneController =
+      TextEditingController(text: ProfileController.to.profile()!.phone);
+  TextEditingController emailController =
+      TextEditingController(text: ProfileController.to.profile()!.email);
+  TextEditingController ageController = TextEditingController(
+      text: ProfileController.to.profile()!.age.toString());
+  TextEditingController professionController =
+      TextEditingController(text: ProfileController.to.profile()!.profession);
   TextEditingController purposeOfMeetingController = TextEditingController();
   File? image;
   CoachModel coachModel = Get.arguments;
@@ -45,7 +51,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        decoration: context.width > 550 ? BoxDecoration(border: Border.all(width: 2, color: Colors.grey.withOpacity(0.35))): null,
+        decoration: context.width > 550
+            ? BoxDecoration(
+                border:
+                    Border.all(width: 2, color: Colors.grey.withOpacity(0.35)))
+            : null,
         width: context.width > 550 ? 550 : double.infinity,
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -72,9 +82,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Your Name",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -88,9 +100,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Your Phone",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -104,9 +118,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Your Email Address",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -120,9 +136,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Your Age",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -136,9 +154,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Your Profession",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -152,9 +172,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Purpose of Meeting",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
@@ -184,23 +206,32 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: image == null
-                          ? Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Your Photo",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 12)),
-                          SizedBox(height: 10),
-                          Icon(
-                            Icons.add_a_photo,
-                            size: 20,
-                            color: Colors.black,
-                          ),
-                        ],
-                      )
+                          ? ProfileController.to.profile()!.profilePicture !=
+                                  null
+                              ? Image.network(ProfileController.to
+                                  .profile()!
+                                  .profilePicture!)
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Your Photo",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 12)),
+                                    SizedBox(height: 10),
+                                    Icon(
+                                      Icons.add_a_photo,
+                                      size: 20,
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                )
                           : Image.file(image!),
                     ),
                   ),
-                  Text("(image ratio should be 1/1)", style: TextStyle(color: Colors.grey),),
+                  Text(
+                    "(image ratio should be 1/1)",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                   SizedBox(height: 20),
                   TextField(
                     controller: referralController,
@@ -209,32 +240,34 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green, width: 1)),
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1)),
                       labelText: "Referral Code (optional)",
-                      labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                      labelStyle:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                   SizedBox(height: 10),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "By clicking ",
-                        style: TextStyle(color: Colors.black87,
-                            fontSize: 11),
+                        style: TextStyle(color: Colors.black87, fontSize: 11),
                       ),
                       Text(
                         "Next",
-                        style: TextStyle(color: Colors.black,
+                        style: TextStyle(
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 11),
                       ),
                       Text(
                         ", you are agreeing to the",
-                        style: TextStyle(color: Colors.black87,
-                            fontSize: 11),
+                        style: TextStyle(color: Colors.black87, fontSize: 11),
                       ),
                       TextButton(
                         onPressed: () async {
@@ -267,88 +300,87 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                               borderRadius: new BorderRadius.circular(8.0),
                             ),
                             onPressed: () async {
-                              if (image != null
-                                  && nameController.text.isNotEmpty
-                                  && phoneController.text.isNotEmpty
-                                  && emailController.text.isNotEmpty
-                                  && ageController.text.isNotEmpty
-                                  && professionController.text.isNotEmpty
-                                  && purposeOfMeetingController.text.isNotEmpty
-                              )
-                              {
+                              if (image != null &&
+                                  nameController.text.isNotEmpty &&
+                                  phoneController.text.isNotEmpty &&
+                                  emailController.text.isNotEmpty &&
+                                  ageController.text.isNotEmpty &&
+                                  professionController.text.isNotEmpty &&
+                                  purposeOfMeetingController.text.isNotEmpty) {
                                 if (coachModel.currency.toString() == "৳") {
                                   amount = coachModel.price?.toDouble();
-                                }
-
-                                else if (coachModel.currency.toString() == "₹") {
+                                } else if (coachModel.currency.toString() ==
+                                    "₹") {
                                   rupee = coachModel.price?.toDouble();
                                   amount = (rupee! * 1.2).toDouble();
-                                }
-
-                                else if (coachModel.currency.toString() == "\$") {
+                                } else if (coachModel.currency.toString() ==
+                                    "\$") {
                                   usd = coachModel.price?.toDouble();
                                   amount = (usd! * 85).toDouble();
-                                };
+                                }
+                                ;
 
                                 FocusManager.instance.primaryFocus?.unfocus();
                                 var isPaymentComplete = await Get.toNamed(
                                     AppRoutes.PAYMENTSCREEN,
                                     arguments: amount);
-                                if (isPaymentComplete == true)
-                                {
-                                setState(() {
-                                  isLoading = true;
-                                });
-                                var upload = await FirebaseStorage.instance
-                                    .ref()
-                                    .child("coach_appointment_images")
-                                    .child(nameController.text)
-                                    .putFile(image!);
-                                var downloadUrl = await upload.ref.getDownloadURL();
+                                if (isPaymentComplete == true) {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
+                                  var upload = await FirebaseStorage.instance
+                                      .ref()
+                                      .child("coach_appointment_images")
+                                      .child(nameController.text)
+                                      .putFile(image!);
+                                  var downloadUrl =
+                                      await upload.ref.getDownloadURL();
 
-                                AppointmentApplicationModel(
-                                  name: nameController.text,
-                                  referral: referralController.text,
-                                  phone: phoneController.text,
-                                  email: emailController.text,
-                                  age: ageController.text,
-                                  profession: professionController.text,
-                                  purposeOfMeeting: purposeOfMeetingController.text,
-                                  image: downloadUrl,
-                                  coachModel: coachModel,
-                                ).save();
-                                setState(() {
-                                  isLoading = false;
-                                });
-                                // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
-                                var result = await http.get(
-                                  Uri(
-                                    scheme: "http",
-                                    host: "msg.elitbuzz-bd.com",
-                                    path: "/smsapi",
-                                    queryParameters: {
-                                      "api_key": "C20081696225eaffaf0075.13009072",
-                                      "type": "text",
-                                      "contacts": phoneController.text.trim(),
-                                      "senderid": "37935",
-                                      "msg": "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
-                                    },
-                                  ),
-                                );
+                                  AppointmentApplicationModel(
+                                    name: nameController.text,
+                                    referral: referralController.text,
+                                    phone: phoneController.text,
+                                    email: emailController.text,
+                                    age: ageController.text,
+                                    profession: professionController.text,
+                                    purposeOfMeeting:
+                                        purposeOfMeetingController.text,
+                                    image: downloadUrl,
+                                    coachModel: coachModel,
+                                  ).save();
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  // http://msg.elitbuzz-bd.com/smsapi?api_key=C20081696225eaffaf0075.13009072&type=text&contacts=01798161323&senderid=37935&msg=Test message one
+                                  var result = await http.get(
+                                    Uri(
+                                      scheme: "http",
+                                      host: "msg.elitbuzz-bd.com",
+                                      path: "/smsapi",
+                                      queryParameters: {
+                                        "api_key":
+                                            "C20081696225eaffaf0075.13009072",
+                                        "type": "text",
+                                        "contacts": phoneController.text.trim(),
+                                        "senderid": "37935",
+                                        "msg":
+                                            "আপনি সফলভাবে বর্ণবাংলা অ্যাপ -এ এপয়েন্টমেন্টের জন্য আবেদন করেছেন।",
+                                      },
+                                    ),
+                                  );
 
-                                await Get.snackbar(
-                                  "Application Submitted",
-                                  "Your Application has been submitted",
-                                  backgroundColor: Colors.green,
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  colorText: Colors.white,
-                                );
-                                Get.offAllNamed(AppRoutes.MAINSCREEN);
-                                setState(() {
-                                  isLoading = false;
-                                });
-                              }
-                                else {
+                                  await Get.snackbar(
+                                    "Application Submitted",
+                                    "Your Application has been submitted",
+                                    backgroundColor: Colors.green,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    colorText: Colors.white,
+                                  );
+                                  Get.offAllNamed(AppRoutes.MAINSCREEN);
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                } else {
                                   Get.snackbar(
                                     "Payment Failed",
                                     "Payment is not complete",
@@ -357,18 +389,17 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                     colorText: Colors.white,
                                   );
                                 }
+                              } else {
+                                Get.snackbar(
+                                  "Failed!",
+                                  "Fill up all field",
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor: Colors.red,
+                                  colorText: Colors.white,
+                                );
+                                return;
                               }
-                              else {
-                              Get.snackbar(
-                              "Failed!",
-                              "Fill up all field",
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: Colors.red,
-                              colorText: Colors.white,
-                              );
-                              return;
-                              }
-                              },
+                            },
                             child: Center(
                               child: Text(
                                 "Next",
