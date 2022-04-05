@@ -231,6 +231,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                         builder: (context, snapshot) {
                           return snapshot.hasData
                               ? DropdownButtonFormField<CoachingModel>(
+                              isExpanded: true,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
@@ -250,6 +251,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                                         (e) => DropdownMenuItem(
                                           child: Text(
                                             e.name,
+                                            maxLines: 1,
                                             textAlign: TextAlign.start,
                                           ),
                                           alignment: Alignment.topLeft,
@@ -260,42 +262,42 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                               : Container();
                         }),
                   ),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    child: StreamBuilder<List<BranchModel>>(
-                        stream: BranchModel.getAllAsStream(),
-                        builder: (context, snapshot) {
-                          return snapshot.hasData
-                              ? DropdownButtonFormField<String>(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
-                                            color: Colors.green, width: 1)),
-                                  ),
-                                  onChanged: (v) {
-                                    setState(() {
-                                      selectedBranch = v;
-                                    });
-                                  },
-                                  value: selectedBranch,
-                                  hint: Text("Select Branch",
-                                      style: TextStyle(color: Colors.black)),
-                                  items: snapshot.data!
-                                      .map(
-                                        (e) => DropdownMenuItem<String>(
-                                          child: Text(
-                                            e.name,
-                                            textAlign: TextAlign.start,
-                                          ),
-                                          alignment: Alignment.topLeft,
-                                          value: e.name,
-                                        ),
-                                      )
-                                      .toList())
-                              : Container();
-                        }),
-                  ),
+                  // SizedBox(height: 20),
+                  // SizedBox(
+                  //   child: StreamBuilder<List<BranchModel>>(
+                  //       stream: BranchModel.getAllAsStream(),
+                  //       builder: (context, snapshot) {
+                  //         return snapshot.hasData
+                  //             ? DropdownButtonFormField<String>(
+                  //                 decoration: InputDecoration(
+                  //                   border: OutlineInputBorder(
+                  //                       borderRadius: BorderRadius.circular(8),
+                  //                       borderSide: BorderSide(
+                  //                           color: Colors.green, width: 1)),
+                  //                 ),
+                  //                 onChanged: (v) {
+                  //                   setState(() {
+                  //                     selectedBranch = v;
+                  //                   });
+                  //                 },
+                  //                 value: selectedBranch,
+                  //                 hint: Text("Select Branch",
+                  //                     style: TextStyle(color: Colors.black)),
+                  //                 items: snapshot.data!
+                  //                     .map(
+                  //                       (e) => DropdownMenuItem<String>(
+                  //                         child: Text(
+                  //                           e.name,
+                  //                           textAlign: TextAlign.start,
+                  //                         ),
+                  //                         alignment: Alignment.topLeft,
+                  //                         value: e.name,
+                  //                       ),
+                  //                     )
+                  //                     .toList())
+                  //             : Container();
+                  //       }),
+                  // ),
                   SizedBox(height: 20),
                   SizedBox(
                     child: DropdownButtonFormField<CoachingCourseModel>(
@@ -505,7 +507,6 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                               && emailController.text.isNotEmpty
                               && sscController.text.isNotEmpty
                               && hscController.text.isNotEmpty
-                              && selectedBranch != null
                               && selectedTime != null) {
                                 FocusManager.instance.primaryFocus?.unfocus();
                                 var isPaymentComplete = await Get.toNamed(
@@ -549,7 +550,7 @@ class _CoachingApplyScreenState extends State<CoachingApplyScreen> {
                                 studentsPhone: studentsPhoneController.text,
                                 parentsPhone: parentsPhoneController.text,
                                 address: addressController.text,
-                                branch: selectedBranch!,
+                                branch: "selectedBranch!",
                                 coachingCourse: selectedProgram!,
                                 preferableTime: selectedTime!,
                                 image: studentImageUrl,
