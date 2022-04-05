@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 1), () {
       if (ProfileController.to.profile()!.address == null) {
-        Get.dialog(FillYourProfileDialog());
+        Get.dialog(FillYourProfileDialog(), barrierDismissible: true);
       }
     });
     super.initState();
