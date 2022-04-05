@@ -145,24 +145,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         fontSize: 14.0,
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextField(
-                      controller: emailController,
-                      keyboardType: TextInputType.text,
-                      cursorColor: Colors.green,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.green, width: 1)),
-                        labelText: "Your Email",
-                        labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
-                      ),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    // TextField(
+                    //   controller: emailController,
+                    //   keyboardType: TextInputType.text,
+                    //   cursorColor: Colors.green,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(8),
+                    //         borderSide: BorderSide(color: Colors.green, width: 1)),
+                    //     labelText: "Your Email",
+                    //     labelStyle: TextStyle(fontSize: 16.0, color: Colors.black),
+                    //   ),
+                    //   style: TextStyle(
+                    //     fontSize: 14.0,
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),
