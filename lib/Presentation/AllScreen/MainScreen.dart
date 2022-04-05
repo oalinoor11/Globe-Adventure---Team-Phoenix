@@ -1,3 +1,4 @@
+import 'package:BornoBangla/Core/Widgets/fill_your_profile_dialog.dart';
 import 'package:BornoBangla/Data/Models/profile_model.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
@@ -22,13 +23,23 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    Future.delayed(Duration(seconds: 1), () {
+      if (ProfileController.to.profile()!.address == null) {
+        Get.dialog(FillYourProfileDialog());
+      }
+    });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        decoration: context.width > 550 ? BoxDecoration(border: Border.all(width: 2, color: Colors.grey.withOpacity(0.35))): null,
+        decoration: context.width > 550
+            ? BoxDecoration(
+                border:
+                    Border.all(width: 2, color: Colors.grey.withOpacity(0.35)))
+            : null,
         width: context.width > 550 ? 550 : double.infinity,
         child: Scaffold(
           backgroundColor: Colors.white,
