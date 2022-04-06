@@ -1,6 +1,7 @@
-import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../Presentation/AllScreen/Profile/EditProfileScreen.dart';
 
 class FillYourProfileDialog extends StatefulWidget {
   const FillYourProfileDialog({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _FillYourProfileDialogState extends State<FillYourProfileDialog> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(() => ProfileScreen());
+                  Get.to(() => EditProfileScreen());
                 },
                 child: Container(
                   padding: const EdgeInsets.all(10),
