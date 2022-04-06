@@ -297,7 +297,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     TextField(
                       controller: sscResult,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       cursorColor: Colors.green,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -317,7 +317,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     TextField(
                       controller: hscResult,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       cursorColor: Colors.green,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -440,12 +440,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           fatherName: fatherName.text,
                                           motherName: motherName.text,
                                           parentPhone: parentPhone.text,
-                                          sscResult:
-                                              double.tryParse(sscResult.text) ??
-                                                  0.0,
-                                          hscResult:
-                                              double.tryParse(hscResult.text) ??
-                                                  0.0,
+                                          sscResult: sscResult.text,
+                                          hscResult: hscResult.text,
                                         );
                                 if (image != null) {
                                   var upload = await FirebaseStorage.instance

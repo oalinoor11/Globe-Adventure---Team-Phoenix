@@ -12,8 +12,8 @@ class ProfileModel {
   String? fatherName;
   String? motherName;
   String? parentPhone;
-  double? sscResult;
-  double? hscResult;
+  String? sscResult;
+  String? hscResult;
   String? signatureImage;
   int? age;
   ProfileModel({
@@ -87,8 +87,8 @@ class ProfileModel {
     String? fatherName,
     String? motherName,
     String? parentPhone,
-    double? sscResult,
-    double? hscResult,
+    String? sscResult,
+    String? hscResult,
     String? signatureImage,
     int? age,
   }) {
