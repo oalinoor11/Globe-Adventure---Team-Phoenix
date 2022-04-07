@@ -249,7 +249,7 @@ class AboutScreen extends StatelessWidget {
                             SizedBox(height: 10,),
                             Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.verified_user),
+                                Icon(Icons.gavel),
                                 Text(
                                   "Read our",
                                   style: TextStyle(
