@@ -678,14 +678,14 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.4.38"
+    version: "20.1.47"
   syncfusion_flutter_signaturepad:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_signaturepad
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.4.38"
+    version: "20.1.47"
   term_glyph:
     dependency: transitive
     description:

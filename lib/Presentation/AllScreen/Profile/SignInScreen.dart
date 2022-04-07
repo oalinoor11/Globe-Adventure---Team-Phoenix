@@ -74,12 +74,12 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: 15.0,
                   ),
-                  if(_isBannerAdReady)
-                    Container(
-                      height: _bannerAd.size.height.toDouble(),
-                      width: _bannerAd.size.width.toDouble(),
-                      child: AdWidget(ad: _bannerAd),
-                    ),
+                  // if(_isBannerAdReady)
+                  //   Container(
+                  //     height: _bannerAd.size.height.toDouble(),
+                  //     width: _bannerAd.size.width.toDouble(),
+                  //     child: AdWidget(ad: _bannerAd),
+                  //   ),
                   Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Column(

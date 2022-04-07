@@ -1,5 +1,6 @@
 import 'package:BornoBangla/Core/Widgets/fill_your_profile_dialog.dart';
 import 'package:BornoBangla/Data/Models/profile_model.dart';
+import 'package:BornoBangla/Presentation/AllScreen/AboutScreen.dart';
 import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
 import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
 import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
@@ -84,6 +85,10 @@ class _MainScreenState extends State<MainScreen> {
                 icon: Icon(Icons.person),
                 label: "Profile",
               ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.public),
+                label: "About",
+              ),
             ],
           ),
           body: PageView(
@@ -91,6 +96,7 @@ class _MainScreenState extends State<MainScreen> {
             children: [
               HomeScreen(),
               ProfileScreen(),
+              AboutScreen()
             ],
             physics: NeverScrollableScrollPhysics(),
           ),

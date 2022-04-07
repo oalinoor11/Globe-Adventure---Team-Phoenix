@@ -86,12 +86,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 5.0,
                         ),
-                        if(_isBannerAdReady)
-                          Container(
-                            height: _bannerAd.size.height.toDouble(),
-                            width: _bannerAd.size.width.toDouble(),
-                            child: AdWidget(ad: _bannerAd),
-                          ),
+                        // if(_isBannerAdReady)
+                        //   Container(
+                        //     height: _bannerAd.size.height.toDouble(),
+                        //     width: _bannerAd.size.width.toDouble(),
+                        //     child: AdWidget(ad: _bannerAd),
+                        //   ),
                         SizedBox(
                           height: 5.0,
                         ),

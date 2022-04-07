@@ -36,8 +36,8 @@ dependencies:
   get: ^4.3.4
   youtube_player_iframe: ^2.2.2
   image_picker: ^0.8.4+11
-  screenshot: ^1.2.1
-  syncfusion_flutter_signaturepad: ^19.2.46
+  screenshot: ^1.2.3
+  syncfusion_flutter_signaturepad: ^20.1.47
   carousel_slider: ^4.0.0
   change_app_package_name: ^1.0.0
   cloud_firestore: ^3.1.10
