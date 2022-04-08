@@ -57,6 +57,7 @@ dependencies:
   uuid: ^3.0.6
   webview_flutter: ^3.0.1
   new_version: ^0.3.0
+  readmore: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

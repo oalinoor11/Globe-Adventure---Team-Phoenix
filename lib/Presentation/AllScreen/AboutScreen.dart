@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -54,16 +55,22 @@ class AboutScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 20,),
-                            Text(
-                              "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                              ),
+                            ReadMoreText(
+                              "Welcome to BORNO Bangla. The country's first and number one market place for education. You have BORNO Bangla by your side with the conviction of fulfilling the dreams of millions of youth. Where are you Coaching Center, Study abroad, Scholarship, Career Coach, Job, Tutor And you will get information and reviews of preparatory books. Even admission can be. We don't do any coaching ourselves or we don't have any schools, colleges or universities of our own. The ad department of the educational institution or their designated person or authorized agent is directly involved with our app. They are constantly monitoring our activities and providing the latest information to make our app more acceptable. In addition, there is a neutral rating of each educational institution based on the reviews given by the students and our observations. We believe that this will help you in the selection of educational institutions and also in increasing the quality of services of educational institutions.",
+                              style: TextStyle(color: Colors.black),
                               textAlign: TextAlign.center,
+                              trimLines: 8,
+                              colorClickableText: Colors.green,
+                              trimMode: TrimMode.Line,
+                              trimCollapsedText: 'Show more',
+                              trimExpandedText: 'show less',
                             ),
                             SizedBox(height: 10,),
+                            Divider(
+                              color: const Color(0xFF167F67),
+                            ),
                             Text(
-                              "Licence Number: XXXXXXXXX",
+                              "Licence Number: 279197/Dhaka North",
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.bold,
@@ -112,19 +119,25 @@ class AboutScreen extends StatelessWidget {
                               children: [
                                 Icon(Icons.apartment),
                                 Text(
-                                  " address",
+                                  " 103/1, Green Road, Farmgate,",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18),
                                 ),
                               ],
                             ),
+                            Text(
+                              "Dhaka-1215.",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18),
+                            ),
                             SizedBox(height: 10,),
                             Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(Icons.support_agent),
                                 Text(
-                                  " +8801893465557",
+                                  " +8801894844464",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18),
@@ -136,7 +149,7 @@ class AboutScreen extends StatelessWidget {
                               children: [
                                 Icon(Icons.email),
                                 Text(
-                                  " mail address",
+                                  " thebornogroup@gmail.com",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18),
