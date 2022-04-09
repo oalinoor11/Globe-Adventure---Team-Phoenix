@@ -1,14 +1,3 @@
-import 'package:BornoBangla/Core/Widgets/fill_your_profile_dialog.dart';
-import 'package:BornoBangla/Data/Models/profile_model.dart';
-import 'package:BornoBangla/Presentation/AllScreen/AboutScreen.dart';
-import 'package:BornoBangla/Presentation/AllScreen/Profile/ProfileScreen.dart';
-import 'package:BornoBangla/Presentation/Controllers/coaching_controller.dart';
-import 'package:BornoBangla/Presentation/Controllers/college_controller.dart';
-import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
-import 'package:BornoBangla/Presentation/Controllers/scholarship_controller.dart';
-import 'package:BornoBangla/Presentation/Controllers/school_controller_controller.dart';
-import 'package:BornoBangla/Presentation/Controllers/university.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -26,11 +15,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1), () {
-      if (ProfileController.to.profile()!.address == null) {
-        Get.dialog(FillYourProfileDialog(), barrierDismissible: true);
-      }
-    });
     _checkVersion();
     super.initState();
   }
@@ -81,13 +65,10 @@ class _MainScreenState extends State<MainScreen> {
                 icon: Icon(Icons.home),
                 label: "Home",
               ),
+
               BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Profile",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.public),
-                label: "About",
+                icon: Icon(Icons.home),
+                label: "Home",
               ),
             ],
           ),
@@ -95,8 +76,7 @@ class _MainScreenState extends State<MainScreen> {
             controller: pageController,
             children: [
               HomeScreen(),
-              ProfileScreen(),
-              AboutScreen()
+              HomeScreen(),
             ],
             physics: NeverScrollableScrollPhysics(),
           ),

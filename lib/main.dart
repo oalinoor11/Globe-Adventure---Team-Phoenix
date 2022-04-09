@@ -1,6 +1,3 @@
-import 'package:BornoBangla/Data/Models/profile_model.dart';
-import 'package:BornoBangla/Presentation/Controllers/profile_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -9,11 +6,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'Core/AppRoutes.dart';
-import 'Presentation/Controllers/coaching_controller.dart';
-import 'Presentation/Controllers/college_controller.dart';
-import 'Presentation/Controllers/scholarship_controller.dart';
-import 'Presentation/Controllers/school_controller_controller.dart';
-import 'Presentation/Controllers/university.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', //id
@@ -102,33 +94,15 @@ class _MyAppState extends State<MyApp> {
             });
       }
     });
-
-    Get.lazyPut(() => ProfileController());
-    Get.lazyPut(() => SchoolController());
-    Get.lazyPut(() => CollegeController());
-    Get.lazyPut(() => UniversityController());
-    Get.lazyPut(() => CoachingController());
-    Get.lazyPut(() => ScholarshipController());
-    storeUserData();
-  }
-
-  void storeUserData() async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      var profile = await ProfileModel.getProfileByUserId(
-          uId: FirebaseAuth.instance.currentUser!.uid);
-      ProfileController.to.profile(profile);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Borno Bangla',
+      title: 'BloodBox',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
-      initialRoute: FirebaseAuth.instance.currentUser == null
-          ? AppRoutes.SIGNINSCREEN
-          : AppRoutes.MAINSCREEN,
+      initialRoute: AppRoutes.HOMESCREEN,
       getPages: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );
