@@ -1,1 +1,1 @@
-BornoBangla user app
+Initial app
