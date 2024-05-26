@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:new_version/new_version.dart';
 import 'Home/HomeScreen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,26 +14,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    _checkVersion();
     super.initState();
-  }
-
-  void _checkVersion() async {
-    final newVersion = NewVersion(
-      androidId: "net.carboncodes.bornobangla",
-    );
-    final status = await newVersion.getVersionStatus();
-    newVersion.showUpdateDialog(
-      context: context,
-      versionStatus: status!,
-      dialogTitle: "Update Available",
-      dismissButtonText: "Skip",
-      dialogText: "You're missing out something!",
-      dismissAction: () {
-        Get.back();
-      },
-      updateButtonText: "Update Now",
-    );
   }
 
   @override

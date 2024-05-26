@@ -1,4 +1,4 @@
-name: BloodBox
+name: islamicquizapp
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.5+7
+version: 1.0.1+1
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -56,7 +56,6 @@ dependencies:
   http: ^0.13.5
   uuid: ^3.0.7
   webview_flutter: ^3.0.4
-  new_version: ^0.3.1
   readmore: ^2.2.0
 dev_dependencies:
   flutter_test:
