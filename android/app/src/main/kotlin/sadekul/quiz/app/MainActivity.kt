@@ -1,4 +1,4 @@
-package net.carboncodes.initialapp
+package sadekul.quiz.app
 
 import io.flutter.embedding.android.FlutterActivity
 
