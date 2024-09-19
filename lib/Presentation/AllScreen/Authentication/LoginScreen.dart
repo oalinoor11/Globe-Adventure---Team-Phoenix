@@ -272,14 +272,15 @@ class _LoginScreenState extends State<LoginScreen> {
       } on Exception catch (e) {
         print(e.toString());
       }
-      fcmSubscribe(firebaseuser.uid.toString());
+      fcmSubscribe(firebaseuser.uid.toString(), ProfileController.to.profile.value!.bloodGroup.toString());
       Get.offAllNamed(AppRoutes.MAINSCREEN);
     } else {
       print("User is null");
     }
   }
-  fcmSubscribe(String userUID) async {
+  fcmSubscribe(String userUID, String bloodGroup) async {
     FirebaseMessaging.instance.subscribeToTopic("all");
     FirebaseMessaging.instance.subscribeToTopic(userUID);
+    FirebaseMessaging.instance.subscribeToTopic(bloodGroup);
   }
 }

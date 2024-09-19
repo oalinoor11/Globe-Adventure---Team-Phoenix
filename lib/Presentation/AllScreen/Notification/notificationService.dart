@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
 
+import '../../../Core/AppRoutes.dart';
+
 class NotificationService {
   static final FirebaseMessaging _messaging = FirebaseMessaging.instance;
   static init() async {
@@ -50,15 +52,22 @@ class NotificationService {
       log('Message data: ${message.data}');
       if (message.notification != null && Platform.isAndroid) {
         log('Message also contained a notification: ${message.notification}');
-        Get.snackbar(
-          message.notification!.title ?? '',
-          message.notification!.body ?? '',
-          backgroundColor: primaryColor,
-          colorText: Colors.white,
-          onTap: (snack) {
-            // message.notification!.title == "Hey, a new product added!" ? Get.toNamed(AppRoutes.NOTIFICATION) :  Get.toNamed(AppRoutes.CHATALL);
+        Get.dialog(
+          AlertDialog(
+            backgroundColor: Colors.white,
+            title: Text(message.notification!.title ?? ''),
+            content: Text(message.notification!.body ?? ''),
+            actions: [
+        TextButton(
+          onPressed: () {
+            Get.offAllNamed(AppRoutes.MAINSCREEN);
           },
-        );
+          child: Text('Ok'),
+        ),
+      ],
+    ),
+  );
+
       }
     });
   }

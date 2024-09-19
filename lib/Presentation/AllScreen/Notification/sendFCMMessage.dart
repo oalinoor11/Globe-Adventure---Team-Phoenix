@@ -1,19 +1,22 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:googleapis_auth/auth_io.dart' as auth;
 import 'package:http/http.dart' as http;
 import 'package:googleapis/servicecontrol/v1.dart' as servicecontrol;
 
 import '../../../Data/Models/NotificationModel.dart';
 
-Future<void> sendFCMMessage(String title, String body) async {
+Future<void> sendFCMMessage(String title, String body, String channel) async {
   final String serverKey = await getAccessToken() ; // Your FCM server key
-  final String fcmEndpoint = 'https://fcm.googleapis.com/v1/projects/wazychat/messages:send';
+  final String fcmEndpoint = 'https://fcm.googleapis.com/v1/projects/durbar-club/messages:send';
   final Map<String, dynamic> message = {
     'message': {
-      'topic': "all",
+      'topic': channel,
       'notification': {
         "title": title,
         "body": body,
@@ -48,7 +51,13 @@ Future<void> sendFCMMessage(String title, String body) async {
   );
 
   if (response.statusCode == 200) {
-    print('FCM message sent successfully');
+    ScaffoldMessenger.of(Get.context!).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text('Notification sent successfully', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+      ),
+    );
+    Get.back();
     await NotificationModel(
       timeStamps: DateTime.now().millisecondsSinceEpoch.toString(),
       title: title,
@@ -56,7 +65,14 @@ Future<void> sendFCMMessage(String title, String body) async {
       image: "",
     )..save();
   } else {
+    ScaffoldMessenger.of(Get.context!).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red,
+        content: Text('Failed to send Notification', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+      ),
+    );
     print('Failed to send FCM message: ${response.statusCode}');
+    print('${response.body}');
   }
 }
 
@@ -65,8 +81,8 @@ Future<String> getAccessToken() async {
   final serviceAccountJson = {
     "type": "service_account",
     "project_id": "durbar-club",
-    "private_key_id": "b2e8a827e6b938b6bc80195090d3d199d224f5fc",
-    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAmpXZb5nGbJyY\nxL6UeGsMspugOKteM2SoZPSO6MPXsu5MtqjKQRT5UNI2q1YPdo8/tdLXCyjWiXOs\nZP3OckYJyPua7Y/CpO5x7mAEsPF9f68kdms2WuV4e9wAUhwPj3LfS9yMkiQNbAoh\nNw9hkRc6Kzkz1qORW2bPLYaqTaT2RHdeGMOSFqsywE+GPP7Ig5pikEZKTD+EqtEy\nR1OZMl+uzJNauWKTttoC70LJ2kxG/s4NKCBjhJOvrB2yMrTfubXLVCA/NNupZua4\n4st8YFjOmtijrjbzB4AplYfJ3ZmqBpRXiyT2ncf/hi4hpfUJg8SzMZ91IOGi2lt6\nM7/WxXFRAgMBAAECggEAEKkuqOz/qIumWOFoD7As/nUILlTIn4ZNlkg0DuqxX5wn\nA17SUhCi2lWfTEMHrPXCEC5P1fICrzBGX9V/+Rb8hQXW8gDL101szPvkYB4tqFVe\nbAaMYVrSj9i9tWS6Ra77LmLBv4KNeNXC4zr/6x43G/03iQrvrPgdosgFkVTUc3MJ\nHVe9ggCSlJLabJVG1QuWUXHiZ/tfUmUuh4XigDOlyr9ZpU6bR8pNFxND4UFxa9h6\n65ZYb7r0PXpkjBd3oQOHeN0VmmlMBmYGKgAU9XGOlUc6P1efkaBkr9c+0Y3RqaXY\nYoHE3GghzKBm7xrRcOg0xJkGZIyreEU39RJ4RG3jWwKBgQD29vgj44bgNhldU0lm\n423ZzqmrHkjpihEAGeivj2ki1mzk/btaKeh7QV7ndLMLCeKXNtnYF/I5zxun/O5D\noiZvI9EkfgCpK5Vsz2TiIJKdCoKvTen3BGCX5tWkxLcX/MSM1EqTAODReLlDnWYq\nhdp06aI+GMrwdsC5FJIC7JqyBwKBgQDHpnspb5/4ZIuYq+jKKYIgad2v2iWNAVBf\ngI6n+l2uvgao6EI+0vbrKTJ6c7t5JQBF2y2gKK2auZ5Iua88Mo63P9/0aNCAgXGR\ng0bDH/pghQL/N0L8UGcOivzwU+mK/t7ZWrWyeONb/Tq92VPp7PHa9CElZZ69uBWe\nxXb9ThOL5wKBgQDoqfdQaFRy+sSepY5rfivJnOc/rQJn8ojdnYsXinY0OerROTG+\nWekJ5aYxTEI5ThDJAQXujXDIgZO+iY027pZi8k1gocyhk8vsfN7AIou9o19HJJId\nA2S09uWjmygbUykgvAedwqAK+D8hsjHEMeKDbnBJLDZUoKwkMXr1gk6jFQKBgCXW\nyr72tgX44HBGHK+8IDqOdgKvQLCx0A7Zqa/yhrDouRBoPK31g/Db9QI6TwzN03hp\n6wLQ0t5hUbuM3cZ1+pCGnaaP+vxwDBs9Gzs+I1EJxKCkU6DIiE+8TeYqsTezyH6/\nb3Js8QJtQyXaO8o5KzmJTYLt+KESc56M5Flr485/AoGAA/s9830VjMKx0x4zztjN\nHatkEyv+i0F5iOWqTjlvXr7OcW2QLMsyhca0VdJtcv3e4AUzybtyjws2tHQBSJKR\nGOcXq7+3ppybT/7qbyTSdAp93sgVU7GN6EFfjYV2Wl4BL2vd/tjfFRePLx8xY5dP\njm/3YX94WgKJ+YxpBb8M7Gc=\n-----END PRIVATE KEY-----\n",
+    "private_key_id": "d0fe1f88e374aa38cdf0b837641214036d97880a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDlAH5ZPfCR8X2K\n/R04au5DXLOlkEAgxvCbDn/VrBxCWRjH+UrIvpk2RL+SLwgFyTxZ26yKIqrRCVLG\nahSULYmLbqsA8tCn8p5QaWpc3V1SA/ylISJYzFHw3FzdgiqgHhvhVcKNL30SNipl\nvOTCsGViqcuBAWA4OZ2kUl02apoPbF9nmvI7DJZsMrrOh4h111bj4Tqst/TeDV6g\nt7J/LHU7BTsjl0OYS8nCn1CSzaT3pGLsBoZa7f1yvWj+PqhaYjrwY54vve/iOwaI\n6yiVWHCyFNzrArpnLYo5LEHNASYhxrSs06RGDM+5DuT0cHPrachwEs5UvoymOwiD\nYrnhu+sFAgMBAAECgf8Iir3XoJE1epO6JoIudPi3xrMGuqc6COtIWtI5hetmHOpT\np/XsfMrltKLrAMqz1F2IDXJl5XC/USZL96SvX7uBaGwPU6hyFAnQMEBCT7AZKDlZ\nwRfu5wGVLJKWgEMaUG3NdzQeKaUmbgPFUikoJu+fos2//ToTsNDR9OKRA3EzpCuV\nIswh0wxlBQgvHlcCfRAnDsYch+ehHcb2CHEH3L74M69Ue3E7f1HxcS7tHuGqyW3L\nTApLj3kST6fIYZgMjYn6lfb4r3+S2KCMY3nPjAYfJO0thJWKnCnCnL1uRQcm3ILr\n9etVIS3YUJxkb9N9wqKPwZjdO9lf2N8F3d8lYeMCgYEA/bgKp6IdviBf91IAWFIq\nyf0TdM4HLGNS8btjDK74Qdip9iw3XaZpOEDzkBVRo0Vv6pFI1uSTSddAdNRAS+UE\nr1FJOU7OPoAFC1bO4TCB87efJCkCoOGAKs1gERKAeAWlvaGxRFovOhWDLlNZv7c6\nnHsoKuumEcIWASXMBfAj8dcCgYEA5w+QPF6MHNvcSeVAif8X6Zr77o0oOXynSkSV\nxXugqmqRyqC9aHVjAPOr519dyTPw6azkwmehjUWRH3CatyJh+wzHR7ZSRD73/wfO\n6PTKsiwqjZgWQPJwlS6ctFeeCbOdUgUr6KCIcNM64nMgyLRjtdmApcMJmUPL1h3t\n6Ipw5oMCgYAMWoSyStN16W+ixCxeIIoS0a671jhFMgTc3knhWTefRSRpZxe/CJZA\n9fCmCFO0RnI/kplgVTrSspdh2N/Uki8bNjMBhlPGeUdFmRFzp3/8VOl7wj9tg+1Q\nqDVQP31f2q6KQDA4ase35UpA3DAXhJ1m9xwqktTAMpoNrkBz3ZByewKBgGxYzO6x\n+wuRQSPZf0D2QDVHenkq8cC7JgraTEy1IuqmXETiyM5RtSH+IQ62lljBpWc9rmtG\nguemxl0yxSm40q8RF+UVpk/gIxQQikKMfvu7YBzTQyQjSw15NPwP1ciA0/Vg/Wzw\n0ent8r+68pWKmPLt0bho03ht5Qg7MpMHT9eXAoGBALBS7vhD4nbsHjPwc5Z5jctx\nMUe4TVsMgxAZuusUmDsEsTei7JqYgu1cRdP9itdyLUcKaGzEdkNHsKrWFEUpuCps\nKuv6gLsE/KpcicjzpJkai5pzFW/6L8y5z8Nc+Yuopw/UqDHcp4YFeCZRW4aSzGIv\nq6MVnSSvC5sLaPLV2HTR\n-----END PRIVATE KEY-----\n",
     "client_email": "firebase-adminsdk-b0p6m@durbar-club.iam.gserviceaccount.com",
     "client_id": "101389869163102986904",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",

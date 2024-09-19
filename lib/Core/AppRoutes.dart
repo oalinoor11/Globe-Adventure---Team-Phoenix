@@ -6,6 +6,8 @@ import '../Presentation/AllScreen/Authentication/ForgetScreen.dart';
 import '../Presentation/AllScreen/Authentication/LoginScreen.dart';
 import '../Presentation/AllScreen/Authentication/SignupScreen.dart';
 import '../Presentation/AllScreen/MainScreen.dart';
+import '../Presentation/AllScreen/Notification/NotificationScreen.dart';
+import '../Presentation/AllScreen/Notification/SendNotification.dart';
 class AppRoutes {
   static const String INITAL = "/";
   static const String MAINSCREEN = "/mainscreen";
@@ -13,6 +15,8 @@ class AppRoutes {
   static const String LOGINSCREEN = "/loginscreen";
   static const String SIGNUPSCREEN = "/signupscreen";
   static const String FORGETSCREEN = "/forgetscreen";
+  static const String SENDNOTIFICATION = "/sendnotification";
+  static const String NOTIFICATIONSCREEN = "/notificationscreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -38,6 +42,16 @@ class AppRoutes {
     GetPage(
         name: FORGETSCREEN,
         page: () => ForgetScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: SENDNOTIFICATION,
+        page: () => SendNotification(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: NOTIFICATIONSCREEN,
+        page: () => NotificationScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
 
