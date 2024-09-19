@@ -1106,7 +1106,7 @@ class _SignupScreenState extends State<SignupScreen> {
               dob: dobTextEditingController.text,
               presentAddress: presentAddressTextEditingController.text,
               permanentAddress: permanentAddressTextEditingController.text,
-              phone: phoneTextEditingController.text,
+              phone: countryCode+phoneTextEditingController.text,
               status: "Pending",
               statusDetails: "Membership fee not paid yet.",
               validity: "invalid",

@@ -9,14 +9,14 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../Core/appData.dart';
+import '../../../../Core/appData.dart';
 
-class HomeScreen extends StatefulWidget {
+class TeamScreen extends StatefulWidget {
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TeamScreen> createState() => _TeamScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TeamScreenState extends State<TeamScreen> {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -116,9 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               Icon(
-                                Icons.share,
-                                size: 25,
-                                color: Colors.green
+                                  Icons.share,
+                                  size: 25,
+                                  color: Colors.green
                               ),
                               Text(
                                 " Share App",
@@ -243,9 +243,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            children:[
+              children:[
 
-            ]
+              ]
           ),
         )
     );

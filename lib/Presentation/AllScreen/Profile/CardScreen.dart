@@ -9,14 +9,14 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../Core/appData.dart';
+import '../../../../Core/appData.dart';
 
-class HomeScreen extends StatefulWidget {
+class CardScreen extends StatefulWidget {
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<CardScreen> createState() => _CardScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CardScreenState extends State<CardScreen> {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -116,9 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               Icon(
-                                Icons.share,
-                                size: 25,
-                                color: Colors.green
+                                  Icons.share,
+                                  size: 25,
+                                  color: Colors.green
                               ),
                               Text(
                                 " Share App",
@@ -243,9 +243,59 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            children:[
-
-            ]
+              children:[
+                Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: Get.width - 80,
+                        height: 450,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: primaryColor,
+                            width: 2,
+                          ),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              spreadRadius: 2,
+                              blurRadius: 7,
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(AppRoutes.CARDSCAN);
+                        },
+                        child: Container(
+                          width: Get.width - 80,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.green,
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Card Verification",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ]
           ),
         )
     );

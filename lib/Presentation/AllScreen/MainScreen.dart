@@ -1,8 +1,11 @@
 import 'package:durbarclub/Core/appData.dart';
+import 'package:durbarclub/Presentation/AllScreen/Blood/BloodScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'Home/HomeScreen.dart';
+import 'Profile/CardScreen.dart';
+import 'Team/TeamScreen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -51,8 +54,8 @@ class _MainScreenState extends State<MainScreen> {
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: "Profile",
+            icon: Icon(Icons.card_membership),
+            label: "Card",
           ),
         ],
       ),
@@ -60,9 +63,9 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          HomeScreen(),
-          HomeScreen(),
-          HomeScreen(),
+          BloodScreen(),
+          TeamScreen(),
+          CardScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
       ),
