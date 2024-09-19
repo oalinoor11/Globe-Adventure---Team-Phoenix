@@ -1,3 +1,4 @@
+import 'package:durbarclub/Core/appData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.green,
+        backgroundColor: primaryColor,
+        selectedItemColor: Colors.white,
         onTap: (index) {
           pageController.jumpToPage(index);
           setState(() {
@@ -34,22 +36,22 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.rss_feed),
             label: "Feed",
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.bloodtype),
             label: "Blood",
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.group),
             label: "Team",
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.account_circle),
             label: "Profile",
           ),
         ],
