@@ -35,18 +35,30 @@ class _MainScreenState extends State<MainScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: "Feed",
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: "Blood",
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Team",
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Profile",
           ),
         ],
       ),
       body: PageView(
         controller: pageController,
         children: [
+          HomeScreen(),
+          HomeScreen(),
           HomeScreen(),
           HomeScreen(),
         ],

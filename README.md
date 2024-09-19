@@ -1,1 +1,1 @@
-initialapp
+DurbarClub app

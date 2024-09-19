@@ -1,12 +1,18 @@
-import 'package:islamicquizapp/Presentation/AllScreen/Home/HomeScreen.dart';
+import 'package:durbarclub/Presentation/AllScreen/Home/HomeScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../Presentation/AllScreen/Authentication/ForgetScreen.dart';
+import '../Presentation/AllScreen/Authentication/LoginScreen.dart';
+import '../Presentation/AllScreen/Authentication/SignupScreen.dart';
 import '../Presentation/AllScreen/MainScreen.dart';
 class AppRoutes {
   static const String INITAL = "/";
   static const String MAINSCREEN = "/mainscreen";
   static const String HOMESCREEN = "/homescreen";
+  static const String LOGINSCREEN = "/loginscreen";
+  static const String SIGNUPSCREEN = "/signupscreen";
+  static const String FORGETSCREEN = "/forgetscreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -17,6 +23,21 @@ class AppRoutes {
     GetPage(
         name: HOMESCREEN,
         page: () => HomeScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: LOGINSCREEN,
+        page: () => LoginScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: SIGNUPSCREEN,
+        page: () => SignupScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: FORGETSCREEN,
+        page: () => ForgetScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
 

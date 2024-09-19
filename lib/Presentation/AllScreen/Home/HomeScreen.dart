@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../Core/appData.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: primaryColor,
           centerTitle: true,
           title:
           Text(
-            "ইসলামিক কুইজ অ্যাপস",
+            "দুর্বার",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
           ),
           automaticallyImplyLeading: false,
