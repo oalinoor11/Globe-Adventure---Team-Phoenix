@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -267,7 +268,136 @@ class _CardScreenState extends State<CardScreen> {
                             ),
                           ],
                         ),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 25,),
+                            GestureDetector(
+                              child: Stack(
+                                  clipBehavior: Clip.none,
+                                  alignment: Alignment.center,
+                                  children: <Widget> [
+                                    Container(
+                                      height: 100,
+                                      width: 100,
+                                      decoration: new BoxDecoration(
+                                        border:
+                                        Border.all(color: Colors.blue, width: 1.5),
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(100),
+                                          child: Image.network(ProfileController.to.profile.value!.image.toString())),
+                                    ),
+                                      ProfileController.to.profile.value!.verified.toString() == "true" ? Positioned(
+                                      left: 65,
+                                      top: 70,
+                                      child: Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: new BoxDecoration(
+                                          boxShadow: [
+                                            new BoxShadow(
+                                              color: Colors.white,
+                                              blurRadius: 0,
+                                            ),
+                                          ],
+                                          border: Border.all(color: primaryColor, width: 1),
+                                          borderRadius: BorderRadius.circular(100),
+                                        ),
+                                        child: Container(child: Icon(Icons.verified, size: 20, color: Colors.blue,)),
+                                      ),
+                                    ) : SizedBox(),
+                                  ]
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Text("ID: "+
+                              ProfileController.to.profile.value!.memberId.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                            SizedBox(height: 0,),
+                            Text(ProfileController.to.profile.value!.designation.toString(),
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(height: 15,),
+                            Text("Name: "+
+                              ProfileController.to.profile.value!.name.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text("Phone: "+
+                              ProfileController.to.profile.value!.phone.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text("Email: "+
+                              ProfileController.to.profile.value!.email.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("BG: ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(ProfileController.to.profile.value!.bloodGroup.toString(),
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(" | DOB: "+
+                                    ProfileController.to.profile.value!.dob.toString(),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20,),
+                            Container(height: 2, width: double.infinity, color: Colors.blue,),
+                            SizedBox(height: 10,),
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                    width: (Get.width - 80)/3,
+                                    height: (Get.width - 80)/3,
+                                    child: Image.asset("assets/notificationicon.png", height: 80,)),
+                                Container(
+                                    width: (Get.width - 80)/3,
+                                    height: (Get.width - 80)/3,
+                                    child: QrImageView(data: ProfileController.to.profile.value!.id.toString())),
+                              ],
+                            ),
+                            SizedBox(height: 10,),
+                          ],
+                        ),
                       ),
+                      
                       SizedBox(height: 20,),
                       InkWell(
                         onTap: (){
