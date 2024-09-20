@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:durbarclub/Controllers/profile_controller.dart';
 import 'package:durbarclub/Core/AppRoutes.dart';
+import 'package:durbarclub/Data/Models/profile_model.dart';
 import 'package:durbarclub/Data/firebase_collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -242,12 +243,155 @@ class _TeamScreenState extends State<TeamScreen> {
           ],
         ),
         body: SingleChildScrollView(
-          child: Column(
-              children:[
-
-              ]
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
+            child: StreamBuilder<List<ProfileModel>>(
+                builder: (context, AsyncSnapshot<List<ProfileModel>> snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      primary: false,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        ProfileModel profileModel = snapshot.data![index];
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: InkWell(
+                            onTap: () {
+                              launchUrl(Uri.parse("tel:${profileModel.phone}"), mode: LaunchMode.externalNonBrowserApplication);
+                            },
+                            child: Container(
+                              width: Get.width - 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: primaryColor,
+                                  width: 2,
+                                ),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.4),
+                                    spreadRadius: 2,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  children: [
+                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row( mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            GestureDetector(
+                                              child: Stack(
+                                                  clipBehavior: Clip.none,
+                                                  alignment: Alignment.center,
+                                                  children: <Widget> [
+                                                    Container(
+                                                      height: 100,
+                                                      width: 100,
+                                                      decoration: new BoxDecoration(
+                                                        border:
+                                                        Border.all(color: Colors.blue, width: 1.5),
+                                                        borderRadius: BorderRadius.circular(100),
+                                                      ),
+                                                      child: ClipRRect(
+                                                          borderRadius: BorderRadius.circular(100),
+                                                          child: Image.network(profileModel.image.toString())),
+                                                    ),
+                                                    profileModel.verified.toString() == "true" ? Positioned(
+                                                      left: 65,
+                                                      top: 70,
+                                                      child: Container(
+                                                        height: 30,
+                                                        width: 30,
+                                                        decoration: new BoxDecoration(
+                                                          boxShadow: [
+                                                            new BoxShadow(
+                                                              color: Colors.white,
+                                                              blurRadius: 0,
+                                                            ),
+                                                          ],
+                                                          border: Border.all(color: primaryColor, width: 1),
+                                                          borderRadius: BorderRadius.circular(100),
+                                                        ),
+                                                        child: Container(child: Icon(Icons.verified, size: 20, color: Colors.blue,)),
+                                                      ),
+                                                    ) : SizedBox(),
+                                                  ]
+                                              ),
+                                            ),
+                                            SizedBox(width: 10,),
+                                            Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(profileModel.name.toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 0,),
+                                                Text(profileModel.designation.toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.green,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 5,),
+                                                Row(mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Text("Blood Group: ",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                    Text(profileModel.bloodGroup.toString(),
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 16,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Text(profileModel.phone.toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Icon(Icons.call, color: primaryColor, size: 30,),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: snapshot.data?.length ?? 0,
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+                stream: ProfileModel.getActiveUsers()),
           ),
-        )
+        ),
     );
   }
 
@@ -258,6 +402,7 @@ class _TeamScreenState extends State<TeamScreen> {
           return StatefulBuilder(
               builder: (context, setState) {
                 return AlertDialog(
+                  backgroundColor: Colors.white,
                   title: Text("Sign Out"),
                   content: Text("Are you sure you want to sign out?"),
                   actions: [
@@ -274,7 +419,7 @@ class _TeamScreenState extends State<TeamScreen> {
                         });
                         await FirebaseMessaging.instance.unsubscribeFromTopic("all");
                         await FirebaseMessaging.instance.unsubscribeFromTopic(ProfileController.to.profile.value!.id.toString());
-                        await FirebaseMessaging.instance.unsubscribeFromTopic(ProfileController.to.profile.value!.bloodGroup.toString());
+                        // await FirebaseMessaging.instance.unsubscribeFromTopic(ProfileController.to.profile.value!.bloodGroup.toString());
                         await FirebaseAuth.instance.signOut();
                         Get.offAllNamed(AppRoutes.LOGINSCREEN);
                         setState(() {

@@ -229,7 +229,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ],
                       ),
                     ),
-                  ) : ListView.builder(
+                  ) :
+                  ListView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                     primary: false,
                     shrinkWrap: true,

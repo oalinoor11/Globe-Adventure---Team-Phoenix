@@ -299,6 +299,20 @@ class ProfileModel {
       rethrow;
     }
   }
+  static Stream<List<ProfileModel>> getActiveUsers() {
+    try {
+      return FirebaseCollections.PROFILECOLLECTION
+          .where("status", isEqualTo: "Active")
+          .snapshots().map((snapshot) {
+        return snapshot.docs.map((doc) {
+          return ProfileModel.fromJson(doc.data() as Map<String, dynamic>)
+            ..id = doc.id;
+        }).toList();
+      });
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
   static Stream<List<ProfileModel>> getUserById(String userID) {
     try {
       return FirebaseCollections.PROFILECOLLECTION

@@ -772,7 +772,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             Expanded(
                               child: TextField(
                                 controller: emergencyContactPhone,
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   labelText: "Emergency Contact Phone",
@@ -955,7 +955,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           "Enter Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
                       ),
                     );
-                  } else if (phoneTextEditingController.text.isEmpty) {
+                  } else if (phoneTextEditingController.text.length < 10) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.red,
@@ -1139,7 +1139,7 @@ class _SignupScreenState extends State<SignupScreen> {
   fcmSubscribe(String userUID, String bloodGroup) async {
     FirebaseMessaging.instance.subscribeToTopic("all");
     FirebaseMessaging.instance.subscribeToTopic(userUID);
-    FirebaseMessaging.instance.subscribeToTopic(bloodGroup);
+    // FirebaseMessaging.instance.subscribeToTopic(bloodGroup);
   }
 
 

@@ -438,6 +438,7 @@ class _CardScreenState extends State<CardScreen> {
           return StatefulBuilder(
               builder: (context, setState) {
                 return AlertDialog(
+                  backgroundColor: Colors.white,
                   title: Text("Sign Out"),
                   content: Text("Are you sure you want to sign out?"),
                   actions: [
@@ -454,7 +455,7 @@ class _CardScreenState extends State<CardScreen> {
                         });
                         await FirebaseMessaging.instance.unsubscribeFromTopic("all");
                         await FirebaseMessaging.instance.unsubscribeFromTopic(ProfileController.to.profile.value!.id.toString());
-                        await FirebaseMessaging.instance.unsubscribeFromTopic(ProfileController.to.profile.value!.bloodGroup.toString());
+                        // await FirebaseMessaging.instance.unsubscribeFromTopic(ProfileController.to.profile.value!.bloodGroup.toString());
                         await FirebaseAuth.instance.signOut();
                         Get.offAllNamed(AppRoutes.LOGINSCREEN);
                         setState(() {

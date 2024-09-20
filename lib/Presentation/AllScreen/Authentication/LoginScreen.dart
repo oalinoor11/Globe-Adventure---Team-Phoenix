@@ -281,6 +281,6 @@ class _LoginScreenState extends State<LoginScreen> {
   fcmSubscribe(String userUID, String bloodGroup) async {
     FirebaseMessaging.instance.subscribeToTopic("all");
     FirebaseMessaging.instance.subscribeToTopic(userUID);
-    FirebaseMessaging.instance.subscribeToTopic(bloodGroup);
+    // FirebaseMessaging.instance.subscribeToTopic(bloodGroup);
   }
 }

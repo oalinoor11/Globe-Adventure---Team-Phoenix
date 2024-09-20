@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import '../Presentation/AllScreen/Authentication/ForgetScreen.dart';
 import '../Presentation/AllScreen/Authentication/LoginScreen.dart';
 import '../Presentation/AllScreen/Authentication/SignupScreen.dart';
+import '../Presentation/AllScreen/Blood/RequestBlood.dart';
 import '../Presentation/AllScreen/MainScreen.dart';
 import '../Presentation/AllScreen/Notification/NotificationScreen.dart';
 import '../Presentation/AllScreen/Notification/SendNotification.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String NOTIFICATIONSCREEN = "/notificationscreen";
   static const String CARDSCAN = "/cardscan";
   static const String CARDSCANRESULT = "/cardscanresult";
+  static const String REQUESTBLOOD = "/requestblood";
 
   static List<GetPage> routes = [
     GetPage(
@@ -68,6 +70,10 @@ class AppRoutes {
         page: () => CardscanResult(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
-
+    GetPage(
+        name: REQUESTBLOOD,
+        page: () => RequestBlood(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
   ];
 }
