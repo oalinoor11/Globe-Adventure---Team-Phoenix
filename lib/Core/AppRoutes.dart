@@ -9,6 +9,9 @@ import '../Presentation/AllScreen/Blood/RequestBlood.dart';
 import '../Presentation/AllScreen/MainScreen.dart';
 import '../Presentation/AllScreen/Notification/NotificationScreen.dart';
 import '../Presentation/AllScreen/Notification/SendNotification.dart';
+import '../Presentation/AllScreen/Posts/CommentPage.dart';
+import '../Presentation/AllScreen/Posts/CreatePost.dart';
+import '../Presentation/AllScreen/Posts/EditPost.dart';
 import '../Presentation/AllScreen/Profile/CardScan.dart';
 import '../Presentation/AllScreen/Profile/CardscanResult.dart';
 class AppRoutes {
@@ -23,6 +26,9 @@ class AppRoutes {
   static const String CARDSCAN = "/cardscan";
   static const String CARDSCANRESULT = "/cardscanresult";
   static const String REQUESTBLOOD = "/requestblood";
+  static const String CREATEPOST = "/createpost";
+  static const String EDITEPOST = "/edittepost";
+  static const String COMMENTPAGE = "/commentpage";
 
   static List<GetPage> routes = [
     GetPage(
@@ -73,6 +79,21 @@ class AppRoutes {
     GetPage(
         name: REQUESTBLOOD,
         page: () => RequestBlood(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: CREATEPOST,
+        page: () => CreatePost(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: EDITEPOST,
+        page: () => EditPost(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: COMMENTPAGE,
+        page: () => CommentPage(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
   ];
