@@ -3,6 +3,8 @@ import 'package:durbarclub/Presentation/AllScreen/Blood/BloodScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import '../../Controllers/profile_controller.dart';
+import '../../Core/AppRoutes.dart';
 import 'Home/HomeScreen.dart';
 import 'Profile/CardScreen.dart';
 import 'Team/TeamScreen.dart';
@@ -18,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    checkPayment();
     super.initState();
   }
 
@@ -70,5 +73,11 @@ class _MainScreenState extends State<MainScreen> {
         physics: NeverScrollableScrollPhysics(),
       ),
     );
+  }
+  checkPayment() async {
+    await Future.delayed(Duration(seconds: 1));
+    if(ProfileController.to.profile.value!.statusDetails.toString() == "Membership fee not paid yet."){
+      Get.offAllNamed(AppRoutes.CHECKOUT);
+    }
   }
 }

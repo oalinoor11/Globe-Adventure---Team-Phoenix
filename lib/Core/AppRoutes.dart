@@ -6,9 +6,11 @@ import '../Presentation/AllScreen/Authentication/ForgetScreen.dart';
 import '../Presentation/AllScreen/Authentication/LoginScreen.dart';
 import '../Presentation/AllScreen/Authentication/SignupScreen.dart';
 import '../Presentation/AllScreen/Blood/RequestBlood.dart';
+import '../Presentation/AllScreen/Payment/CheckOut.dart';
 import '../Presentation/AllScreen/MainScreen.dart';
 import '../Presentation/AllScreen/Notification/NotificationScreen.dart';
 import '../Presentation/AllScreen/Notification/SendNotification.dart';
+import '../Presentation/AllScreen/Payment/SSLPaymentScreen.dart';
 import '../Presentation/AllScreen/Posts/CommentPage.dart';
 import '../Presentation/AllScreen/Posts/CreatePost.dart';
 import '../Presentation/AllScreen/Posts/EditPost.dart';
@@ -29,6 +31,8 @@ class AppRoutes {
   static const String CREATEPOST = "/createpost";
   static const String EDITEPOST = "/edittepost";
   static const String COMMENTPAGE = "/commentpage";
+  static const String CHECKOUT = "/checkout";
+  static const String SSLPAYMENTSCREEN = "/sslpaymentscreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -94,6 +98,16 @@ class AppRoutes {
     GetPage(
         name: COMMENTPAGE,
         page: () => CommentPage(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: CHECKOUT,
+        page: () => CheckOut(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: SSLPAYMENTSCREEN,
+        page: () => SSLPaymentScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
   ];
