@@ -26,10 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool logoutLoader = false;
 
+  String checkProfileData = "null";
+
 
   @override
   void initState() {
     // FirebaseMessaging.instance.subscribeToTopic("dev");
+    checkProfile();
     super.initState();
   }
 
@@ -244,7 +247,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
+        body: checkProfileData == "null" ? Center(child: CircularProgressIndicator(color: primaryColor,)) :
+        SingleChildScrollView(
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [Container(),
               InkWell(
@@ -280,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Row(
                           children: [
-                            ProfileController.to.profile.value == null ? SizedBox() : Container(
+                            Container(
                               height: 40, width: 40,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey.withOpacity(0.5), width: 0.5),
@@ -854,5 +858,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 );});
         });
+  }
+
+  checkProfile() async {
+    await ProfileController.to.profile();
+    if(ProfileController.to.profile.value == null){
+      await Future.delayed(Duration(seconds: 1));
+      checkProfile();
+    }else{
+      setState(() {
+        checkProfileData = "done";
+      });
+    }
   }
 }
