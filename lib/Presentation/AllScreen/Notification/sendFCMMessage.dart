@@ -58,12 +58,14 @@ Future<void> sendFCMMessage(String title, String body, String channel) async {
       ),
     );
     Get.back();
-    await NotificationModel(
-      timeStamps: DateTime.now().millisecondsSinceEpoch.toString(),
-      title: title,
-      description: body,
-      image: "",
-    )..save();
+    if(channel == 'all'){
+      await NotificationModel(
+        timeStamps: DateTime.now().millisecondsSinceEpoch.toString(),
+        title: title,
+        description: body,
+        image: "",
+      )..save();
+    }
   } else {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
