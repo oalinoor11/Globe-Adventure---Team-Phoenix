@@ -51,12 +51,14 @@ Future<void> sendFCMMessage(String title, String body, String channel) async {
   );
 
   if (response.statusCode == 200) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green,
-        content: Text('Notification sent successfully', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-      ),
-    );
+    if(channel == 'all'){
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('Notification sent successfully', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+        ),
+      );
+    }
     Get.back();
     if(channel == 'all'){
       await NotificationModel(
