@@ -261,6 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }))
         .user;
 
+
     if (firebaseuser != null) {
       TextInput.finishAutofillContext();
 

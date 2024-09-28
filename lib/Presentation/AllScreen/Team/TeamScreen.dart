@@ -206,9 +206,24 @@ class _TeamScreenState extends State<TeamScreen> {
           backgroundColor: primaryColor,
           centerTitle: true,
           title:
-          Text(
-            "দুর্বার সংঘ",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+          InkWell(
+            onLongPress: (){
+              FirebaseFirestore.instance.collection("RULES").doc("a583h4WjRBP7z0j57BVq").get().then((value) {
+                if(value.exists){
+                  if(value.data()!["useronboardingPermission"].toString().contains(ProfileController.to.profile.value!.designation.toString())){
+                    // Get.toNamed(AppRoutes.SENDNOTIFICATION);
+                  }else{
+                    // Get.snackbar("Permission Denied", "You are not an admin");
+                  }
+                }else{
+                  // Get.snackbar("Permission Denied", "You are not an admin");
+                }
+              });
+            },
+            child: Text(
+              "দুর্বার সংঘ",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+            ),
           ),
           automaticallyImplyLeading: false,
           leading: IconButton(
