@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:durbarclub/Core/appData.dart';
+import 'package:durbarclub/Presentation/AllScreen/Notification/sendFCMMessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,7 @@ class _CheckOutState extends State<CheckOut> {
                   await profile.save();
                   ProfileController.to.profile(profile);
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.green, content: Text("Balance added successfully")));
+                  await sendFCMMessage("New user request", "${ProfileController.to.profile.value!.name} paid membership fees & waiting for approval.", "oQIyjIwfH8QOyD1yVzNN4TuKLOE3");
                   Get.offAllNamed(AppRoutes.MAINSCREEN);
 
                   setState(() {

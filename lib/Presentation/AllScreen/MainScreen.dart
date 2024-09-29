@@ -77,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
   checkPayment() async {
     await Future.delayed(Duration(seconds: 1));
     if(ProfileController.to.profile.value!.statusDetails.toString() == "Membership fee not paid yet."){
-      // Get.offAllNamed(AppRoutes.CHECKOUT);
+      Get.offAllNamed(AppRoutes.CHECKOUT);
     }
   }
 }
