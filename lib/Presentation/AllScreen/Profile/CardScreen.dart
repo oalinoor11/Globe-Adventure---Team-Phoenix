@@ -208,7 +208,7 @@ class _CardScreenState extends State<CardScreen> {
           title:
           InkWell(
             onTap: (){
-              print("${DateTime.now().millisecondsSinceEpoch}");
+              // print("${DateTime.now().millisecondsSinceEpoch}");
             },
             child: Text(
               "দুর্বার সংঘ",
