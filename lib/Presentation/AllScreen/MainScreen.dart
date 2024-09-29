@@ -76,8 +76,14 @@ class _MainScreenState extends State<MainScreen> {
   }
   checkPayment() async {
     await Future.delayed(Duration(seconds: 1));
-    if(ProfileController.to.profile.value!.statusDetails.toString() == "Membership fee not paid yet."){
+    if(ProfileController.to.profile.value!.status.toString() == "Suspended" || ProfileController.to.profile.value!.status.toString() == "Inactive" || ProfileController.to.profile.value!.status.toString() == "Pending" || ProfileController.to.profile.value!.status.toString() == "Rejected" || ProfileController.to.profile.value!.status.toString() == "Expired" || ProfileController.to.profile.value!.status.toString() == "Cancelled" || ProfileController.to.profile.value!.status.toString() == "Terminated" || ProfileController.to.profile.value!.status.toString() == "Deleted" || ProfileController.to.profile.value!.status.toString() == "Not Approved"){
+      Get.offAllNamed(AppRoutes.SUSPENDUSER, arguments: ProfileController.to.profile.value!.status.toString());
+    }
+    else if(ProfileController.to.profile.value!.statusDetails.toString() == "Membership fee not paid yet."){
       Get.offAllNamed(AppRoutes.CHECKOUT);
+    }
+    else{
+      // Get.offAllNamed(AppRoutes.SUSPENDUSER, arguments: ProfileController.to.profile.value!.status.toString());
     }
   }
 }

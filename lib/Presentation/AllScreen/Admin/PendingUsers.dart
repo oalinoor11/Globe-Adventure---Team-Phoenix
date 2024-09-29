@@ -206,24 +206,9 @@ class _PendingUsersState extends State<PendingUsers> {
         backgroundColor: primaryColor,
         centerTitle: true,
         title:
-        InkWell(
-          onLongPress: (){
-            FirebaseFirestore.instance.collection("RULES").doc("a583h4WjRBP7z0j57BVq").get().then((value) {
-              if(value.exists){
-                if(value.data()!["useronboardingPermission"].toString().contains(ProfileController.to.profile.value!.designation.toString())){
-                  // Get.toNamed(AppRoutes.SENDNOTIFICATION);
-                }else{
-                  // Get.snackbar("Permission Denied", "You are not an admin");
-                }
-              }else{
-                // Get.snackbar("Permission Denied", "You are not an admin");
-              }
-            });
-          },
-          child: Text(
-            "দুর্বার সংঘ",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
-          ),
+        Text(
+          "দুর্বার সংঘ",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -273,7 +258,7 @@ class _PendingUsersState extends State<PendingUsers> {
                         padding: const EdgeInsets.only(bottom: 20.0),
                         child: InkWell(
                           onTap: () {
-                            launchUrl(Uri.parse("tel:${profileModel.phone}"), mode: LaunchMode.externalNonBrowserApplication);
+                            Get.toNamed(AppRoutes.VERIFYUSER, arguments: profileModel.id.toString());
                           },
                           child: Container(
                             width: Get.width - 40,
@@ -404,7 +389,7 @@ class _PendingUsersState extends State<PendingUsers> {
                   return Center(child: CircularProgressIndicator());
                 }
               },
-              stream: ProfileModel.getActiveUsers()),
+              stream: ProfileModel.getiInActivePaidUsers()),
         ),
       ),
     );

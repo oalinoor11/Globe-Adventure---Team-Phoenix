@@ -206,9 +206,14 @@ class _CardScreenState extends State<CardScreen> {
           backgroundColor: primaryColor,
           centerTitle: true,
           title:
-          Text(
-            "দুর্বার সংঘ",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+          InkWell(
+            onTap: (){
+              print("${DateTime.now().millisecondsSinceEpoch}");
+            },
+            child: Text(
+              "দুর্বার সংঘ",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+            ),
           ),
           automaticallyImplyLeading: false,
           leading: IconButton(
@@ -220,24 +225,12 @@ class _CardScreenState extends State<CardScreen> {
           actions: [
             InkWell(
               onTap: (){
-                Get.toNamed(AppRoutes.NOTIFICATIONSCREEN);
-              },
-              onLongPress: (){
-                FirebaseFirestore.instance.collection("RULES").doc("a583h4WjRBP7z0j57BVq").get().then((value) {
-                  if(value.exists){
-                    if(value.data()!["notificationsendPermission"].toString().contains(ProfileController.to.profile.value!.designation.toString())){
-                      Get.toNamed(AppRoutes.SENDNOTIFICATION);
-                    }else{
-                      // Get.snackbar("Permission Denied", "You are not an admin");
-                    }
-                  }else{
-                    // Get.snackbar("Permission Denied", "You are not an admin");
-                  }
-                });
+                Get.toNamed(AppRoutes.CARDSCAN);
+                // Get.toNamed(AppRoutes.CARDSCANRESULT, arguments: "oQIyjIwfH8QOyD1yVzNN4TuKLOE3");
               },
               child: Padding(
                 padding: const EdgeInsets.only(right: 13.0),
-                child: Icon(Icons.notifications, color: Colors.white),
+                child: Icon(Icons.qr_code_scanner, color: Colors.white),
               ),
             ),
           ],
@@ -249,6 +242,7 @@ class _CardScreenState extends State<CardScreen> {
                   padding: const EdgeInsets.all(40.0),
                   child: Column(
                     children: [
+                      SizedBox(height: 20,),
                       Container(
                         width: Get.width - 80,
                         height: 450,
@@ -398,30 +392,30 @@ class _CardScreenState extends State<CardScreen> {
                         ),
                       ),
                       
-                      SizedBox(height: 20,),
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(AppRoutes.CARDSCAN);
-                        },
-                        child: Container(
-                          width: Get.width - 80,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.green,
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Card Verification",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // SizedBox(height: 20,),
+                      // InkWell(
+                      //   onTap: (){
+                      //     Get.toNamed(AppRoutes.CARDSCAN);
+                      //   },
+                      //   child: Container(
+                      //     width: Get.width - 80,
+                      //     height: 60,
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       color: Colors.green,
+                      //     ),
+                      //     child: Center(
+                      //       child: Text(
+                      //         "Card Verification",
+                      //         style: TextStyle(
+                      //           color: Colors.white,
+                      //           fontWeight: FontWeight.bold,
+                      //           fontSize: 20,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 )

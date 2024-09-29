@@ -1,7 +1,11 @@
+import 'package:durbarclub/Presentation/AllScreen/Admin/RejectUser.dart';
 import 'package:durbarclub/Presentation/AllScreen/Home/HomeScreen.dart';
+import 'package:durbarclub/Presentation/AllScreen/Profile/SuspendUser.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../Presentation/AllScreen/Admin/PendingUsers.dart';
+import '../Presentation/AllScreen/Admin/VerifyUser.dart';
 import '../Presentation/AllScreen/Authentication/ForgetScreen.dart';
 import '../Presentation/AllScreen/Authentication/LoginScreen.dart';
 import '../Presentation/AllScreen/Authentication/SignupScreen.dart';
@@ -33,6 +37,10 @@ class AppRoutes {
   static const String COMMENTPAGE = "/commentpage";
   static const String CHECKOUT = "/checkout";
   static const String SSLPAYMENTSCREEN = "/sslpaymentscreen";
+  static const String PENDINGUSERS = "/pendingusers";
+  static const String VERIFYUSER = "/verifyuser";
+  static const String SUSPENDUSER = "/suspenduser";
+  static const String REJECTUSER = "/rejectuser";
 
   static List<GetPage> routes = [
     GetPage(
@@ -108,6 +116,26 @@ class AppRoutes {
     GetPage(
         name: SSLPAYMENTSCREEN,
         page: () => SSLPaymentScreen(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: PENDINGUSERS,
+        page: () => PendingUsers(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: VERIFYUSER,
+        page: () => VerifyUser(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: SUSPENDUSER,
+        page: () => SuspendUser(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: REJECTUSER,
+        page: () => RejectUser(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
   ];

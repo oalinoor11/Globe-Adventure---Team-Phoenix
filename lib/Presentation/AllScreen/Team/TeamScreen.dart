@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,6 +23,8 @@ class _TeamScreenState extends State<TeamScreen> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool logoutLoader = false;
+
+  DateFormat dateFormat = DateFormat("MMMM d, yyyy");
 
 
   @override
@@ -211,7 +214,7 @@ class _TeamScreenState extends State<TeamScreen> {
               FirebaseFirestore.instance.collection("RULES").doc("a583h4WjRBP7z0j57BVq").get().then((value) {
                 if(value.exists){
                   if(value.data()!["useronboardingPermission"].toString().contains(ProfileController.to.profile.value!.designation.toString())){
-                    // Get.toNamed(AppRoutes.SENDNOTIFICATION);
+                    Get.toNamed(AppRoutes.PENDINGUSERS);
                   }else{
                     // Get.snackbar("Permission Denied", "You are not an admin");
                   }
@@ -274,6 +277,19 @@ class _TeamScreenState extends State<TeamScreen> {
                           child: InkWell(
                             onTap: () {
                               launchUrl(Uri.parse("tel:${profileModel.phone}"), mode: LaunchMode.externalNonBrowserApplication);
+                            },
+                            onLongPress: (){
+                              FirebaseFirestore.instance.collection("RULES").doc("a583h4WjRBP7z0j57BVq").get().then((value) {
+                                if(value.exists){
+                                  if(value.data()!["useronboardingPermission"].toString().contains(ProfileController.to.profile.value!.designation.toString())){
+                                    Get.toNamed(AppRoutes.REJECTUSER, arguments: profileModel.id.toString());
+                                  }else{
+                                    // Get.snackbar("Permission Denied", "You are not an admin");
+                                  }
+                                }else{
+                                  // Get.snackbar("Permission Denied", "You are not an admin");
+                                }
+                              });
                             },
                             child: Container(
                               width: Get.width - 40,
@@ -344,6 +360,7 @@ class _TeamScreenState extends State<TeamScreen> {
                                             Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Text(profileModel.name.toString(),
+                                                // Text("${dateFormat.format(DateTime.fromMicrosecondsSinceEpoch((int.parse(profileModel.signedUp.toString()))*1000))}",
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
@@ -352,6 +369,7 @@ class _TeamScreenState extends State<TeamScreen> {
                                                 ),
                                                 SizedBox(height: 0,),
                                                 Text(profileModel.designation.toString(),
+                                                // Text("${dateFormat.format(DateTime.fromMicrosecondsSinceEpoch((int.parse(profileModel.validity.toString()))*1000))}",
                                                   style: TextStyle(
                                                     color: Colors.green,
                                                     fontWeight: FontWeight.bold,

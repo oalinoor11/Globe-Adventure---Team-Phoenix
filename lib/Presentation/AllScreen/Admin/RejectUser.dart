@@ -19,13 +19,13 @@ import '../../../Core/AppRoutes.dart';
 import '../../../Core/appData.dart';
 import '../../../Data/Models/profile_model.dart';
 
-class VerifyUser extends StatefulWidget {
+class RejectUser extends StatefulWidget {
 
   @override
-  State<VerifyUser> createState() => _VerifyUserState();
+  State<RejectUser> createState() => _RejectUserState();
 }
 
-class _VerifyUserState extends State<VerifyUser> {
+class _RejectUserState extends State<RejectUser> {
 
   DateFormat dateFormat = DateFormat("MMMM d, yyyy");
 
@@ -126,10 +126,44 @@ class _VerifyUserState extends State<VerifyUser> {
                       SizedBox(height: 10,),
                       Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          InkWell(
+                          approving ? Center(child: CircularProgressIndicator(color: Colors.red,)) :  InkWell(
                             onTap: () async {
-                              Get.back();
-                            },
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Are you sure?"),
+                                    content: Text("Do you want to reject this user?"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("No"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () async {
+                                        Navigator.pop(context);
+                                        setState(() {
+                                          approving = true;
+                                        });
+                                        await FirebaseFirestore.instance.collection("PROFILELIST").doc(cardData).update({
+                                          "status": "Suspended",
+                                          "statusDetails": "Membership suspended by ${ProfileController.to.profile.value!.designation} ${ProfileController.to.profile.value!.name}",
+                                          "designation" : "Suspended Member",
+                                          "validity" : "invalid"
+                                        });
+                                        await sendFCMMessage("Account suspended", "${firstnameTextEditingController.text} your membership has been suspended.", "$userID");
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Member suspended")));
+                                        setState(() {
+                                          approving = false;
+                                        });
+                                        Get.offAllNamed(AppRoutes.MAINSCREEN);
+                                        },
+                                  child: Text("Yes"))
+                                  ],
+                                  );
+                            });},
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.red,
@@ -139,61 +173,7 @@ class _VerifyUserState extends State<VerifyUser> {
                               child: Center(
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("  Reject  ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
-                                ),
-                              ),
-                            ),
-                          ),
-                          approving ? Center(child: CircularProgressIndicator(color: Colors.green,)) :  InkWell(
-                            onTap: () async {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text("Are you sure?"),
-                                      content: Text("Do you want to reject this user?"),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text("No"),
-                                        ),
-                                        TextButton(
-                                            onPressed: () async {
-                                              Navigator.pop(context);
-                                              setState(() {
-                                                approving = true;
-                                              });
-                                              await FirebaseFirestore.instance.collection("PROFILELIST").doc(cardData).update({
-                                                "status": "Active",
-                                                "statusDetails": "Status active by ${ProfileController.to.profile.value!.designation} ${ProfileController.to.profile.value!.name}",
-                                                "designation" : designationTextEditingController.text,
-                                                "validity" : "${DateTime.now().millisecondsSinceEpoch}"
-
-                                              });
-                                              await sendFCMMessage("Congratulations! Request Approved", "${firstnameTextEditingController.text} Your membership request approved.", "$userID");
-                                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Membership Approved")));
-                                              setState(() {
-                                                approving = false;
-                                              });
-                                              Get.offAllNamed(AppRoutes.MAINSCREEN);
-                                            },
-                                            child: Text("Yes"))
-                                      ],
-                                    );
-                                  });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(14),
-                                border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1),
-                              ),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("  Accept  ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
+                                  child: Text("  Suspend  ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
                                 ),
                               ),
                             ),
@@ -306,6 +286,7 @@ class _VerifyUserState extends State<VerifyUser> {
                             ),
                             Expanded(
                               child: TextField(
+                                readOnly: true,
                                 controller: designationTextEditingController,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
@@ -939,30 +920,30 @@ class _VerifyUserState extends State<VerifyUser> {
       });
     }
     else{
-        setState(() {
-          userID = documents.first.data()["id"];
-          firstnameTextEditingController.text = documents.first.data()["name"];
-          image = documents.first.data()["image"];
-          photoId = documents.first.data()["photoID"];
-          phoneTextEditingController.text = documents.first.data()["phone"].toString();
-          designationTextEditingController.text = documents.first.data()["designation"].toString();
-          emailTextEditingController.text = documents.first.data()["email"];
-          professionTextEditingController.text = documents.first.data()["profession"];
-          workplaceTextEditingController.text = documents.first.data()["workplace"];
-          presentAddressTextEditingController.text = documents.first.data()["presentAddress"];
-          permanentAddressTextEditingController.text = documents.first.data()["permanentAddress"];
-          emergencyContactPerson.text = documents.first.data()["emergencyContactPerson"];
-          emergencyContactRelation.text = documents.first.data()["emergencyContactRelation"];
-          emergencyContactPhone.text = documents.first.data()["emergencyContactPhone"];
-          dobTextEditingController.text = documents.first.data()["dob"];
-          bloodTextEditingController.text = documents.first.data()["bloodGroup"];
-          signedUpTextEditingController.text = dateFormat.format(DateTime.fromMicrosecondsSinceEpoch((int.parse(documents.first.data()["signedUp"].toString()))*1000));
-          validityTextEditingController.text = documents.first.data()["validity"].toString();
-          memberId = documents.first.data()["memberId"];
-          verified = documents.first.data()["verified"];
-          status = documents.first.data()["status"];
-          statusDetails = documents.first.data()["statusDetails"];
-        });
+      setState(() {
+        userID = documents.first.data()["id"];
+        firstnameTextEditingController.text = documents.first.data()["name"];
+        image = documents.first.data()["image"];
+        photoId = documents.first.data()["photoID"];
+        phoneTextEditingController.text = documents.first.data()["phone"].toString();
+        designationTextEditingController.text = documents.first.data()["designation"].toString();
+        emailTextEditingController.text = documents.first.data()["email"];
+        professionTextEditingController.text = documents.first.data()["profession"];
+        workplaceTextEditingController.text = documents.first.data()["workplace"];
+        presentAddressTextEditingController.text = documents.first.data()["presentAddress"];
+        permanentAddressTextEditingController.text = documents.first.data()["permanentAddress"];
+        emergencyContactPerson.text = documents.first.data()["emergencyContactPerson"];
+        emergencyContactRelation.text = documents.first.data()["emergencyContactRelation"];
+        emergencyContactPhone.text = documents.first.data()["emergencyContactPhone"];
+        dobTextEditingController.text = documents.first.data()["dob"];
+        bloodTextEditingController.text = documents.first.data()["bloodGroup"];
+        signedUpTextEditingController.text = dateFormat.format(DateTime.fromMicrosecondsSinceEpoch((int.parse(documents.first.data()["signedUp"].toString()))*1000));
+        validityTextEditingController.text = documents.first.data()["validity"].toString();
+        memberId = documents.first.data()["memberId"];
+        verified = documents.first.data()["verified"];
+        status = documents.first.data()["status"];
+        statusDetails = documents.first.data()["statusDetails"];
+      });
 
       print(documents.first.data()["name"]);
     }

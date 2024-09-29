@@ -303,6 +303,7 @@ class ProfileModel {
     try {
       return FirebaseCollections.PROFILECOLLECTION
           .where("status", isEqualTo: "Active")
+          .orderBy("signedUp", descending: false)
           .snapshots().map((snapshot) {
         return snapshot.docs.map((doc) {
           return ProfileModel.fromJson(doc.data() as Map<String, dynamic>)
@@ -317,6 +318,20 @@ class ProfileModel {
     try {
       return FirebaseCollections.PROFILECOLLECTION
           .where("status", isNotEqualTo: "Active")
+          .snapshots().map((snapshot) {
+        return snapshot.docs.map((doc) {
+          return ProfileModel.fromJson(doc.data() as Map<String, dynamic>)
+            ..id = doc.id;
+        }).toList();
+      });
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
+  static Stream<List<ProfileModel>> getiInActivePaidUsers() {
+    try {
+      return FirebaseCollections.PROFILECOLLECTION
+          .where("statusDetails", isEqualTo: "Membership fee paid.")
           .snapshots().map((snapshot) {
         return snapshot.docs.map((doc) {
           return ProfileModel.fromJson(doc.data() as Map<String, dynamic>)

@@ -44,7 +44,9 @@ class _CardScanState extends State<CardScan> {
       backgroundColor: primaryColor,
         body: Column( mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
+            Text("Scan Durbar ID", style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),),
+            SizedBox(height: 20,),
             Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
