@@ -45,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       statusBarIconBrightness: Brightness.dark,
     ));
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -244,12 +245,27 @@ class _LoginScreenState extends State<LoginScreen> {
           return ProgressDialog(message: "Authenticating, Please wait...");
         });
 
-    final User? firebaseuser = (await _firebaseAuth
+    final firebaseuser = await _firebaseAuth
         .signInWithEmailAndPassword(
         email: emailTextEditingController.text,
-        password: passwordTextEditingController.text)
-        .catchError((errMsg) {
-      print(errMsg.toString());
+        password: passwordTextEditingController.text);
+
+
+
+    if (firebaseuser.user != null) {
+      TextInput.finishAutofillContext();
+
+      print("User is not null");
+      try {
+        ProfileModel profileModel =
+        await ProfileModel.getProfileByUserId(uId: firebaseuser.user!.uid);
+        ProfileController.to.profile(profileModel);
+      } on Exception catch (e) {
+        print(e.toString());
+      }
+      fcmSubscribe(firebaseuser.user!.uid.toString(), ProfileController.to.profile.value!.bloodGroup.toString());
+      Get.offAllNamed(AppRoutes.MAINSCREEN);
+    } else {
       Get.back();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -258,25 +274,6 @@ class _LoginScreenState extends State<LoginScreen> {
             "Login Failed", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
         ),
       );
-    }))
-        .user;
-
-
-    if (firebaseuser != null) {
-      TextInput.finishAutofillContext();
-
-      print("User is not null");
-      try {
-        ProfileModel profileModel =
-        await ProfileModel.getProfileByUserId(uId: firebaseuser.uid);
-        ProfileController.to.profile(profileModel);
-      } on Exception catch (e) {
-        print(e.toString());
-      }
-      fcmSubscribe(firebaseuser.uid.toString(), ProfileController.to.profile.value!.bloodGroup.toString());
-      Get.offAllNamed(AppRoutes.MAINSCREEN);
-    } else {
-      print("User is null");
     }
   }
   fcmSubscribe(String userUID, String bloodGroup) async {

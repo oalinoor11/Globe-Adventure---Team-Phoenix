@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -1060,42 +1058,31 @@ class _SignupScreenState extends State<SignupScreen> {
           return ProgressDialog(message: "Creating Durbar ID, Please wait...",);
         });
 
-    final User? firebaseuser = (await _firebaseAuth
+    final firebaseuser = await _firebaseAuth
         .createUserWithEmailAndPassword(
         email: emailTextEditingController.text,
-        password: passwordTextEditingController.text)
-        .catchError((errMsg) {
-      Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(
-            "Request Failed", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
-        ),
-      );
-    }))
-        .user;
+        password: passwordTextEditingController.text);
 
-    if (firebaseuser != null) //user created
+    if (firebaseuser.user != null) //user created
         {
       TextInput.finishAutofillContext();
 
       var upload = await FirebaseStorage.instance
           .ref()
           .child("ProfilePictures")
-          .child(firebaseuser.uid)
+          .child(firebaseuser.user!.uid)
           .putFile(image!);
       var downloadUrl = await upload.ref.getDownloadURL();
 
       var uploadPhotoId = await FirebaseStorage.instance
           .ref()
           .child("PhotoId")
-          .child(firebaseuser.uid)
+          .child(firebaseuser.user!.uid)
           .putFile(photoId!);
       var photoIdUrl = await uploadPhotoId.ref.getDownloadURL();
 
             var profile = ProfileModel(
-              id: firebaseuser.uid,
+              id: firebaseuser.user!.uid,
               email: emailTextEditingController.text,
               name: firstnameTextEditingController.text,
               photoID: photoIdUrl,
@@ -1120,7 +1107,7 @@ class _SignupScreenState extends State<SignupScreen> {
               signedUp: "${DateTime.now().millisecondsSinceEpoch}",
             )..save();
             ProfileController.to.profile(profile);
-            fcmSubscribe(firebaseuser.uid.toString(), "${bloodGroup+bloodGroupFactor}");
+            fcmSubscribe(firebaseuser.user!.uid.toString(), "${bloodGroup+bloodGroupFactor}");
 
             Get.offAllNamed(AppRoutes.MAINSCREEN);
 
