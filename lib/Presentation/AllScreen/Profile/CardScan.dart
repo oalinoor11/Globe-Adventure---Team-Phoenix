@@ -9,9 +9,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+// import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../../Core/appData.dart';
 
@@ -22,7 +21,7 @@ class CardScan extends StatefulWidget {
 
 class _CardScanState extends State<CardScan> {
 
-  MobileScannerController scannerController = MobileScannerController();
+  // MobileScannerController scannerController = MobileScannerController();
 
   bool logoutLoader = false;
 
@@ -30,7 +29,7 @@ class _CardScanState extends State<CardScan> {
   void initState() {
     setState(() {
       Timer(Duration(milliseconds: 150), () {
-        scannerController.start();
+        // scannerController.start();
       });
     });
     super.initState();
@@ -72,15 +71,15 @@ class _CardScanState extends State<CardScan> {
                       ),
                     ],
                   ),
-                  child: MobileScanner(
-                    fit: BoxFit.cover,
-                    onDetect: (barcode, args) {
-                      log("barcode: ${barcode.rawValue}");
-                      // scannerController.stop();
-                      Get.toNamed(AppRoutes.CARDSCANRESULT, arguments: barcode.rawValue.toString().split("/").last);
-                    },
-                    controller: scannerController,
-                  ),
+                  // child: MobileScanner(
+                  //   fit: BoxFit.cover,
+                  //   onDetect: (barcode, args) {
+                  //     log("barcode: ${barcode.rawValue}");
+                  //     // scannerController.stop();
+                  //     Get.toNamed(AppRoutes.CARDSCANRESULT, arguments: barcode.rawValue.toString().split("/").last);
+                  //   },
+                  //   controller: scannerController,
+                  // ),
                 ),
               ],
             ),
