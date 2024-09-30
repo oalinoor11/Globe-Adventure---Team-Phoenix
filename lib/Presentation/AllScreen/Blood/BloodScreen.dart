@@ -397,7 +397,8 @@ class _BloodScreenState extends State<BloodScreen> {
                                                                 Get.back();
                                                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.green, content: Text("Thank you for your support.", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)));
                                                                 bloodRequest.status = "Processing";
-                                                                bloodRequest.statusDetails = ProfileController.to.profile.value!.image.toString();
+                                                                bloodRequest.donnerImage = ProfileController.to.profile.value!.image.toString();
+                                                                bloodRequest.donnerPhone = ProfileController.to.profile.value!.phone.toString();
                                                                 bloodRequest.donnerId = ProfileController.to.profile.value!.id.toString();
                                                                 bloodRequest.donnerName = ProfileController.to.profile.value!.name.toString();
                                                                 await bloodRequest.update();
