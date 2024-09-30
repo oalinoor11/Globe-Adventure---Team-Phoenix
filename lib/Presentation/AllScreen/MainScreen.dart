@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:durbarclub/Core/appData.dart';
 import 'package:durbarclub/Presentation/AllScreen/Blood/BloodScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '../../Controllers/profile_controller.dart';
 import '../../Core/AppRoutes.dart';
 import 'Home/HomeScreen.dart';
@@ -20,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    checkPayment();
+    checkUpdate();
     super.initState();
   }
 
@@ -73,6 +77,32 @@ class _MainScreenState extends State<MainScreen> {
         physics: NeverScrollableScrollPhysics(),
       ),
     );
+  }
+
+  checkUpdate() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    FirebaseFirestore.instance.collection("RULES").doc("a583h4WjRBP7z0j57BVq").get().then((value) {
+      if(value.exists){
+          if (Platform.isAndroid) {
+            if(value.data()!["androidVersion"].toString() != packageInfo.version.toString()){
+              Get.offAllNamed(AppRoutes.APPUPDATESCREEN);
+            }
+            else{
+              checkPayment();
+            }
+          } else if (Platform.isIOS) {
+            if(value.data()!["iOSVersion"].toString() != packageInfo.version.toString()){
+              // Get.offAllNamed(AppRoutes.APPUPDATESCREEN);
+              checkPayment();
+            }
+            else{
+              checkPayment();
+            }
+          }
+      }else{
+        // Get.snackbar("Permission Denied", "You are not an admin");
+      }
+    });
   }
   checkPayment() async {
     await Future.delayed(Duration(seconds: 1));

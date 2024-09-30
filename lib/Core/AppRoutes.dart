@@ -4,6 +4,7 @@ import 'package:durbarclub/Presentation/AllScreen/Profile/SuspendUser.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../Presentation/AllScreen/Admin/AppUpdateScreen.dart';
 import '../Presentation/AllScreen/Admin/PendingUsers.dart';
 import '../Presentation/AllScreen/Admin/VerifyUser.dart';
 import '../Presentation/AllScreen/Authentication/ForgetScreen.dart';
@@ -41,6 +42,7 @@ class AppRoutes {
   static const String VERIFYUSER = "/verifyuser";
   static const String SUSPENDUSER = "/suspenduser";
   static const String REJECTUSER = "/rejectuser";
+  static const String APPUPDATESCREEN = "/appupdatescreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -136,6 +138,11 @@ class AppRoutes {
     GetPage(
         name: REJECTUSER,
         page: () => RejectUser(),
+        transitionDuration: Duration(milliseconds: 100),
+        transition: Transition.cupertino),
+    GetPage(
+        name: APPUPDATESCREEN,
+        page: () => AppUpdateScreen(),
         transitionDuration: Duration(milliseconds: 100),
         transition: Transition.cupertino),
   ];
