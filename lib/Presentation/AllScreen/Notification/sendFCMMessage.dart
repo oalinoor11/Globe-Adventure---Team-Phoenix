@@ -59,7 +59,6 @@ Future<void> sendFCMMessage(String title, String body, String channel) async {
         ),
       );
     }
-    Get.back();
     if(channel == 'all' && title != "জরুরি রক্ত প্রয়োজন"){
       await NotificationModel(
         timeStamps: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -68,6 +67,7 @@ Future<void> sendFCMMessage(String title, String body, String channel) async {
         image: "",
       )..save();
     }
+    Get.back();
   } else {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(

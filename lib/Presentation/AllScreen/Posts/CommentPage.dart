@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:durbarclub/Presentation/AllScreen/Notification/sendFCMMessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -275,7 +276,7 @@ class _CommentPageState extends State<CommentPage> {
                                 ...post.comments
                               ];
                               await post.update();
-                              sendReactPush(post.posterID, "New Comment", "${ProfileController.to.profile.value!.name} commented on your ${post.image == "" ? "post" : "photo"}");
+                              await sendFCMMessage("New Comment", "${ProfileController.to.profile.value!.name} commented on your ${post.image == "" ? "post" : "photo"}", post.posterID);
                               commentController.clear();
                               Get.back();
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -369,29 +370,5 @@ class _CommentPageState extends State<CommentPage> {
             ),
           );
         });
-  }
-  sendReactPush(String channel, String title, String body) async {
-    if(channel != ProfileController.to.profile.value!.id){
-      var response = await http.post(
-          Uri.parse('https://fcm.googleapis.com/fcm/send'),
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "key=AAAAB0THxvk:APA91bGuEA14fgLQorOjtIIPMkwIjaYYBEF1E0HgMkhmgUNqfydjYeuxX1EpPi6sphube1JRetbaW-jlWTnVgW7J6N4C8Ez4CrG421A8cg85QVPl4xuIPnHMJF38T8_0boZV0DSUorF_"
-          },
-          body: jsonEncode({
-            "to": "/topics/$channel",
-            "notification": {
-              "title": title,
-              "body": body,
-              "mutable_content": true,
-            },
-            "data": {
-              // "url": "<url of media image>",
-              // "dl": "<deeplink action on tap of notification>"
-            }
-          })
-      );
-      print(response.body);
-    }
   }
 }
