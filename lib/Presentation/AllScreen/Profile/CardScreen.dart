@@ -384,7 +384,7 @@ class _CardScreenState extends State<CardScreen> {
                                 Container(
                                     width: (Get.width - 80)/3,
                                     height: (Get.width - 80)/3,
-                                    child: QrImageView(data: ProfileController.to.profile.value!.id.toString())),
+                                    child: QrImageView(data: "$domain/member-verification/${ProfileController.to.profile.value!.memberId.toString()}")),
                               ],
                             ),
                             SizedBox(height: 10,),

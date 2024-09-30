@@ -45,7 +45,11 @@ class _CardScanState extends State<CardScan> {
         body: Column( mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 30,),
-            Text("Scan Durbar ID", style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),),
+            InkWell(
+                onTap: () {
+                  // Get.toNamed(AppRoutes.CARDSCANRESULT, arguments: "$domain/member-verification/727640050".split("/").last);
+                },
+                child: Text("Scan Durbar ID", style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),)),
             SizedBox(height: 20,),
             Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -73,7 +77,7 @@ class _CardScanState extends State<CardScan> {
                     onDetect: (barcode, args) {
                       log("barcode: ${barcode.rawValue}");
                       // scannerController.stop();
-                      Get.toNamed(AppRoutes.CARDSCANRESULT, arguments: barcode.rawValue);
+                      Get.toNamed(AppRoutes.CARDSCANRESULT, arguments: barcode.rawValue.toString().split("/").last);
                     },
                     controller: scannerController,
                   ),

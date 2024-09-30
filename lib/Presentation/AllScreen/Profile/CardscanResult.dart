@@ -839,7 +839,7 @@ class _CardscanResultState extends State<CardscanResult> {
     final querySnapshot = await FirebaseFirestore.instance
         .collection('PROFILELIST')
         .get();
-    final documents = querySnapshot.docs.where((doc) => doc['id'] == cardData).toList();
+    final documents = querySnapshot.docs.where((doc) => doc['memberId'] == cardData).toList();
     if(documents.length < 1){
       setState(() {
         firstnameTextEditingController.text = "invalid";
