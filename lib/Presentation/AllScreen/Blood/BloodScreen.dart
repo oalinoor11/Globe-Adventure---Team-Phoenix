@@ -8,8 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:share_plus/share_plus.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../Core/appData.dart';
 
@@ -53,7 +53,7 @@ class _BloodScreenState extends State<BloodScreen> {
               SizedBox(height: 20,),
               InkWell(
                 onTap: () {
-                  launchUrl(Uri.parse("https://play.google.com/store/apps/details?id=app.pronfc.android"), mode: LaunchMode.externalApplication);
+                  // launchUrl(Uri.parse("https://play.google.com/store/apps/details?id=app.pronfc.android"), mode: LaunchMode.externalApplication);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -101,7 +101,7 @@ class _BloodScreenState extends State<BloodScreen> {
               SizedBox(height: 20,),
               InkWell(
                 onTap: () {
-                  Share.share("https://play.google.com/store/apps/details?id=app.pronfc.android");
+                  // Share.share("https://play.google.com/store/apps/details?id=app.pronfc.android");
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -366,7 +366,7 @@ class _BloodScreenState extends State<BloodScreen> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          launch("tel:"+bloodRequest.phone.toString());
+                                          // launch("tel:"+bloodRequest.phone.toString());
                                         },
                                         child: Container(height: 50, width: (Get.width -110)/2, decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10),
@@ -565,7 +565,7 @@ class _BloodScreenState extends State<BloodScreen> {
                                                 SizedBox(width: 10,),
                                                 InkWell(
                                                   onTap: (){
-                                                    launch("tel:"+bloodRequest.donnerPhone.toString());
+                                                    // launch("tel:"+bloodRequest.donnerPhone.toString());
                                                   },
                                                     child: Icon(Icons.call, color: Colors.blue, size: 30,)),
                                               ],

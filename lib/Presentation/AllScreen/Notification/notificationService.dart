@@ -4,7 +4,7 @@ import 'package:durbarclub/Core/appData.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
 
 import '../../../Core/AppRoutes.dart';
@@ -12,7 +12,7 @@ import '../../../Core/AppRoutes.dart';
 class NotificationService {
   static final FirebaseMessaging _messaging = FirebaseMessaging.instance;
   static init() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var settings = await _messaging.requestPermission(
       alert: true,
@@ -24,14 +24,14 @@ class NotificationService {
       sound: true,
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      prefs.setBool('notification', true);
+      // prefs.setBool('notification', true);
     } else if (settings.authorizationStatus ==
         AuthorizationStatus.provisional) {
       log('User granted provisional permission');
-      prefs.setBool('notification', true);
+      // prefs.setBool('notification', true);
     } else {
       log('User declined or has not accepted permission');
-      prefs.setBool('notification', false);
+      // prefs.setBool('notification', false);
     }
     _messaging.setForegroundNotificationPresentationOptions(
       alert: true,
