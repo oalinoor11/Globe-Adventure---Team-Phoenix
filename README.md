@@ -19,7 +19,8 @@ Participants engage in a learning journey that unfolds through multiple stages, 
 
 1. **Profile Creation**
    Players start by creating their profiles to continue with the game.
-   ![Profile Creation](https://drive.google.com/file/d/1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh/view)
+   
+   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
 
 3. **Main Components**
