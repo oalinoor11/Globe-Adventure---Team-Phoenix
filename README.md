@@ -56,7 +56,8 @@ Participants engage in a learning journey that unfolds through multiple stages, 
    ![](https://drive.google.com/uc?export=view&id=1gJnDk05y6jfCkmAJm5VjXUOjQhskRyzV)
 
 8. **NASA Data Exploration**
-   ![]()
+   For exploring more information and training about the game of exploring your local area click on NASA data explore where you can explore more data through different tools of NASA and globe protocol.
+   ![](https://drive.google.com/uc?export=view&id=1BUy-Hkcxd8RN6ZQuLhCx1V25PYJsHZD_)
 
 ### Development Process
 We followed an agile development model, using **Material Design** principles and a monolithic architecture. The application was developed using **Dart** and **Flutter**, making it accessible across multiple platforms.
