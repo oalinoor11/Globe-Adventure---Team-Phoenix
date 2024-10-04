@@ -36,7 +36,7 @@ Participants engage in a learning journey that unfolds through multiple stages, 
 3. **Learning and Exploration**
    - The journey begins with a visual representation of the Earth system called **About Globe**, where players learn through videos and information.
    - After completing the learning phase, players engage in puzzle games, which, upon completion, unlock the **Explore** section.
-     ![](https://drive.google.com/drive/folders/1f-IpdGwMWDmb5QmZJXE0I76jnYah6bLb?usp=sharing)
+     ![](https://drive.google.com/uc?export=view&id=1jIO-Zd-UsmJMiVQn5ohp-FMn4UB70EZU)
    
 4. **Training Lab**
    After the learning part, players must complete the **Training Lab** section, where they test their knowledge through various tasks.
