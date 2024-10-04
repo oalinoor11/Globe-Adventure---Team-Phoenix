@@ -4,7 +4,7 @@
 The **Globe Adventure** project, developed by **Team Phoenix**, is an interactive, app-based educational game designed for primary to high school students. This immersive game transforms learning about science and the environment into an epic journey. The project educates students about the **Global Learning and Observations to Benefit the Environment (GLOBE) Program** protocols. It helps students understand the world around them, develop awareness of local and global environmental issues, investigate their local communities, and learn scientific principles.
 
 ## Project Demo
-- [30-second video](https://www.figma.com/proto/6ZvOhlnZA3YxsIcCJS3HYE/GLOBE-ADVENTURE)
+- [Figma file](https://www.figma.com/proto/6ZvOhlnZA3YxsIcCJS3HYE/GLOBE-ADVENTURE)
 
 ## Project Details
 
