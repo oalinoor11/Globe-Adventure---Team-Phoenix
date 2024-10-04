@@ -55,7 +55,7 @@ Participants engage in a learning journey that unfolds through multiple stages, 
    ![](https://drive.google.com/uc?export=view&id=1SDKMTcTqHTRtk4dnIkzxyTgBGpuzVBN6)
 
 8. **NASA Data Exploration**
-   Pla![](https://drive.google.com/uc?export=view&id=1gJnDk05y6jfCkmAJm5VjXUOjQhskRyzV)
+   [](https://drive.google.com/uc?export=view&id=1gJnDk05y6jfCkmAJm5VjXUOjQhskRyzV)
 
 ### Development Process
 We followed an agile development model, using **Material Design** principles and a monolithic architecture. The application was developed using **Dart** and **Flutter**, making it accessible across multiple platforms.
