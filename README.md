@@ -19,7 +19,7 @@ Participants engage in a learning journey that unfolds through multiple stages, 
 
 1. **Profile Creation**
    Players start by creating their profiles to continue with the game.
-   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   ![](https://drive.google.com/uc?export=view&id=1lIzLiDritcwW1SMtWA0BRmSuWVEvaZfQ)
 
 2. **Main Components**
    The game consists of three major components:
@@ -31,16 +31,16 @@ Participants engage in a learning journey that unfolds through multiple stages, 
    - **Daily Task**: Players are provided with daily challenges that reward them with coins.
    - **Community Section**: A space where players can connect with others, form groups, and see their leaderboard rankings.
    - **Data Explore Section**: A dedicated section for exploring environmental data using NASA tools and **GLOBE** protocols.
-     ![](https://drive.google.com/uc?export=view&id=1lIzLiDritcwW1SMtWA0BRmSuWVEvaZfQ)
+     ![](https://drive.google.com/uc?export=view&id=17hhVW_b0b2by56q56WoIjGz8iF-B6QMv)
    
 3. **Learning and Exploration**
    - The journey begins with a visual representation of the Earth system called **About Globe**, where players learn through videos and information.
    - After completing the learning phase, players engage in puzzle games, which, upon completion, unlock the **Explore** section.
-     ![](https://drive.google.com/uc?export=view&id=17hhVW_b0b2by56q56WoIjGz8iF-B6QMv)
+     ![](https://drive.google.com/uc?export=view&id=1jIO-Zd-UsmJMiVQn5ohp-FMn4UB70EZUhttps://drive.google.com/uc?export=view&id=1vPd05ldP8nPbgLn6hfF7Jm1pjL6sATZW)
    
 4. **Training Lab**
    After the learning part, players must complete the **Training Lab** section, where they test their knowledge through various tasks.
-   ![](https://drive.google.com/uc?export=view&id=1jIO-Zd-UsmJMiVQn5ohp-FMn4UB70EZU)
+   ![]()
 
 5. **Daily Task**
    Players are assigned daily tasks, and upon completion, they are rewarded with coins, which can be used to unlock additional features.
