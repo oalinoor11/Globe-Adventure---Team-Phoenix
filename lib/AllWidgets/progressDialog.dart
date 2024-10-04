@@ -1,4 +1,4 @@
-import 'package:durbarclub/Core/appData.dart';
+import 'package:globeadventure/Core/appData.dart';
 import 'package:flutter/material.dart';
 
 class ProgressDialog extends StatelessWidget

@@ -1,45 +1,152 @@
 {
   "project_info": {
-    "project_number": "841342244001",
-    "project_id": "durbar-club",
-    "storage_bucket": "durbar-club.appspot.com"
+    "project_number": "1070050024963",
+    "project_id": "field-scan-6fdf0",
+    "storage_bucket": "field-scan-6fdf0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:841342244001:android:f903f8690d946cda27cce0",
+        "mobilesdk_app_id": "1:1070050024963:android:1ba4923e7e1a8f1ffcf836",
         "android_client_info": {
-          "package_name": "app.pronfc.android"
+          "package_name": "net.carboncodes.fieldscan"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCEuofgJbbmGRDgJ_rabWLPbXkwCxkdMyg"
+          "current_key": "AIzaSyBIDC4D_s_3OMqJgeOZcrThG2gXs54GfSw"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:841342244001:android:f5732e7ccfc942b327cce0",
+        "mobilesdk_app_id": "1:1070050024963:android:9c12621dd3598810fcf836",
         "android_client_info": {
-          "package_name": "club.durbar.app"
+          "package_name": "net.carboncodes.globeadventure"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCEuofgJbbmGRDgJ_rabWLPbXkwCxkdMyg"
+          "current_key": "AIzaSyBIDC4D_s_3OMqJgeOZcrThG2gXs54GfSw"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070050024963:android:e6d5de9cdd9f3436fcf836",
+        "android_client_info": {
+          "package_name": "net.carboncodes.h2o"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIDC4D_s_3OMqJgeOZcrThG2gXs54GfSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070050024963:android:4b3467f892894e56fcf836",
+        "android_client_info": {
+          "package_name": "org.crvyas.userapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIDC4D_s_3OMqJgeOZcrThG2gXs54GfSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070050024963:android:64e38671a8961490fcf836",
+        "android_client_info": {
+          "package_name": "win.rocket.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIDC4D_s_3OMqJgeOZcrThG2gXs54GfSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070050024963-fdshh4rpcoeu076sq5ql9sph19rddh5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

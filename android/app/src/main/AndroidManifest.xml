@@ -1,16 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.pronfc.android">
+    package="net.carboncodes.globeadventure">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
     <application
-        android:label="দুর্বার"
+        android:label="Globe Adventure"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/roundedlogo"
         android:usesCleartextTraffic="true">
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/notificationicon" />
 
         <activity
             android:exported="true"

@@ -1,8 +1,0 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-class FirebaseCollections {
-  static CollectionReference PROFILECOLLECTION = FirebaseFirestore.instance.collection("PROFILELIST");
-  static CollectionReference NOTIFICATIONCOLLECTION = FirebaseFirestore.instance.collection("NOTIFICATIONLIST");
-  static CollectionReference BLOODREQUESTCOLLECTION = FirebaseFirestore.instance.collection("BLOODREQUESTLIST");
-  static CollectionReference POSTCOLLECTION = FirebaseFirestore.instance.collection("POSTLIST");
-}
