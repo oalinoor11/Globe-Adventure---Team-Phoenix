@@ -19,8 +19,10 @@ Participants engage in a learning journey that unfolds through multiple stages, 
 
 1. **Profile Creation**
    Players start by creating their profiles to continue with the game.
+   ![Uploading Screenshot 2024-10-04 121542.png…]()
 
-2. **Main Components**
+
+3. **Main Components**
    The game consists of three major components:
     - **Learn Section**: A space to acquire knowledge through videos and information about Earth systems.
     - **Explore Section**: An area to investigate local and global environmental topics, using **NASA Earth Observatory** data.
@@ -31,23 +33,23 @@ Participants engage in a learning journey that unfolds through multiple stages, 
     - **Community Section**: A space where players can connect with others, form groups, and see their leaderboard rankings.
     - **Data Explore Section**: A dedicated section for exploring environmental data using NASA tools and **GLOBE** protocols.
 
-3. **Learning and Exploration**
+4. **Learning and Exploration**
     - The journey begins with a visual representation of the Earth system called **About Globe**, where players learn through videos and information.
     - After completing the learning phase, players engage in puzzle games, which, upon completion, unlock the **Explore** section.
 
-4. **Training Lab**
+5. **Training Lab**
    After the learning part, players must complete the **Training Lab** section, where they test their knowledge through various tasks.
 
-5. **Daily Task**
+6. **Daily Task**
    Players are assigned daily tasks, and upon completion, they are rewarded with coins, which can be used to unlock additional features.
 
-6. **Community**
+7. **Community**
    The **Community Section** allows players to communicate with others, form groups, and track their rankings on the leaderboard.
 
-7. **Exploration**
+8. **Exploration**
    Players select a country to explore by clicking the **Explore** button, choosing a continent, and then delving into local environmental issues using NASA Earth Observatory data. They can also engage in problem-solving games to earn coins.
 
-8. **NASA Data Exploration**
+9. **NASA Data Exploration**
    Players can explore their local environment further by using **NASA** and **GLOBE** tools, providing a deeper dive into environmental data.
 
 ### Development Process
