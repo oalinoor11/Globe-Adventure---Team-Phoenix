@@ -31,31 +31,31 @@ Participants engage in a learning journey that unfolds through multiple stages, 
    - **Daily Task**: Players are provided with daily challenges that reward them with coins.
    - **Community Section**: A space where players can connect with others, form groups, and see their leaderboard rankings.
    - **Data Explore Section**: A dedicated section for exploring environmental data using NASA tools and **GLOBE** protocols.
-     ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
-   - 
+     ![](https://drive.google.com/uc?export=view&id=1lIzLiDritcwW1SMtWA0BRmSuWVEvaZfQ)
+   
 3. **Learning and Exploration**
    - The journey begins with a visual representation of the Earth system called **About Globe**, where players learn through videos and information.
    - After completing the learning phase, players engage in puzzle games, which, upon completion, unlock the **Explore** section.
-     ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+     ![](https://drive.google.com/uc?export=view&id=17hhVW_b0b2by56q56WoIjGz8iF-B6QMv)
    
 4. **Training Lab**
    After the learning part, players must complete the **Training Lab** section, where they test their knowledge through various tasks.
-   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   ![](https://drive.google.com/uc?export=view&id=1jIO-Zd-UsmJMiVQn5ohp-FMn4UB70EZU)
 
 5. **Daily Task**
    Players are assigned daily tasks, and upon completion, they are rewarded with coins, which can be used to unlock additional features.
-   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   ![](https://drive.google.com/uc?export=view&id=1vPd05ldP8nPbgLn6hfF7Jm1pjL6sATZW)
 
 6. **Community**
    The **Community Section** allows players to communicate with others, form groups, and track their rankings on the leaderboard.
-   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   ![](https://drive.google.com/uc?export=view&id=10JCDguWrmwXiRBHM4hHSJIcfqAjOi9ZA)
 
 7. **Exploration**
    Players select a country to explore by clicking the **Explore** button, choosing a continent, and then delving into local environmental issues using NASA Earth Observatory data. They can also engage in problem-solving games to earn coins.
-   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   ![](https://drive.google.com/uc?export=view&id=1SDKMTcTqHTRtk4dnIkzxyTgBGpuzVBN6)
 
 8. **NASA Data Exploration**
-   Pla![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   Pla![](https://drive.google.com/uc?export=view&id=1gJnDk05y6jfCkmAJm5VjXUOjQhskRyzV)
 
 ### Development Process
 We followed an agile development model, using **Material Design** principles and a monolithic architecture. The application was developed using **Dart** and **Flutter**, making it accessible across multiple platforms.
