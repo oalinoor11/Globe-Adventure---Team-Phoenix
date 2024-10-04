@@ -19,39 +19,43 @@ Participants engage in a learning journey that unfolds through multiple stages, 
 
 1. **Profile Creation**
    Players start by creating their profiles to continue with the game.
-   
    ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
-
-3. **Main Components**
+2. **Main Components**
    The game consists of three major components:
-    - **Learn Section**: A space to acquire knowledge through videos and information about Earth systems.
-    - **Explore Section**: An area to investigate local and global environmental topics, using **NASA Earth Observatory** data.
-    - **Training Section**: A place for players to test and train their knowledge through interactive exercises.
+   - **Learn Section**: A space to acquire knowledge through videos and information about Earth systems.
+   - **Explore Section**: An area to investigate local and global environmental topics, using **NASA Earth Observatory** data.
+   - **Training Section**: A place for players to test and train their knowledge through interactive exercises.
 
    Additional features include:
-    - **Daily Task**: Players are provided with daily challenges that reward them with coins.
-    - **Community Section**: A space where players can connect with others, form groups, and see their leaderboard rankings.
-    - **Data Explore Section**: A dedicated section for exploring environmental data using NASA tools and **GLOBE** protocols.
-
-4. **Learning and Exploration**
-    - The journey begins with a visual representation of the Earth system called **About Globe**, where players learn through videos and information.
-    - After completing the learning phase, players engage in puzzle games, which, upon completion, unlock the **Explore** section.
-
-5. **Training Lab**
+   - **Daily Task**: Players are provided with daily challenges that reward them with coins.
+   - **Community Section**: A space where players can connect with others, form groups, and see their leaderboard rankings.
+   - **Data Explore Section**: A dedicated section for exploring environmental data using NASA tools and **GLOBE** protocols.
+     ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   - 
+3. **Learning and Exploration**
+   - The journey begins with a visual representation of the Earth system called **About Globe**, where players learn through videos and information.
+   - After completing the learning phase, players engage in puzzle games, which, upon completion, unlock the **Explore** section.
+     ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
+   
+4. **Training Lab**
    After the learning part, players must complete the **Training Lab** section, where they test their knowledge through various tasks.
+   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
-6. **Daily Task**
+5. **Daily Task**
    Players are assigned daily tasks, and upon completion, they are rewarded with coins, which can be used to unlock additional features.
+   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
-7. **Community**
+6. **Community**
    The **Community Section** allows players to communicate with others, form groups, and track their rankings on the leaderboard.
+   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
-8. **Exploration**
+7. **Exploration**
    Players select a country to explore by clicking the **Explore** button, choosing a continent, and then delving into local environmental issues using NASA Earth Observatory data. They can also engage in problem-solving games to earn coins.
+   ![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
-9. **NASA Data Exploration**
-   Players can explore their local environment further by using **NASA** and **GLOBE** tools, providing a deeper dive into environmental data.
+8. **NASA Data Exploration**
+   Pla![](https://drive.google.com/uc?export=view&id=1uAvg4dCj7Yhs0CO_A396MLaIPudehiWh)
 
 ### Development Process
 We followed an agile development model, using **Material Design** principles and a monolithic architecture. The application was developed using **Dart** and **Flutter**, making it accessible across multiple platforms.
